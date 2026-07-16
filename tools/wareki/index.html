@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>西暦⇔和暦変換・年齢計算ツール|ラクツール</title>
-<meta name="description" content="西暦⇔和暦変換・満年齢・数え年・干支の計算に加え、お酒・たばこ提供時の年齢確認(20歳チェック)早見つき。外国の身分証・パスポートの生年月日の読み方(DD/MM/YYYY・民国暦・仏暦)にも対応した無料ツール。">
+<meta name="description" content="西暦と和暦(明治・大正・昭和・平成・令和)の相互変換、生年月日から満年齢・数え年・干支・学年を計算できる無料ツール。改元日も正確に判定。登録不要、入力データは送信されません。">
 <link rel="stylesheet" href="../../assets/style.css">
 <style>
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 2px solid var(--border); margin-bottom: 20px; }
@@ -97,7 +97,7 @@
 
 <div class="page-head">
   <h1>西暦⇔和暦変換・年齢計算ツール</h1>
-  <p class="lead">西暦と和暦(明治・大正・昭和・平成・令和)をワンクリックで相互変換。生年月日から満年齢・数え年・干支・学年も計算できます。お酒・たばこ提供時の年齢確認(20歳チェック)早見つき。外国の身分証・パスポートの生年月日(月/日の並び順・台湾の民国暦・タイの仏暦)にも対応。改元日も正確に判定、登録不要・完全無料です。</p>
+  <p class="lead">西暦と和暦(明治・大正・昭和・平成・令和)をワンクリックで相互変換。生年月日から満年齢・数え年・干支・学年も計算できます。改元日(昭和64年→平成元年など)も正確に判定。お店向けの年齢確認(20歳チェック)は専用ページあり。登録不要・完全無料です。</p>
   <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>運営:<b>はかり</b></span></div>
 </div>
 
@@ -175,230 +175,9 @@
   </section>
 </div>
 
-<div class="tool-panel" id="agecheck">
-  <h2>年齢確認(20歳チェック)</h2>
-  <p class="note" style="margin-top:0;">お酒・たばこの販売やシーシャバーの入店確認など、<strong>「20歳以上かどうか」を身分証を見ながらその場で確認する</strong>ための早見です。基準日はこのページを開いた日で自動更新されます。</p>
-  <div class="result-box" id="agecheck-today"></div>
-  <div class="field" style="margin-top:16px;">
-    <label for="agecheck-birth">生年月日を入力すると即判定</label>
-    <input type="date" id="agecheck-birth" min="1868-01-25">
-  </div>
-  <div class="result-box" id="agecheck-result" hidden></div>
-  <p class="note">※満年齢(誕生日当日に1歳加算)による判定の目安です。入力内容は送信されません。</p>
+<div class="tool-panel" id="agecheck-link" style="padding:16px 20px;">
+  <p style="margin:0;font-size:0.95rem;"><strong>お店の年齢確認(20歳チェック)は専用ページに引っ越しました。</strong><br>今日の基準日の自動表示・外国の身分証/パスポート対応の早見表は <a href="../nenkaku/"><strong>年齢確認(20歳チェック)早見表</strong></a> をご利用ください。</p>
 </div>
-
-<script>
-(function () {
-  "use strict";
-  var ERAS = [
-    { name: "令和", start: [2019, 5, 1], offset: 2018 },
-    { name: "平成", start: [1989, 1, 8], offset: 1988 },
-    { name: "昭和", start: [1926, 12, 25], offset: 1925 },
-    { name: "大正", start: [1912, 7, 30], offset: 1911 },
-    { name: "明治", start: [1868, 1, 25], offset: 1867 }
-  ];
-  function wareki(y, m, d) {
-    for (var i = 0; i < ERAS.length; i++) {
-      var s = ERAS[i].start;
-      if (y > s[0] || (y === s[0] && (m > s[1] || (m === s[1] && d >= s[2])))) {
-        var n = y - ERAS[i].offset;
-        return ERAS[i].name + (n === 1 ? "元" : n) + "年";
-      }
-    }
-    return "";
-  }
-  function fmt(y, m, d) { return y + "年" + m + "月" + d + "日"; }
-  function cutoff(years) {
-    var t = new Date();
-    var c = new Date(t.getFullYear() - years, t.getMonth(), t.getDate());
-    return { y: c.getFullYear(), m: c.getMonth() + 1, d: c.getDate() };
-  }
-  var t = new Date();
-  var c20 = cutoff(20), c18 = cutoff(18);
-  document.getElementById("agecheck-today").innerHTML =
-    "本日(" + fmt(t.getFullYear(), t.getMonth() + 1, t.getDate()) + ")時点で──<br>" +
-    "<strong style=\"font-size:1.2em;\">" + fmt(c20.y, c20.m, c20.d) + "(" + wareki(c20.y, c20.m, c20.d) + ")以前の生まれ → 20歳以上</strong><br>" +
-    "<span style=\"font-size:0.92em;\">" + fmt(c18.y, c18.m, c18.d) + "(" + wareki(c18.y, c18.m, c18.d) + ")以前の生まれ → 18歳以上</span>";
-
-  var input = document.getElementById("agecheck-birth");
-  var out = document.getElementById("agecheck-result");
-  input.addEventListener("change", function () {
-    if (!input.value) { out.hidden = true; return; }
-    var p = input.value.split("-");
-    var by = parseInt(p[0], 10), bm = parseInt(p[1], 10), bd = parseInt(p[2], 10);
-    var now = new Date();
-    var age = now.getFullYear() - by;
-    if (now.getMonth() + 1 < bm || (now.getMonth() + 1 === bm && now.getDate() < bd)) age--;
-    if (age < 0 || age > 130) {
-      out.innerHTML = "生年月日を確認してください。";
-      out.hidden = false;
-      return;
-    }
-    var w = wareki(by, bm, bd);
-    if (age >= 20) {
-      out.innerHTML = "<strong style=\"color:#0a7a3c;font-size:1.25em;\">○ 20歳以上です(満" + age + "歳)</strong><br><span class=\"note\">" + fmt(by, bm, bd) + "(" + w + ")生まれ</span>";
-    } else if (age >= 18) {
-      out.innerHTML = "<strong style=\"color:#c92a2a;font-size:1.25em;\">× 20歳未満です(満" + age + "歳)</strong><br><span class=\"note\">18歳以上。" + fmt(by, bm, bd) + "(" + w + ")生まれ。お酒・たばこは提供できません。</span>";
-    } else {
-      out.innerHTML = "<strong style=\"color:#c92a2a;font-size:1.25em;\">× 20歳未満です(満" + age + "歳)</strong><br><span class=\"note\">" + fmt(by, bm, bd) + "(" + w + ")生まれ</span>";
-    }
-    out.hidden = false;
-  });
-})();
-</script>
-
-<div class="tool-panel" id="foreign-agecheck">
-  <h2>外国の身分証・パスポートの年齢確認</h2>
-  <p class="note" style="margin-top:0;">外国籍のお客様の身分証は、日付の並び順(日/月/年か月/日/年か)や暦(台湾の民国暦・タイの仏暦)が日本と異なります。<strong>書かれている生年月日を見たまま入力</strong>すると、あり得るすべての読み方で判定し、<strong>最も若く読める解釈</strong>を基準に安全側でお知らせします。</p>
-  <div class="field">
-    <label for="fcheck-input">生年月日を見たまま入力(例: 05/03/2006、12 JAN 98、民国95.3.12なら「95 3 12」)</label>
-    <input type="text" id="fcheck-input" placeholder="例: 05/03/2006" autocomplete="off">
-  </div>
-  <div class="result-box" id="fcheck-result" hidden></div>
-  <p class="note">※数字の区切りはスラッシュ・ドット・スペースなど何でも構いません。月が英字(JAN・FEB…)の場合はそのまま入力してください。</p>
-
-  <h3 style="margin-top:20px;">主な国・地域の生年月日表記(日本への渡航が多い国)</h3>
-  <div class="table-wrap">
-    <table>
-      <tr><th>国・地域</th><th>よくある表記</th><th>読み方の注意</th></tr>
-      <tr><td>韓国</td><td>YYYY.MM.DD</td><td>西暦・年が先。日本と同じ感覚で読める</td></tr>
-      <tr><td>中国</td><td>YYYY年M月D日 / YYYY-MM-DD</td><td>西暦・年が先</td></tr>
-      <tr><td>台湾</td><td>民国YY.MM.DD</td><td><strong>民国暦。年に1911を足す</strong>(民国95年=2006年)。身分証・運転免許で使用</td></tr>
-      <tr><td>香港</td><td>DD-MM-YYYY</td><td>日が先(英国式)</td></tr>
-      <tr><td>タイ</td><td>DD/MM/YYYY</td><td><strong>年が仏暦のことがある。2500台なら543を引く</strong>(仏暦2549年=2006年)。運転免許・国内身分証で使用</td></tr>
-      <tr><td>ベトナム</td><td>DD/MM/YYYY</td><td>日が先・西暦</td></tr>
-      <tr><td>フィリピン</td><td>MM/DD/YYYY</td><td><strong>月が先(米国式)</strong></td></tr>
-      <tr><td>インドネシア</td><td>DD-MM-YYYY</td><td>日が先・西暦</td></tr>
-      <tr><td>シンガポール・マレーシア</td><td>DD/MM/YYYY</td><td>日が先・西暦</td></tr>
-      <tr><td>米国</td><td>MM/DD/YYYY</td><td><strong>月が先</strong>。05/03/2006は「5月3日」</td></tr>
-      <tr><td>英国・豪州・欧州主要国</td><td>DD/MM/YYYY</td><td>日が先。05/03/2006は「3月5日」</td></tr>
-      <tr><td>パスポート(各国共通)</td><td>DD 英字月 YYYY</td><td>ICAO標準。月は英字3文字(下表)・年は西暦。迷ったらパスポートを見せてもらうのが確実</td></tr>
-    </table>
-  </div>
-  <p class="note">※同じ国でも書類の種類・発行時期によって表記が異なる場合があります。判断に迷う場合はパスポート(月が英字・西暦表記)での確認が確実です。</p>
-
-  <h3>英字の月の読み方(パスポート等)</h3>
-  <div class="table-wrap">
-    <table>
-      <tr><th>JAN</th><th>FEB</th><th>MAR</th><th>APR</th><th>MAY</th><th>JUN</th><th>JUL</th><th>AUG</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DEC</th></tr>
-      <tr><td>1月</td><td>2月</td><td>3月</td><td>4月</td><td>5月</td><td>6月</td><td>7月</td><td>8月</td><td>9月</td><td>10月</td><td>11月</td><td>12月</td></tr>
-    </table>
-  </div>
-</div>
-
-<script>
-(function () {
-  "use strict";
-  var MONTHS = { JAN:1, FEB:2, MAR:3, APR:4, MAY:5, JUN:6, JUL:7, AUG:8, SEP:9, SEPT:9, OCT:10, NOV:11, DEC:12 };
-
-  function isValidDate(y, m, d) {
-    if (m < 1 || m > 12 || d < 1 || d > 31) return false;
-    var dt = new Date(y, m - 1, d);
-    return dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d;
-  }
-  function ageOf(y, m, d, now) {
-    var a = now.getFullYear() - y;
-    if (now.getMonth() + 1 < m || (now.getMonth() + 1 === m && now.getDate() < d)) a--;
-    return a;
-  }
-  /* 数値トークン→あり得る西暦のリスト */
-  function yearCandidates(n, now) {
-    var cur = now.getFullYear(), out = [];
-    if (n >= 1900 && n <= cur) out.push({ y: n, label: "西暦" });
-    if (n >= 2400 && n <= cur + 543) out.push({ y: n - 543, label: "仏暦(タイ)" });
-    if (n >= 40 && n <= cur - 1911) out.push({ y: n + 1911, label: "民国暦(台湾)" });
-    if (n >= 0 && n <= 99) {
-      var g = (2000 + n <= cur) ? 2000 + n : 1900 + n;
-      out.push({ y: g, label: "西暦2桁" });
-    }
-    return out;
-  }
-  function fmt(y, m, d) { return y + "年" + m + "月" + d + "日"; }
-
-  function interpret(text, now) {
-    var tokens = text.toUpperCase().split(/[^A-Z0-9]+/).filter(Boolean);
-    if (tokens.length !== 3) return null;
-    var letterIdx = -1, nums = [], i;
-    for (i = 0; i < 3; i++) {
-      if (/^[A-Z]+$/.test(tokens[i])) {
-        if (letterIdx !== -1 || !(tokens[i] in MONTHS)) return null;
-        letterIdx = i;
-      } else if (/^[0-9]+$/.test(tokens[i])) {
-        nums.push(parseInt(tokens[i], 10));
-      } else { return null; }
-    }
-    var results = {}, list = [];
-    function add(y, m, d, note) {
-      if (!isValidDate(y, m, d)) return;
-      var key = y + "-" + m + "-" + d;
-      if (results[key]) { if (results[key].notes.indexOf(note) < 0) results[key].notes.push(note); return; }
-      var r = { y: y, m: m, d: d, age: ageOf(y, m, d, now), notes: [note] };
-      if (r.age < 0 || r.age > 120) return;
-      results[key] = r; list.push(r);
-    }
-    if (letterIdx !== -1) {
-      /* 英字月(パスポート型): 年は必ず西暦なので民国・仏暦の解釈は除外する */
-      var mo = MONTHS[tokens[letterIdx]];
-      [[nums[0], nums[1]], [nums[1], nums[0]]].forEach(function (pair) {
-        var d = pair[0];
-        yearCandidates(pair[1], now).forEach(function (yc) {
-          if (yc.label !== "西暦" && yc.label !== "西暦2桁") return;
-          add(yc.y, mo, d, "日 " + d + "・月 " + tokens[letterIdx] + "・年 " + yc.label);
-        });
-      });
-    } else {
-      /* 数値3つ: 全順列で(日,月,年) */
-      var perms = [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
-      var ORDER_LABEL = { "012": "日/月/年", "102": "月/日/年", "210": "年/月/日" };
-      perms.forEach(function (pm) {
-        var d = nums[pm[0]], mo = nums[pm[1]], yTok = nums[pm[2]];
-        yearCandidates(yTok, now).forEach(function (yc) {
-          var ol = ORDER_LABEL[pm.join("")] || "その他の並び";
-          add(yc.y, mo, d, ol + "・年は" + yc.label);
-        });
-      });
-    }
-    list.sort(function (a, b) { return a.age - b.age; });
-    return list;
-  }
-
-  var input = document.getElementById("fcheck-input");
-  var out = document.getElementById("fcheck-result");
-  function run() {
-    var v = input.value.trim();
-    if (!v) { out.hidden = true; return; }
-    var now = new Date();
-    var list = interpret(v, now);
-    if (!list) {
-      out.innerHTML = "3つの要素(日・月・年)に読み取れませんでした。区切りを入れて入力してください(例: 05/03/2006、12 JAN 98)。";
-      out.hidden = false; return;
-    }
-    if (!list.length) {
-      out.innerHTML = "日付として成立する読み方が見つかりませんでした。入力を確認してください。";
-      out.hidden = false; return;
-    }
-    var minAge = list[0].age, maxAge = list[list.length - 1].age;
-    var html = "";
-    if (minAge >= 20) {
-      html += "<strong style=\"color:#0a7a3c;font-size:1.25em;\">○ どの読み方でも20歳以上です(最少でも満" + minAge + "歳)</strong>";
-    } else if (maxAge < 20) {
-      html += "<strong style=\"color:#c92a2a;font-size:1.25em;\">× どの読み方でも20歳未満です(最大でも満" + maxAge + "歳)</strong>";
-    } else {
-      html += "<strong style=\"color:#b45309;font-size:1.25em;\">△ 読み方によって判定が分かれます — 要確認</strong><br><span class=\"note\">最も若い読み方では満" + minAge + "歳(20歳未満)になります。パスポート等で並び順を確認してください。</span>";
-    }
-    html += "<div style=\"margin-top:10px;font-size:0.88em;\">あり得る読み方:</div><ul style=\"margin:4px 0 0;padding-left:22px;font-size:0.88em;\">";
-    var shown = list.slice(0, 6);
-    shown.forEach(function (r) {
-      html += "<li>" + fmt(r.y, r.m, r.d) + " → 満" + r.age + "歳(" + r.notes[0] + ")</li>";
-    });
-    if (list.length > 6) html += "<li>ほか" + (list.length - 6) + "通り</li>";
-    html += "</ul>";
-    out.innerHTML = html;
-    out.hidden = false;
-  }
-  input.addEventListener("input", run);
-})();
-</script>
 
 <article class="article">
 
@@ -409,7 +188,7 @@
   <li><strong>和暦→西暦</strong>:元号(明治・大正・昭和・平成・令和)と年数を選んで変換します。「昭和65年」のような実在しない年はエラーとしてお知らせします。</li>
   <li><strong>年齢計算</strong>:生年月日を入力すると、今日時点の満年齢・数え年・生まれ年の干支・今年の誕生日を迎えたかどうか、さらに小学校〜高校の入学・卒業年度の早見を表示します。履歴書にそのまま使える「平成8年4月2日生まれ」形式の表記はコピーボタンでコピーできます。</li>
 </ol>
-<p>タブの下には<strong>年齢確認(20歳チェック)</strong>のパネルがあります。「今日の日付で、どの生年月日以前なら20歳以上か」が西暦・和暦の両方で常に表示されるので、お酒やたばこを扱うお店のレジ・入店確認で、お客様の身分証と見比べるだけで判定できます。生年月日を入力すればその場で「○ 20歳以上/× 20歳未満」も表示します。</p>
+<p>お酒・たばこを扱うお店向けの<strong>年齢確認(20歳チェック)</strong>は、外国の身分証・パスポート対応の早見表とあわせて<a href="../nenkaku/">専用ページ</a>にまとめています。</p>
 
 <h2>元号の切り替わり日一覧</h2>
 <p>和暦と西暦の変換で間違えやすいのが「改元をまたぐ年」です。元号は年の途中で切り替わるため、同じ西暦の年でも日付によって元号が異なります。切り替わり日は次のとおりです。</p>
