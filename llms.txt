@@ -7,7 +7,7 @@
 サイト: https://hakarigoto.github.io/tools/
 
 - [請求書作成](https://hakarigoto.github.io/tools/invoice/): インボイス制度(適格請求書)対応。消費税・源泉徴収を自動計算し、ブラウザの印刷機能でPDF保存。
-- [履歴書作成](https://hakarigoto.github.io/tools/resume/): JIS規格様式に準拠。証明写真の埋め込み・和暦変換対応。個人情報はブラウザ内のみで処理。
+- [履歴書作成](https://hakarigoto.github.io/tools/resume/): 厚生労働省の様式例に準拠。証明写真の埋め込み・和暦変換対応。個人情報はブラウザ内のみで処理。
 - [文字数カウント](https://hakarigoto.github.io/tools/charcount/): 原稿用紙換算・SNS字数上限チェック・読み上げ時間の目安。
 - [画像リサイズ・圧縮](https://hakarigoto.github.io/tools/image-resize/): 画像をアップロードせずブラウザ内でリサイズ・圧縮・形式変換。
 - [西暦⇔和暦変換・年齢計算](https://hakarigoto.github.io/tools/wareki/): 改元日に正確に対応した相互変換と早見表、満年齢・数え年・干支。

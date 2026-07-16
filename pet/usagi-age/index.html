@@ -6,6 +6,7 @@
 <title>うさぎの年齢を人間に換算|ライフステージと長生きのポイント|ペット電卓</title>
 <meta name="description" content="うさぎの年齢(年+月)を入力するだけで人間の年齢に換算できる無料計算機。1歳で約20歳・2歳で約30歳・以降1年6歳という一般的な目安に対応。ライフステージ(子うさぎ・大人・シニア)判定と、シニア期のサイン・長生きのポイントも解説。">
 <link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23b85c1e%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>ペ</text></svg>">
 <style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
 <style>
 .result-main { font-size: 1.4rem; font-weight: 700; }
@@ -85,7 +86,7 @@
   <div class="point-box-title">30秒でわかるこの記事のポイント</div>
   <ul>
     <li>うさぎは<span class="mk">最初の1年で人間の20歳前後</span>に相当し、その後は1年ごとに約6歳分年を取るのが一般的な目安</li>
-    <li>平均寿命は<span class="mk">おおむね7〜10歳前後</span>とされ(諸説あり)、近年は10歳超えの長寿うさぎも珍しくない</li>
+    <li>うさぎとは<span class="mk">平均7〜10年ほど一緒にいられる</span>とされ(諸説あり)、近年は10歳超えの長寿うさぎも珍しくない</li>
     <li><span class="mk">7歳前後から高齢期(シニア期)</span>の目安。人間でいうと60歳前後</li>
     <li>シニア期は食欲・歯・足腰の変化に注意し、<span class="mk">段差を減らすなど環境調整</span>を早めに</li>
   </ul>
@@ -97,7 +98,7 @@
     <li><a href="#calc">年齢換算の計算機</a></li>
     <li><a href="#tsukaikata">使い方</a></li>
     <li><a href="#kangaekata">うさぎの年齢換算の考え方</a></li>
-    <li><a href="#jumyo">うさぎの平均寿命</a></li>
+    <li><a href="#jumyo">うさぎとは何年くらい一緒にいられる?(平均寿命の目安)</a></li>
     <li><a href="#sign">シニア期のサインと長生きのポイント</a></li>
     <li><a href="#hayami">うさぎの年齢換算 早見表</a></li>
     <li><a href="#faq">よくある質問</a></li>
@@ -121,9 +122,8 @@
       </select>
     </div>
   </div>
-  <p class="note">計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
+  <p class="note">入力すると自動で結果が表示されます。計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
   <div class="btn-row">
-    <button class="btn" id="usagi-run">人間の年齢に換算</button>
     <button class="btn btn-secondary" id="usagi-clear">クリア</button>
   </div>
   <div class="result-box" id="usagi-result" hidden></div>
@@ -132,9 +132,9 @@
 </div>
 
 <div class="cta-box">
-  <p class="cta-box-title">ハムスターと暮らしている方はこちら</p>
-  <p>ハムスターの月齢から人間換算年齢とライフステージを計算。ゴールデン・ジャンガリアンなど種類別の寿命の目安も分かります。</p>
-  <a class="cta-btn" href="../hamster-age/">ハムスターの年齢を無料で換算する</a>
+  <p class="cta-box-title">ハムスターも一緒に飼っているなら</p>
+  <p>多頭飼いの子もどうぞ。ハムスターの月齢から人間換算年齢とライフステージを計算でき、ゴールデン・ジャンガリアンなど種類別のケアの目安も分かります。</p>
+  <a class="cta-btn" href="../hamster-age/">ハムスターの年齢を調べる</a>
   <span class="cta-note">登録不要・入力データは送信されません</span>
 </div>
 
@@ -143,7 +143,7 @@
 <h2 id="tsukaikata">使い方</h2>
 <ol>
   <li>うさぎの年齢を「年」と「月」で入力します(例:4歳6ヶ月なら「4」と「6ヶ月」)。</li>
-  <li>「人間の年齢に換算」を押すと、人間換算年齢とライフステージ(子うさぎ・大人・シニア)が表示されます。シニア期の場合は健康チェックポイントも表示します。</li>
+  <li>入力すると自動で、人間換算年齢とライフステージ(子うさぎ・大人・シニア)が表示されます。シニア期の場合は健康チェックポイントも表示します。</li>
   <li>保護うさぎなどで正確な生年月日が分からない場合は、推定年齢でおおよその目安として使ってください。</li>
 </ol>
 
@@ -151,7 +151,7 @@
 <p>うさぎは生後半年〜1年ほどで体がほぼ成熟します。このため日本で一般的に紹介されている換算では、<strong>最初の1年で人間の20歳前後</strong>に相当すると考え、<strong>2歳で30歳前後</strong>、その後は<strong>1年ごとに約6歳分</strong>年を取るとみなします。たとえば3歳なら約36歳、5歳なら約48歳、7歳なら約60歳、10歳なら約78歳です。</p>
 <p>ただし、うさぎの年齢換算には複数の流儀があり、<strong>「人間年齢=(うさぎの年齢−1)×6+22」という式</strong>で計算する資料など、数値が数歳ずれるものもあります。犬や猫と違って研究に基づく換算式が確立しているわけではないので、<strong>あくまで一般的な目安で、諸説あります</strong>。本ツールは「1歳=20歳・2歳=30歳・以降1年+6歳」の目安を採用し、1歳未満は月齢から比例配分した参考値を表示しています。</p>
 
-<h2 id="jumyo">うさぎの平均寿命</h2>
+<h2 id="jumyo">うさぎとは何年くらい一緒にいられる?(平均寿命の目安)</h2>
 <p>ペットのうさぎ(ネザーランドドワーフ、ホーランドロップなどのカイウサギ)の平均寿命は、<strong>おおむね7〜10歳前後</strong>と紹介されることが多いです。資料によって「7〜8歳」「8〜10歳」など幅があり、種類や個体差、飼育環境によっても変わります。</p>
 <p>かつては「うさぎの寿命は5〜6年」といわれた時代もありましたが、室内飼育の普及、牧草中心の適切な食事、うさぎを診られる動物病院の増加などにより<strong>近年は長寿化が進んでおり、10歳を超えるうさぎも珍しくありません</strong>。海外では18歳前後まで生きた長寿記録も知られています。人間換算で見ると、7歳で還暦前後、10歳で80歳前後に相当し、シニア期をどう過ごすかが長生きの鍵になります。</p>
 
@@ -159,7 +159,7 @@
 <p>うさぎは7歳前後から高齢期(シニア期)に入るとされます。うさぎは体調不良を隠す動物なので、次のような変化に日頃から気を配りましょう。</p>
 <ul>
   <li><strong>食欲・食べ方の変化</strong>:牧草を食べる量が減った、硬いものを残す、よだれが出るなどは、不正咬合(歯のかみ合わせの異常)など歯のトラブルのサインのことがあります。うさぎの歯は一生伸び続けるため、高齢期に限らず歯の健康は重要です。</li>
-    <li><strong>足腰の衰え</strong>:ジャンプ力が落ちる、段差をためらう、足を引きずる、じっとしている時間が増えるなどの変化が出やすくなります。ケージ内の段差を減らす、滑りにくい床材にする、トイレの縁を低くするなどの環境調整が助けになります。</li>
+  <li><strong>足腰の衰え</strong>:ジャンプ力が落ちる、段差をためらう、足を引きずる、じっとしている時間が増えるなどの変化が出やすくなります。ケージ内の段差を減らす、滑りにくい床材にする、トイレの縁を低くするなどの環境調整が助けになります。</li>
   <li><strong>毛づや・毛づくろいの減少</strong>:毛づやが悪くなったり、お尻まわりが汚れやすくなったりしたら、体が曲げにくくなっているサインかもしれません。ブラッシングやお尻まわりのチェックで補助しましょう。</li>
   <li><strong>食欲不振・うんちが小さくなる/減る</strong>:うさぎは食欲が止まると胃腸の動きも止まりやすく(うっ滞)、急変につながることがあります。食欲とうんちの様子は毎日の健康チェックの基本です。</li>
 </ul>
@@ -218,11 +218,11 @@
 </article>
 
 <section class="related">
-  <p class="related-title">関連ツール</p>
+  <p class="related-title">あわせて使いたいペットの電卓</p>
   <div class="card-grid">
     <a class="card" href="../hamster-age/">
       <h3>ハムスターの年齢を人間に換算</h3>
-      <p>ハムスターの月齢から人間換算年齢とライフステージを計算。ゴールデン・ジャンガリアンの寿命の違いも解説。</p>
+      <p>ハムスターの月齢から人間換算年齢とライフステージを計算。ゴールデン・ジャンガリアンなど種類別の目安も解説。</p>
     </a>
     <a class="card" href="../dog-age/">
       <h3>犬の年齢を人間に換算</h3>
@@ -230,7 +230,7 @@
     </a>
     <a class="card" href="../cat-age/">
       <h3>猫の年齢を人間に換算</h3>
-      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼い・外に出る場合の寿命の違いも解説。</p>
+      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼い・外に出る場合のケアの目安も解説。</p>
     </a>
   </div>
 </section>
@@ -248,7 +248,7 @@
   var STAGES = {
     baby:   { label: '子うさぎ', desc: '体が急速に成長する時期です。成長期用の食事、環境に慣らすこと、抱っこや爪切りの練習などが大切です。' },
     adult:  { label: '大人',     desc: '体力が充実する時期です。牧草中心の食事と適正体重の維持、歯とうんちの毎日のチェックを習慣にしましょう。' },
-    senior: { label: 'シニア',   desc: '老化のサインが出始める時期です。食欲・歯・足腰の変化に気を配り、段差を減らすなど生活環境を整えましょう。定期的な健康診断もおすすめです。' }
+    senior: { label: 'シニア',   desc: '健康チェックを少しずつ増やしたい時期です。食欲・歯・足腰の変化に気を配り、段差を減らすなど生活環境を整えましょう。定期的な健康診断もおすすめです。' }
   };
 
   var SENIOR_CHECKS = [
@@ -283,7 +283,8 @@
     resultEl.hidden = false;
   }
 
-  document.getElementById('usagi-run').addEventListener('click', function () {
+  /* 入力のたびに自動で判定・表示 */
+  function run() {
     var yRaw = document.getElementById('usagi-years').value;
     var y = yRaw === '' ? 0 : parseInt(yRaw, 10);
     var m = parseInt(document.getElementById('usagi-months').value, 10);
@@ -291,7 +292,7 @@
     if (isNaN(y) || y < 0) { showError('年齢(年)を正しく入力してください。'); return; }
     if (y > 20) { showError('20歳以下で入力してください。'); return; }
     var age = y + m / 12;
-    if (age <= 0) { showError('年齢を入力してください(例:0年+6ヶ月)。'); return; }
+    if (age <= 0) { resultEl.hidden = true; return; }
 
     var human = Math.round(convHuman(age));
     var stageKey = lifeStage(age);
@@ -320,7 +321,10 @@
 
     resultEl.innerHTML = html;
     resultEl.hidden = false;
-  });
+  }
+
+  document.getElementById('usagi-years').addEventListener('input', run);
+  document.getElementById('usagi-months').addEventListener('change', run);
 
   document.getElementById('usagi-clear').addEventListener('click', function () {
     document.getElementById('usagi-years').value = '';

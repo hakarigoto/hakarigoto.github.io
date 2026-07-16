@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ハムスターの年齢を人間に換算|今何歳?寿命の目安|ペット電卓</title>
+<title>ハムスターの年齢を人間に換算|今何歳?長生きの目安|ペット電卓</title>
 <meta name="description" content="ハムスターの月齢を入力するだけで人間の年齢に換算できる無料計算機。3ヶ月で約20歳・1歳で約30歳・2歳で約60歳という一般的な目安に対応。ゴールデン・ジャンガリアンなど種類別の平均寿命と、シニア期のケアのポイントも解説。">
 <link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23b85c1e%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>ペ</text></svg>">
 <style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
 <style>
 .result-main { font-size: 1.4rem; font-weight: 700; }
@@ -63,7 +64,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hakarigoto.github.io/pet/hamster-age/">
 <meta property="og:site_name" content="ペット電卓">
-<meta property="og:title" content="ハムスターの年齢を人間に換算|今何歳?寿命の目安|ペット電卓">
+<meta property="og:title" content="ハムスターの年齢を人間に換算|今何歳?長生きの目安|ペット電卓">
 <meta property="og:description" content="ハムスターの月齢を入力するだけで人間の年齢に換算できる無料計算機。3ヶ月で約20歳・1歳で約30歳・2歳で約60歳という一般的な目安に対応。種類別の平均寿命とシニア期のケアも解説。">
 <meta name="twitter:card" content="summary">
 </head>
@@ -77,7 +78,7 @@
 
 <div class="page-head">
   <h1>ハムスターの年齢を人間に換算する計算機</h1>
-  <p class="lead">ハムスターの月齢を入力するだけで、人間に換算した年齢とライフステージ(子ども・大人・シニア)を表示します。生後3ヶ月で人間の20歳前後、1歳で30歳前後、2歳で60歳前後という一般的な目安に対応。ゴールデン・ジャンガリアンなど種類別の平均寿命の目安も分かります。登録不要・完全無料です。</p>
+  <p class="lead">ハムスターの月齢を入力するだけで、人間に換算した年齢とライフステージ(子ども・大人・シニア)を表示します。生後3ヶ月で人間の20歳前後、1歳で30歳前後、2歳で60歳前後という一般的な目安に対応。ゴールデン・ジャンガリアンなど種類別のケアの目安も分かります。登録不要・完全無料です。</p>
   <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
 </div>
 
@@ -86,7 +87,7 @@
   <ul>
     <li>ハムスターは<span class="mk">生後3ヶ月で人間の20歳前後</span>に相当する大人になるのが一般的な目安</li>
     <li><span class="mk">1歳で30歳前後、2歳で60歳前後</span>に相当(資料により1歳=34歳、2歳=70歳以上とする説も)</li>
-    <li>平均寿命は<span class="mk">ゴールデンで約2年半〜3年、ジャンガリアンで約2〜2年半</span>(諸説あり)</li>
+    <li>一緒にいられる目安は<span class="mk">ゴールデンで約2年半〜3年、ジャンガリアンで約2〜2年半</span>(諸説あり)</li>
     <li><span class="mk">1歳半頃からはシニア期</span>の目安。毛づや・活動量・食べる量の変化に注意</li>
   </ul>
 </div>
@@ -97,7 +98,7 @@
     <li><a href="#calc">年齢換算の計算機</a></li>
     <li><a href="#tsukaikata">使い方</a></li>
     <li><a href="#kangaekata">ハムスターの年齢換算の考え方</a></li>
-    <li><a href="#jumyo">種類別の平均寿命(ゴールデン・ジャンガリアンなど)</a></li>
+    <li><a href="#jumyo">何年くらい一緒にいられる?種類別の平均寿命(ゴールデン・ジャンガリアンなど)</a></li>
     <li><a href="#senior">シニア期のケア</a></li>
     <li><a href="#hayami">ハムスターの年齢換算 早見表</a></li>
     <li><a href="#faq">よくある質問</a></li>
@@ -121,9 +122,8 @@
       </select>
     </div>
   </div>
-  <p class="note">1歳2ヶ月なら「14」のように月数で入力してください。計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
+  <p class="note">1歳2ヶ月なら「14」のように月数で入力してください。入力すると自動で結果が表示されます。計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
   <div class="btn-row">
-    <button class="btn" id="ham-run">人間の年齢に換算</button>
     <button class="btn btn-secondary" id="ham-clear">クリア</button>
   </div>
   <div class="result-box" id="ham-result" hidden></div>
@@ -132,9 +132,9 @@
 </div>
 
 <div class="cta-box">
-  <p class="cta-box-title">うさぎと暮らしている方はこちら</p>
-  <p>うさぎの年齢(年+月)から人間換算年齢とライフステージを計算。シニア期のサインと長生きのポイントも分かります。</p>
-  <a class="cta-btn" href="../usagi-age/">うさぎの年齢を無料で換算する</a>
+  <p class="cta-box-title">うさぎも一緒に飼っているなら</p>
+  <p>多頭飼いの子もどうぞ。うさぎの年齢(年+月)から人間換算年齢とライフステージを計算でき、シニア期のサインと長生きのポイントも分かります。</p>
+  <a class="cta-btn" href="../usagi-age/">うさぎの年齢を調べる</a>
   <span class="cta-note">登録不要・入力データは送信されません</span>
 </div>
 
@@ -144,14 +144,14 @@
 <ol>
   <li>ハムスターの月齢(生後◯ヶ月)を入力します。1歳2ヶ月なら「14」のように月数に直して入力してください。</li>
   <li>種類(ゴールデン・ジャンガリアン・ロボロフスキーなど)を選びます。分からない場合は「その他・分からない」でも計算できます。</li>
-  <li>「人間の年齢に換算」を押すと、人間換算年齢・ライフステージ・種類別の平均寿命の目安が表示されます。シニア期の場合はケアのチェックポイントも表示します。</li>
+  <li>入力すると自動で、人間換算年齢・ライフステージ・種類別の目安が表示されます。シニア期の場合はケアのチェックポイントも表示します。</li>
 </ol>
 
 <h2 id="kangaekata">ハムスターの年齢換算の考え方</h2>
 <p>ハムスターは寿命が2〜3年ほどと短く、成長も老化も非常に速い動物です。<strong>生後3ヶ月ほどで繁殖もできる大人</strong>になり、人間でいうと20歳前後に相当するとされます。年単位よりも<strong>月齢で考えるのが自然</strong>なため、本ツールも月齢ベースで換算しています。</p>
 <p>一般的に紹介されている目安では、<strong>生後1ヶ月で人間の5〜7歳、3ヶ月で20歳前後、6ヶ月で25〜26歳、1歳で30歳前後、2歳で60歳前後</strong>に相当するとされます。ただし資料によって幅が大きく、<strong>1歳を34歳前後、1歳半を52歳前後、2歳を70歳以上</strong>とするものもあります。犬や猫と違って確立した換算式があるわけではないので、あくまで一般的な目安で、諸説あります。本ツールは上記の目安の点をつないで換算しており、結果は「およそこのくらい」という感覚で捉えてください。</p>
 
-<h2 id="jumyo">種類別の平均寿命(ゴールデン・ジャンガリアンなど)</h2>
+<h2 id="jumyo">何年くらい一緒にいられる?種類別の平均寿命(ゴールデン・ジャンガリアンなど)</h2>
 <p>ハムスターの平均寿命は種類によって差があり、一般的には次のような目安が紹介されています。</p>
 <div class="table-wrap">
 <table>
@@ -226,7 +226,7 @@
 </article>
 
 <section class="related">
-  <p class="related-title">関連ツール</p>
+  <p class="related-title">あわせて使いたいペットの電卓</p>
   <div class="card-grid">
     <a class="card" href="../usagi-age/">
       <h3>うさぎの年齢を人間に換算</h3>
@@ -238,7 +238,7 @@
     </a>
     <a class="card" href="../cat-age/">
       <h3>猫の年齢を人間に換算</h3>
-      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼い・外に出る場合の寿命の違いも解説。</p>
+      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼い・外に出る場合のケアの目安も解説。</p>
     </a>
   </div>
 </section>
@@ -256,7 +256,7 @@
   var STAGES = {
     baby:   { label: '子ども', desc: '急速に成長する時期です。新しい環境に慣らすこと、栄養バランスの良い食事、静かに見守ることが大切です。' },
     adult:  { label: '大人',   desc: '体力が充実する時期です。回し車などで運動できる環境、適正体重の維持、温度管理を習慣にしましょう。' },
-    senior: { label: 'シニア', desc: '老化のサインが出やすい時期です。毛づや・活動量・食べる量の変化に気を配り、ケージ内の段差を減らすなど環境を整えましょう。' }
+    senior: { label: 'シニア', desc: '体をいたわるケアを増やしたい時期です。毛づや・活動量・食べる量の変化に気を配り、ケージ内の段差を減らすなど環境を整えましょう。' }
   };
 
   var SENIOR_CHECKS = [
@@ -313,11 +313,13 @@
     resultEl.hidden = false;
   }
 
-  document.getElementById('ham-run').addEventListener('click', function () {
+  /* 入力のたびに自動で判定・表示 */
+  function run() {
     var mRaw = document.getElementById('ham-months').value;
     var m = mRaw === '' ? NaN : parseInt(mRaw, 10);
     var type = TYPES[document.getElementById('ham-type').value];
 
+    if (mRaw === '') { resultEl.hidden = true; return; }
     if (isNaN(m) || m < 1) { showError('月齢を1以上の数字で入力してください(例:8)。'); return; }
     if (m > 60) { showError('60ヶ月(5歳)以下で入力してください。'); return; }
 
@@ -336,7 +338,11 @@
     }
 
     html += '<hr class="result-divider">';
-    html += '<div class="result-sub"><strong>' + type.label + 'の平均寿命の目安:' + type.life + '</strong>(資料により幅があります)。世界一長生きしたハムスターのギネス記録は4年6ヶ月とされています。</div>';
+    if (m >= 36) {
+      html += '<div class="result-sub"><strong>平均をこえて長生き中です(すばらしい!)</strong>。日々の丁寧なお世話の積み重ねですね。世界一長生きしたハムスターのギネス記録は4年6ヶ月とされています。これからも温度管理と食べやすい食事でサポートしてあげてください。</div>';
+    } else {
+      html += '<div class="result-sub"><strong>' + type.label + 'と一緒にいられる目安:' + type.life + '</strong>(資料により幅があります)。世界一長生きしたハムスターのギネス記録は4年6ヶ月。日々のお世話しだいで平均を大きく超えて長生きすることもあります。</div>';
+    }
 
     if (stageKey === 'senior') {
       html += '<hr class="result-divider">';
@@ -351,7 +357,10 @@
 
     resultEl.innerHTML = html;
     resultEl.hidden = false;
-  });
+  }
+
+  document.getElementById('ham-months').addEventListener('input', run);
+  document.getElementById('ham-type').addEventListener('change', run);
 
   document.getElementById('ham-clear').addEventListener('click', function () {
     document.getElementById('ham-months').value = '';

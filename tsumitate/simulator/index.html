@@ -6,6 +6,7 @@
 <title>積立シミュレーション|毎月いくら×何年でいくらになる?複利計算機|つみたて計算機</title>
 <meta name="description" content="毎月の積立額・年利・期間を入れるだけで、複利運用でいくらになるかを無料シミュレーション。目標額からの逆算や取り崩し計算、資産推移グラフ・年別推移表にも対応。登録不要・ブラウザ内で完結します。">
 <link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%230f766e%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>つ</text></svg>">
 <style>:root{--accent:#0f766e;--accent-hover:#0c5f59;--accent-weak:#e2f2f0;}</style>
 <style>
 .tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 20px; flex-wrap: wrap; }
@@ -666,7 +667,7 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
       mainStat = statHtml("資産がもつ期間", "50年以上", "50年時点の残高:約" + fmtMan(sim.balance[sim.balance.length - 1]), true);
     } else {
       var y = Math.floor(sim.depletedMonth / 12), m = sim.depletedMonth % 12;
-      mainStat = statHtml("資産がもつ期間", "約" + y + "年" + (m > 0 ? m + "か月" : ""), "毎月" + fmtYen(monthly) + "の取り崩し(定額)", true);
+      mainStat = statHtml("資産がもつ期間", "約" + y + "年" + (m > 0 ? m + "ヶ月" : ""), "毎月" + fmtYen(monthly) + "の取り崩し(定額)", true);
     }
     var last = sim.balance.length - 1;
     $("stats").innerHTML =

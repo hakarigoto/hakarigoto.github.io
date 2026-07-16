@@ -6,6 +6,7 @@
 <title>猫の年齢を人間に換算|子猫からシニアまで対応の計算機|ペット電卓</title>
 <meta name="description" content="猫の年齢(年+月)を入力するだけで人間の年齢に換算できる無料計算機。1歳で15歳・2歳で24歳・以降1年4歳の一般的な換算に対応。ライフステージ判定と、室内飼い・外に出る猫の平均寿命の違いも解説。">
 <link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23b85c1e%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>ペ</text></svg>">
 <style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
 <style>
 .result-main { font-size: 1.4rem; font-weight: 700; }
@@ -36,7 +37,7 @@
       "name": "猫は何歳からシニアですか?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "一般的な目安として7歳前後からシニア期(人間の40代半ば頃)に入り、11歳を超えると高齢期(人間の60歳以上)とされることが多いです。シニア期に入ったら、食事の見直しや年2回程度の健康診断が推奨されることが多いです。個体差が大きいため、かかりつけの獣医師に相談してください。"
+        "text": "一般的な目安として7歳前後からシニア期(人間の40代半ば頃)に入り、11歳頃から高齢期(人間の60歳以上)とされることが多いです。シニア期に入ったら、食事の見直しや年2回程度の健康診断が推奨されることが多いです。個体差が大きいため、かかりつけの獣医師に相談してください。"
       }
     },
     {
@@ -84,7 +85,7 @@
 
 <div class="page-head">
   <h1>猫の年齢を人間に換算する計算機</h1>
-  <p class="lead">愛猫の年齢(年+月)を入力するだけで、人間に換算した年齢とライフステージ(子猫・成猫・シニア・高齢)を表示します。1歳で15歳・2歳で24歳・以降1年ごとに4歳という一般的な換算に対応。飼育環境による平均寿命の違いも分かります。登録不要・完全無料です。</p>
+  <p class="lead">愛猫の年齢(年+月)を入力するだけで、人間に換算した年齢とライフステージ(子猫・成猫・シニア・高齢)を表示します。1歳で15歳・2歳で24歳・以降1年ごとに4歳という一般的な換算に対応。飼育環境ごとのケアのポイントも分かります。登録不要・完全無料です。</p>
   <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>執筆:<b>はかり</b></span></div>
 </div>
 
@@ -92,8 +93,8 @@
   <div class="point-box-title">30秒でわかるこの記事のポイント</div>
   <ul>
     <li>猫は<span class="mk">最初の1年で人間の約15歳、2年で約24歳</span>に相当し、その後は1年ごとに約4歳分年を取る</li>
-    <li><span class="mk">7歳前後からシニア期</span>(人間の40代半ば頃)、11歳を超えると高齢期の目安</li>
-    <li>外に出ない猫の平均寿命は約16歳前後で、<span class="mk">外に出る猫より2歳前後長い</span>傾向</li>
+    <li><span class="mk">7歳前後からシニア期</span>(人間の40代半ば頃)、11歳頃から高齢期の目安</li>
+    <li>完全室内飼いの猫は<span class="mk">外に出る猫より2歳前後長生き</span>する傾向(民間調査)</li>
     <li>シニア期に入ったら年2回程度の健康診断(血液検査・尿検査を含む)が推奨されることが多い</li>
   </ul>
 </div>
@@ -104,7 +105,7 @@
     <li><a href="#calc">年齢換算の計算機</a></li>
     <li><a href="#tsukaikata">使い方</a></li>
     <li><a href="#kangaekata">猫の年齢換算の考え方</a></li>
-    <li><a href="#jumyo">室内猫と外に出る猫の寿命差</a></li>
+    <li><a href="#jumyo">何年くらい一緒にいられる?室内猫と外に出る猫の平均寿命</a></li>
     <li><a href="#senior">シニア猫のケア</a></li>
     <li><a href="#hayami">猫の年齢換算 早見表</a></li>
     <li><a href="#faq">よくある質問</a></li>
@@ -135,9 +136,8 @@
       </select>
     </div>
   </div>
-  <p class="note">計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
+  <p class="note">入力すると自動で結果が表示されます。計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
   <div class="btn-row">
-    <button class="btn" id="cat-run">人間の年齢に換算</button>
     <button class="btn btn-secondary" id="cat-clear">クリア</button>
   </div>
   <div class="result-box" id="cat-result" hidden></div>
@@ -146,9 +146,9 @@
 </div>
 
 <div class="cta-box">
-  <p class="cta-box-title">犬と暮らしている方はこちら</p>
-  <p>犬の年齢とサイズ(小型・中型・大型)から人間換算年齢を計算。2019年発表の対数式による換算も併記しています。</p>
-  <a class="cta-btn" href="../dog-age/">犬の年齢を無料で換算する</a>
+  <p class="cta-box-title">犬も一緒に暮らしているなら</p>
+  <p>多頭飼いの子もどうぞ。犬の年齢とサイズ(小型・中型・大型)から人間換算年齢を計算でき、2019年発表の対数式による換算も併記しています。</p>
+  <a class="cta-btn" href="../dog-age/">犬の年齢を調べる</a>
   <span class="cta-note">登録不要・入力データは送信されません</span>
 </div>
 
@@ -158,14 +158,14 @@
 <ol>
   <li>愛猫の年齢を「年」と「月」で入力します(例:3歳4ヶ月なら「3」と「4ヶ月」)。</li>
   <li>飼育環境(完全室内飼い/外に出ることがある)を選びます。</li>
-  <li>「人間の年齢に換算」を押すと、人間換算年齢・ライフステージ判定・飼育環境による平均寿命の目安が表示されます。</li>
+  <li>入力すると自動で、人間換算年齢・ライフステージ判定・飼育環境ごとのケアの目安が表示されます。</li>
 </ol>
 
 <h2 id="kangaekata">猫の年齢換算の考え方</h2>
 <p>猫は生後1年ほどで体がほぼ成熟し、繁殖も可能になります。このため一般的な換算では、<strong>最初の1年で人間の約15歳分</strong>、<strong>2年で約24歳分</strong>に相当すると考え、成猫になった後(2歳以降)は<strong>1年ごとに約4歳分</strong>年を取るとみなします。式にすると「人間換算年齢 = 24 + (猫の年齢 − 2) × 4」(2歳以降)です。</p>
 <p>子猫の時期はさらに変化が速く、生後3ヶ月で人間の5歳前後、生後6ヶ月で9歳前後に相当するといわれます。本ツールでは1歳未満についても月齢からおおよその換算を行っています。なお、猫は犬と違って品種による体格差が小さいため、<strong>サイズ別の換算は通常行いません</strong>。換算表は書籍やサイトによって多少数値が異なる、あくまで目安である点にご注意ください。</p>
 
-<h2 id="jumyo">室内猫と外に出る猫の寿命差</h2>
+<h2 id="jumyo">何年くらい一緒にいられる?室内猫と外に出る猫の平均寿命</h2>
 <p>日本の民間調査(一般社団法人ペットフード協会「全国犬猫飼育実態調査」など)では、例年おおむね次のような傾向が報告されています。</p>
 <ul>
   <li><strong>外に出ない猫(完全室内飼い)</strong>:平均寿命 約16歳前後</li>
@@ -224,7 +224,7 @@
 
 <details class="faq">
   <summary>猫は何歳からシニア?</summary>
-  <p>一般的な目安として<strong>7歳前後からシニア期</strong>(人間の40代半ば頃)、<strong>11歳を超えると高齢期</strong>(人間の60歳以上)とされることが多いです。シニア期に入ったら年2回程度の健康診断が推奨されることが多く、個体差もあるためかかりつけの獣医師に相談してください。</p>
+  <p>一般的な目安として<strong>7歳前後からシニア期</strong>(人間の40代半ば頃)、<strong>11歳頃から高齢期</strong>(人間の60歳以上)とされることが多いです。シニア期に入ったら年2回程度の健康診断が推奨されることが多く、個体差もあるためかかりつけの獣医師に相談してください。</p>
 </details>
 
 <details class="faq">
@@ -247,7 +247,7 @@
 </article>
 
 <section class="related">
-  <p class="related-title">関連ツール</p>
+  <p class="related-title">あわせて使いたいペットの電卓</p>
   <div class="card-grid">
     <a class="card" href="../dog-age/">
       <h3>犬の年齢を人間に換算</h3>
@@ -269,8 +269,8 @@
   var STAGES = {
     kitten: { label: '子猫', desc: '急速に成長する時期です。子猫用フードでの栄養補給、ワクチンプログラム、社会化がとても大切です。' },
     adult:  { label: '成猫', desc: '体力が最も充実する時期です。適正体重の維持と年1回の健康診断、デンタルケアを習慣にしましょう。' },
-    senior: { label: 'シニア', desc: '老化のサインが出始める時期です。飲水量・体重・毛づやの変化に気を配り、年2回程度の健康診断が推奨されることが多いです。' },
-    aged:   { label: '高齢', desc: '腎臓病や関節炎などが増える時期です。トイレや食器の配置など生活環境を整え、こまめな体調観察を心がけましょう。' }
+    senior: { label: 'シニア', desc: '健康チェックを少しずつ増やしたい時期です。飲水量・体重・毛づやの変化に気を配り、年2回程度の健康診断が推奨されることが多いです。' },
+    aged:   { label: '高齢', desc: '腎臓や関節をいたわりたい時期です。トイレや食器の配置など生活環境を整え、こまめな体調観察でやさしくサポートしましょう。' }
   };
 
   /* 一般的な換算:1歳=15歳、2歳=24歳、以降+4歳/年(1歳未満は月齢から補間) */
@@ -298,7 +298,8 @@
     resultEl.hidden = false;
   }
 
-  document.getElementById('cat-run').addEventListener('click', function () {
+  /* 入力のたびに自動で判定・表示 */
+  function run() {
     var yRaw = document.getElementById('cat-years').value;
     var y = yRaw === '' ? 0 : parseInt(yRaw, 10);
     var m = parseInt(document.getElementById('cat-months').value, 10);
@@ -307,7 +308,7 @@
     if (isNaN(y) || y < 0) { showError('年齢(年)を正しく入力してください。'); return; }
     if (y > 35) { showError('35歳以下で入力してください。'); return; }
     var age = y + m / 12;
-    if (age <= 0) { showError('年齢を入力してください(例:0年+4ヶ月)。'); return; }
+    if (age <= 0) { resultEl.hidden = true; return; }
 
     var human = Math.round(convHuman(age));
     var stageKey = lifeStage(age);
@@ -322,9 +323,9 @@
 
     html += '<hr class="result-divider">';
     if (env === 'indoor') {
-      html += '<div class="result-sub"><strong>完全室内飼い</strong>:日本の民間調査では、外に出ない猫の平均寿命は約16歳前後と報告されており、外に出る猫より2歳前後長い傾向があります。脱走防止と室内の運動環境(キャットタワーなど)を整えて、この強みを活かしましょう。</div>';
+      html += '<div class="result-sub"><strong>完全室内飼い</strong>:交通事故や感染症のリスクが少なく、外に出る猫より2歳前後長生きする傾向が民間調査で報告されています。脱走防止と室内の運動環境(キャットタワーなど)を整えて、この強みを活かしましょう。</div>';
     } else {
-      html += '<div class="result-sub"><strong>外に出ることがある猫</strong>:日本の民間調査では、外に出る猫の平均寿命は約14歳前後と、外に出ない猫より2歳前後短い傾向が報告されています。交通事故・感染症(猫エイズ・猫白血病など)・ケンカによるケガなどのリスクがあるため、ワクチン接種・不妊去勢に加え、可能であれば室内飼育への切り替えも検討されています。</div>';
+      html += '<div class="result-sub"><strong>外に出ることがある猫</strong>:屋外には交通事故・感染症(猫エイズ・猫白血病など)・ケンカによるケガなどのリスクがあります。ワクチン接種・不妊去勢に加え、可能であれば室内飼育への切り替えも検討してみてください。室内中心の暮らしは長生きにつながる傾向が報告されています。</div>';
     }
 
     if (age >= 7) {
@@ -337,7 +338,11 @@
 
     resultEl.innerHTML = html;
     resultEl.hidden = false;
-  });
+  }
+
+  document.getElementById('cat-years').addEventListener('input', run);
+  document.getElementById('cat-months').addEventListener('change', run);
+  document.getElementById('cat-env').addEventListener('change', run);
 
   document.getElementById('cat-clear').addEventListener('click', function () {
     document.getElementById('cat-years').value = '';

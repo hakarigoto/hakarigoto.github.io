@@ -6,6 +6,7 @@
 <title>【2026年】退職金の手取り計算シミュレーター(税金自動計算)|やめどきナビ</title>
 <meta name="description" content="退職金の手取り額を無料でシミュレーション。勤続年数から退職所得控除を自動計算し、所得税・復興特別所得税・住民税を差し引いた手取り額と実効税率を表示。2026年時点の税制に対応、登録不要。">
 <link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e66b8%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>や</text></svg>">
 <style>:root{--accent:#1e66b8;--accent-hover:#17538f;--accent-weak:#e5eef8;}</style>
 <style>
 .radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
@@ -48,7 +49,7 @@ details.breakdown ol { padding-left: 20px; }
       "name": "勤続年数に1年未満の端数がある場合はどう数えますか?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "退職所得控除の計算では、勤続年数の1年未満の端数は切り上げます。例えば勤続10年1か月なら11年として計算します。1日でも端数があれば1年に切り上げられるため、退職日が数日違うだけで控除額が40万円(または70万円)変わることがあります。"
+        "text": "退職所得控除の計算では、勤続年数の1年未満の端数は切り上げます。例えば勤続10年1ヶ月なら11年として計算します。1日でも端数があれば1年に切り上げられるため、退職日が数日違うだけで控除額が40万円(または70万円)変わることがあります。"
       }
     },
     {
@@ -130,7 +131,7 @@ details.breakdown ol { padding-left: 20px; }
       <div class="field">
         <label for="years">勤続年数(年)</label>
         <input type="number" id="years" inputmode="numeric" min="1" max="60" step="1" placeholder="例:20">
-        <p class="note">1年未満の端数月は切り上げて入力してください(例:10年1か月 → 11年)。</p>
+        <p class="note">1年未満の端数月は切り上げて入力してください(例:10年1ヶ月 → 11年)。</p>
       </div>
     </div>
     <div class="field">
@@ -182,7 +183,7 @@ details.breakdown ol { padding-left: 20px; }
         <tr><td>20年超</td><td>800万円 + 70万円 ×(勤続年数 − 20年)</td></tr>
       </table>
     </div>
-    <p>例えば勤続30年なら控除額は800万円+70万円×10年=1,500万円。退職金が1,500万円以下ならまるごと非課税です。勤続年数の1年未満の端数は切り上げるため、10年1か月勤めた人は11年として計算できます。また、障害者になったことが直接の原因で退職した場合は、この控除額に100万円が加算されます。</p>
+    <p>例えば勤続30年なら控除額は800万円+70万円×10年=1,500万円。退職金が1,500万円以下ならまるごと非課税です。勤続年数の1年未満の端数は切り上げるため、10年1ヶ月勤めた人は11年として計算できます。また、障害者になったことが直接の原因で退職した場合は、この控除額に100万円が加算されます。</p>
     <p>さらに、控除を引いた残額の<strong>2分の1だけ</strong>が課税対象(退職所得)になり、他の所得と合算しない分離課税で税率が適用されます。この「控除 → 2分の1 → 分離課税」の三段構えにより、同じ金額を給与でもらう場合と比べて税負担は大幅に軽くなります。ただし例外があり、役員等としての勤続が5年以下の退職金(特定役員退職手当等)は2分の1課税なし、従業員でも勤続5年以下(短期退職手当等)は控除後300万円を超える部分に2分の1課税が使えません。</p>
 
     <h2 id="ichijikin">一時金でもらうか、年金でもらうか ─ 税金の違い</h2>
@@ -201,7 +202,7 @@ details.breakdown ol { padding-left: 20px; }
     </details>
     <details class="faq">
       <summary>勤続年数に1年未満の端数がある場合はどう数えますか?</summary>
-      <p>退職所得控除の計算では1年未満の端数は切り上げます。勤続10年1か月なら11年として計算します。1日でも端数があれば切り上げなので、退職日が数日違うだけで控除額が40万円(20年超の部分なら70万円)変わることがあります。退職日を選べるなら意識してみましょう。</p>
+      <p>退職所得控除の計算では1年未満の端数は切り上げます。勤続10年1ヶ月なら11年として計算します。1日でも端数があれば切り上げなので、退職日が数日違うだけで控除額が40万円(20年超の部分なら70万円)変わることがあります。退職日を選べるなら意識してみましょう。</p>
     </details>
     <details class="faq">
       <summary>「退職所得の受給に関する申告書」を出さないとどうなりますか?</summary>
@@ -224,7 +225,7 @@ details.breakdown ol { padding-left: 20px; }
   <!-- AD-SLOT: money -->
 
   <section class="related">
-    <p class="related-title">あわせて使いたい計算ツール・記事</p>
+    <p class="related-title">あわせて読みたい・使いたい</p>
     <div class="card-grid">
       <a class="card" href="../shitsugyo-hoken/">
         <h3>失業保険シミュレーター</h3>
