@@ -40,7 +40,7 @@
       <tbody id="agecheck-rows"></tbody>
     </table>
   </div>
-  <p class="note">※満年齢(誕生日当日に1歳加算)による判定です。運転免許証・マイナンバーカード・健康保険証は和暦表記、在留カードは西暦表記が使われています。</p>
+  <p class="note">※満年齢(誕生日当日に1歳加算)による判定です。運転免許証・マイナンバーカード・健康保険証は和暦表記、在留カードは西暦表記が使われています。基準日は開きっぱなしでも日付が変わると自動更新されます(お使いの端末の時計に基づきます)。</p>
 </div>
 
 <script>
@@ -69,26 +69,39 @@
     var c = new Date(now.getFullYear() - years, now.getMonth(), now.getDate());
     return { y: c.getFullYear(), m: c.getMonth() + 1, d: c.getDate() };
   }
-  var now = new Date();
-  var c20 = cutoff(20, now), c18 = cutoff(18, now);
   function jp(c) { return c.y + "年" + c.m + "月" + c.d + "日"; }
   function wa(c) { return wareki(c.y, c.m, c.d) + c.m + "月" + c.d + "日"; }
   function pass(c) { return p2(c.d) + " " + MON_EN[c.m - 1] + " " + c.y; }
 
-  document.getElementById("agecheck-today").innerHTML =
-    "本日(" + now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日)時点 ── " +
-    "<strong style=\"font-size:1.15em;\">" + jp(c20) + "(" + wareki(c20.y, c20.m, c20.d) + ")以前の生まれ → 20歳以上</strong>";
-
-  var rows = [
-    ["運転免許証・マイナンバーカード・健康保険証(和暦)", wa(c20), wa(c18)],
-    ["在留カード・住民票の写しなど(西暦)", jp(c20), jp(c18)],
-    ["日本のパスポート(英字月)", pass(c20), pass(c18)]
-  ];
-  var html = "";
-  for (var i = 0; i < rows.length; i++) {
-    html += "<tr><td>" + rows[i][0] + "</td><td><strong>" + rows[i][1] + " 以前</strong></td><td>" + rows[i][2] + " 以前</td></tr>";
+  function render() {
+    var now = new Date();
+    var c20 = cutoff(20, now), c18 = cutoff(18, now);
+    document.getElementById("agecheck-today").innerHTML =
+      "本日(" + now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日)時点 ── " +
+      "<strong style=\"font-size:1.15em;\">" + jp(c20) + "(" + wareki(c20.y, c20.m, c20.d) + ")以前の生まれ → 20歳以上</strong>";
+    var rows = [
+      ["運転免許証・マイナンバーカード・健康保険証(和暦)", wa(c20), wa(c18)],
+      ["在留カード・住民票の写しなど(西暦)", jp(c20), jp(c18)],
+      ["日本のパスポート(英字月)", pass(c20), pass(c18)]
+    ];
+    var html = "";
+    for (var i = 0; i < rows.length; i++) {
+      html += "<tr><td>" + rows[i][0] + "</td><td><strong>" + rows[i][1] + " 以前</strong></td><td>" + rows[i][2] + " 以前</td></tr>";
+    }
+    document.getElementById("agecheck-rows").innerHTML = html;
   }
-  document.getElementById("agecheck-rows").innerHTML = html;
+  render();
+  /* 開きっぱなしでも日付が変わったら自動で再描画(1分ごとに日付を確認) */
+  var lastDay = new Date().toDateString();
+  window.__nenkakuRenderers = window.__nenkakuRenderers || [];
+  window.__nenkakuRenderers.push(render);
+  setInterval(function () {
+    var d = new Date().toDateString();
+    if (d !== lastDay) {
+      lastDay = d;
+      window.__nenkakuRenderers.forEach(function (fn) { fn(); });
+    }
+  }, 60000);
 })();
 </script>
 
@@ -130,34 +143,38 @@
   function p2(n) { return (n < 10 ? "0" : "") + n; }
 
   /* ===== 早見表(入力ゼロ) ===== */
-  var now = new Date();
-  var c = new Date(now.getFullYear() - 20, now.getMonth(), now.getDate());
-  var y = c.getFullYear(), mo = c.getMonth() + 1, d = c.getDate();
-  var roc = y - 1911, be = y + 543;
-  document.getElementById("fageck-today").innerHTML =
-    "本日(" + now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日)時点 ── " +
-    "<strong style=\"font-size:1.15em;\">" + y + "年" + mo + "月" + d + "日以前の生まれ → 20歳以上</strong>";
-
-  var ROWS = [
-    ["パスポート(各国共通)", p2(d) + " " + MON_EN[mo - 1] + " " + y, "まずはこれ。ICAO標準で月は英字3文字・年は西暦。迷ったらパスポートで確認"],
-    ["韓国", y + "." + p2(mo) + "." + p2(d), "西暦・年が先。日本と同じ感覚で読める"],
-    ["中国", y + "-" + p2(mo) + "-" + p2(d) + "(" + y + "年" + mo + "月" + d + "日)", "西暦・年が先"],
-    ["台湾", "民国 " + roc + "." + p2(mo) + "." + p2(d), "民国暦。年に1911を足すと西暦(" + roc + "+1911=" + y + ")"],
-    ["米国", p2(mo) + "/" + p2(d) + "/" + y, "月が先。真ん中が「日」"],
-    ["香港", p2(d) + "-" + p2(mo) + "-" + y, "日が先(英国式)"],
-    ["タイ", p2(d) + "/" + p2(mo) + "/" + be + "(仏暦)", "年が仏暦なら543を引くと西暦(" + be + "−543=" + y + ")。西暦表記の書類もある"],
-    ["豪州・英国・欧州主要国", p2(d) + "/" + p2(mo) + "/" + y, "日が先"],
-    ["フィリピン", p2(mo) + "/" + p2(d) + "/" + y, "月が先(米国式)"],
-    ["シンガポール・マレーシア", p2(d) + "/" + p2(mo) + "/" + y, "日が先"],
-    ["ベトナム", p2(d) + "/" + p2(mo) + "/" + y, "日が先"],
-    ["インドネシア", p2(d) + "-" + p2(mo) + "-" + y, "日が先"]
-  ];
-  var tbody = document.getElementById("fageck-rows");
-  var html = "";
-  for (var i = 0; i < ROWS.length; i++) {
-    html += "<tr><td>" + ROWS[i][0] + "</td><td><strong>" + ROWS[i][1] + " 以前</strong></td><td style=\"font-size:0.88em;\">" + ROWS[i][2] + "</td></tr>";
+  function renderForeign() {
+    var now = new Date();
+    var c = new Date(now.getFullYear() - 20, now.getMonth(), now.getDate());
+    var y = c.getFullYear(), mo = c.getMonth() + 1, d = c.getDate();
+    var roc = y - 1911, be = y + 543;
+    document.getElementById("fageck-today").innerHTML =
+      "本日(" + now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日)時点 ── " +
+      "<strong style=\"font-size:1.15em;\">" + y + "年" + mo + "月" + d + "日以前の生まれ → 20歳以上</strong>";
+    var ROWS = [
+      ["パスポート(各国共通)", p2(d) + " " + MON_EN[mo - 1] + " " + y, "まずはこれ。ICAO標準で月は英字3文字・年は西暦。迷ったらパスポートで確認"],
+      ["韓国", y + "." + p2(mo) + "." + p2(d), "西暦・年が先。日本と同じ感覚で読める"],
+      ["中国", y + "-" + p2(mo) + "-" + p2(d) + "(" + y + "年" + mo + "月" + d + "日)", "西暦・年が先"],
+      ["台湾", "民国 " + roc + "." + p2(mo) + "." + p2(d), "民国暦。年に1911を足すと西暦(" + roc + "+1911=" + y + ")"],
+      ["米国", p2(mo) + "/" + p2(d) + "/" + y, "月が先。真ん中が「日」"],
+      ["香港", p2(d) + "-" + p2(mo) + "-" + y, "日が先(英国式)"],
+      ["タイ", p2(d) + "/" + p2(mo) + "/" + be + "(仏暦)", "年が仏暦なら543を引くと西暦(" + be + "−543=" + y + ")。西暦表記の書類もある"],
+      ["豪州・英国・欧州主要国", p2(d) + "/" + p2(mo) + "/" + y, "日が先"],
+      ["フィリピン", p2(mo) + "/" + p2(d) + "/" + y, "月が先(米国式)"],
+      ["シンガポール・マレーシア", p2(d) + "/" + p2(mo) + "/" + y, "日が先"],
+      ["ベトナム", p2(d) + "/" + p2(mo) + "/" + y, "日が先"],
+      ["インドネシア", p2(d) + "-" + p2(mo) + "-" + y, "日が先"]
+    ];
+    var tbody = document.getElementById("fageck-rows");
+    var html = "";
+    for (var i = 0; i < ROWS.length; i++) {
+      html += "<tr><td>" + ROWS[i][0] + "</td><td><strong>" + ROWS[i][1] + " 以前</strong></td><td style=\"font-size:0.88em;\">" + ROWS[i][2] + "</td></tr>";
+    }
+    tbody.innerHTML = html;
   }
-  tbody.innerHTML = html;
+  renderForeign();
+  window.__nenkakuRenderers = window.__nenkakuRenderers || [];
+  window.__nenkakuRenderers.push(renderForeign);
 
   /* ===== 見たまま入力判定 ===== */
   function isValidDate(yy, mm, dd) {
