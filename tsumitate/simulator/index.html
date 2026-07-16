@@ -6,7 +6,7 @@
 <title>積立シミュレーション|毎月いくら×何年でいくらになる?複利計算機|つみたて計算機</title>
 <meta name="description" content="毎月の積立額・年利・期間を入れるだけで、複利運用でいくらになるかを無料シミュレーション。目標額からの逆算や取り崩し計算、資産推移グラフ・年別推移表にも対応。登録不要・ブラウザ内で完結します。">
 <link rel="stylesheet" href="../../assets/style.css">
-<style>:root{--accent:#0f766e;--accent-hover:#0c5f59;--accent-weak:#e2f2f0;}@media (prefers-color-scheme: dark){:root{--accent:#4fd1c5;--accent-hover:#71dcd2;--accent-weak:#132c29;}}</style>
+<style>:root{--accent:#0f766e;--accent-hover:#0c5f59;--accent-weak:#e2f2f0;}</style>
 <style>
 .tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 20px; flex-wrap: wrap; }
 .tab-btn {
@@ -31,15 +31,13 @@
 .stat .stat-sub { font-size: 0.78rem; color: var(--text-sub); font-variant-numeric: tabular-nums; }
 .stat.stat-main .stat-value { color: var(--accent); font-size: 1.7rem; }
 .result-error { color: #c0392b; font-weight: 600; margin: 8px 0 0; }
-@media (prefers-color-scheme: dark) { .result-error { color: #ff8a7a; } }
+
 
 .ymyl-note {
   border: 1px solid #d9a62e; border-left: 5px solid #d9a62e; background: #fdf6e3;
   color: #6b5310; border-radius: 6px; padding: 10px 14px; margin: 16px 0; font-size: 0.9rem; font-weight: 600;
 }
-@media (prefers-color-scheme: dark) {
-  .ymyl-note { background: #2e2712; color: #eed48a; border-color: #8a7220; border-left-color: #d9a62e; }
-}
+
 
 .chart-wrap { margin-top: 18px; }
 #chart { width: 100%; height: 300px; display: block; }
@@ -129,11 +127,35 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
   <div class="page-head">
     <h1>積立シミュレーター(複利計算・グラフ付き)</h1>
     <p class="lead">毎月の積立額・年利・期間を入れるだけで、複利運用で資産がいくらになるかを試算。目標金額からの逆算、資産の取り崩しシミュレーションにも対応しています。</p>
+    <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>執筆:<b>はかり</b></span></div>
   </div>
 
   <p class="ymyl-note">利回りは将来を保証しません。本ツールは一定利回りを仮定した概算であり、特定の金融商品の勧誘・助言ではありません。実際の投資判断はご自身の責任で行ってください。</p>
 
-  <section class="tool-panel">
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+    <ul>
+      <li>毎月3万円・年利5%なら<span class="mk">20年で約1,233万円</span>(元本720万円+運用益約513万円)の試算</li>
+      <li>複利は後半ほど加速し、同じ月3万円でも<span class="mk">20年と30年では運用益が3倍近く違う</span></li>
+      <li>利回りは<span class="mk">3%(控えめ)・5%(標準)・7%(強気)</span>の幅を持たせて試算するのがおすすめ</li>
+      <li>「72÷年利」で資産が2倍になるおおよその年数を暗算できる(72の法則)</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">積立シミュレーション</a></li>
+      <li><a href="#fukuri">複利の仕組み — 単利との違い</a></li>
+      <li><a href="#rimawari">利回りは何%で見積もるべき?</a></li>
+      <li><a href="#kikan">積立期間と複利効果の関係</a></li>
+      <li><a href="#hosoku">72の法則 — 2倍になる年数の暗算</a></li>
+      <li><a href="#nisa">新NISAの投資枠との関係</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
     <div class="tabs" role="tablist" aria-label="計算モード">
       <button type="button" class="tab-btn" id="tab-grow" role="tab" aria-selected="true" aria-controls="panel-grow">いくらになる?</button>
       <button type="button" class="tab-btn" id="tab-goal" role="tab" aria-selected="false" aria-controls="panel-goal">目標から逆算</button>
@@ -230,7 +252,7 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
   <!-- AD-SLOT: shoken -->
 
   <article class="article">
-    <h2>複利の仕組み — 単利との違い</h2>
+    <h2 id="fukuri">複利の仕組み — 単利との違い</h2>
     <p>「複利」とは、運用で得た利益を元本に組み入れて、その合計に対してさらに利益が付く仕組みです。元本に対してだけ利息が付く「単利」と比べると、期間が長くなるほど<strong>利息が利息を生む</strong>効果で差が大きく広がります。</p>
     <p>たとえば100万円を年利5%で運用した場合の比較です(税金・手数料は考慮しない理論値)。</p>
     <div class="table-wrap">
@@ -243,7 +265,7 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     </div>
     <p>本シミュレーターでは、年利を12で割った利率(月利)で毎月複利計算し、積立は毎月末に行うものとして計算しています。投資信託の基準価額のように日々変動する商品を厳密に再現するものではなく、あくまで「平均して年◯%で増えた場合」の目安です。</p>
 
-    <h2>利回りは何%で見積もるべき?</h2>
+    <h2 id="rimawari">利回りは何%で見積もるべき?</h2>
     <p>将来の利回りは誰にも分かりません。参考として、全世界株式や米国株式のインデックスは過去の長期実績として年平均5〜9%程度(円ベース・期間の取り方により変動)だったとされる一方、<strong>過去の実績は将来の成果を保証するものではありません</strong>。実際には大きく上下する年を繰り返しながらの「平均」であり、10年単位でほとんど増えなかった時期も存在します。</p>
     <p>実務的には、次のように<strong>幅を持たせて</strong>試算するのがおすすめです。</p>
     <ul>
@@ -253,7 +275,7 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     </ul>
     <p>また、本ツールの結果には信託報酬などの手数料や税金(課税口座では運用益に約20%)が含まれていない点にもご注意ください。実質的な手取りはシミュレーション結果より少なくなり得ます。</p>
 
-    <h2>積立期間と複利効果の関係 — 「時間」が最大の味方</h2>
+    <h2 id="kikan">積立期間と複利効果の関係 — 「時間」が最大の味方</h2>
     <p>複利の効果は期間の後半ほど加速します。毎月3万円・年利5%で積み立てた場合の推移を見ると、最初の10年で増える運用益より、最後の10年で増える運用益のほうがはるかに大きくなります。</p>
     <div class="table-wrap">
       <table>
@@ -265,7 +287,7 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     </div>
     <p>同じ月3万円でも、20年と30年では運用益が3倍近く違います。積立額を増やすことよりも「早く始めて長く続けること」がシミュレーション上は大きく効きます。逆に言えば、途中で大きく取り崩す前提の資金は、この加速部分の恩恵を受けにくいことになります。</p>
 
-    <h2>72の法則 — 資産が2倍になる年数の暗算</h2>
+    <h2 id="hosoku">72の法則 — 資産が2倍になる年数の暗算</h2>
     <p>「72 ÷ 年利(%) ≒ 資産が2倍になるおおよその年数」という経験則を<strong>72の法則</strong>と呼びます。複利計算の近似式で、暗算での目安づくりに便利です。</p>
     <div class="table-wrap">
       <table>
@@ -278,10 +300,10 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     </div>
     <p>これは一括投資した元本が2倍になる年数の近似です。毎月積立の場合は後から入れたお金ほど運用期間が短いため、資産全体が2倍になるにはこれより長くかかります。厳密な数字は上のシミュレーターでご確認ください。</p>
 
-    <h2>新NISAの投資枠との関係</h2>
+    <h2 id="nisa">新NISAの投資枠との関係</h2>
     <p>新NISA(2024年開始)には、年間投資枠(つみたて投資枠120万円+成長投資枠240万円=最大360万円)と、生涯にわたる非課税保有限度額1,800万円(うち成長投資枠は1,200万円まで)があります。枠は<strong>買付金額(元本)ベース</strong>で管理されるため、シミュレーションの「元本合計」と比較すると枠に収まるかの目安になります。たとえば毎月3万円の積立なら年36万円で、生涯枠1,800万円に達するのは50年後です。枠を超えて積み立てる場合、超えた分は課税口座での運用になります。制度の内容は変更されることがあるため、最新の情報は金融庁や利用する金融機関でご確認ください。</p>
 
-    <h2>よくある質問</h2>
+    <h2 id="faq">よくある質問</h2>
     <details class="faq">
       <summary>利回り(年利)は何%で入力すればよいですか?</summary>
       <p>決まった正解はありません。株式中心の国際分散投資の過去の長期実績を参考に3〜7%程度で試算されることが多いですが、過去の実績は将来の成果を保証するものではありません。低め(3%)と高め(7%)の両方で計算し、幅を持って見積もるのがおすすめです。預金や債券中心なら、より低い利回りで試算してください。</p>
@@ -305,6 +327,16 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
 
     <!-- AD-SLOT: shoken -->
   </article>
+
+  <section class="related">
+    <p class="related-title">あわせて使いたい計算ツール</p>
+    <div class="card-grid">
+      <a class="card" href="../">
+        <h3>つみたて計算機 トップ</h3>
+        <p>積立投資の「将来いくら」「毎月いくら必要」「何年もつ」を計算できるツール一覧はこちら。</p>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer"><div class="container"><div>© 2026 つみたて計算機</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
@@ -742,12 +774,6 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () { drawChart(lastChart); }, 150);
   });
-  if (window.matchMedia) {
-    var mq = window.matchMedia("(prefers-color-scheme: dark)");
-    var onScheme = function () { drawChart(lastChart); };
-    if (mq.addEventListener) mq.addEventListener("change", onScheme);
-    else if (mq.addListener) mq.addListener(onScheme);
-  }
 
   restoreFromUrl();
   recalc();

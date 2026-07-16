@@ -6,12 +6,12 @@
 <title>猫の年齢を人間に換算|子猫からシニアまで対応の計算機|ペット電卓</title>
 <meta name="description" content="猫の年齢(年+月)を入力するだけで人間の年齢に換算できる無料計算機。1歳で15歳・2歳で24歳・以降1年4歳の一般的な換算に対応。ライフステージ判定と、室内飼い・外に出る猫の平均寿命の違いも解説。">
 <link rel="stylesheet" href="../../assets/style.css">
-<style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}@media (prefers-color-scheme: dark){:root{--accent:#f0a06a;--accent-hover:#f4b587;--accent-weak:#332015;}}</style>
+<style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
 <style>
 .result-main { font-size: 1.4rem; font-weight: 700; }
 .result-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
 .result-error { color: #c0392b; font-weight: 600; }
-@media (prefers-color-scheme: dark) { .result-error { color: #ff8a7a; } }
+
 .stage-badge {
   display: inline-block; padding: 2px 12px; border-radius: 999px;
   background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
@@ -85,9 +85,33 @@
 <div class="page-head">
   <h1>猫の年齢を人間に換算する計算機</h1>
   <p class="lead">愛猫の年齢(年+月)を入力するだけで、人間に換算した年齢とライフステージ(子猫・成猫・シニア・高齢)を表示します。1歳で15歳・2歳で24歳・以降1年ごとに4歳という一般的な換算に対応。飼育環境による平均寿命の違いも分かります。登録不要・完全無料です。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>執筆:<b>はかり</b></span></div>
 </div>
 
-<div class="tool-panel">
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>猫は<span class="mk">最初の1年で人間の約15歳、2年で約24歳</span>に相当し、その後は1年ごとに約4歳分年を取る</li>
+    <li><span class="mk">7歳前後からシニア期</span>(人間の40代半ば頃)、11歳を超えると高齢期の目安</li>
+    <li>外に出ない猫の平均寿命は約16歳前後で、<span class="mk">外に出る猫より2歳前後長い</span>傾向</li>
+    <li>シニア期に入ったら年2回程度の健康診断(血液検査・尿検査を含む)が推奨されることが多い</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#calc">年齢換算の計算機</a></li>
+    <li><a href="#tsukaikata">使い方</a></li>
+    <li><a href="#kangaekata">猫の年齢換算の考え方</a></li>
+    <li><a href="#jumyo">室内猫と外に出る猫の寿命差</a></li>
+    <li><a href="#senior">シニア猫のケア</a></li>
+    <li><a href="#hayami">猫の年齢換算 早見表</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<div class="tool-panel" id="calc">
   <h2>愛猫の年齢を入力</h2>
   <div class="field-row">
     <div class="field">
@@ -121,20 +145,27 @@
   <p class="note">※本ツールの換算は獣医師監修ではなく、一般に用いられる換算表に基づく<strong>目安</strong>です。健康状態の判断は必ず獣医師にご相談ください。</p>
 </div>
 
+<div class="cta-box">
+  <p class="cta-box-title">犬と暮らしている方はこちら</p>
+  <p>犬の年齢とサイズ(小型・中型・大型)から人間換算年齢を計算。2019年発表の対数式による換算も併記しています。</p>
+  <a class="cta-btn" href="../dog-age/">犬の年齢を無料で換算する</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
 <article class="article">
 
-<h2>使い方</h2>
+<h2 id="tsukaikata">使い方</h2>
 <ol>
   <li>愛猫の年齢を「年」と「月」で入力します(例:3歳4ヶ月なら「3」と「4ヶ月」)。</li>
   <li>飼育環境(完全室内飼い/外に出ることがある)を選びます。</li>
   <li>「人間の年齢に換算」を押すと、人間換算年齢・ライフステージ判定・飼育環境による平均寿命の目安が表示されます。</li>
 </ol>
 
-<h2>猫の年齢換算の考え方</h2>
+<h2 id="kangaekata">猫の年齢換算の考え方</h2>
 <p>猫は生後1年ほどで体がほぼ成熟し、繁殖も可能になります。このため一般的な換算では、<strong>最初の1年で人間の約15歳分</strong>、<strong>2年で約24歳分</strong>に相当すると考え、成猫になった後(2歳以降)は<strong>1年ごとに約4歳分</strong>年を取るとみなします。式にすると「人間換算年齢 = 24 + (猫の年齢 − 2) × 4」(2歳以降)です。</p>
 <p>子猫の時期はさらに変化が速く、生後3ヶ月で人間の5歳前後、生後6ヶ月で9歳前後に相当するといわれます。本ツールでは1歳未満についても月齢からおおよその換算を行っています。なお、猫は犬と違って品種による体格差が小さいため、<strong>サイズ別の換算は通常行いません</strong>。換算表は書籍やサイトによって多少数値が異なる、あくまで目安である点にご注意ください。</p>
 
-<h2>室内猫と外に出る猫の寿命差</h2>
+<h2 id="jumyo">室内猫と外に出る猫の寿命差</h2>
 <p>日本の民間調査(一般社団法人ペットフード協会「全国犬猫飼育実態調査」など)では、例年おおむね次のような傾向が報告されています。</p>
 <ul>
   <li><strong>外に出ない猫(完全室内飼い)</strong>:平均寿命 約16歳前後</li>
@@ -142,7 +173,7 @@
 </ul>
 <p>差はおおよそ2歳前後で、屋外には<strong>交通事故</strong>、<strong>感染症</strong>(猫免疫不全ウイルス〔猫エイズ〕・猫白血病ウイルスなど)、<strong>ケンカによるケガ</strong>、寄生虫、誤食といったリスクが多いことが理由と考えられています。環境省や多くの獣医師も、猫の健康と近隣トラブル防止の観点から室内飼育を推奨しています。すでに外に出る習慣のある猫を室内に切り替える場合は、上下運動できるキャットタワーや爪とぎ、隠れ場所を用意するなど、室内でも満足できる環境づくりがポイントです。</p>
 
-<h2>シニア猫のケア</h2>
+<h2 id="senior">シニア猫のケア</h2>
 <p>猫は7歳前後からシニア期に入るとされます。猫は体調不良を隠す動物なので、次のような点を日頃から観察しましょう。</p>
 <ul>
   <li><strong>飲水量と尿の量・回数</strong>:増えている場合は慢性腎臓病や糖尿病、甲状腺の病気のサインのことがあります。高齢猫では特に腎臓病が多いといわれます。</li>
@@ -153,7 +184,7 @@
 </ul>
 <p>シニア期には<strong>年2回程度の健康診断(血液検査・尿検査を含む)</strong>を勧める獣医師が多くいます。また、一般にペット保険は高齢になると新規加入の年齢上限にかかったり保険料が上がったりして加入しにくくなるため、保険を検討する場合は若いうちに条件を比較しておくと選択肢が広くなります。</p>
 
-<h2>猫の年齢換算 早見表(1〜20歳)</h2>
+<h2 id="hayami">猫の年齢換算 早見表(1〜20歳)</h2>
 <p>一般的な換算(1歳=15歳、2歳=24歳、以降1年ごとに+4歳)による早見表です。ライフステージは目安です。</p>
 <div class="table-wrap">
 <table>
@@ -184,7 +215,7 @@
 </div>
 <p class="note">※換算表には複数の流儀があり、書籍やサイトによって数値が多少異なります。上記はあくまで一般的な目安です。</p>
 
-<h2>よくある質問</h2>
+<h2 id="faq">よくある質問</h2>
 
 <details class="faq">
   <summary>猫の1年は人間の何年分?</summary>
@@ -211,18 +242,19 @@
   <p>いいえ。計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した内容が外部サーバーに送信されることは一切ありません。</p>
 </details>
 
-<h2>関連ツール</h2>
-<div class="card-grid">
-  <a class="card" href="../dog-age/">
-    <div class="card-icon">🐶</div>
-    <h3>犬の年齢を人間に換算</h3>
-    <p>犬の年齢とサイズ(小型・中型・大型)から人間換算年齢を計算。2019年発表の対数式による換算も併記。</p>
-  </a>
-</div>
-
 <!-- AD-SLOT: pet-insurance -->
 
 </article>
+
+<section class="related">
+  <p class="related-title">関連ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../dog-age/">
+      <h3>犬の年齢を人間に換算</h3>
+      <p>犬の年齢とサイズ(小型・中型・大型)から人間換算年齢を計算。2019年発表の対数式による換算も併記。</p>
+    </a>
+  </div>
+</section>
 
 </main>
 

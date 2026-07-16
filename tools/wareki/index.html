@@ -19,7 +19,7 @@
 .result-main { font-size: 1.4rem; font-weight: 700; }
 .result-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
 .result-error { color: #c0392b; font-weight: 600; }
-@media (prefers-color-scheme: dark) { .result-error { color: #ff8a7a; } }
+
 .copy-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
 .btn-copy { padding: 6px 14px; font-size: 0.85rem; }
 </style>
@@ -97,7 +97,8 @@
 
 <div class="page-head">
   <h1>西暦⇔和暦変換・年齢計算ツール</h1>
-  <p class="lead">西暦と和暦(明治・大正・昭和・平成・令和)をワンクリックで相互変換。生年月日から満年齢・数え年・干支・学年も計算できます。改元日(昭和64年→平成元年など)も正確に判定。登録不要・完全無料です。</p>
+  <p class="lead">西暦と和暦(明治・大正・昭和・平成・令和)をワンクリックで相互変換。生年月日から満年齢・数え年・干支・学年も計算できます。お酒・たばこ提供時の年齢確認(20歳チェック)早見つき。改元日も正確に判定、登録不要・完全無料です。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>運営:<b>はかり</b></span></div>
 </div>
 
 <div class="tool-panel">
@@ -174,6 +175,78 @@
   </section>
 </div>
 
+<div class="tool-panel" id="agecheck">
+  <h2>年齢確認(20歳チェック)</h2>
+  <p class="note" style="margin-top:0;">お酒・たばこの販売やシーシャバーの入店確認など、<strong>「20歳以上かどうか」を身分証を見ながらその場で確認する</strong>ための早見です。基準日はこのページを開いた日で自動更新されます。</p>
+  <div class="result-box" id="agecheck-today"></div>
+  <div class="field" style="margin-top:16px;">
+    <label for="agecheck-birth">生年月日を入力すると即判定</label>
+    <input type="date" id="agecheck-birth" min="1868-01-25">
+  </div>
+  <div class="result-box" id="agecheck-result" hidden></div>
+  <p class="note">※満年齢(誕生日当日に1歳加算)による判定の目安です。入力内容は送信されません。</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var ERAS = [
+    { name: "令和", start: [2019, 5, 1], offset: 2018 },
+    { name: "平成", start: [1989, 1, 8], offset: 1988 },
+    { name: "昭和", start: [1926, 12, 25], offset: 1925 },
+    { name: "大正", start: [1912, 7, 30], offset: 1911 },
+    { name: "明治", start: [1868, 1, 25], offset: 1867 }
+  ];
+  function wareki(y, m, d) {
+    for (var i = 0; i < ERAS.length; i++) {
+      var s = ERAS[i].start;
+      if (y > s[0] || (y === s[0] && (m > s[1] || (m === s[1] && d >= s[2])))) {
+        var n = y - ERAS[i].offset;
+        return ERAS[i].name + (n === 1 ? "元" : n) + "年";
+      }
+    }
+    return "";
+  }
+  function fmt(y, m, d) { return y + "年" + m + "月" + d + "日"; }
+  function cutoff(years) {
+    var t = new Date();
+    var c = new Date(t.getFullYear() - years, t.getMonth(), t.getDate());
+    return { y: c.getFullYear(), m: c.getMonth() + 1, d: c.getDate() };
+  }
+  var t = new Date();
+  var c20 = cutoff(20), c18 = cutoff(18);
+  document.getElementById("agecheck-today").innerHTML =
+    "本日(" + fmt(t.getFullYear(), t.getMonth() + 1, t.getDate()) + ")時点で──<br>" +
+    "<strong style=\"font-size:1.2em;\">" + fmt(c20.y, c20.m, c20.d) + "(" + wareki(c20.y, c20.m, c20.d) + ")以前の生まれ → 20歳以上</strong><br>" +
+    "<span style=\"font-size:0.92em;\">" + fmt(c18.y, c18.m, c18.d) + "(" + wareki(c18.y, c18.m, c18.d) + ")以前の生まれ → 18歳以上</span>";
+
+  var input = document.getElementById("agecheck-birth");
+  var out = document.getElementById("agecheck-result");
+  input.addEventListener("change", function () {
+    if (!input.value) { out.hidden = true; return; }
+    var p = input.value.split("-");
+    var by = parseInt(p[0], 10), bm = parseInt(p[1], 10), bd = parseInt(p[2], 10);
+    var now = new Date();
+    var age = now.getFullYear() - by;
+    if (now.getMonth() + 1 < bm || (now.getMonth() + 1 === bm && now.getDate() < bd)) age--;
+    if (age < 0 || age > 130) {
+      out.innerHTML = "生年月日を確認してください。";
+      out.hidden = false;
+      return;
+    }
+    var w = wareki(by, bm, bd);
+    if (age >= 20) {
+      out.innerHTML = "<strong style=\"color:#0a7a3c;font-size:1.25em;\">○ 20歳以上です(満" + age + "歳)</strong><br><span class=\"note\">" + fmt(by, bm, bd) + "(" + w + ")生まれ</span>";
+    } else if (age >= 18) {
+      out.innerHTML = "<strong style=\"color:#c92a2a;font-size:1.25em;\">× 20歳未満です(満" + age + "歳)</strong><br><span class=\"note\">18歳以上。" + fmt(by, bm, bd) + "(" + w + ")生まれ。お酒・たばこは提供できません。</span>";
+    } else {
+      out.innerHTML = "<strong style=\"color:#c92a2a;font-size:1.25em;\">× 20歳未満です(満" + age + "歳)</strong><br><span class=\"note\">" + fmt(by, bm, bd) + "(" + w + ")生まれ</span>";
+    }
+    out.hidden = false;
+  });
+})();
+</script>
+
 <article class="article">
 
 <h2>使い方</h2>
@@ -183,6 +256,7 @@
   <li><strong>和暦→西暦</strong>:元号(明治・大正・昭和・平成・令和)と年数を選んで変換します。「昭和65年」のような実在しない年はエラーとしてお知らせします。</li>
   <li><strong>年齢計算</strong>:生年月日を入力すると、今日時点の満年齢・数え年・生まれ年の干支・今年の誕生日を迎えたかどうか、さらに小学校〜高校の入学・卒業年度の早見を表示します。履歴書にそのまま使える「平成8年4月2日生まれ」形式の表記はコピーボタンでコピーできます。</li>
 </ol>
+<p>タブの下には<strong>年齢確認(20歳チェック)</strong>のパネルがあります。「今日の日付で、どの生年月日以前なら20歳以上か」が西暦・和暦の両方で常に表示されるので、お酒やたばこを扱うお店のレジ・入店確認で、お客様の身分証と見比べるだけで判定できます。生年月日を入力すればその場で「○ 20歳以上/× 20歳未満」も表示します。</p>
 
 <h2>元号の切り替わり日一覧</h2>
 <p>和暦と西暦の変換で間違えやすいのが「改元をまたぐ年」です。元号は年の途中で切り替わるため、同じ西暦の年でも日付によって元号が異なります。切り替わり日は次のとおりです。</p>
@@ -335,6 +409,15 @@
 
 </article>
 
+
+  <section class="related">
+    <p class="related-title">あわせて使える無料ツール</p>
+    <div class="card-grid">
+      <a class="card" href="../resume/"><h3>履歴書作成</h3><p>和暦の生年月日・学歴年度を自動計算してそのまま入力できます。</p></a>
+      <a class="card" href="../charcount/"><h3>文字数カウント</h3><p>原稿用紙換算・SNS字数チェック。入力と同時に集計します。</p></a>
+      <a class="card" href="../invoice/"><h3>請求書作成(インボイス対応)</h3><p>日付の和暦表記にも対応した適格請求書をブラウザで作成。</p></a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>

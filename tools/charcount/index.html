@@ -28,7 +28,7 @@
 .limit-label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.88rem; flex-wrap: wrap; }
 .limit-label .limit-status { font-weight: 600; }
 .limit-label .limit-status.over { color: #c0392b; }
-@media (prefers-color-scheme: dark) { .limit-label .limit-status.over { color: #ff8a7a; } }
+
 .limit-bar { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin-top: 4px; }
 .limit-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 5px; transition: width 0.15s ease; }
 .limit-fill.over { background: #c0392b; }
@@ -50,6 +50,7 @@
   <div class="page-head">
     <h1>文字数カウント</h1>
     <p class="lead">テキストを入力するだけで、文字数・行数・原稿用紙換算・読み上げ時間をリアルタイムに表示。X(旧Twitter)やInstagramなどの文字数上限との比較もひと目で分かります。</p>
+    <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>運営:<b>はかり</b></span></div>
   </div>
 
   <section class="tool-panel">
@@ -151,6 +152,24 @@
       <p>消えません。入力のたびにブラウザのlocalStorageへ自動保存され、次回このページを開いたときに自動復元されます。完全に消したい場合は「クリア」ボタンを押すと入力欄と保存データの両方が削除されます。</p>
     </details>
   </article>
+
+  <section class="related">
+    <p class="related-title">あわせて使える無料ツール</p>
+    <div class="card-grid">
+      <a class="card" href="../resume/">
+        <h3>履歴書作成ツール</h3>
+        <p>JIS規格様式に準じた履歴書をブラウザで作成。自己PRの文字数調整とあわせてどうぞ。</p>
+      </a>
+      <a class="card" href="../wareki/">
+        <h3>西暦・和暦変換</h3>
+        <p>西暦と和暦をワンクリックで相互変換。生年月日から満年齢・学年も計算できます。</p>
+      </a>
+      <a class="card" href="../image-resize/">
+        <h3>画像リサイズ・圧縮</h3>
+        <p>JPEG・PNG・WebPをブラウザだけで軽量化。メール添付やWeb掲載用に。</p>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>退職金の手取り計算シミュレーター(税金自動計算)|やめどきナビ</title>
+<title>【2026年】退職金の手取り計算シミュレーター(税金自動計算)|やめどきナビ</title>
 <meta name="description" content="退職金の手取り額を無料でシミュレーション。勤続年数から退職所得控除を自動計算し、所得税・復興特別所得税・住民税を差し引いた手取り額と実効税率を表示。2026年時点の税制に対応、登録不要。">
 <link rel="stylesheet" href="../../assets/style.css">
-<style>:root{--accent:#1e66b8;--accent-hover:#17538f;--accent-weak:#e5eef8;}@media (prefers-color-scheme: dark){:root{--accent:#5aa4f0;--accent-hover:#7db8f4;--accent-weak:#16283a;}}</style>
+<style>:root{--accent:#1e66b8;--accent-hover:#17538f;--accent-weak:#e5eef8;}</style>
 <style>
 .radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
 .radio-group label, .check-line label { display: flex; align-items: center; gap: 6px; font-weight: 400; margin-bottom: 0; cursor: pointer; }
@@ -17,7 +17,7 @@
 .result-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .result-table tr.total th, .result-table tr.total td { font-weight: 700; font-size: 1.1rem; border-bottom: none; }
 .result-error { color: #c0392b; font-weight: 600; }
-@media (prefers-color-scheme: dark) { .result-error { color: #ff8a7a; } }
+
 details.breakdown { margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0 14px; font-size: 0.9rem; }
 details.breakdown summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
 details.breakdown ol { padding-left: 20px; }
@@ -82,7 +82,7 @@ details.breakdown ol { padding-left: 20px; }
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hakarigoto.github.io/taishoku/taishokukin/">
 <meta property="og:site_name" content="やめどきナビ">
-<meta property="og:title" content="退職金の手取り計算シミュレーター(税金自動計算)|やめどきナビ">
+<meta property="og:title" content="【2026年】退職金の手取り計算シミュレーター(税金自動計算)|やめどきナビ">
 <meta property="og:description" content="退職金の手取り額を無料でシミュレーション。勤続年数から退職所得控除を自動計算し、所得税・復興特別所得税・住民税を差し引いた手取り額と実効税率を表示。2026年時点の税制に対応、登録不要。">
 <meta name="twitter:card" content="summary">
 </head>
@@ -93,11 +93,34 @@ details.breakdown ol { padding-left: 20px; }
   <nav class="breadcrumb"><a href="../">やめどきナビ</a> › 退職金の手取り計算シミュレーター</nav>
 
   <div class="page-head">
-    <h1>退職金の手取り計算シミュレーター(税金自動計算)</h1>
+    <h1>【2026年】退職金の手取り計算シミュレーター(税金自動計算)</h1>
     <p class="lead">退職金額と勤続年数を入れるだけで、退職所得控除・所得税・住民税を自動計算し、手取り額と実効税率を表示します。2026年時点の税制に基づく目安です。</p>
+    <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>執筆:<b>はかり</b></span><span>基準:<b>2026年(令和8年)時点の税制</b></span></div>
   </div>
 
-  <section class="tool-panel">
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+    <ul>
+      <li>退職金には勤続年数に応じた退職所得控除があり、<span class="mk">勤続30年なら1,500万円まで非課税</span></li>
+      <li>控除後の残額はさらに<span class="mk">2分の1だけが課税対象</span>。給与よりずっと税負担が軽い</li>
+      <li>「退職所得の受給に関する申告書」を出さないと<span class="mk">額面の一律20.42%</span>が源泉徴収される</li>
+      <li>勤続年数の端数は切り上げ。退職日が数日違うだけで控除額が40万〜70万円変わることも</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">手取り額シミュレーション</a></li>
+      <li><a href="#kojo">退職所得控除の仕組み</a></li>
+      <li><a href="#ichijikin">一時金でもらうか、年金でもらうか</a></li>
+      <li><a href="#shinkoku">「退職所得の受給に関する申告書」を出さないと損</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+      <li><a href="#kijun">計算基準と免責事項</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
     <h2>条件を入力</h2>
     <div class="field-row">
       <div class="field">
@@ -137,6 +160,12 @@ details.breakdown ol { padding-left: 20px; }
   </section>
 
   <!-- AD-SLOT: money -->
+  <div class="cta-box">
+    <p class="cta-box-title">失業保険はいくら・いつからもらえる?</p>
+    <p>退職金とあわせて、失業保険(基本手当)の日額・給付日数・総額も30秒でチェックできます。</p>
+    <a class="cta-btn" href="../shitsugyo-hoken/">失業保険の受給額を無料で計算する</a>
+    <span class="cta-note">登録不要・入力データは送信されません</span>
+  </div>
 
   <aside class="related-box">
     <h2>あわせて使いたい</h2>
@@ -144,7 +173,7 @@ details.breakdown ol { padding-left: 20px; }
   </aside>
 
   <article class="article">
-    <h2>退職所得控除の仕組み ─ 退職金の税金が軽い理由</h2>
+    <h2 id="kojo">退職所得控除の仕組み ─ 退職金の税金が軽い理由</h2>
     <p>退職金は「長年の勤労に対する報償」という性格を持つため、税制上とても優遇されています。優遇の柱が<strong>退職所得控除</strong>です。控除額は勤続年数だけで決まり、次の式で計算します。</p>
     <div class="table-wrap">
       <table>
@@ -156,16 +185,16 @@ details.breakdown ol { padding-left: 20px; }
     <p>例えば勤続30年なら控除額は800万円+70万円×10年=1,500万円。退職金が1,500万円以下ならまるごと非課税です。勤続年数の1年未満の端数は切り上げるため、10年1か月勤めた人は11年として計算できます。また、障害者になったことが直接の原因で退職した場合は、この控除額に100万円が加算されます。</p>
     <p>さらに、控除を引いた残額の<strong>2分の1だけ</strong>が課税対象(退職所得)になり、他の所得と合算しない分離課税で税率が適用されます。この「控除 → 2分の1 → 分離課税」の三段構えにより、同じ金額を給与でもらう場合と比べて税負担は大幅に軽くなります。ただし例外があり、役員等としての勤続が5年以下の退職金(特定役員退職手当等)は2分の1課税なし、従業員でも勤続5年以下(短期退職手当等)は控除後300万円を超える部分に2分の1課税が使えません。</p>
 
-    <h2>一時金でもらうか、年金でもらうか ─ 税金の違い</h2>
+    <h2 id="ichijikin">一時金でもらうか、年金でもらうか ─ 税金の違い</h2>
     <p>企業年金や確定拠出年金(iDeCo・企業型DC)では、退職給付を「一時金」と「年金(分割受取)」から選べることがあります。税金の扱いは大きく異なります。</p>
     <p><strong>一時金受取</strong>は上で説明した退職所得となり、退職所得控除と2分の1課税が使えます。控除枠に収まるなら税負担ゼロも珍しくなく、社会保険料もかかりません。<strong>年金受取</strong>は雑所得として毎年の公的年金等控除の対象になりますが、公的年金と合算されるため控除枠を超えやすく、毎年の所得が増えることで国民健康保険料や介護保険料の負担が上がる場合があります。</p>
     <p>一般には「退職所得控除の枠内なら一時金が有利」といわれますが、控除を大きく超える金額を一括で受け取ると累進税率で税額が跳ね上がることもあります。受取時期をずらして控除を使い分けるテクニックもあるため、金額が大きい場合は税理士など専門家への相談をおすすめします。</p>
 
-    <h2>「退職所得の受給に関する申告書」を出さないと損をする</h2>
+    <h2 id="shinkoku">「退職所得の受給に関する申告書」を出さないと損をする</h2>
     <p>退職金の税金は原則として会社が源泉徴収して完結しますが、それには<strong>「退職所得の受給に関する申告書」</strong>を退職金の支払日までに勤務先へ提出しておく必要があります。この申告書を出していれば、会社が退職所得控除を適用した正しい税額を計算してくれるため、確定申告は原則不要です。</p>
     <p>提出しないと、退職所得控除が一切適用されず、退職金の<strong>収入金額に対して一律20.42%</strong>(所得税20%+復興特別所得税0.42%)が源泉徴収されてしまいます。例えば退職金1,000万円なら204万2千円が天引きされる計算で、本来の税額との差額は非常に大きくなりがちです。払いすぎた分は確定申告(還付申告)をすれば取り戻せますが、手間と時間がかかります。申告書は会社が用意してくれることがほとんどなので、退職手続きの際に必ず記入・提出しましょう。</p>
 
-    <h2>よくある質問</h2>
+    <h2 id="faq">よくある質問</h2>
     <details class="faq">
       <summary>退職金にはどんな税金がかかりますか?</summary>
       <p>所得税(および復興特別所得税)と住民税がかかります。ただし勤続年数に応じた退職所得控除が差し引かれ、さらに残額の2分の1だけが課税対象になるため、給与に比べて税負担はかなり軽く設計されています。社会保険料(健康保険・厚生年金)は退職金には原則かかりません。</p>
@@ -187,12 +216,30 @@ details.breakdown ol { padding-left: 20px; }
       <p>いいえ。計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した退職金額や勤続年数が外部のサーバーに送信されることは一切ありません。保存もされません。</p>
     </details>
 
-    <h2>このシミュレーターの計算基準と免責事項</h2>
+    <h2 id="kijun">このシミュレーターの計算基準と免責事項</h2>
     <p>本シミュレーターは<strong>2026年(令和8年)時点の税制</strong>に基づく目安を表示します。計算内容:退職所得控除(勤続20年以下は40万円×年数・最低80万円、20年超は800万円+70万円×超過年数、障害者退職は+100万円)、課税退職所得(1,000円未満切捨て、特定役員退職手当等・短期退職手当等の特例を反映)、所得税の累進税率(速算表)+復興特別所得税2.1%、住民税10%(市町村民税6%+道府県民税4%、各100円未満切捨て)。</p>
     <p class="note">実際の税額は、同年中の他の退職金の有無、前年以前の退職所得控除の調整、自治体の取り扱い、税制改正などにより異なる場合があります。本ツールの結果はあくまで参考値であり、正確な金額は勤務先・税務署・税理士にご確認ください。本ツールの利用により生じたいかなる損害についても、当サイトは責任を負いません。</p>
   </article>
 
   <!-- AD-SLOT: money -->
+
+  <section class="related">
+    <p class="related-title">あわせて使いたい計算ツール・記事</p>
+    <div class="card-grid">
+      <a class="card" href="../shitsugyo-hoken/">
+        <h3>失業保険シミュレーター</h3>
+        <p>基本手当の日額・給付日数・総額と「いつからもらえるか」を試算。</p>
+      </a>
+      <a class="card" href="../blog/taishoku-tetsuzuki/">
+        <h3>退職後にやること完全ガイド</h3>
+        <p>健康保険・年金・住民税・失業保険の手続きを期限順に整理。</p>
+      </a>
+      <a class="card" href="../blog/jikotsugo-kaishatsugo/">
+        <h3>自己都合と会社都合の違い</h3>
+        <p>離職理由で失業保険の総額が数十万円変わることも。判定基準を解説。</p>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer"><div class="container"><div>© 2026 やめどきナビ</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
