@@ -23,7 +23,7 @@
 
   <div class="page-head">
     <h1>年齢確認(20歳チェック)早見表 — 今日の基準日を自動表示</h1>
-    <p class="lead">お酒・たばこの販売、シーシャバーや居酒屋の入店確認に。「今日の日付で、どの生年月日以前なら20歳以上か」を開いた瞬間に表示します。外国籍のお客様の身分証・パスポート(並び順の違い・台湾の民国暦・タイの仏暦)にも対応。ブックマークしておけば毎日そのまま使えます。</p>
+    <p class="lead">お酒・たばこの販売、シーシャバーや居酒屋の入店確認に。「今日の日付で、どの生年月日以前なら20歳以上か」を、運転免許証(和暦)・在留カード(西暦)・パスポート(英字月)など書類別の表記で開いた瞬間に表示します。外国籍のお客様の身分証・パスポート(並び順の違い・台湾の民国暦・タイの仏暦)にも対応。ブックマークしておけば毎日そのまま使えます。</p>
     <div class="meta-line"><span>基準日:<b>毎日自動更新</b></span><span>運営:<b>はかり</b></span></div>
   </div>
 
@@ -31,7 +31,7 @@
     <div class="point-box-title">このツールでできること</div>
     <ul>
       <li>今日時点の<span class="mk">「20歳以上になる生年月日」を西暦・和暦で自動表示</span>(18歳基準も併記)</li>
-      <li>生年月日を入力すると<span class="mk">○ / × を即判定</span>(満年齢ベース)</li>
+      <li>運転免許証・マイナンバーカードは和暦、在留カードは西暦など<span class="mk">書類別の表記で早見</span></li>
       <li>外国の身分証は<span class="mk">国・地域別の表記のまま早見</span>(訪日客の多い順)</li>
       <li>読み方が分からない日付は<span class="mk">見たまま入力で全解釈を安全側判定</span></li>
     </ul>
@@ -47,15 +47,16 @@
   </nav>
 
 <div class="tool-panel" id="agecheck">
-  <h2>年齢確認(20歳チェック)</h2>
-  <p class="note" style="margin-top:0;">お酒・たばこの販売やシーシャバーの入店確認など、<strong>「20歳以上かどうか」を身分証を見ながらその場で確認する</strong>ための早見です。基準日はこのページを開いた日で自動更新されます。</p>
+  <h2>日本の身分証の年齢確認(20歳・18歳)</h2>
+  <p class="note" style="margin-top:0;">身分証に書かれた生年月日が<strong>下の表の日付と同じか、それより前</strong>なら基準クリアです。書類によって和暦・西暦の表記が違うので、見ている書類の行と照合してください。日付は毎日自動更新されます。</p>
   <div class="result-box" id="agecheck-today"></div>
-  <div class="field" style="margin-top:16px;">
-    <label for="agecheck-birth">生年月日を入力すると即判定</label>
-    <input type="date" id="agecheck-birth" min="1868-01-25">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>見ている書類</th><th>20歳以上(お酒・たばこ)</th><th>18歳以上</th></tr></thead>
+      <tbody id="agecheck-rows"></tbody>
+    </table>
   </div>
-  <div class="result-box" id="agecheck-result" hidden></div>
-  <p class="note">※満年齢(誕生日当日に1歳加算)による判定の目安です。入力内容は送信されません。</p>
+  <p class="note">※満年齢(誕生日当日に1歳加算)による判定です。運転免許証・マイナンバーカード・健康保険証は和暦表記、在留カードは西暦表記が使われています。</p>
 </div>
 
 <script>
@@ -68,53 +69,42 @@
     { name: "大正", start: [1912, 7, 30], offset: 1911 },
     { name: "明治", start: [1868, 1, 25], offset: 1867 }
   ];
+  var MON_EN = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  function p2(n) { return (n < 10 ? "0" : "") + n; }
   function wareki(y, m, d) {
     for (var i = 0; i < ERAS.length; i++) {
-      var s = ERAS[i].start;
-      if (y > s[0] || (y === s[0] && (m > s[1] || (m === s[1] && d >= s[2])))) {
+      var st = ERAS[i].start;
+      if (y > st[0] || (y === st[0] && (m > st[1] || (m === st[1] && d >= st[2])))) {
         var n = y - ERAS[i].offset;
         return ERAS[i].name + (n === 1 ? "元" : n) + "年";
       }
     }
     return "";
   }
-  function fmt(y, m, d) { return y + "年" + m + "月" + d + "日"; }
-  function cutoff(years) {
-    var t = new Date();
-    var c = new Date(t.getFullYear() - years, t.getMonth(), t.getDate());
+  function cutoff(years, now) {
+    var c = new Date(now.getFullYear() - years, now.getMonth(), now.getDate());
     return { y: c.getFullYear(), m: c.getMonth() + 1, d: c.getDate() };
   }
-  var t = new Date();
-  var c20 = cutoff(20), c18 = cutoff(18);
-  document.getElementById("agecheck-today").innerHTML =
-    "本日(" + fmt(t.getFullYear(), t.getMonth() + 1, t.getDate()) + ")時点で──<br>" +
-    "<strong style=\"font-size:1.2em;\">" + fmt(c20.y, c20.m, c20.d) + "(" + wareki(c20.y, c20.m, c20.d) + ")以前の生まれ → 20歳以上</strong><br>" +
-    "<span style=\"font-size:0.92em;\">" + fmt(c18.y, c18.m, c18.d) + "(" + wareki(c18.y, c18.m, c18.d) + ")以前の生まれ → 18歳以上</span>";
+  var now = new Date();
+  var c20 = cutoff(20, now), c18 = cutoff(18, now);
+  function jp(c) { return c.y + "年" + c.m + "月" + c.d + "日"; }
+  function wa(c) { return wareki(c.y, c.m, c.d) + c.m + "月" + c.d + "日"; }
+  function pass(c) { return p2(c.d) + " " + MON_EN[c.m - 1] + " " + c.y; }
 
-  var input = document.getElementById("agecheck-birth");
-  var out = document.getElementById("agecheck-result");
-  input.addEventListener("change", function () {
-    if (!input.value) { out.hidden = true; return; }
-    var p = input.value.split("-");
-    var by = parseInt(p[0], 10), bm = parseInt(p[1], 10), bd = parseInt(p[2], 10);
-    var now = new Date();
-    var age = now.getFullYear() - by;
-    if (now.getMonth() + 1 < bm || (now.getMonth() + 1 === bm && now.getDate() < bd)) age--;
-    if (age < 0 || age > 130) {
-      out.innerHTML = "生年月日を確認してください。";
-      out.hidden = false;
-      return;
-    }
-    var w = wareki(by, bm, bd);
-    if (age >= 20) {
-      out.innerHTML = "<strong style=\"color:#0a7a3c;font-size:1.25em;\">○ 20歳以上です(満" + age + "歳)</strong><br><span class=\"note\">" + fmt(by, bm, bd) + "(" + w + ")生まれ</span>";
-    } else if (age >= 18) {
-      out.innerHTML = "<strong style=\"color:#c92a2a;font-size:1.25em;\">× 20歳未満です(満" + age + "歳)</strong><br><span class=\"note\">18歳以上。" + fmt(by, bm, bd) + "(" + w + ")生まれ。お酒・たばこは提供できません。</span>";
-    } else {
-      out.innerHTML = "<strong style=\"color:#c92a2a;font-size:1.25em;\">× 20歳未満です(満" + age + "歳)</strong><br><span class=\"note\">" + fmt(by, bm, bd) + "(" + w + ")生まれ</span>";
-    }
-    out.hidden = false;
-  });
+  document.getElementById("agecheck-today").innerHTML =
+    "本日(" + now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日)時点 ── " +
+    "<strong style=\"font-size:1.15em;\">" + jp(c20) + "(" + wareki(c20.y, c20.m, c20.d) + ")以前の生まれ → 20歳以上</strong>";
+
+  var rows = [
+    ["運転免許証・マイナンバーカード・健康保険証(和暦)", wa(c20), wa(c18)],
+    ["在留カード・住民票の写しなど(西暦)", jp(c20), jp(c18)],
+    ["日本のパスポート(英字月)", pass(c20), pass(c18)]
+  ];
+  var html = "";
+  for (var i = 0; i < rows.length; i++) {
+    html += "<tr><td>" + rows[i][0] + "</td><td><strong>" + rows[i][1] + " 以前</strong></td><td>" + rows[i][2] + " 以前</td></tr>";
+  }
+  document.getElementById("agecheck-rows").innerHTML = html;
 })();
 </script>
 
