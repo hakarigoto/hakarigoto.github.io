@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>うさぎの年齢を人間に換算|ライフステージと長生きのポイント|ペット電卓</title>
+<meta name="description" content="うさぎの年齢(年+月)を入力するだけで人間の年齢に換算できる無料計算機。1歳で約20歳・2歳で約30歳・以降1年6歳という一般的な目安に対応。ライフステージ(子うさぎ・大人・シニア)判定と、シニア期のサイン・長生きのポイントも解説。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
+<style>
+.result-main { font-size: 1.4rem; font-weight: 700; }
+.result-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+.result-error { color: #c0392b; font-weight: 600; }
+
+.stage-badge {
+  display: inline-block; padding: 2px 12px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
+}
+.result-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+.check-list { margin: 6px 0 0; padding-left: 1.4em; font-size: 0.92rem; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "うさぎの1年は人間の何年分ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般的な目安では、うさぎは最初の1年で人間の20歳前後に相当し、その後は1年ごとに約6歳分年を取るとされます。たとえば5歳のうさぎは人間の40代後半、8歳では60代半ば頃に相当します。換算には「(年齢−1)×6+22」とする流儀など諸説あり、獣医学的に確立した公式ではなく、あくまで一般的な目安です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "うさぎの平均寿命はどれくらいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "うさぎの平均寿命は、おおむね7〜10歳前後と紹介されることが多いです(資料により幅があります)。室内飼育の普及や食事・獣医療の進歩により近年は長寿化が進んでおり、10歳を超えるうさぎも珍しくありません。海外では18歳前後まで生きた長寿記録も知られています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "うさぎは何歳からシニアですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般的な目安として7歳前後から高齢期(シニア期)に入るとされます。人間でいうと60歳前後に相当します。食欲や食べ方の変化、足腰の衰え、毛づやの低下などのサインに気を配り、段差を減らすなど生活環境を整えてあげましょう。個体差が大きいため、かかりつけの動物病院に相談するのが確実です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力したうさぎの年齢などのデータは送信されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。この計算機の処理はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した内容が外部のサーバーに送信されることは一切ありません。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/pet/usagi-age/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/pet/usagi-age/">
+<meta property="og:site_name" content="ペット電卓">
+<meta property="og:title" content="うさぎの年齢を人間に換算|ライフステージと長生きのポイント|ペット電卓">
+<meta property="og:description" content="うさぎの年齢(年+月)を入力するだけで人間の年齢に換算できる無料計算機。1歳で約20歳・2歳で約30歳・以降1年6歳という一般的な目安に対応。ライフステージ判定とシニア期のサインも解説。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">ペット<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">ペット電卓</a> › うさぎの年齢換算</nav>
+
+<div class="page-head">
+  <h1>うさぎの年齢を人間に換算する計算機</h1>
+  <p class="lead">うさぎの年齢(年+月)を入力するだけで、人間に換算した年齢とライフステージ(子うさぎ・大人・シニア)を表示します。1歳で約20歳・2歳で約30歳・以降1年ごとに約6歳という、日本で一般的に使われている目安に対応。シニア期のサインと長生きのポイントも解説します。登録不要・完全無料です。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>うさぎは<span class="mk">最初の1年で人間の20歳前後</span>に相当し、その後は1年ごとに約6歳分年を取るのが一般的な目安</li>
+    <li>平均寿命は<span class="mk">おおむね7〜10歳前後</span>とされ(諸説あり)、近年は10歳超えの長寿うさぎも珍しくない</li>
+    <li><span class="mk">7歳前後から高齢期(シニア期)</span>の目安。人間でいうと60歳前後</li>
+    <li>シニア期は食欲・歯・足腰の変化に注意し、<span class="mk">段差を減らすなど環境調整</span>を早めに</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#calc">年齢換算の計算機</a></li>
+    <li><a href="#tsukaikata">使い方</a></li>
+    <li><a href="#kangaekata">うさぎの年齢換算の考え方</a></li>
+    <li><a href="#jumyo">うさぎの平均寿命</a></li>
+    <li><a href="#sign">シニア期のサインと長生きのポイント</a></li>
+    <li><a href="#hayami">うさぎの年齢換算 早見表</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<div class="tool-panel" id="calc">
+  <h2>うさぎの年齢を入力</h2>
+  <div class="field-row">
+    <div class="field">
+      <label for="usagi-years">年齢(年)</label>
+      <input type="number" id="usagi-years" min="0" max="20" placeholder="例: 4" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="usagi-months">+ 月(0〜11)</label>
+      <select id="usagi-months">
+        <option value="0">0ヶ月</option><option value="1">1ヶ月</option><option value="2">2ヶ月</option>
+        <option value="3">3ヶ月</option><option value="4">4ヶ月</option><option value="5">5ヶ月</option>
+        <option value="6">6ヶ月</option><option value="7">7ヶ月</option><option value="8">8ヶ月</option>
+        <option value="9">9ヶ月</option><option value="10">10ヶ月</option><option value="11">11ヶ月</option>
+      </select>
+    </div>
+  </div>
+  <p class="note">計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
+  <div class="btn-row">
+    <button class="btn" id="usagi-run">人間の年齢に換算</button>
+    <button class="btn btn-secondary" id="usagi-clear">クリア</button>
+  </div>
+  <div class="result-box" id="usagi-result" hidden></div>
+  <!-- AD-SLOT: pet-senior -->
+  <p class="note">※本ツールの換算は獣医師監修ではなく、一般に用いられる換算の目安に基づく<strong>目安</strong>です。換算には諸説あります。健康状態の判断は必ず獣医師にご相談ください。</p>
+</div>
+
+<div class="cta-box">
+  <p class="cta-box-title">ハムスターと暮らしている方はこちら</p>
+  <p>ハムスターの月齢から人間換算年齢とライフステージを計算。ゴールデン・ジャンガリアンなど種類別の寿命の目安も分かります。</p>
+  <a class="cta-btn" href="../hamster-age/">ハムスターの年齢を無料で換算する</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="tsukaikata">使い方</h2>
+<ol>
+  <li>うさぎの年齢を「年」と「月」で入力します(例:4歳6ヶ月なら「4」と「6ヶ月」)。</li>
+  <li>「人間の年齢に換算」を押すと、人間換算年齢とライフステージ(子うさぎ・大人・シニア)が表示されます。シニア期の場合は健康チェックポイントも表示します。</li>
+  <li>保護うさぎなどで正確な生年月日が分からない場合は、推定年齢でおおよその目安として使ってください。</li>
+</ol>
+
+<h2 id="kangaekata">うさぎの年齢換算の考え方</h2>
+<p>うさぎは生後半年〜1年ほどで体がほぼ成熟します。このため日本で一般的に紹介されている換算では、<strong>最初の1年で人間の20歳前後</strong>に相当すると考え、<strong>2歳で30歳前後</strong>、その後は<strong>1年ごとに約6歳分</strong>年を取るとみなします。たとえば3歳なら約36歳、5歳なら約48歳、7歳なら約60歳、10歳なら約78歳です。</p>
+<p>ただし、うさぎの年齢換算には複数の流儀があり、<strong>「人間年齢=(うさぎの年齢−1)×6+22」という式</strong>で計算する資料など、数値が数歳ずれるものもあります。犬や猫と違って研究に基づく換算式が確立しているわけではないので、<strong>あくまで一般的な目安で、諸説あります</strong>。本ツールは「1歳=20歳・2歳=30歳・以降1年+6歳」の目安を採用し、1歳未満は月齢から比例配分した参考値を表示しています。</p>
+
+<h2 id="jumyo">うさぎの平均寿命</h2>
+<p>ペットのうさぎ(ネザーランドドワーフ、ホーランドロップなどのカイウサギ)の平均寿命は、<strong>おおむね7〜10歳前後</strong>と紹介されることが多いです。資料によって「7〜8歳」「8〜10歳」など幅があり、種類や個体差、飼育環境によっても変わります。</p>
+<p>かつては「うさぎの寿命は5〜6年」といわれた時代もありましたが、室内飼育の普及、牧草中心の適切な食事、うさぎを診られる動物病院の増加などにより<strong>近年は長寿化が進んでおり、10歳を超えるうさぎも珍しくありません</strong>。海外では18歳前後まで生きた長寿記録も知られています。人間換算で見ると、7歳で還暦前後、10歳で80歳前後に相当し、シニア期をどう過ごすかが長生きの鍵になります。</p>
+
+<h2 id="sign">シニア期のサインと長生きのポイント</h2>
+<p>うさぎは7歳前後から高齢期(シニア期)に入るとされます。うさぎは体調不良を隠す動物なので、次のような変化に日頃から気を配りましょう。</p>
+<ul>
+  <li><strong>食欲・食べ方の変化</strong>:牧草を食べる量が減った、硬いものを残す、よだれが出るなどは、不正咬合(歯のかみ合わせの異常)など歯のトラブルのサインのことがあります。うさぎの歯は一生伸び続けるため、高齢期に限らず歯の健康は重要です。</li>
+    <li><strong>足腰の衰え</strong>:ジャンプ力が落ちる、段差をためらう、足を引きずる、じっとしている時間が増えるなどの変化が出やすくなります。ケージ内の段差を減らす、滑りにくい床材にする、トイレの縁を低くするなどの環境調整が助けになります。</li>
+  <li><strong>毛づや・毛づくろいの減少</strong>:毛づやが悪くなったり、お尻まわりが汚れやすくなったりしたら、体が曲げにくくなっているサインかもしれません。ブラッシングやお尻まわりのチェックで補助しましょう。</li>
+  <li><strong>食欲不振・うんちが小さくなる/減る</strong>:うさぎは食欲が止まると胃腸の動きも止まりやすく(うっ滞)、急変につながることがあります。食欲とうんちの様子は毎日の健康チェックの基本です。</li>
+</ul>
+<p>長生きのポイントとしては、<strong>牧草中心の食事と適正体重の維持</strong>、<strong>温度管理</strong>(うさぎは暑さに弱いため夏場の室温に注意)、<strong>ストレスの少ない静かな環境</strong>、そして<strong>定期的な健康診断</strong>が挙げられます。シニア期に入ったら、うさぎを診られる動物病院で定期的にチェックを受けると安心です。</p>
+
+<h2 id="hayami">うさぎの年齢換算 早見表(1〜12歳)</h2>
+<p>「1歳=20歳・2歳=30歳・以降1年ごとに+6歳」という一般的な目安(本ツールと同じ計算)による早見表です。ライフステージは目安です。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>うさぎの年齢</th><th>人間換算</th><th>ライフステージ(目安)</th></tr></thead>
+  <tbody>
+    <tr><td>6ヶ月</td><td>約10歳</td><td>子うさぎ(成長期)</td></tr>
+    <tr><td>1歳</td><td>約20歳</td><td>大人(若年期)</td></tr>
+    <tr><td>2歳</td><td>約30歳</td><td>大人(若年期)</td></tr>
+    <tr><td>3歳</td><td>約36歳</td><td>大人(若年期)</td></tr>
+    <tr><td>4歳</td><td>約42歳</td><td>大人(中年期)</td></tr>
+    <tr><td>5歳</td><td>約48歳</td><td>大人(中年期)</td></tr>
+    <tr><td>6歳</td><td>約54歳</td><td>大人(中年期)</td></tr>
+    <tr><td>7歳</td><td>約60歳</td><td>シニア(高齢期)</td></tr>
+    <tr><td>8歳</td><td>約66歳</td><td>シニア(高齢期)</td></tr>
+    <tr><td>9歳</td><td>約72歳</td><td>シニア(高齢期)</td></tr>
+    <tr><td>10歳</td><td>約78歳</td><td>シニア(高齢期)</td></tr>
+    <tr><td>11歳</td><td>約84歳</td><td>シニア(高齢期)</td></tr>
+    <tr><td>12歳</td><td>約90歳</td><td>シニア(高齢期)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">※換算には複数の流儀があり、書籍やサイトによって数値が数歳異なります。上記はあくまで一般的な目安で、諸説あります。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>うさぎの1年は人間の何年分?</summary>
+  <p>一般的な目安では、<strong>最初の1年で人間の20歳前後</strong>に相当し、その後は<strong>1年ごとに約6歳分</strong>年を取るとされます。「(年齢−1)×6+22」とする流儀など諸説あり、獣医学的に確立した公式ではなく、あくまで目安です。</p>
+</details>
+
+<details class="faq">
+  <summary>うさぎの平均寿命は?</summary>
+  <p><strong>おおむね7〜10歳前後</strong>と紹介されることが多いです(資料により幅があります)。室内飼育や食事・獣医療の進歩により近年は長寿化が進み、10歳を超えるうさぎも珍しくありません。海外では18歳前後の長寿記録も知られています。</p>
+</details>
+
+<details class="faq">
+  <summary>うさぎは何歳からシニア?</summary>
+  <p>一般的な目安として<strong>7歳前後から高齢期(シニア期)</strong>に入るとされます。人間でいうと60歳前後です。食欲・歯・足腰の変化に気を配り、段差を減らすなどの環境調整を早めに始めましょう。個体差が大きいため、かかりつけの動物病院に相談してください。</p>
+</details>
+
+<details class="faq">
+  <summary>入力したデータは外部に送信される?</summary>
+  <p>いいえ。計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した内容が外部サーバーに送信されることは一切ありません。</p>
+</details>
+
+<p class="note">※掲載している換算やケアの情報は一般的な目安であり、獣医師の監修を受けたものではありません。健康に関する判断はかかりつけの動物病院にご相談ください。</p>
+
+<!-- AD-SLOT: pet-senior -->
+
+</article>
+
+<section class="related">
+  <p class="related-title">関連ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../hamster-age/">
+      <h3>ハムスターの年齢を人間に換算</h3>
+      <p>ハムスターの月齢から人間換算年齢とライフステージを計算。ゴールデン・ジャンガリアンの寿命の違いも解説。</p>
+    </a>
+    <a class="card" href="../dog-age/">
+      <h3>犬の年齢を人間に換算</h3>
+      <p>犬の年齢とサイズ(小型・中型・大型)から人間換算年齢を計算。2019年発表の対数式による換算も併記。</p>
+    </a>
+    <a class="card" href="../cat-age/">
+      <h3>猫の年齢を人間に換算</h3>
+      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼い・外に出る場合の寿命の違いも解説。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ペット電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var resultEl = document.getElementById('usagi-result');
+
+  var STAGES = {
+    baby:   { label: '子うさぎ', desc: '体が急速に成長する時期です。成長期用の食事、環境に慣らすこと、抱っこや爪切りの練習などが大切です。' },
+    adult:  { label: '大人',     desc: '体力が充実する時期です。牧草中心の食事と適正体重の維持、歯とうんちの毎日のチェックを習慣にしましょう。' },
+    senior: { label: 'シニア',   desc: '老化のサインが出始める時期です。食欲・歯・足腰の変化に気を配り、段差を減らすなど生活環境を整えましょう。定期的な健康診断もおすすめです。' }
+  };
+
+  var SENIOR_CHECKS = [
+    '牧草を食べる量が減っていないか、硬いものを残していないか(歯のトラブル)',
+    'うんちが小さくなったり減ったりしていないか(うっ滞のサイン)',
+    'ジャンプ力の低下、段差のためらい、足を引きずる様子はないか',
+    '毛づやの低下、お尻まわりの汚れはないか',
+    '飲水量・尿の様子に変化はないか',
+    '夏場の室温管理はできているか(うさぎは暑さに弱い)',
+    'うさぎを診られる動物病院で定期的に健康チェックを受けているか'
+  ];
+
+  /* 一般的な目安:1歳=20歳、2歳=30歳、以降+6歳/年(1歳未満は月齢から比例配分した参考値) */
+  function convHuman(age) {
+    if (age <= 1) return age * 20;
+    if (age <= 2) return 20 + (age - 1) * 10;
+    return 30 + (age - 2) * 6;
+  }
+
+  function lifeStage(age) {
+    if (age < 1) return 'baby';
+    if (age < 7) return 'adult';
+    return 'senior';
+  }
+
+  function ageLabel(y, m) {
+    return m > 0 ? y + '歳' + m + 'ヶ月' : y + '歳';
+  }
+
+  function showError(msg) {
+    resultEl.innerHTML = '<span class="result-error">' + msg + '</span>';
+    resultEl.hidden = false;
+  }
+
+  document.getElementById('usagi-run').addEventListener('click', function () {
+    var yRaw = document.getElementById('usagi-years').value;
+    var y = yRaw === '' ? 0 : parseInt(yRaw, 10);
+    var m = parseInt(document.getElementById('usagi-months').value, 10);
+
+    if (isNaN(y) || y < 0) { showError('年齢(年)を正しく入力してください。'); return; }
+    if (y > 20) { showError('20歳以下で入力してください。'); return; }
+    var age = y + m / 12;
+    if (age <= 0) { showError('年齢を入力してください(例:0年+6ヶ月)。'); return; }
+
+    var human = Math.round(convHuman(age));
+    var stageKey = lifeStage(age);
+    var stage = STAGES[stageKey];
+
+    var html = '<div class="result-main">人間に換算すると 約' + human + '歳</div>';
+    html += '<div class="result-sub">実年齢' + ageLabel(y, m) + '/「1歳=20歳・2歳=30歳・以降1年+6歳」の一般的な目安による換算(諸説あります)</div>';
+    if (age < 1) {
+      html += '<div class="result-sub">※1歳未満は月齢から比例配分した参考値です。子うさぎの成長は個体差が大きいため、おおよその感覚として捉えてください。</div>';
+    }
+
+    html += '<hr class="result-divider">';
+    html += '<div>ライフステージ:<span class="stage-badge">' + stage.label + '</span></div>';
+    html += '<div class="result-sub">' + stage.desc + '</div>';
+
+    if (stageKey === 'senior') {
+      html += '<hr class="result-divider">';
+      html += '<div><strong>シニア期の健康チェックポイント</strong></div>';
+      html += '<ul class="check-list">';
+      SENIOR_CHECKS.forEach(function (c) { html += '<li>' + c + '</li>'; });
+      html += '</ul>';
+    }
+
+    html += '<hr class="result-divider">';
+    html += '<div class="note">※獣医師監修ではなく、一般的な換算の目安です。健康に関する判断はかかりつけの動物病院にご相談ください。</div>';
+
+    resultEl.innerHTML = html;
+    resultEl.hidden = false;
+  });
+
+  document.getElementById('usagi-clear').addEventListener('click', function () {
+    document.getElementById('usagi-years').value = '';
+    document.getElementById('usagi-months').value = '0';
+    resultEl.hidden = true;
+  });
+})();
+</script>
+
+</body>
+</html>

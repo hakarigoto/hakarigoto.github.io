@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ローン返済シミュレーター|月々の返済額・総利息をその場で計算|ローン電卓</title>
+<meta name="description" content="借入額・年利・返済期間を入れるだけで、ローンの毎月返済額・総返済額・利息総額を無料計算。元利均等と元金均等の両方式に対応し、金利が±1%違った場合の総返済額の比較も自動表示します。登録不要・入力データは送信されません。">
+<link rel="canonical" href="https://hakarigoto.github.io/loan/hensai/">
+<meta property="og:site_name" content="ローン電卓">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ローン返済シミュレーター|月々の返済額・総利息をその場で計算|ローン電卓">
+<meta property="og:description" content="借入額・年利・返済期間から毎月返済額と利息総額を計算。元利均等・元金均等の比較や、金利±1%での総返済額の違いもその場でわかります。">
+<meta property="og:url" content="https://hakarigoto.github.io/loan/hensai/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%238c3f5d%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>ロ</text></svg>">
+<style>:root{--accent:#8c3f5d;--accent-hover:#733248;--accent-weak:#f6ebef;}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "元利均等と元金均等はどちらを選べばよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "毎月の返済額を一定にして家計管理をしやすくしたいなら元利均等、序盤の負担が重くても利息総額を抑えたいなら元金均等が向いています。たとえば借入300万円・年利3%・5年の場合、利息総額は元利均等で約23万4,000円、元金均等で約22万9,000円と元金均等のほうが少なくなりますが、元金均等の初回返済額は57,500円と元利均等の53,906円より重くなります。なお、商品によっては元金均等を選べない場合があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "金利が1%違うと返済総額はどれくらい変わりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "借入額と期間が大きいほど差が開きます。元利均等での計算例では、借入300万円・5年なら年利3%と4%の総返済額の差は約8万円ですが、借入3,000万円・35年では年利1%と2%の差が約617万円になります。本シミュレーターは入力した年利±1%の総返済額を自動で併記するので、自分の条件での差をその場で確認できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "繰り上げ返済はいつ行うのが効果的ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般に、返済期間の早い時期ほど効果が大きくなります。繰り上げ返済で減らした元金には以後の利息がかからなくなるため、残り期間が長いほど圧縮できる利息が大きくなるからです。ただし手元資金を減らしすぎるリスクや、商品によっては手数料がかかる場合もあるため、条件は契約先で確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "シミュレーション結果と実際の返済額が違うのはなぜですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本ツールは入力条件に基づく数学的な試算で、円未満の端数処理・初回や最終回の調整・ボーナス併用払い・保証料や事務手数料・金利の変動などは反映していません。実際の返済額・総額は契約先の金融機関が提示する返済予定表でご確認ください。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">ローン<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">ローン電卓</a> › ローン返済シミュレーター</nav>
+
+<div class="page-head">
+  <h1>ローン返済シミュレーター|月々の返済額・総利息をその場で計算</h1>
+  <p class="lead">借入額・年利・返済期間・返済方式(元利均等・元金均等)を入れるだけで、毎月の返済額・総返済額・利息総額を計算します。金利が±1%違った場合の総返済額も自動で併記。結果は数学的な試算であり、端数処理・保証料・手数料などは含みません。実際の返済額は必ず契約先の金融機関でご確認ください。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>借入300万円・年利3%・5年(元利均等)なら<span class="mk">毎月53,906円・利息総額は約23万4,000円</span></li>
+    <li>同じ条件で金利が1%違うと総返済額は<span class="mk">約8万円</span>変わる。借入3,000万円・35年なら1%の差で<span class="mk">約617万円</span>変わる</li>
+    <li>元金均等は同条件で利息総額約22万9,000円と元利均等より少ないが、<span class="mk">初回返済額は57,500円</span>と序盤が重い</li>
+    <li>期間を5年から7年に延ばすと毎月は約1万4,000円軽くなるが、<span class="mk">利息総額は約9万6,000円増える</span>(300万円・年利3%)</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#sim">返済シミュレーション</a></li>
+    <li><a href="#hoshiki">元利均等と元金均等の違い</a></li>
+    <li><a href="#kinri">金利1%の差は総返済額でいくらになるか</a></li>
+    <li><a href="#kuriage">繰り上げ返済の効果</a></li>
+    <li><a href="#shurui">ローンの種類で金利水準は変わる</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<section class="tool-panel" id="sim">
+  <h2>条件を入力してください</h2>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="gaku">借入額(万円)</label>
+      <input type="number" id="gaku" value="300" min="1" step="10">
+    </div>
+    <div class="field">
+      <label for="riritsu">年利(%)</label>
+      <input type="number" id="riritsu" value="3.0" min="0" step="0.01">
+      <p class="note">小数もそのまま入力できます(例: 1.85)。</p>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="kikanYear">返済期間(年)</label>
+      <input type="number" id="kikanYear" value="5" min="0" step="1">
+    </div>
+    <div class="field">
+      <label for="kikanMonth">返済期間(月・追加分)</label>
+      <input type="number" id="kikanMonth" value="0" min="0" max="11" step="1">
+      <p class="note">「3年6ヶ月」なら年に3、月に6を入れてください。</p>
+    </div>
+    <div class="field">
+      <label for="hoshiki">返済方式</label>
+      <select id="hoshiki">
+        <option value="ganri" selected>元利均等(毎月の返済額が一定)</option>
+        <option value="gankin">元金均等(毎月の元金が一定)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="calcBtn" type="button">返済額を計算する</button>
+  </div>
+
+  <div class="result-box" id="resultBox" style="display:none;" aria-live="polite">
+    <div id="resultMain"></div>
+    <div class="table-wrap">
+      <table id="resultTable">
+        <thead><tr><th>項目</th><th>金額</th></tr></thead>
+        <tbody id="resultBody"></tbody>
+      </table>
+    </div>
+    <div class="table-wrap">
+      <table id="compareTable">
+        <thead><tr><th>参考:金利が±1%だったら</th><th>総返済額</th><th>入力条件との差</th></tr></thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+    <p class="note" id="resultNote"></p>
+  </div>
+
+  <p class="note" style="margin-top:16px;">本ツールの計算は入力条件に基づく数学的な試算です。円未満の端数処理・初回や最終回の調整・ボーナス併用払い・保証料・事務手数料・金利変動は反映していません。実際の返済額・総額は契約先の金融機関が提示する返済予定表でご確認ください。</p>
+</section>
+<!-- AD-SLOT: cardloan -->
+
+<div class="cta-box">
+  <p class="cta-box-title">リボ払いの残高がある方はこちらも</p>
+  <p>「月々5,000円のリボ」が完済まで何ヶ月かかり、手数料をいくら払うのか。利用額と支払額を入れるだけでその場でわかります。</p>
+  <a class="cta-btn" href="../ribo/">リボ払いの総額を無料でチェックする</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="hoshiki">元利均等と元金均等の違い</h2>
+<p>ローンの返済方式には大きく2つあります。<strong>元利均等返済</strong>は「元金+利息」の合計を毎月一定にする方式、<strong>元金均等返済</strong>は毎月の元金を一定にし、そこに残高に応じた利息を上乗せする方式です。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>比較項目</th><th>元利均等返済</th><th>元金均等返済</th></tr></thead>
+  <tbody>
+    <tr><td>毎月の返済額</td><td>最初から最後まで一定</td><td>最初が最も多く、毎月少しずつ減る</td></tr>
+    <tr><td>序盤の負担</td><td>軽い</td><td>重い</td></tr>
+    <tr><td>利息総額</td><td>元金均等より多い</td><td>元利均等より少ない</td></tr>
+    <tr><td>元金の減り方</td><td>序盤は利息の割合が大きく、元金の減りが遅い</td><td>初月から一定ペースで減る</td></tr>
+    <tr><td>向いている人</td><td>毎月の支出を一定にして家計管理したい人</td><td>序盤の負担に耐えられ、利息を抑えたい人</td></tr>
+  </tbody>
+</table>
+</div>
+<p>計算例として、借入300万円・年利3%・5年(60回)の場合を比べると次のようになります。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>方式</th><th>毎月返済額</th><th>総返済額</th><th>利息総額</th></tr></thead>
+  <tbody>
+    <tr><td>元利均等</td><td>53,906円(一定)</td><td>約323万4,000円</td><td>約23万4,000円</td></tr>
+    <tr><td>元金均等</td><td>初回57,500円 → 最終回50,125円</td><td>約322万9,000円</td><td>約22万9,000円</td></tr>
+  </tbody>
+</table>
+</div>
+<p>利息総額の差はこの条件では約5,600円と小さいですが、借入額が大きく期間が長いほど差は開きます。なお、カードローンやマイカーローンでは<strong>元金均等を選べない商品も多い</strong>ため、方式を選べるかどうかは契約先で確認してください。</p>
+
+<h2 id="kinri">金利1%の差は総返済額でいくらになるか</h2>
+<p>金利の差は「年◯%」という見た目以上に、総返済額に効きます。本シミュレーターと同じ計算式(元利均等)で試算した例を挙げます。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>条件(計算例)</th><th>毎月返済額</th><th>総返済額</th></tr></thead>
+  <tbody>
+    <tr><td>借入300万円・5年・年利2%</td><td>52,583円</td><td>約315万5,000円</td></tr>
+    <tr><td>借入300万円・5年・年利3%</td><td>53,906円</td><td>約323万4,000円</td></tr>
+    <tr><td>借入300万円・5年・年利4%</td><td>55,250円</td><td>約331万5,000円</td></tr>
+    <tr><td>借入3,000万円・35年・年利1%</td><td>84,686円</td><td>約3,557万円</td></tr>
+    <tr><td>借入3,000万円・35年・年利2%</td><td>99,379円</td><td>約4,174万円</td></tr>
+  </tbody>
+</table>
+</div>
+<p>借入300万円・5年では金利1%の差が総額で約8万円ですが、借入3,000万円・35年になると<strong>1%の差が約617万円</strong>まで膨らみます。金利差の影響は「借入額 × 期間」に比例して大きくなるため、大きく長く借りるローンほど、金利の比較に時間をかける価値があります。本シミュレーターでは、入力した年利の±1%の総返済額を自動で併記するので、自分の条件での影響を確認してみてください。</p>
+
+<h2 id="kuriage">繰り上げ返済の効果</h2>
+<p>繰り上げ返済とは、毎月の返済とは別にまとまった額を返して<strong>元金を直接減らす</strong>ことです。減らした元金には以後の利息が一切かからなくなるため、支払う利息の総額を圧縮できます。一般的な性質として、次の3点を押さえておくと判断しやすくなります。</p>
+<ul>
+  <li><strong>早いほど効く</strong> — 残り期間が長い時期に元金を減らすほど、かからなくなる利息が大きくなります。</li>
+  <li><strong>方式は2種類</strong> — 返済期間を短くする「期間短縮型」と、毎月の返済額を下げる「返済額軽減型」があり、利息の圧縮効果は一般に期間短縮型のほうが大きくなります。</li>
+  <li><strong>手元資金とのバランス</strong> — 繰り上げ返済に回したお金は戻せません。生活防衛資金を削ってまで行うのは本末転倒です。商品によっては繰り上げ返済に手数料や最低金額の条件がある場合もあるため、契約先で確認してください。</li>
+</ul>
+<p>また、期間を延ばす方向の変更は逆の効果を持ちます。たとえば借入300万円・年利3%を5年から7年に延ばすと、毎月の返済額は53,906円から39,639円へ約1万4,000円軽くなりますが、利息総額は約23万4,000円から約33万円へと約9万6,000円増えます。「毎月が楽になる=得」ではない点に注意してください。</p>
+
+<h2 id="shurui">ローンの種類で金利水準は変わる</h2>
+<p>同じ「借りる」でも、ローンの種類によって金利水準は大きく異なります。一般的な傾向として、<strong>住宅ローン &lt; マイカーローン &lt; カードローンの順で金利は高くなります</strong>。これは、住宅ローンは不動産という担保があり貸し倒れリスクが低いこと、マイカーローンは車という資産と資金使途の明確さがあること、カードローンは無担保で使途自由なぶんリスクが高いこと、が主な理由です。</p>
+<p>この構造から言えるのは、<strong>金利の高い借入から優先して減らすのが原則</strong>だということです。同じ10万円を繰り上げ返済するなら、金利の低い住宅ローンよりも、金利の高いカードローンの残高に充てるほうが利息の圧縮効果は大きくなります。実際の金利は金融機関・商品・審査結果によって異なるため、必ず契約先の提示条件で確認してください。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>元利均等と元金均等、どちらを選べばいい?</summary>
+  <p>毎月の返済額を一定にして家計管理をしやすくしたいなら元利均等、序盤の負担が重くても利息総額を抑えたいなら元金均等が向いています。借入300万円・年利3%・5年の例では、利息総額は元利均等で約23万4,000円、元金均等で約22万9,000円です。商品によっては元金均等を選べない場合があります。</p>
+</details>
+
+<details class="faq">
+  <summary>金利が1%違うと総額はどれくらい変わる?</summary>
+  <p>借入額と期間が大きいほど差が開きます。計算例では、借入300万円・5年なら年利3%と4%の差は総額約8万円、借入3,000万円・35年なら年利1%と2%の差は約617万円です。本シミュレーターは入力した年利±1%の総返済額を自動で併記します。</p>
+</details>
+
+<details class="faq">
+  <summary>繰り上げ返済はいつやるのが効果的?</summary>
+  <p>一般に、返済期間の早い時期ほど効果が大きくなります。減らした元金には以後の利息がかからなくなるため、残り期間が長いほど圧縮できる利息が大きいからです。ただし手数料の有無や最低金額の条件は商品により異なるので、契約先で確認してください。</p>
+</details>
+
+<details class="faq">
+  <summary>シミュレーション結果と実際の返済額が違うのはなぜ?</summary>
+  <p>本ツールは数学的な試算で、円未満の端数処理・初回や最終回の調整・ボーナス併用払い・保証料・事務手数料・金利変動を反映していません。実際の返済額・総額は契約先の金融機関が提示する返済予定表でご確認ください。</p>
+</details>
+
+<h2>関連ツール</h2>
+<p>リボ払いの残高がある方は <a href="../ribo/">リボ払いチェッカー</a> で完済までの月数と手数料総額を確認できます。返済と並行して積立を考えている方は姉妹サイトの <a href="../../tsumitate/simulator/">つみたてシミュレーター(姉妹サイト)</a> もどうぞ。</p>
+
+<!-- AD-SLOT: cardloan -->
+</article>
+
+<section class="related">
+  <p class="related-title">あわせて使いたい計算ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../ribo/">
+      <h3>リボ払いチェッカー</h3>
+      <p>利用額と毎月の支払額から、完済までの月数と手数料総額を計算します。</p>
+    </a>
+    <a class="card" href="../">
+      <h3>ローン電卓トップ</h3>
+      <p>ローンの返済とリボ払いに関する無料計算ツールの一覧です。</p>
+    </a>
+    <a class="card" href="../../tsumitate/simulator/">
+      <h3>つみたてシミュレーター</h3>
+      <p>毎月いくら×何年でいくらになる?複利の積立計算は姉妹サイトでどうぞ。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ローン電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var yen = function (n) { return Math.round(n).toLocaleString("ja-JP") + "円"; };
+
+  // 元利均等: 毎月返済額 = P×r×(1+r)^n ÷ ((1+r)^n − 1)。r=0 なら P/n
+  function ganriMonthly(P, annualRate, n) {
+    var r = annualRate / 12 / 100;
+    if (r === 0) return P / n;
+    var pow = Math.pow(1 + r, n);
+    return P * r * pow / (pow - 1);
+  }
+
+  // 指定方式での総返済額
+  function totalPayment(P, annualRate, n, method) {
+    var r = annualRate / 12 / 100;
+    if (method === "gankin") {
+      // 元金均等: 利息総額 = P×r×(n+1)/2
+      return P + P * r * (n + 1) / 2;
+    }
+    return ganriMonthly(P, annualRate, n) * n;
+  }
+
+  function addRow(tbody, label, value) {
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td"); td1.textContent = label;
+    var td2 = document.createElement("td"); td2.textContent = value;
+    tr.appendChild(td1); tr.appendChild(td2);
+    tbody.appendChild(tr);
+  }
+
+  function calc() {
+    var man = parseFloat($("gaku").value) || 0;
+    var rate = Math.max(0, parseFloat($("riritsu").value) || 0);
+    var years = Math.max(0, parseInt($("kikanYear").value, 10) || 0);
+    var months = Math.max(0, parseInt($("kikanMonth").value, 10) || 0);
+    var method = $("hoshiki").value;
+
+    var P = man * 10000;
+    var n = years * 12 + months;
+
+    var resultMain = $("resultMain");
+    var resultBody = $("resultBody");
+    var compareBody = $("compareBody");
+    resultBody.innerHTML = "";
+    compareBody.innerHTML = "";
+
+    if (P <= 0 || n <= 0) {
+      resultMain.textContent = "借入額と返済期間(合計1ヶ月以上)を入力してください。";
+      $("resultNote").textContent = "";
+      $("resultBox").style.display = "";
+      return;
+    }
+
+    var r = rate / 12 / 100;
+    var total, interest, mainLine;
+
+    if (method === "gankin") {
+      var principalMonthly = P / n;          // 毎月元金 = P/n
+      var first = principalMonthly + P * r;  // 初回 = 元金 + 初月利息(残高P×r)
+      var last = principalMonthly + principalMonthly * r; // 最終回 = 元金 + 最終月利息
+      total = totalPayment(P, rate, n, "gankin");
+      interest = total - P;
+      mainLine = "元金均等・" + n + "回払いの毎月返済額:初回 約 " +
+        Math.round(first).toLocaleString("ja-JP") + "円 → 最終回 約 " +
+        Math.round(last).toLocaleString("ja-JP") + "円";
+      addRow(resultBody, "初回の返済額", yen(first));
+      addRow(resultBody, "最終回の返済額", yen(last));
+      addRow(resultBody, "総返済額", yen(total));
+      addRow(resultBody, "利息総額", yen(interest));
+    } else {
+      var monthly = ganriMonthly(P, rate, n);
+      total = monthly * n;
+      interest = total - P;
+      mainLine = "元利均等・" + n + "回払いの毎月返済額:約 " +
+        Math.round(monthly).toLocaleString("ja-JP") + "円";
+      addRow(resultBody, "毎月の返済額", yen(monthly));
+      addRow(resultBody, "総返済額", yen(total));
+      addRow(resultBody, "利息総額", yen(interest));
+    }
+
+    resultMain.innerHTML = "";
+    var strong = document.createElement("strong");
+    strong.textContent = mainLine;
+    resultMain.appendChild(strong);
+
+    // 参考: 金利±1%の総返済額
+    var rates = [];
+    if (rate - 1 >= 0) rates.push(rate - 1);
+    else if (rate > 0) rates.push(0);
+    rates.push(rate);
+    rates.push(rate + 1);
+    rates.forEach(function (rr) {
+      var t = totalPayment(P, rr, n, method);
+      var diff = t - total;
+      var diffLabel;
+      if (rr === rate) diffLabel = "(入力条件)";
+      else diffLabel = (diff >= 0 ? "+" : "−") + Math.round(Math.abs(diff)).toLocaleString("ja-JP") + "円";
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td");
+      td1.textContent = "年利 " + (Math.round(rr * 100) / 100) + "%";
+      var td2 = document.createElement("td"); td2.textContent = yen(t);
+      var td3 = document.createElement("td"); td3.textContent = diffLabel;
+      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+      compareBody.appendChild(tr);
+    });
+
+    $("resultNote").textContent =
+      "借入" + man.toLocaleString("ja-JP") + "万円・年利" + rate + "%・" + n +
+      "回払いの試算です。端数処理・保証料・手数料・金利変動は含みません。実際の金額は契約先の返済予定表で確認してください。";
+
+    $("resultBox").style.display = "";
+  }
+
+  $("calcBtn").addEventListener("click", calc);
+})();
+</script>
+</body>
+</html>

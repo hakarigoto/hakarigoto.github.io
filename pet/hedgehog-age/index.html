@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ハリネズミの年齢を人間に換算|寿命とシニア期の目安も分かる計算機|ペット電卓</title>
+<meta name="description" content="ハリネズミ(ヨツユビハリネズミ)の年齢(年+月)を入力するだけで人間の年齢に換算できる無料計算機。1歳=約18歳・2歳=約36歳としてよく使われる早見表に対応。ライフステージ判定と飼育下の平均寿命(約3〜5年)、シニア期のサインも解説。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
+<style>
+.result-main { font-size: 1.4rem; font-weight: 700; }
+.result-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+.result-error { color: #c0392b; font-weight: 600; }
+
+.stage-badge {
+  display: inline-block; padding: 2px 12px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
+}
+.result-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ハリネズミの1年は人間の何年分ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "よく紹介される早見表では、ハリネズミは1歳で人間の約18歳、2歳で約36歳、3歳で約54歳に相当し、1年ごとに約18歳分年を取るとされます。ハリネズミと人間の寿命の比率から作られた目安で、1歳を18〜20歳とする資料もあるなど諸説あります。獣医学的に確立した公式ではありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ハリネズミの平均寿命は何年ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ペットとして飼育されるヨツユビハリネズミの平均寿命は、おおむね3〜5年前後とされることが多いです(資料によっては2〜5年、4〜6年など幅があります)。5年を超えるのは比較的まれとされ、温度管理と食事、ストレスの少ない環境づくりが長生きのポイントといわれます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ハリネズミは何歳からシニアですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3歳頃からシニア期に入るとされることが多いです。人間換算では約54歳に相当します。シニア期は腫瘍やWHS(ふらつき症候群)など加齢に伴う病気のリスクが上がるとされ、体力の低下・食欲の変化・睡眠時間の増加などのサインに注意が必要です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "5歳を超えるハリネズミは長生きですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。よく使われる換算では5歳のハリネズミは人間の約89歳に相当し、飼育下でも5年を超えるのは比較的まれとされるため、かなりの長寿といえます。日々の体調観察と温度管理を続けながら、無理のない生活環境を整えてあげてください。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/pet/hedgehog-age/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/pet/hedgehog-age/">
+<meta property="og:site_name" content="ペット電卓">
+<meta property="og:title" content="ハリネズミの年齢を人間に換算|寿命とシニア期の目安も分かる計算機|ペット電卓">
+<meta property="og:description" content="ハリネズミ(ヨツユビハリネズミ)の年齢(年+月)を入力するだけで人間の年齢に換算できる無料計算機。1歳=約18歳・2歳=約36歳としてよく使われる早見表に対応。ライフステージ判定とシニア期のサインも解説。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">ペット<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">ペット電卓</a> › ハリネズミの年齢換算</nav>
+
+<div class="page-head">
+  <h1>ハリネズミの年齢を人間に換算する計算機</h1>
+  <p class="lead">ハリネズミ(ヨツユビハリネズミ)の年齢(年+月)を入力するだけで、人間に換算した年齢とライフステージ(成長期・成年期・シニア期)を表示します。1歳=約18歳・2歳=約36歳・以降1年ごとに約18歳分という、よく紹介される早見表に対応。飼育下の平均寿命(約3〜5年)との比較も分かります。登録不要・完全無料です。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>ハリネズミは<span class="mk">1歳で人間の約18歳、2歳で約36歳</span>に相当し、1年ごとに約18歳分年を取る(諸説あります)</li>
+    <li>飼育下の平均寿命は<span class="mk">おおむね3〜5年前後</span>。5年を超えるのは比較的まれ</li>
+    <li><span class="mk">3歳頃からシニア期</span>(人間の50代半ば頃)の目安。腫瘍やWHSのリスクが上がる</li>
+    <li>シニア期は体力低下・食欲の変化・睡眠時間の増加など<span class="mk">4つの老化サイン</span>に注意</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#calc">年齢換算の計算機</a></li>
+    <li><a href="#tsukaikata">使い方</a></li>
+    <li><a href="#kangaekata">ハリネズミの年齢換算の考え方</a></li>
+    <li><a href="#jumyo">ハリネズミの平均寿命</a></li>
+    <li><a href="#senior">シニア期のサインとケア</a></li>
+    <li><a href="#hayami">ハリネズミの年齢換算 早見表</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<div class="tool-panel" id="calc">
+  <h2>ハリネズミの年齢を入力</h2>
+  <div class="field-row">
+    <div class="field">
+      <label for="hh-years">年齢(年)</label>
+      <input type="number" id="hh-years" min="0" max="10" placeholder="例: 2" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="hh-months">+ 月(0〜11)</label>
+      <select id="hh-months">
+        <option value="0">0ヶ月</option><option value="1">1ヶ月</option><option value="2">2ヶ月</option>
+        <option value="3">3ヶ月</option><option value="4">4ヶ月</option><option value="5">5ヶ月</option>
+        <option value="6">6ヶ月</option><option value="7">7ヶ月</option><option value="8">8ヶ月</option>
+        <option value="9">9ヶ月</option><option value="10">10ヶ月</option><option value="11">11ヶ月</option>
+      </select>
+    </div>
+  </div>
+  <p class="note">計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
+  <div class="btn-row">
+    <button class="btn" id="hh-run">人間の年齢に換算</button>
+    <button class="btn btn-secondary" id="hh-clear">クリア</button>
+  </div>
+  <div class="result-box" id="hh-result" hidden></div>
+  <!-- AD-SLOT: pet-senior -->
+  <p class="note">※本ツールの換算は獣医師の監修を受けたものではなく、一般に紹介される換算表に基づく<strong>目安</strong>です。健康状態の判断は必ず獣医師にご相談ください。</p>
+</div>
+
+<div class="cta-box">
+  <p class="cta-box-title">フェレットと暮らしている方はこちら</p>
+  <p>フェレットの年齢(年+月)からライフステージ(成長期〜シニア期)を判定。平均寿命(約6〜8年)との比較と、シニア期に増える病気の注意点も分かります。</p>
+  <a class="cta-btn" href="../ferret-age/">フェレットの年齢を無料で判定する</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="tsukaikata">使い方</h2>
+<ol>
+  <li>ハリネズミの年齢を「年」と「月」で入力します(例:2歳3ヶ月なら「2」と「3ヶ月」)。</li>
+  <li>「人間の年齢に換算」を押すと、人間換算年齢・ライフステージ判定・平均寿命(約3〜5年)との比較が表示されます。</li>
+  <li>3歳以降はシニア期の老化サインもあわせて表示されます。</li>
+</ol>
+
+<h2 id="kangaekata">ハリネズミの年齢換算の考え方</h2>
+<p>ペットとして飼われるハリネズミ(ヨツユビハリネズミ)は、人間よりはるかに速いペースで成長・加齢します。よく紹介される早見表では、<strong>生後6週間で人間の約2歳、生後6ヶ月で約9歳、1歳で約18歳</strong>に相当し、その後は<strong>1年ごとに約18歳分</strong>年を取るとされます(2歳=約36歳、3歳=約54歳、5歳=約89歳)。</p>
+<p>この換算はハリネズミと人間の寿命のおおよその比率から作られた目安で、海外の愛好家の間で使われてきた早見表が元になっています。資料によっては<strong>1歳を18〜20歳とするなど数値に幅があり、諸説あります</strong>。犬の「1歳=17歳」のような獣医学的に確立した式ではない点にご注意ください。本ツールでは1歳未満についても月齢からおおよその換算を行っています。</p>
+
+<h2 id="jumyo">ハリネズミの平均寿命</h2>
+<p>飼育下のヨツユビハリネズミの平均寿命は、<strong>おおむね3〜5年前後</strong>とされることが多いです(資料によっては2〜5年、4〜6年などの記載もあり、幅があります)。<strong>5年を超えるのは比較的まれ</strong>とされ、5歳は人間換算で約89歳に相当する長寿です。</p>
+<p>長生きのポイントとしては、次のような点が挙げられることが多いです。</p>
+<ul>
+  <li><strong>温度管理</strong>:ハリネズミは暑さにも寒さにも弱く、低温では冬眠のような状態(体に大きな負担がかかる)に、高温では夏バテのような状態になるとされます。一年を通じた室温管理が最重要といわれます。</li>
+  <li><strong>食事</strong>:ハリネズミ専用フードを基本に、おやつ(ミルワームなど)は与えすぎないことが推奨されます。肥満は病気のもとになります。</li>
+  <li><strong>ストレスの少ない環境</strong>:夜行性のため昼間は静かに休める場所を用意し、隠れ家や回し車で運動不足も防ぎます。</li>
+  <li><strong>健康チェック</strong>:体重測定を習慣にし、食欲・便・皮膚(針の間のフケやかさぶた)の変化に気を配ります。ハリネズミを診られる動物病院を元気なうちに見つけておくことも大切です。</li>
+</ul>
+
+<h2 id="senior">シニア期のサインとケア</h2>
+<p>ハリネズミは<strong>3歳頃からシニア期</strong>に入るとされ、腫瘍やWHS(ふらつき症候群)など、加齢に伴う病気のリスクが上がるといわれます。次のようなサインに気を配りましょう。</p>
+<ul>
+  <li><strong>体力の低下</strong>:以前のように活発に動き回らなくなり、回し車で遊ぶ時間が減るなど、動きが鈍くなります。</li>
+  <li><strong>食欲の変化</strong>:噛む力が衰えるため、食べる量が減ったり時間がかかったりします。フードをふやかすなど、食べやすい形状への切り替えが助けになります。</li>
+  <li><strong>睡眠時間の増加</strong>:起きている時間が短くなり、一日中眠っているような状態になることもあります。</li>
+  <li><strong>温度変化への敏感さ</strong>:高齢になると温度変化への対応力が落ちるため、若い頃以上に室温を一定に保つ工夫が必要です。</li>
+</ul>
+<p>シニア期には、無理のない範囲での運動機会の確保、温度管理の徹底、こまめな体重測定と体調観察、ストレスの軽減が大切とされます。ふらつき・後ろ足を引きずる・しこり・急な体重減少などが見られたら、早めにハリネズミを診られる動物病院(エキゾチックアニマル対応)に相談してください。</p>
+
+<h2 id="hayami">ハリネズミの年齢換算 早見表</h2>
+<p>よく紹介される換算(1歳=約18歳、以降1年ごとに約18歳分)による早見表です。ライフステージは目安です。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>ハリネズミの年齢</th><th>人間換算</th><th>ライフステージ(目安)</th></tr></thead>
+  <tbody>
+    <tr><td>6ヶ月</td><td>約9歳</td><td>成長期</td></tr>
+    <tr><td>1歳</td><td>約18歳</td><td>成年期</td></tr>
+    <tr><td>1歳6ヶ月</td><td>約27歳</td><td>成年期</td></tr>
+    <tr><td>2歳</td><td>約36歳</td><td>成年期</td></tr>
+    <tr><td>2歳6ヶ月</td><td>約45歳</td><td>成年期</td></tr>
+    <tr><td>3歳</td><td>約53歳</td><td>シニア</td></tr>
+    <tr><td>3歳6ヶ月</td><td>約62歳</td><td>シニア</td></tr>
+    <tr><td>4歳</td><td>約71歳</td><td>シニア</td></tr>
+    <tr><td>4歳6ヶ月</td><td>約80歳</td><td>シニア</td></tr>
+    <tr><td>5歳</td><td>約89歳</td><td>シニア(長寿)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">※換算表には複数の流儀があり、資料によって数値が多少異なります(1歳を18〜20歳とする資料もあります)。上記はあくまで一般的な目安です。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>ハリネズミの1年は人間の何年分?</summary>
+  <p>よく紹介される早見表では、<strong>1歳で人間の約18歳、2歳で約36歳、3歳で約54歳</strong>に相当し、<strong>1年ごとに約18歳分</strong>年を取るとされます。人間との寿命の比率から作られた目安で、1歳を18〜20歳とする資料もあるなど諸説あります。獣医学的に確立した公式ではありません。</p>
+</details>
+
+<details class="faq">
+  <summary>ハリネズミの平均寿命は何年?</summary>
+  <p>飼育下のヨツユビハリネズミでは<strong>おおむね3〜5年前後</strong>とされることが多いです(資料により2〜5年、4〜6年など幅があります)。5年を超えるのは比較的まれとされ、温度管理・食事・ストレスの少ない環境づくりが長生きのポイントといわれます。</p>
+</details>
+
+<details class="faq">
+  <summary>ハリネズミは何歳からシニア?</summary>
+  <p><strong>3歳頃からシニア期</strong>に入るとされることが多く、人間換算では約54歳に相当します。腫瘍やWHS(ふらつき症候群)など加齢に伴う病気のリスクが上がるとされ、体力低下・食欲の変化・睡眠時間の増加・温度変化への敏感さといったサインに注意しましょう。</p>
+</details>
+
+<details class="faq">
+  <summary>5歳を超えるハリネズミは長生き?</summary>
+  <p>はい。よく使われる換算では<strong>5歳は人間の約89歳</strong>に相当し、飼育下でも5年を超えるのは比較的まれとされるため、かなりの長寿といえます。日々の体調観察と温度管理を続けながら、無理のない生活環境を整えてあげてください。</p>
+</details>
+
+<!-- AD-SLOT: pet-senior -->
+
+</article>
+
+<section class="related">
+  <p class="related-title">関連ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../dog-age/">
+      <h3>犬の年齢を人間に換算</h3>
+      <p>犬の年齢とサイズ(小型・中型・大型)から人間換算年齢を計算。2019年発表の対数式による換算も併記。</p>
+    </a>
+    <a class="card" href="../cat-age/">
+      <h3>猫の年齢を人間に換算</h3>
+      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼いと外に出る猫の寿命差も解説。</p>
+    </a>
+    <a class="card" href="../ferret-age/">
+      <h3>フェレットの年齢・ライフステージ電卓</h3>
+      <p>フェレットの年齢からライフステージを判定。平均寿命(約6〜8年)との比較とシニア期の注意点も。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ペット電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var resultEl = document.getElementById('hh-result');
+
+  var STAGES = {
+    growth: { label: '成長期', desc: '急速に成長する時期です。生後6ヶ月頃までに体がほぼ成体に近づきます。専用フードでの栄養補給と、温度管理・環境に慣らすことがとても大切です。' },
+    adult:  { label: '成年期', desc: '体力が充実する時期です(1〜3歳)。適正体重の維持と定期的な体重測定、一年を通じた温度管理を習慣にしましょう。' },
+    senior: { label: 'シニア', desc: '3歳頃からは腫瘍やWHS(ふらつき症候群)など加齢に伴う病気のリスクが上がるとされます。体力低下・食欲の変化・睡眠時間の増加などのサインに気を配り、気になる変化があれば早めに動物病院へ相談しましょう。' }
+  };
+
+  /* よく紹介される換算:生後6ヶ月=約9歳、1歳=約18歳(17.8歳)、以降1年ごとに約18歳分(1歳未満は月齢から補間) */
+  function convHuman(age) {
+    var m = age * 12;
+    if (m <= 6) return m * 1.5;                  /* 6ヶ月で約9歳 */
+    if (m <= 12) return 9 + (m - 6) * (17.8 - 9) / 6; /* 12ヶ月で約18歳 */
+    return age * 17.8;                            /* 2歳=約36歳、3歳=約53歳、5歳=約89歳 */
+  }
+
+  function lifeStage(age) {
+    if (age < 1) return 'growth';
+    if (age < 3) return 'adult';
+    return 'senior';
+  }
+
+  function ageLabel(y, m) {
+    return m > 0 ? y + '歳' + m + 'ヶ月' : y + '歳';
+  }
+
+  function showError(msg) {
+    resultEl.innerHTML = '<span class="result-error">' + msg + '</span>';
+    resultEl.hidden = false;
+  }
+
+  document.getElementById('hh-run').addEventListener('click', function () {
+    var yRaw = document.getElementById('hh-years').value;
+    var y = yRaw === '' ? 0 : parseInt(yRaw, 10);
+    var m = parseInt(document.getElementById('hh-months').value, 10);
+
+    if (isNaN(y) || y < 0) { showError('年齢(年)を正しく入力してください。'); return; }
+    if (y > 10) { showError('10歳以下で入力してください。'); return; }
+    var age = y + m / 12;
+    if (age <= 0) { showError('年齢を入力してください(例:0年+4ヶ月)。'); return; }
+
+    var human = Math.round(convHuman(age));
+    var stageKey = lifeStage(age);
+    var stage = STAGES[stageKey];
+
+    var html = '<div class="result-main">人間に換算すると 約' + human + '歳</div>';
+    html += '<div class="result-sub">実年齢' + ageLabel(y, m) + '/「1歳=約18歳・以降1年ごとに約18歳分」のよく紹介される換算による目安(諸説あります)</div>';
+
+    html += '<hr class="result-divider">';
+    html += '<div>ライフステージ:<span class="stage-badge">' + stage.label + '</span></div>';
+    html += '<div class="result-sub">' + stage.desc + '</div>';
+
+    html += '<hr class="result-divider">';
+    if (age < 3) {
+      var remLow = Math.max(0, Math.round((3 - age) * 10) / 10);
+      var remHigh = Math.round((5 - age) * 10) / 10;
+      html += '<div class="result-sub"><strong>平均寿命との比較</strong>:飼育下のヨツユビハリネズミの平均寿命はおおむね3〜5年前後とされることが多く、平均まではあと約' + remLow + '〜' + remHigh + '年が目安です。温度管理と食事、こまめな体重測定を続けましょう。</div>';
+    } else if (age < 5) {
+      html += '<div class="result-sub"><strong>平均寿命との比較</strong>:平均寿命(約3〜5年前後)の範囲に入っています。シニア期として、食べやすいフードへの切り替えや室温の安定など、体にやさしい環境づくりを心がけましょう。</div>';
+    } else {
+      html += '<div class="result-sub"><strong>平均寿命との比較</strong>:平均寿命(約3〜5年前後)を超える長寿です。5年を超えるのは比較的まれとされ、人間でいえば90歳前後の大長寿。日々のこまめな体調観察を続けてあげてください。</div>';
+    }
+
+    html += '<hr class="result-divider">';
+    html += '<div class="note">※獣医師の監修を受けたものではなく、一般的な換算の目安です。健康に関する判断は獣医師にご相談ください。</div>';
+
+    resultEl.innerHTML = html;
+    resultEl.hidden = false;
+  });
+
+  document.getElementById('hh-clear').addEventListener('click', function () {
+    document.getElementById('hh-years').value = '';
+    document.getElementById('hh-months').value = '0';
+    resultEl.hidden = true;
+  });
+})();
+</script>
+
+</body>
+</html>

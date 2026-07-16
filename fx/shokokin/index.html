@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FX必要証拠金・ロスカット計算機|レバレッジ別にいくら必要?|FX電卓</title>
+<meta name="description" content="通貨ペア・レート・取引数量・レバレッジ(1〜25倍)を入れるだけで、FXの必要証拠金を無料計算。口座残高を入れると証拠金維持率と、維持率100%・50%を割り込む概算レート(ロスカット目安)も表示します。国内個人口座のレバレッジ上限25倍の仕組みも解説。">
+<link rel="canonical" href="https://hakarigoto.github.io/fx/shokokin/">
+<meta property="og:site_name" content="FX電卓">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FX必要証拠金・ロスカット計算機|レバレッジ別にいくら必要?|FX電卓">
+<meta property="og:description" content="通貨ペア・レート・数量・レバレッジから必要証拠金を計算。口座残高を入れると証拠金維持率とロスカット目安レートの概算もわかります。登録不要・無料。">
+<meta property="og:url" content="https://hakarigoto.github.io/fx/shokokin/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%239a7b0a%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>F</text></svg>">
+<style>:root{--accent:#9a7b0a;--accent-hover:#7d6408;--accent-weak:#f7f2e0;}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "FXの必要証拠金はどう計算しますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "必要証拠金 = 為替レート × 取引数量 ÷ レバレッジ で計算できます。たとえばドル/円が150.00円のとき1万通貨をレバレッジ25倍で取引する場合、150 × 10,000 ÷ 25 = 60,000円が必要証拠金です。ユーロ/ドルなど外貨建てのペアは、同じ式で出した外貨額をドル/円レートで円換算します。実際の必要証拠金額は各FX会社の基準で確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "国内FXのレバレッジ上限は何倍ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "金融商品取引業等に関する内閣府令により、国内FX会社の個人口座は証拠金率4%以上、すなわちレバレッジ25倍が上限と定められています。これを超えるレバレッジで国内の個人口座を運用することはできません。法人口座は別の基準が適用されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ロスカットとは何ですか?基準はどこも同じですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ロスカットは、証拠金維持率(口座残高等÷必要証拠金×100)が一定水準を下回ったときに、FX会社がポジションを強制的に決済する仕組みです。損失の拡大から投資家を守るための制度ですが、発動水準はFX会社により維持率50%・100%など異なります。ご利用のFX会社の取引ルールで必ず確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "追証(おいしょう)とは何ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "追証は追加証拠金の略で、相場の急変動などで証拠金が不足したときに追加の入金を求められることです。ロスカットは損失を限定するための仕組みですが、週明けの窓開けや急変動時には約定が間に合わず、口座残高を超える損失(不足金)が発生して請求される場合があります。ロスカットがあっても損失が預けた資金の範囲に収まるとは限りません。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">FX<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">FX電卓</a> › FX必要証拠金・ロスカット計算機</nav>
+
+<div class="page-head">
+  <h1>FX必要証拠金・ロスカット計算機|レバレッジ別にいくら必要?</h1>
+  <p class="lead">通貨ペア・現在レート・取引数量・レバレッジ(1〜25倍)を入れるだけで、必要証拠金を計算します。口座残高を入れると、証拠金維持率と「維持率100%・50%を割り込む概算レート(ロスカット目安)」も表示。ロスカットの発動基準はFX会社により異なるため、あくまで概算の目安としてご利用ください。本ツールは計算ツールであり投資助言ではありません。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>必要証拠金は<span class="mk">レート×数量÷レバレッジ</span>。ドル/円150円・1万通貨・25倍なら<span class="mk">60,000円</span></li>
+    <li>国内の個人口座は内閣府令により<span class="mk">レバレッジ上限25倍(証拠金率4%以上)</span>。同じ条件でも1倍なら150万円が必要</li>
+    <li>証拠金維持率は<span class="mk">残高÷必要証拠金×100</span>。残高10万円・証拠金6万円なら約167%</li>
+    <li>上の例で買いポジションが<span class="mk">4円逆行すると維持率100%割れ</span>の水準。ロスカット基準(50%・100%など)は会社により異なる</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#sim">必要証拠金・ロスカット計算機</a></li>
+    <li><a href="#leverage">レバレッジと必要証拠金の関係</a></li>
+    <li><a href="#ijiritsu">証拠金維持率とロスカットの仕組み</a></li>
+    <li><a href="#risk">ハイレバレッジのリスク(強制ロスカット・追証)</a></li>
+    <li><a href="#shikin">余裕を持った資金管理の考え方</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<section class="tool-panel" id="sim">
+  <h2>条件を入力してください</h2>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="pair">通貨ペア</label>
+      <select id="pair">
+        <option value="usdjpy" selected>ドル/円(USD/JPY)</option>
+        <option value="eurjpy">ユーロ/円(EUR/JPY)</option>
+        <option value="gbpjpy">ポンド/円(GBP/JPY)</option>
+        <option value="audjpy">豪ドル/円(AUD/JPY)</option>
+        <option value="eurusd">ユーロ/ドル(EUR/USD)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="rate">現在レート</label>
+      <input type="number" id="rate" min="0" step="any" placeholder="例: 150.00">
+      <p class="note">取引画面のレートを入力してください(本ツールはレートを自動取得しません)。</p>
+    </div>
+    <div class="field" id="usdjpyField" style="display:none;">
+      <label for="usdjpyRate">円換算用のドル/円レート</label>
+      <input type="number" id="usdjpyRate" min="0" step="any" placeholder="例: 150.00">
+      <p class="note">ユーロ/ドルの証拠金はドル建てのため、円換算にドル/円レートを使います。</p>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="qtySelect">取引数量(通貨単位)</label>
+      <select id="qtySelect">
+        <option value="1000">1,000通貨</option>
+        <option value="10000" selected>10,000通貨</option>
+        <option value="100000">100,000通貨</option>
+        <option value="custom">その他(自分で入力)</option>
+      </select>
+    </div>
+    <div class="field" id="qtyCustomField" style="display:none;">
+      <label for="qtyCustom">取引数量(任意入力)</label>
+      <input type="number" id="qtyCustom" min="1" step="1" placeholder="例: 5000">
+    </div>
+    <div class="field">
+      <label for="lev">レバレッジ(1〜25倍)</label>
+      <input type="number" id="lev" value="25" min="1" max="25" step="1">
+      <p class="note">国内の個人口座は内閣府令により上限25倍(証拠金率4%以上)です。</p>
+    </div>
+    <div class="field">
+      <label for="balance">口座残高(円・任意)</label>
+      <input type="number" id="balance" min="0" step="any" placeholder="例: 100000">
+      <p class="note">入力すると証拠金維持率とロスカット目安レートを表示します。</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="calcBtn" type="button">必要証拠金を計算する</button>
+  </div>
+
+  <div class="result-box" id="resultBox" style="display:none;" aria-live="polite"></div>
+  <!-- AD-SLOT: fx-kouza -->
+
+  <p class="note" style="margin-top:16px;">※ 本ツールは入力されたレートに基づく概算であり、実際の必要証拠金額・ロスカット水準は各FX会社の基準(証拠金率の計算方法、ロスカット基準50%・100%など)により異なります。ロスカット目安レートは買いポジションを想定し、必要証拠金額が変わらないものとした簡易計算です。本ツールは計算ツールであり投資助言ではありません。外国為替証拠金取引には元本を上回る損失が生じるおそれがあります。</p>
+</section>
+
+<div class="cta-box">
+  <p class="cta-box-title">証拠金の次は「値動きでいくら動くか」を確認</p>
+  <p>同じポジションでも、10pips・50pipsの値動きで損益がいくらになるかを知っておくと、損切り幅の設計がしやすくなります。</p>
+  <a class="cta-btn" href="../pips/">pips計算機で値動きの損益を円換算する</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="leverage">レバレッジと必要証拠金の関係</h2>
+<p>FXの必要証拠金は、<strong>必要証拠金 = 為替レート × 取引数量 ÷ レバレッジ</strong>で計算できます。レバレッジが高いほど少ない証拠金で同じ規模のポジションを持てますが、ポジションの大きさ(=値動きによる損益の大きさ)自体は変わりません。ドル/円が150.00円のとき1万通貨を取引する場合の必要証拠金をレバレッジ別に比べると、次のようになります。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>レバレッジ</th><th>必要証拠金(150円×1万通貨)</th><th>ポジション総額に対する割合</th></tr></thead>
+  <tbody>
+    <tr><td>25倍(国内個人口座の上限)</td><td>60,000円</td><td>4%</td></tr>
+    <tr><td>10倍</td><td>150,000円</td><td>10%</td></tr>
+    <tr><td>5倍</td><td>300,000円</td><td>20%</td></tr>
+    <tr><td>1倍(レバレッジなし)</td><td>1,500,000円</td><td>100%</td></tr>
+  </tbody>
+</table>
+</div>
+<p>国内では、<strong>金融商品取引業等に関する内閣府令により、個人口座のレバレッジは25倍が上限(証拠金率4%以上)</strong>と定められています。どのレバレッジでも「150万円分の米ドルを持っている」ことに変わりはなく、1円の値動きで生じる損益は1万通貨あたり1万円で共通です。違うのは<strong>同じ損益を証拠金の何%として受け止めるか</strong>で、25倍なら1円の逆行が証拠金の約17%、1倍なら約0.7%に相当します。なお、ユーロ/ドルのような外貨建てペアでは、上の式で出た証拠金がドル建てになるため、ドル/円レートを掛けて円換算します(本ツールでは補助入力欄が表示されます)。</p>
+
+<h2 id="ijiritsu">証拠金維持率とロスカットの仕組み</h2>
+<p>ポジションを持ったあとの口座の健全度を測るのが<strong>証拠金維持率 = 口座残高(評価損益込み) ÷ 必要証拠金 × 100</strong>です。たとえば口座残高10万円で必要証拠金6万円のポジションを持つと、維持率は約167%からスタートします。相場が逆行して評価損が膨らむと分子(残高+評価損益)が減り、維持率が下がっていきます。</p>
+<p>維持率が各社の定める水準を下回ると、<strong>ロスカット(強制決済)</strong>が執行されます。上の例(ドル/円150円で1万通貨買い・残高10万円)では、評価損4万円=<strong>4円の逆行(146円)で維持率100%</strong>、評価損7万円=<strong>7円の逆行(143円)で維持率50%</strong>に達する計算です。重要なのは、<strong>ロスカットの発動基準はFX会社によって維持率50%・100%などまちまち</strong>だということ。同じポジション・同じ残高でも、どこで強制決済されるかは会社ごとに違います。本ツールの表示はあくまで「維持率がその水準を割り込む概算レート」であり、実際のロスカット水準・執行価格を示すものではありません。</p>
+
+<h2 id="risk">ハイレバレッジのリスク(強制ロスカット・追証)</h2>
+<p>レバレッジ25倍をフルに使うと、証拠金に対する値動きの影響も25倍になります。先ほどの計算のとおり、残高6万円ぴったりでドル/円1万通貨(証拠金6万円)を持つと維持率は100%スタートで、<strong>わずかな逆行で即ロスカット水準</strong>です。ロスカットは損失の拡大を防ぐための仕組みですが、万能ではありません。<strong>週明けの窓開けや指標発表時の急変動では決済が間に合わず、口座残高を超える損失が発生して不足金(いわゆる追証)を請求される場合があります</strong>。「ロスカットがあるから損失は入金額まで」とは限らない点は、取引前に必ず理解しておくべきリスクです。ハイレバレッジは利益も損失も同じ倍率で拡大させる、中立な「倍率」にすぎません。</p>
+
+<h2 id="shikin">余裕を持った資金管理の考え方</h2>
+<p>一般論として、口座に入れる資金は必要証拠金ぎりぎりではなく、<strong>維持率に大きな余裕を持たせる</strong>のが基本とされます。考え方はシンプルで、(1)想定する逆行幅(たとえば数円)に耐えられる残高を先に決める、(2)その残高で維持率が十分高く保てる数量までポジションを絞る、(3)損切りラインをロスカット水準より手前に自分で設定する、の3点です。本ツールで「残高と数量の組み合わせを変えると維持率100%・50%のレートがどう動くか」を何パターンか試してみると、自分の想定にどれだけ余裕があるかが数字で見えます。どの水準が適切かは資金・目的・相場観によって異なるため、本ページは特定の取引を推奨するものではありません。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>必要証拠金はどう計算する?</summary>
+  <p>必要証拠金 = 為替レート × 取引数量 ÷ レバレッジ です。ドル/円150.00円・1万通貨・レバレッジ25倍なら 150 × 10,000 ÷ 25 = 60,000円。ユーロ/ドルなど外貨建てペアは、同じ式で出た外貨額をドル/円レートで円換算します。実際の金額は各FX会社の基準で確認してください。</p>
+</details>
+
+<details class="faq">
+  <summary>国内FXのレバレッジ上限は何倍?</summary>
+  <p>金融商品取引業等に関する内閣府令により、国内の個人口座は証拠金率4%以上、つまりレバレッジ25倍が上限です。法人口座には別の基準が適用されます。</p>
+</details>
+
+<details class="faq">
+  <summary>ロスカットの基準はどこの会社も同じ?</summary>
+  <p>異なります。証拠金維持率50%を下回ったら、100%を下回ったら、など発動水準は会社ごとにまちまちです。本ツールは維持率100%・50%を割り込む概算レートを目安として表示しますが、実際の基準は必ずご利用のFX会社の取引ルールで確認してください。</p>
+</details>
+
+<details class="faq">
+  <summary>追証(おいしょう)とは?</summary>
+  <p>追加証拠金の略で、証拠金が不足したときに追加入金を求められることです。急変動時はロスカットが間に合わず、口座残高を超える損失(不足金)が発生して請求される場合があります。損失が入金額の範囲に収まるとは限りません。</p>
+</details>
+
+<h2>関連ツール</h2>
+<p>ポジションを持ったあとの値動きの損益は <a href="../pips/">pips計算機</a> で円換算できます。レバレッジをかけない長期の資産形成を考えている方は、姉妹サイトの <a href="../../tsumitate/simulator/">つみたてシミュレーター(姉妹サイト)</a> もどうぞ。</p>
+
+<p class="note">【データ基準日】2026年7月時点。個人口座のレバレッジ上限25倍(証拠金率4%以上)は金融商品取引業等に関する内閣府令に基づく制度の説明です。計算結果は入力値に基づく概算であり、実際の必要証拠金・ロスカット水準・執行価格はFX会社ごとの基準・相場状況により異なります。本ページは計算ツールおよび制度の一般的な解説であり、投資助言・勧誘ではありません。外国為替証拠金取引には元本を上回る損失が生じるおそれがあります。</p>
+<!-- AD-SLOT: fx-kouza -->
+</article>
+
+<section class="related">
+  <p class="related-title">あわせて使いたい計算ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../pips/">
+      <h3>pips計算機(値動きの損益を円換算)</h3>
+      <p>10pips・50pips・100pipsの値動きが円でいくらになるかを、取引数量ベースで換算します。</p>
+    </a>
+    <a class="card" href="../">
+      <h3>FX電卓トップ</h3>
+      <p>FXの証拠金・pips損益に関する無料計算ツールの一覧です。</p>
+    </a>
+    <a class="card" href="../../tsumitate/simulator/">
+      <h3>つみたてシミュレーター</h3>
+      <p>レバレッジをかけない長期・積立の資産形成を試算したい方はこちら(姉妹サイト)。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 FX電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var PAIRS = {
+    usdjpy: { label: "ドル/円(USD/JPY)", jpy: true,  ph: "例: 150.00" },
+    eurjpy: { label: "ユーロ/円(EUR/JPY)", jpy: true,  ph: "例: 160.00" },
+    gbpjpy: { label: "ポンド/円(GBP/JPY)", jpy: true,  ph: "例: 190.00" },
+    audjpy: { label: "豪ドル/円(AUD/JPY)", jpy: true,  ph: "例: 98.00" },
+    eurusd: { label: "ユーロ/ドル(EUR/USD)", jpy: false, ph: "例: 1.0800" }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var yen = function (n) { return Math.round(n).toLocaleString("ja-JP") + "円"; };
+
+  function fmtRate(n, isJpy) {
+    return isJpy ? n.toFixed(2) : n.toFixed(4);
+  }
+
+  function updatePairUI() {
+    var p = PAIRS[$("pair").value];
+    $("rate").placeholder = p.ph;
+    $("usdjpyField").style.display = p.jpy ? "none" : "";
+  }
+
+  function updateQtyUI() {
+    $("qtyCustomField").style.display = ($("qtySelect").value === "custom") ? "" : "none";
+  }
+
+  function getQty() {
+    var v = $("qtySelect").value;
+    if (v === "custom") return Math.max(0, parseFloat($("qtyCustom").value) || 0);
+    return parseFloat(v);
+  }
+
+  function calc() {
+    var box = $("resultBox");
+    var p = PAIRS[$("pair").value];
+    var rate = parseFloat($("rate").value);
+    var qty = getQty();
+    var lev = Math.min(25, Math.max(1, parseFloat($("lev").value) || 25));
+    var balance = parseFloat($("balance").value);
+    var usdjpy = parseFloat($("usdjpyRate").value);
+
+    if (!(rate > 0) || !(qty > 0)) {
+      box.innerHTML = "<strong>現在レートと取引数量を入力してください。</strong>";
+      box.style.display = "";
+      return;
+    }
+    if (!p.jpy && !(usdjpy > 0)) {
+      box.innerHTML = "<strong>ユーロ/ドルの円換算には「円換算用のドル/円レート」の入力が必要です。</strong>";
+      box.style.display = "";
+      return;
+    }
+
+    // 必要証拠金 = レート × 数量 ÷ レバレッジ(外貨建ては×ドル/円で円換算)
+    var margin, formula;
+    if (p.jpy) {
+      margin = rate * qty / lev;
+      formula = rate + "円 × " + qty.toLocaleString("ja-JP") + "通貨 ÷ " + lev + "倍";
+    } else {
+      var marginUsd = rate * qty / lev;
+      margin = marginUsd * usdjpy;
+      formula = rate + "ドル × " + qty.toLocaleString("ja-JP") + "通貨 ÷ " + lev + "倍 = " +
+        marginUsd.toLocaleString("ja-JP", { maximumFractionDigits: 2 }) + "ドル、× ドル/円" + usdjpy + "円";
+    }
+
+    var html = "<strong>" + p.label + " " + qty.toLocaleString("ja-JP") + "通貨・レバレッジ" + lev +
+      "倍の必要証拠金:約 " + yen(margin) + "</strong>" +
+      "<p style=\"margin:8px 0 0\">計算式:" + formula + " = 約" + yen(margin) + "</p>";
+
+    if (balance > 0) {
+      var ratio = balance / margin * 100;
+      html += "<p style=\"margin:8px 0 0\">口座残高 " + yen(balance) + " に対する証拠金維持率:<strong>約 " +
+        ratio.toFixed(1) + "%</strong></p>";
+
+      // ロスカット目安:維持率X%になるレート(買いポジション・必要証拠金は固定とみなす概算)
+      // 円建て: r = rate - (balance - X×margin) ÷ qty
+      // 外貨建て: 損益(円) ≈ (r - rate) × qty × ドル/円 とみなす
+      var perUnit = p.jpy ? qty : qty * usdjpy; // レートが1動いたときの損益(円)
+      var r100 = rate - (balance - 1.0 * margin) / perUnit;
+      var r50 = rate - (balance - 0.5 * margin) / perUnit;
+
+      if (ratio <= 100) {
+        html += "<p style=\"margin:8px 0 0\">この残高では維持率がすでに100%以下です。数量を減らすか残高を増やして余裕を確認してください。</p>";
+      } else {
+        html += "<div class=\"table-wrap\"><table style=\"margin:10px 0 0\">" +
+          "<tr><th>水準</th><th>概算レート(買いポジションの場合)</th><th>現在レートからの逆行幅</th></tr>" +
+          "<tr><td>維持率100%割れの目安</td><td>約 " + fmtRate(r100, p.jpy) + (p.jpy ? "円" : "ドル") + "</td><td>約 " +
+          fmtRate(rate - r100, p.jpy) + (p.jpy ? "円" : "ドル") + "</td></tr>" +
+          "<tr><td>維持率50%割れの目安</td><td>約 " + fmtRate(r50, p.jpy) + (p.jpy ? "円" : "ドル") + "</td><td>約 " +
+          fmtRate(rate - r50, p.jpy) + (p.jpy ? "円" : "ドル") + "</td></tr>" +
+          "</table></div>";
+      }
+      html += "<p class=\"note\" style=\"margin:8px 0 0\">※ ロスカットの発動基準はFX会社により異なります(維持率50%・100%など)。上記は必要証拠金額が変わらないと仮定した買いポジションの概算であり、実際のロスカット水準・執行価格を示すものではありません。</p>";
+    } else {
+      html += "<p class=\"note\" style=\"margin:8px 0 0\">口座残高を入力すると、証拠金維持率とロスカット目安レートも表示します。</p>";
+    }
+
+    html += "<p class=\"note\" style=\"margin:8px 0 0\">※ 国内の個人口座は金融商品取引業等に関する内閣府令によりレバレッジ上限25倍(証拠金率4%以上)です。本ツールは計算ツールであり投資助言ではありません。</p>";
+
+    box.innerHTML = html;
+    box.style.display = "";
+  }
+
+  $("pair").addEventListener("change", updatePairUI);
+  $("qtySelect").addEventListener("change", updateQtyUI);
+  $("calcBtn").addEventListener("click", calc);
+
+  updatePairUI();
+  updateQtyUI();
+})();
+</script>
+</body>
+</html>

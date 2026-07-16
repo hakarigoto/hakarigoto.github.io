@@ -32,6 +32,14 @@
 
 - [犬の年齢換算](https://hakarigoto.github.io/pet/dog-age/): サイズ別の人間換算年齢とライフステージ判定。
 - [猫の年齢換算](https://hakarigoto.github.io/pet/cat-age/): 人間換算年齢と室内・屋外の寿命差の解説。
+- [うさぎの年齢換算](https://hakarigoto.github.io/pet/usagi-age/): 人間換算とライフステージ判定(1歳≒20歳・以後+6歳/年の一般的目安)。
+- [ハムスターの年齢換算](https://hakarigoto.github.io/pet/hamster-age/): 月齢から人間換算。ゴールデン・ジャンガリアン等の寿命差も。
+- [セキセイインコの年齢電卓](https://hakarigoto.github.io/pet/inko-age/): ライフステージ判定と寿命の目安(人間換算は定説がないため不採用)。
+- [モルモットの年齢電卓](https://hakarigoto.github.io/pet/morumotto-age/): ライフステージ判定と寿命の目安。
+- [フェレットの年齢電卓](https://hakarigoto.github.io/pet/ferret-age/): ライフステージ判定と寿命の目安。
+- [ハリネズミの年齢換算](https://hakarigoto.github.io/pet/hedgehog-age/): 人間換算(1歳≒18歳)とライフステージ。
+- [レオパの年齢・ライフステージ電卓](https://hakarigoto.github.io/pet/leopa-age/): ヒョウモントカゲモドキの成長段階と寿命の進み具合。
+- [フトアゴヒゲトカゲの年齢電卓](https://hakarigoto.github.io/pet/futoago-age/): 成長段階判定と寿命の目安。
 
 ## つみたて計算機
 
@@ -52,6 +60,16 @@
 
 - [バイクの年間維持費計算](https://hakarigoto.github.io/bike/iji-hi/): 排気量区分別の税金・自賠責・車検・保険・ガソリン代を合算。
 - [バイクの手放しどき診断](https://hakarigoto.github.io/bike/teban/): 車齢・走行距離・稼働状況から売却推奨度を診断(プレミア判定つき)。
+
+## ローン電卓
+
+- [ローン返済シミュレーター](https://hakarigoto.github.io/loan/hensai/): 元利均等・元金均等の毎月返済額・総利息を計算。金利±1%の比較つき。
+- [リボ払いチェッカー](https://hakarigoto.github.io/loan/ribo/): 利用額と毎月の支払額から完済までの期間・手数料総額を計算。完済不能の警告つき。
+
+## FX電卓
+
+- [FX必要証拠金・ロスカット計算機](https://hakarigoto.github.io/fx/shokokin/): レバレッジ別の必要証拠金と証拠金維持率・ロスカット目安レート。投資助言ではなく計算ツール。
+- [pips計算機](https://hakarigoto.github.io/fx/pips/): 値動き(pips)を円換算。通貨ペア別の1pipsの違いも解説。
 
 ## トラック電卓
 

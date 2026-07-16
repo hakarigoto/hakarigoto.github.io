@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>セキセイインコの年齢電卓|ライフステージ判定と平均寿命との比較|ペット電卓</title>
+<meta name="description" content="セキセイインコの年齢(年+月)を入力するだけで、ライフステージ(幼鳥・成鳥・初老期・老鳥)の判定と平均寿命(7〜8年)との比較ができる無料電卓。シニア期(老鳥)のサインのチェックリスト付き。オカメインコ・文鳥の寿命の目安も紹介。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
+<style>
+.result-main { font-size: 1.4rem; font-weight: 700; }
+.result-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+.result-error { color: #c0392b; font-weight: 600; }
+
+.stage-badge {
+  display: inline-block; padding: 2px 12px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
+}
+.result-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+.check-list { margin: 6px 0 0; padding-left: 1.4em; font-size: 0.92rem; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "セキセイインコの平均寿命は何年ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "セキセイインコの平均寿命は7〜8年前後といわれます。適切な環境で飼育すれば10年以上生きる個体も珍しくなく、15年近い長寿の例も報告されています。個体差が大きいため、あくまで目安として捉えてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "セキセイインコの1年は人間の何年分ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「小鳥の1年は人間の8〜10年分」とする説や、「1歳が人間の16歳前後に相当し、以後1年ごとに4〜5歳分年を取る」とする説など諸説あり、犬や猫のように広く定着した換算式はありません。そのため本ツールでは無理に人間の年齢へ換算せず、ライフステージの判定と平均寿命との比較を行っています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "セキセイインコは何歳からシニア(老鳥)ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般的な目安として、4歳を過ぎた頃から初老期の入り口とされ(シニア向けのフードも4歳頃からを対象にしたものがあります)、6歳頃からはシニア(老鳥)として見るのがよいとされます。羽ツヤの低下、寝ている時間の増加、飛ばなくなるなどの変化が出たら、年齢にかかわらず早めに鳥を診られる動物病院に相談してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力したインコの年齢などのデータは送信されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。この電卓の処理はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した内容が外部のサーバーに送信されることは一切ありません。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/pet/inko-age/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/pet/inko-age/">
+<meta property="og:site_name" content="ペット電卓">
+<meta property="og:title" content="セキセイインコの年齢電卓|ライフステージ判定と平均寿命との比較|ペット電卓">
+<meta property="og:description" content="セキセイインコの年齢(年+月)を入力するだけで、ライフステージ(幼鳥・成鳥・初老期・老鳥)の判定と平均寿命(7〜8年)との比較ができる無料電卓。シニア期(老鳥)のサインのチェックリスト付き。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">ペット<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">ペット電卓</a> › セキセイインコの年齢電卓</nav>
+
+<div class="page-head">
+  <h1>セキセイインコの年齢電卓(寿命・ライフステージ判定)</h1>
+  <p class="lead">セキセイインコの年齢(年+月)を入力するだけで、ライフステージ(幼鳥・成鳥・初老期・老鳥)の判定と、平均寿命(7〜8年)との比較を表示します。インコの人間換算には定説がないため、無理な換算はせずライフステージで判定します。登録不要・完全無料です。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>セキセイインコの平均寿命は<span class="mk">7〜8年前後</span>。飼い方次第で10年以上生きる例もある</li>
+    <li><span class="mk">4歳を過ぎたら初老期の入り口</span>、6歳頃からはシニア(老鳥)として見るのが目安</li>
+    <li>人間換算は「1年=8〜10年分」説などがあるものの<span class="mk">定説がなく諸説あります</span>。本ツールはライフステージ判定式</li>
+    <li>オカメインコの寿命は15〜20年、文鳥は8〜10年が目安とされ、同じ小鳥でも大きく異なる</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#calc">年齢電卓(ライフステージ判定)</a></li>
+    <li><a href="#tsukaikata">使い方</a></li>
+    <li><a href="#stage">セキセイインコのライフステージ</a></li>
+    <li><a href="#kansan">人間の年齢への換算は「諸説あり」</a></li>
+    <li><a href="#jumyou">セキセイインコの平均寿命(オカメインコ・文鳥との比較)</a></li>
+    <li><a href="#sign">シニア期(老鳥)のサイン</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<div class="tool-panel" id="calc">
+  <h2>インコの年齢を入力</h2>
+  <div class="field-row">
+    <div class="field">
+      <label for="inko-years">年齢(年)</label>
+      <input type="number" id="inko-years" min="0" max="30" placeholder="例: 5" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="inko-months">+ 月(0〜11)</label>
+      <select id="inko-months">
+        <option value="0">0ヶ月</option><option value="1">1ヶ月</option><option value="2">2ヶ月</option>
+        <option value="3">3ヶ月</option><option value="4">4ヶ月</option><option value="5">5ヶ月</option>
+        <option value="6">6ヶ月</option><option value="7">7ヶ月</option><option value="8">8ヶ月</option>
+        <option value="9">9ヶ月</option><option value="10">10ヶ月</option><option value="11">11ヶ月</option>
+      </select>
+    </div>
+  </div>
+  <p class="note">計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
+  <div class="btn-row">
+    <button class="btn" id="inko-run">ライフステージを判定</button>
+    <button class="btn btn-secondary" id="inko-clear">クリア</button>
+  </div>
+  <div class="result-box" id="inko-result" hidden></div>
+  <!-- AD-SLOT: pet-senior -->
+  <p class="note">※本ツールの判定は獣医師の監修を受けたものではなく、一般に紹介されている寿命・ライフステージの<strong>目安</strong>に基づくものです。健康状態の判断は必ず鳥を診られる獣医師にご相談ください。</p>
+</div>
+
+<div class="cta-box">
+  <p class="cta-box-title">モルモットと暮らしている方はこちら</p>
+  <p>モルモットの年齢からライフステージ(ベビー・アダルト・プレシニア・シニア)を判定し、平均寿命(5〜7年)と比較できます。</p>
+  <a class="cta-btn" href="../morumotto-age/">モルモットの年齢を無料で判定する</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="tsukaikata">使い方</h2>
+<ol>
+  <li>セキセイインコの年齢を「年」と「月」で入力します(例:5歳6ヶ月なら「5」と「6ヶ月」)。</li>
+  <li>「ライフステージを判定」を押すと、ライフステージ(幼鳥・成鳥・初老期・老鳥)と、平均寿命(7〜8年)との比較が表示されます。</li>
+  <li>初老期・老鳥期の場合は、日々の観察に使えるシニア期のチェックポイントも表示します。</li>
+</ol>
+<p>生年月日が分からない場合(里親で迎えた場合など)は、お迎えした時期からのおおよその推定年齢で構いません。あくまで目安の判定です。</p>
+
+<h2 id="stage">セキセイインコのライフステージ</h2>
+<p>本ツールでは、一般に紹介されている目安をもとに、セキセイインコのライフステージを次の4段階で判定しています。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>ライフステージ</th><th>年齢の目安</th><th>時期の特徴</th></tr></thead>
+  <tbody>
+    <tr><td>幼鳥・若鳥</td><td>〜1歳頃</td><td>体と心が急速に成長する時期。挿し餌から一人餌への切り替え、環境への慣らしが中心。</td></tr>
+    <tr><td>成鳥</td><td>1〜4歳頃</td><td>体力が最も充実する時期。発情のコントロールと体重管理が健康維持のポイント。</td></tr>
+    <tr><td>初老期</td><td>4〜6歳頃</td><td>初老期の入り口とされる時期。4歳頃からを対象にしたシニア向けフードもある。</td></tr>
+    <tr><td>老鳥(シニア)</td><td>6歳頃〜</td><td>シニア(高齢鳥)として見るのがよいとされる時期。保温・保定に配慮し、体調の変化をこまめに観察。</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">※ライフステージの区切りには複数の考え方があり、資料によって「4歳頃から初老」「6〜8歳から高齢」など幅があります。上記はそれらをもとにした目安です。</p>
+
+<h2 id="kansan">人間の年齢への換算は「諸説あり」</h2>
+<p>犬の「最初の2年で24歳分」や猫の「2歳で24歳・以降+4歳/年」のような、広く定着した人間換算の式は、セキセイインコには<strong>存在しません</strong>。ネットや書籍では次のような説が紹介されていますが、数値は資料によって大きく異なります。</p>
+<ul>
+  <li>小鳥の1年は<strong>人間の8〜10年分</strong>に相当するとする説</li>
+  <li>小型の鳥は<strong>1歳で人間の16歳前後</strong>に相当し、以後1年ごとに4〜5歳分年を取るとする説</li>
+  <li>生後6ヶ月で人間の18歳前後、1歳で20代前半に相当するとする説</li>
+</ul>
+<p>このように諸説あり、どれが標準というものはありません。そこで本ツールでは、無理に「人間の何歳」と言い切るのではなく、<strong>ライフステージの判定と平均寿命との比較</strong>という形で愛鳥の年齢を捉えられるようにしています。</p>
+
+<h2 id="jumyou">セキセイインコの平均寿命(オカメインコ・文鳥との比較)</h2>
+<p>セキセイインコの平均寿命は<strong>7〜8年前後</strong>といわれます。ただし個体差が大きく、適切な環境で飼育すれば<strong>10年以上</strong>生きる個体も珍しくなく、15年近い長寿の例も報告されています。毎日の食事管理・温度への配慮・体重チェックなどの積み重ねが、寿命に大きく影響すると考えられています。</p>
+<p>同じ小鳥でも寿命の目安は種類によって大きく異なります。<strong>オカメインコは15〜20年</strong>(それ以上生きる例もあり、ギネス記録は32歳)、<strong>文鳥は8〜10年</strong>が目安とされます。オカメインコや文鳥と暮らしている方も、「何歳頃からシニアとして接するか」を意識するうえで、種類ごとの寿命の違いを知っておくと役立ちます。</p>
+
+<h2 id="sign">シニア期(老鳥)のサイン</h2>
+<p>次のような変化が見られたら、加齢による体の変化が始まっているサインかもしれません。</p>
+<ul>
+  <li>羽ツヤが悪くなる、羽毛の色つやが変化する</li>
+  <li>疲れやすくなり、寝ている時間が増える</li>
+  <li>飛ぶ回数が減る、あるいは飛ばなくなる</li>
+  <li>止まり木への移動に、くちばしを使ってケージをつたうようになる</li>
+  <li>目が白っぽく濁って見える(白内障など)</li>
+  <li>くちばしの質が低下する(伸びすぎ・変形など)</li>
+</ul>
+<p>老鳥では変形性関節症・白内障・痛風・肝疾患などの病気も報告されています。これらは病気のサインと重なることも多いため、「年のせい」と決めつけずに、鳥を診られる動物病院で相談することが大切です。小鳥は不調を隠す傾向が強い動物なので、体重測定などの日々の記録が早期発見につながります。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>セキセイインコの平均寿命は?</summary>
+  <p>平均寿命は<strong>7〜8年前後</strong>といわれます。適切な環境で飼育すれば10年以上生きる個体も珍しくなく、15年近い長寿の例も報告されています。個体差が大きいため、あくまで目安です。</p>
+</details>
+
+<details class="faq">
+  <summary>セキセイインコの1年は人間の何年分?</summary>
+  <p>「小鳥の1年は<strong>人間の8〜10年分</strong>」とする説や、「1歳が人間の16歳前後に相当し、以後1年ごとに4〜5歳分」とする説など<strong>諸説あり</strong>、犬や猫のように定着した換算式はありません。本ツールでは無理に換算せず、ライフステージ判定と平均寿命との比較を行っています。</p>
+</details>
+
+<details class="faq">
+  <summary>セキセイインコは何歳からシニア(老鳥)?</summary>
+  <p>目安として<strong>4歳を過ぎた頃から初老期の入り口</strong>とされ、<strong>6歳頃からはシニア(老鳥)</strong>として見るのがよいとされます。変化が見られたら年齢にかかわらず、鳥を診られる動物病院に早めに相談してください。</p>
+</details>
+
+<details class="faq">
+  <summary>入力したデータは外部に送信される?</summary>
+  <p>いいえ。処理はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した内容が外部サーバーに送信されることは一切ありません。</p>
+</details>
+
+<!-- AD-SLOT: pet-senior -->
+
+</article>
+
+<section class="related">
+  <p class="related-title">関連ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../dog-age/">
+      <h3>犬の年齢を人間に換算</h3>
+      <p>犬の年齢(年+月)とサイズから人間換算年齢とライフステージを計算。2019年発表の対数式も併記。</p>
+    </a>
+    <a class="card" href="../cat-age/">
+      <h3>猫の年齢を人間に換算</h3>
+      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼い・外に出る場合の寿命の違いも解説。</p>
+    </a>
+    <a class="card" href="../morumotto-age/">
+      <h3>モルモットの年齢電卓</h3>
+      <p>モルモットの年齢からライフステージを判定し、平均寿命(5〜7年)と比較。シニア期のサインも紹介。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ペット電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var resultEl = document.getElementById('inko-result');
+
+  /* 平均寿命の目安:7〜8年(比較には中間の7.5年を使用) */
+  var LIFESPAN_LOW = 7;
+  var LIFESPAN_HIGH = 8;
+  var LIFESPAN_MID = 7.5;
+
+  var STAGES = {
+    young:  { label: '幼鳥・若鳥', desc: '体と心が急速に成長する時期です。一人餌への切り替えや環境への慣らしを進めながら、体重の推移をこまめに記録しましょう。' },
+    adult:  { label: '成鳥',       desc: '体力が最も充実する時期です。発情のコントロールと体重管理、日々の健康観察で良い状態を保ちましょう。' },
+    presen: { label: '初老期',     desc: '初老期の入り口とされる時期です。4歳頃からを対象にしたシニア向けフードもあります。小さな変化を見逃さないよう観察を続けましょう。' },
+    senior: { label: '老鳥(シニア)', desc: 'シニア(高齢鳥)として見るのがよいとされる時期です。保温や止まり木の高さなど環境に配慮し、体調の変化はすぐに鳥を診られる動物病院へ相談を。' }
+  };
+
+  var SENIOR_CHECKS = [
+    '羽ツヤ・羽毛の色つやが悪くなっていないか',
+    '寝ている時間が極端に増えていないか',
+    '飛ぶ回数が減っていないか、飛ばなくなっていないか',
+    '止まり木への移動にくちばしでケージをつたっていないか',
+    '目が白っぽく濁って見えないか(白内障など)',
+    'くちばしの伸びすぎ・変形はないか',
+    '体重を定期的に測って記録しているか'
+  ];
+
+  function lifeStage(age) {
+    if (age < 1) return 'young';
+    if (age < 4) return 'adult';
+    if (age < 6) return 'presen';
+    return 'senior';
+  }
+
+  function ageLabel(y, m) {
+    return m > 0 ? y + '歳' + m + 'ヶ月' : y + '歳';
+  }
+
+  function showError(msg) {
+    resultEl.innerHTML = '<span class="result-error">' + msg + '</span>';
+    resultEl.hidden = false;
+  }
+
+  document.getElementById('inko-run').addEventListener('click', function () {
+    var yRaw = document.getElementById('inko-years').value;
+    var y = yRaw === '' ? 0 : parseInt(yRaw, 10);
+    var m = parseInt(document.getElementById('inko-months').value, 10);
+
+    if (isNaN(y) || y < 0) { showError('年齢(年)を正しく入力してください。'); return; }
+    if (y > 30) { showError('30歳以下で入力してください。'); return; }
+    var age = y + m / 12;
+    if (age <= 0) { showError('年齢を入力してください(例:0年+3ヶ月)。'); return; }
+
+    var stageKey = lifeStage(age);
+    var stage = STAGES[stageKey];
+
+    var html = '<div class="result-main">ライフステージ:<span class="stage-badge">' + stage.label + '</span></div>';
+    html += '<div class="result-sub">セキセイインコ・実年齢' + ageLabel(y, m) + '/一般的なライフステージの目安による判定</div>';
+    html += '<div class="result-sub">' + stage.desc + '</div>';
+
+    html += '<hr class="result-divider">';
+    if (age > LIFESPAN_HIGH) {
+      html += '<div><strong>平均寿命(' + LIFESPAN_LOW + '〜' + LIFESPAN_HIGH + '年)をすでに超えています。</strong></div>';
+      html += '<div class="result-sub">とても大切に育てられてきた長寿さんです。適切な環境なら10年以上生きる例もあります。これまで通りの丁寧なケアを続けましょう。</div>';
+    } else if (age >= LIFESPAN_LOW) {
+      html += '<div><strong>平均寿命(' + LIFESPAN_LOW + '〜' + LIFESPAN_HIGH + '年)の範囲にさしかかっています。</strong></div>';
+      html += '<div class="result-sub">平均はあくまで平均です。適切な環境なら10年以上生きる例もあります。体調の変化にいっそう気を配りましょう。</div>';
+    } else {
+      var pct = Math.round(age / LIFESPAN_MID * 100);
+      html += '<div>平均寿命(' + LIFESPAN_LOW + '〜' + LIFESPAN_HIGH + '年)と比べると:目安の約<strong>' + pct + '%</strong>を生きてきた計算</div>';
+      html += '<div class="result-sub">※平均寿命の中間値(7.5年)で単純計算した参考値です。個体差が大きいため、あくまで目安です。</div>';
+    }
+
+    html += '<hr class="result-divider">';
+    html += '<div class="result-sub">参考:インコの人間換算には「1年=8〜10年分」とする説などがありますが、諸説あり定着した式はないため、本ツールでは換算値を表示していません。</div>';
+
+    if (stageKey === 'presen' || stageKey === 'senior') {
+      html += '<hr class="result-divider">';
+      html += '<div><strong>シニア期の観察チェックポイント</strong></div>';
+      html += '<ul class="check-list">';
+      SENIOR_CHECKS.forEach(function (c) { html += '<li>' + c + '</li>'; });
+      html += '</ul>';
+    }
+
+    html += '<hr class="result-divider">';
+    html += '<div class="note">※獣医師の監修を受けたものではなく、一般的な目安による判定です。健康に関する判断は鳥を診られる獣医師にご相談ください。</div>';
+
+    resultEl.innerHTML = html;
+    resultEl.hidden = false;
+  });
+
+  document.getElementById('inko-clear').addEventListener('click', function () {
+    document.getElementById('inko-years').value = '';
+    document.getElementById('inko-months').value = '0';
+    resultEl.hidden = true;
+  });
+})();
+</script>
+
+</body>
+</html>

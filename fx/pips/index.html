@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pips計算機|値動きの損益を円換算|FX電卓</title>
+<meta name="description" content="「10pips動いたらいくら?」を通貨ペアと取引数量から無料で円換算。円建てペアは1pips=0.01円、ユーロ/ドルは1pips=0.0001ドルとして計算し、10pips・50pips・100pipsの早見表も表示します。pipsの意味とスプレッドの読み方も解説。">
+<link rel="canonical" href="https://hakarigoto.github.io/fx/pips/">
+<meta property="og:site_name" content="FX電卓">
+<meta property="og:type" content="website">
+<meta property="og:title" content="pips計算機|値動きの損益を円換算|FX電卓">
+<meta property="og:description" content="通貨ペア・取引数量・値動き(pips)を入れるだけで損益を円換算。10・50・100pipsの早見表つき。登録不要・無料。">
+<meta property="og:url" content="https://hakarigoto.github.io/fx/pips/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%239a7b0a%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>F</text></svg>">
+<style>:root{--accent:#9a7b0a;--accent-hover:#7d6408;--accent-weak:#f7f2e0;}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "1pipsはいくらですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "pipsは通貨ペア共通で値動きを数えるための単位で、ドル/円・ユーロ/円などの円建てペアでは1pips=0.01円(1銭)、ユーロ/ドルなどのドルストレートでは1pips=0.0001ドルとするのが一般的です。通貨ペアによって1pipsの金額が異なる点に注意してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "1pips動くと損益はいくらになりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "円建てペアの損益は「pips × 0.01円 × 取引数量」で計算できます。1万通貨なら1pips=100円、50pipsで5,000円、10万通貨なら1pips=1,000円です。ユーロ/ドルは1pips=0.0001ドルなので、1万通貨で1pips=1ドルとなり、円に直すにはドル/円レートを掛けます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "スプレッドもpipsで表されるのですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。スプレッド(買値と売値の差=実質的な取引コスト)はpipsまたは銭で表示されるのが一般的です。たとえばスプレッドが0.2pipsなら、1万通貨の取引で約20円のコストに相当します。スプレッドは通貨ペア・時間帯・相場状況により変動します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ドル/円は1日に何pipsくらい動きますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1日の値動きの幅は相場環境によって大きく変わるため、一概には言えません。値動きの小さい日と、経済指標の発表や金融政策の変更などで大きく動く日とでは何倍もの差が出ます。過去の平均値をそのまま将来に当てはめず、余裕を持った損切り幅・数量を設定することが大切です。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">FX<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">FX電卓</a> › pips計算機</nav>
+
+<div class="page-head">
+  <h1>pips計算機|値動きの損益を円換算</h1>
+  <p class="lead">通貨ペア・取引数量・値動き(pips)を入れるだけで、損益額を円換算します。円建てペアは1pips=0.01円、ユーロ/ドルは1pips=0.0001ドルとして計算し、10pips・50pips・100pipsの早見表も同時に表示。損切り幅や利益目標を「円」で具体的にイメージするのにお使いください。本ツールは計算ツールであり投資助言ではありません。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>円建てペアは<span class="mk">1pips=0.01円(1銭)</span>。損益は pips × 0.01円 × 数量で、<span class="mk">1万通貨なら1pips=100円</span></li>
+    <li>1万通貨で<span class="mk">50pipsなら5,000円、100pipsなら10,000円</span>。10万通貨なら同じ値動きで10倍の損益</li>
+    <li>ユーロ/ドルは<span class="mk">1pips=0.0001ドル</span>。1万通貨で1pips=1ドルとなり、円換算にはドル/円レートを掛ける</li>
+    <li>スプレッドもpips表示。<span class="mk">0.2pipsなら1万通貨で約20円</span>のコストに相当する</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#sim">pips損益計算機</a></li>
+    <li><a href="#pips">pipsとは何か</a></li>
+    <li><a href="#pair">通貨ペアによる1pipsの値の違い</a></li>
+    <li><a href="#spread">スプレッドもpipsで読む</a></li>
+    <li><a href="#hendo">1日の値動きは「決まった数字」ではない</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<section class="tool-panel" id="sim">
+  <h2>条件を入力してください</h2>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="pair">通貨ペア</label>
+      <select id="pair">
+        <option value="usdjpy" selected>ドル/円(USD/JPY)</option>
+        <option value="eurjpy">ユーロ/円(EUR/JPY)</option>
+        <option value="gbpjpy">ポンド/円(GBP/JPY)</option>
+        <option value="audjpy">豪ドル/円(AUD/JPY)</option>
+        <option value="eurusd">ユーロ/ドル(EUR/USD)</option>
+      </select>
+      <p class="note" id="pairNote"></p>
+    </div>
+    <div class="field" id="usdjpyField" style="display:none;">
+      <label for="usdjpyRate">円換算用のドル/円レート</label>
+      <input type="number" id="usdjpyRate" min="0" step="any" placeholder="例: 150.00">
+      <p class="note">ユーロ/ドルの損益はドル建てのため、円換算にドル/円レートを使います。</p>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="qtySelect">取引数量(通貨単位)</label>
+      <select id="qtySelect">
+        <option value="1000">1,000通貨</option>
+        <option value="10000" selected>10,000通貨</option>
+        <option value="100000">100,000通貨</option>
+        <option value="custom">その他(自分で入力)</option>
+      </select>
+    </div>
+    <div class="field" id="qtyCustomField" style="display:none;">
+      <label for="qtyCustom">取引数量(任意入力)</label>
+      <input type="number" id="qtyCustom" min="1" step="1" placeholder="例: 5000">
+    </div>
+    <div class="field">
+      <label for="pips">値動き(pips)</label>
+      <input type="number" id="pips" min="0" step="any" placeholder="例: 50">
+      <p class="note">利益方向・損失方向とも金額の大きさは同じです。</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="calcBtn" type="button">損益を円換算する</button>
+  </div>
+
+  <div class="result-box" id="resultBox" style="display:none;" aria-live="polite"></div>
+  <!-- AD-SLOT: fx-kouza -->
+
+  <p class="note" style="margin-top:16px;">※ 円建てペアは1pips=0.01円、ユーロ/ドルは1pips=0.0001ドルとして計算しています。スプレッド・手数料・スワップポイントは含みません。本ツールは計算ツールであり投資助言ではありません。外国為替証拠金取引には元本を上回る損失が生じるおそれがあります。</p>
+</section>
+
+<div class="cta-box">
+  <p class="cta-box-title">その数量、証拠金はいくら必要?</p>
+  <p>損益のイメージがつかめたら、同じ数量を持つのに必要な証拠金と、ロスカットまでの余裕も確認しておきましょう。</p>
+  <a class="cta-btn" href="../shokokin/">必要証拠金・ロスカット計算機で確認する</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="pips">pipsとは何か</h2>
+<p>pips(ピップス)は、FXで<strong>値動きの幅を通貨ペア共通のものさしで数えるための最小単位</strong>です(percentage in point の略とされます)。ドル/円が150.00円から150.10円に動いたとき、「0.10円動いた」と言う代わりに「10pips動いた」と表現します。通貨ペアごとに価格の桁が違っても(ドル/円は150前後、ユーロ/ドルは1.08前後など)、pipsで数えれば「どれくらい動いたか」を同じ感覚で比べられます。損益のイメージも「pips × 1pipsあたりの金額 × 数量」で機械的に計算でき、円建てペアなら<strong>損益 = pips × 0.01円 × 取引数量</strong>です。1万通貨で50pipsなら 50 × 0.01 × 10,000 = 5,000円になります。</p>
+
+<h2 id="pair">通貨ペアによる1pipsの値の違い</h2>
+<p>注意したいのは、<strong>1pipsが表す金額は通貨ペアの建て方によって違う</strong>ことです。決済通貨が円のペア(クロス円)と、決済通貨がドルのペア(ドルストレート)で次のように分かれます。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>通貨ペア</th><th>1pips</th><th>1万通貨の1pipsあたり損益</th></tr></thead>
+  <tbody>
+    <tr><td>ドル/円・ユーロ/円・ポンド/円・豪ドル/円(円建て)</td><td>0.01円(1銭)</td><td>100円</td></tr>
+    <tr><td>ユーロ/ドル(ドル建て)</td><td>0.0001ドル</td><td>1ドル(円換算はドル/円レートを乗じる)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>円建てペアは数量が同じなら通貨ペアが違っても1pipsの円価値は同じで、1万通貨あたり100円、10万通貨あたり1,000円です。一方ユーロ/ドルは損益がドルで生じるため、円に直すにはドル/円レートを掛けます。仮にドル/円を150円とすると、1万通貨の1pips=1ドル=約150円という計算になります(本ツールでは補助入力欄にドル/円レートを入れて換算します)。</p>
+
+<h2 id="spread">スプレッドもpipsで読む</h2>
+<p>pipsは値動きだけでなく、<strong>スプレッド(買値と売値の差=実質的な取引コスト)</strong>の表示にも使われます。たとえばスプレッドが0.2pipsの円建てペアを1万通貨取引すると、0.2 × 0.01円 × 10,000 = <strong>約20円</strong>のコストに相当します。1回あたりは小さくても、取引回数が多いほど積み上がるコストです。スプレッドは通貨ペアによって水準が違い、同じペアでも時間帯(早朝など)や経済指標の前後、相場急変時には拡大することがあります。損益を見積もるときは、値動きのpipsからスプレッド分を差し引いて考えるのが実務的です。</p>
+
+<h2 id="hendo">1日の値動きは「決まった数字」ではない</h2>
+<p>「ドル/円は1日に何pips動くのか」は誰もが知りたいところですが、<strong>値動きの幅は相場環境によって大きく変わるため、固定の数字では言えません</strong>。ほとんど動かない日がある一方、雇用統計などの経済指標や金融政策の変更、地政学的な出来事をきっかけに、普段の何倍も動く日もあります。過去のある期間の平均値を「明日もこれくらい」と当てはめるのは危険です。実務的には、本ツールで「もし50pips・100pips逆行したら円でいくらか」を先に確認し、その損失に耐えられる数量と損切り幅を決めておく、という使い方をおすすめします。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>1pipsはいくら?</summary>
+  <p>ドル/円・ユーロ/円などの円建てペアでは1pips=0.01円(1銭)、ユーロ/ドルなどのドルストレートでは1pips=0.0001ドルとするのが一般的です。通貨ペアの建て方によって1pipsの金額が異なります。</p>
+</details>
+
+<details class="faq">
+  <summary>1pips動くと損益はいくら?</summary>
+  <p>円建てペアは pips × 0.01円 × 数量です。1万通貨なら1pips=100円、50pipsで5,000円。ユーロ/ドルは1万通貨で1pips=1ドルとなり、円換算にはドル/円レートを掛けます。</p>
+</details>
+
+<details class="faq">
+  <summary>スプレッドもpipsで表されるの?</summary>
+  <p>はい。スプレッドはpipsまたは銭で表示されるのが一般的で、0.2pipsなら1万通貨の取引で約20円のコストに相当します。時間帯や相場状況により変動します。</p>
+</details>
+
+<details class="faq">
+  <summary>ドル/円は1日に何pips動く?</summary>
+  <p>相場環境によって大きく変わるため一概には言えません。経済指標や金融政策で普段の何倍も動く日があります。平均値を当てにせず、余裕を持った損切り幅・数量を設定しましょう。</p>
+</details>
+
+<h2>関連ツール</h2>
+<p>その数量を持つのに必要な証拠金と維持率は <a href="../shokokin/">FX必要証拠金・ロスカット計算機</a> で確認できます。レバレッジをかけない長期の積立を考えている方は、姉妹サイトの <a href="../../tsumitate/simulator/">つみたてシミュレーター(姉妹サイト)</a> もどうぞ。</p>
+
+<p class="note">【データ基準日】2026年7月時点。1pips=0.01円(円建て)・0.0001ドル(ドルストレート)は一般的な取り扱いに基づく説明であり、表示単位はFX会社により異なる場合があります。計算結果は入力値に基づく概算で、スプレッド・手数料・スワップポイントは含みません。本ページは計算ツールおよび用語の一般的な解説であり、投資助言・勧誘ではありません。外国為替証拠金取引には元本を上回る損失が生じるおそれがあります。</p>
+<!-- AD-SLOT: fx-kouza -->
+</article>
+
+<section class="related">
+  <p class="related-title">あわせて使いたい計算ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../shokokin/">
+      <h3>FX必要証拠金・ロスカット計算機</h3>
+      <p>レバレッジ別の必要証拠金と、維持率100%・50%を割り込む目安レートを計算できます。</p>
+    </a>
+    <a class="card" href="../">
+      <h3>FX電卓トップ</h3>
+      <p>FXの証拠金・pips損益に関する無料計算ツールの一覧です。</p>
+    </a>
+    <a class="card" href="../../tsumitate/simulator/">
+      <h3>つみたてシミュレーター</h3>
+      <p>レバレッジをかけない長期・積立の資産形成を試算したい方はこちら(姉妹サイト)。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 FX電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var PAIRS = {
+    usdjpy: { label: "ドル/円(USD/JPY)", jpy: true },
+    eurjpy: { label: "ユーロ/円(EUR/JPY)", jpy: true },
+    gbpjpy: { label: "ポンド/円(GBP/JPY)", jpy: true },
+    audjpy: { label: "豪ドル/円(AUD/JPY)", jpy: true },
+    eurusd: { label: "ユーロ/ドル(EUR/USD)", jpy: false }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var yen = function (n) { return Math.round(n).toLocaleString("ja-JP") + "円"; };
+
+  function updatePairUI() {
+    var p = PAIRS[$("pair").value];
+    $("usdjpyField").style.display = p.jpy ? "none" : "";
+    $("pairNote").textContent = p.jpy
+      ? "円建てペア:1pips=0.01円(1銭)として計算します。"
+      : "ドルストレート:1pips=0.0001ドルとして計算し、ドル/円レートで円換算します。";
+  }
+
+  function updateQtyUI() {
+    $("qtyCustomField").style.display = ($("qtySelect").value === "custom") ? "" : "none";
+  }
+
+  function getQty() {
+    var v = $("qtySelect").value;
+    if (v === "custom") return Math.max(0, parseFloat($("qtyCustom").value) || 0);
+    return parseFloat(v);
+  }
+
+  // 損益(円)を返す。円建て: pips × 0.01円 × 数量 / ドル建て: pips × 0.0001ドル × 数量 × ドル/円
+  function pipsToYen(pips, qty, isJpy, usdjpy) {
+    return isJpy ? pips * 0.01 * qty : pips * 0.0001 * qty * usdjpy;
+  }
+
+  function calc() {
+    var box = $("resultBox");
+    var p = PAIRS[$("pair").value];
+    var qty = getQty();
+    var pips = parseFloat($("pips").value);
+    var usdjpy = parseFloat($("usdjpyRate").value);
+
+    if (!(qty > 0) || !(pips >= 0) || isNaN(pips)) {
+      box.innerHTML = "<strong>取引数量と値動き(pips)を入力してください。</strong>";
+      box.style.display = "";
+      return;
+    }
+    if (!p.jpy && !(usdjpy > 0)) {
+      box.innerHTML = "<strong>ユーロ/ドルの円換算には「円換算用のドル/円レート」の入力が必要です。</strong>";
+      box.style.display = "";
+      return;
+    }
+
+    var amount = pipsToYen(pips, qty, p.jpy, usdjpy);
+    var formula = p.jpy
+      ? pips + "pips × 0.01円 × " + qty.toLocaleString("ja-JP") + "通貨"
+      : pips + "pips × 0.0001ドル × " + qty.toLocaleString("ja-JP") + "通貨 × ドル/円" + usdjpy + "円";
+
+    var html = "<strong>" + p.label + " " + qty.toLocaleString("ja-JP") + "通貨で " + pips +
+      "pips の損益:約 " + yen(amount) + "</strong>" +
+      "<p style=\"margin:8px 0 0\">計算式:" + formula + " = 約" + yen(amount) +
+      "(利益方向・損失方向とも同額)</p>";
+
+    // 早見表(入力数量ベース)
+    var rows = [10, 50, 100].map(function (pp) {
+      return "<tr><td>" + pp + "pips</td><td>約 " + yen(pipsToYen(pp, qty, p.jpy, usdjpy)) + "</td></tr>";
+    }).join("");
+    html += "<h3 style=\"margin:14px 0 6px\">" + qty.toLocaleString("ja-JP") + "通貨の早見表</h3>" +
+      "<div class=\"table-wrap\"><table style=\"margin:4px 0\">" +
+      "<tr><th>値動き</th><th>損益の目安(円)</th></tr>" + rows + "</table></div>" +
+      "<p class=\"note\" style=\"margin:8px 0 0\">※ スプレッド・手数料・スワップポイントは含まない概算です。本ツールは計算ツールであり投資助言ではありません。</p>";
+
+    box.innerHTML = html;
+    box.style.display = "";
+  }
+
+  $("pair").addEventListener("change", updatePairUI);
+  $("qtySelect").addEventListener("change", updateQtyUI);
+  $("calcBtn").addEventListener("click", calc);
+
+  updatePairUI();
+  updateQtyUI();
+})();
+</script>
+</body>
+</html>

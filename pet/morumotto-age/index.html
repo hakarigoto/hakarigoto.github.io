@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>モルモットの年齢電卓|ライフステージ判定と平均寿命との比較|ペット電卓</title>
+<meta name="description" content="モルモットの年齢(年+月)を入力するだけで、ライフステージ(ベビー・アダルト・プレシニア・シニア)の判定と平均寿命(5〜7年)との比較ができる無料電卓。シニア期のサインのチェックリスト付き。人間換算の諸説も紹介。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#b85c1e;--accent-hover:#9a4c17;--accent-weak:#f9ede3;}</style>
+<style>
+.result-main { font-size: 1.4rem; font-weight: 700; }
+.result-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+.result-error { color: #c0392b; font-weight: 600; }
+
+.stage-badge {
+  display: inline-block; padding: 2px 12px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
+}
+.result-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+.check-list { margin: 6px 0 0; padding-left: 1.4em; font-size: 0.92rem; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "モルモットの平均寿命は何年ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "モルモットの平均寿命は5〜7年前後といわれます。飼育環境を整えることでそれ以上長生きする可能性もあり、最長寿のギネス記録は14歳10ヶ月です。個体差が大きいため、あくまで目安として捉えてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "モルモットの1歳は人間の何歳に相当しますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「モルモットは人間の約10倍の速さで年を取る(1歳=約10歳)」とする説や、「1歳は人間の18歳くらいに相当する」とする説など諸説あり、犬や猫のように広く定着した換算式はありません。そのため本ツールでは無理に人間の年齢へ換算せず、ライフステージの判定と平均寿命との比較を行っています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "モルモットは何歳からシニアですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般に3〜4歳頃から老化が始まり、4歳頃からはシニア(高齢期)と呼ばれることが多いです。ただし4〜5歳を迎えても元気な個体もいて、老いの進み方には個体差があります。活動量の低下、毛ヅヤの変化、食事量の減少などのサインが見られたら、年齢にかかわらず小動物を診られる動物病院に相談してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力したモルモットの年齢などのデータは送信されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。この電卓の処理はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した内容が外部のサーバーに送信されることは一切ありません。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/pet/morumotto-age/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/pet/morumotto-age/">
+<meta property="og:site_name" content="ペット電卓">
+<meta property="og:title" content="モルモットの年齢電卓|ライフステージ判定と平均寿命との比較|ペット電卓">
+<meta property="og:description" content="モルモットの年齢(年+月)を入力するだけで、ライフステージ(ベビー・アダルト・プレシニア・シニア)の判定と平均寿命(5〜7年)との比較ができる無料電卓。シニア期のサインのチェックリスト付き。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">ペット<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">ペット電卓</a> › モルモットの年齢電卓</nav>
+
+<div class="page-head">
+  <h1>モルモットの年齢電卓(寿命・ライフステージ判定)</h1>
+  <p class="lead">モルモットの年齢(年+月)を入力するだけで、ライフステージ(ベビー・アダルト・プレシニア・シニア)の判定と、平均寿命(5〜7年)との比較を表示します。モルモットの人間換算には定説がないため、無理な換算はせずライフステージで判定します。登録不要・完全無料です。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>モルモットの平均寿命は<span class="mk">5〜7年前後</span>。最長寿のギネス記録は14歳10ヶ月</li>
+    <li>生後<span class="mk">約2ヶ月で大人の仲間入り</span>をするほど、人間とはまったく違う成長スピード</li>
+    <li><span class="mk">3〜4歳頃から老化が始まり</span>、4歳頃からはシニア期と呼ばれることが多い</li>
+    <li>人間換算は「1歳=約10歳」説や「1歳=18歳くらい」説など<span class="mk">諸説あり定説なし</span>。本ツールはライフステージ判定式</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#calc">年齢電卓(ライフステージ判定)</a></li>
+    <li><a href="#tsukaikata">使い方</a></li>
+    <li><a href="#stage">モルモットのライフステージ</a></li>
+    <li><a href="#kansan">人間の年齢への換算は「諸説あり」</a></li>
+    <li><a href="#jumyou">モルモットの平均寿命</a></li>
+    <li><a href="#sign">シニア期のサイン</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<div class="tool-panel" id="calc">
+  <h2>モルモットの年齢を入力</h2>
+  <div class="field-row">
+    <div class="field">
+      <label for="moru-years">年齢(年)</label>
+      <input type="number" id="moru-years" min="0" max="20" placeholder="例: 3" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="moru-months">+ 月(0〜11)</label>
+      <select id="moru-months">
+        <option value="0">0ヶ月</option><option value="1">1ヶ月</option><option value="2">2ヶ月</option>
+        <option value="3">3ヶ月</option><option value="4">4ヶ月</option><option value="5">5ヶ月</option>
+        <option value="6">6ヶ月</option><option value="7">7ヶ月</option><option value="8">8ヶ月</option>
+        <option value="9">9ヶ月</option><option value="10">10ヶ月</option><option value="11">11ヶ月</option>
+      </select>
+    </div>
+  </div>
+  <p class="note">計算はすべてブラウザ内で行われ、入力内容が外部に送信されることはありません。</p>
+  <div class="btn-row">
+    <button class="btn" id="moru-run">ライフステージを判定</button>
+    <button class="btn btn-secondary" id="moru-clear">クリア</button>
+  </div>
+  <div class="result-box" id="moru-result" hidden></div>
+  <!-- AD-SLOT: pet-senior -->
+  <p class="note">※本ツールの判定は獣医師の監修を受けたものではなく、一般に紹介されている寿命・ライフステージの<strong>目安</strong>に基づくものです。健康状態の判断は必ず小動物を診られる獣医師にご相談ください。</p>
+</div>
+
+<div class="cta-box">
+  <p class="cta-box-title">セキセイインコと暮らしている方はこちら</p>
+  <p>セキセイインコの年齢からライフステージ(幼鳥・成鳥・初老期・老鳥)を判定し、平均寿命(7〜8年)と比較できます。</p>
+  <a class="cta-btn" href="../inko-age/">セキセイインコの年齢を無料で判定する</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="tsukaikata">使い方</h2>
+<ol>
+  <li>モルモットの年齢を「年」と「月」で入力します(例:3歳6ヶ月なら「3」と「6ヶ月」)。生後数ヶ月なら「0」と月数を選びます。</li>
+  <li>「ライフステージを判定」を押すと、ライフステージ(ベビー・アダルト・プレシニア・シニア)と、平均寿命(5〜7年)との比較が表示されます。</li>
+  <li>プレシニア・シニア期の場合は、日々の観察に使えるチェックポイントも表示します。</li>
+</ol>
+<p>生年月日が分からない場合(里親で迎えた場合など)は、お迎えした時期からのおおよその推定年齢で構いません。あくまで目安の判定です。</p>
+
+<h2 id="stage">モルモットのライフステージ</h2>
+<p>モルモットは<strong>生後2ヶ月ほどで大人になり繁殖が可能になる</strong>といわれるほど、人間とはまったく違う速さで成長します。本ツールでは、一般に紹介されている目安をもとに、次の4段階で判定しています。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>ライフステージ</th><th>年齢の目安</th><th>時期の特徴</th></tr></thead>
+  <tbody>
+    <tr><td>ベビー(子ども)</td><td>〜生後2ヶ月頃</td><td>急速に成長する時期。生後2ヶ月ほどで大人の仲間入りをするといわれる。</td></tr>
+    <tr><td>アダルト(成体)</td><td>2ヶ月〜3歳頃</td><td>体力が充実する時期。食事・体重管理と毎日の観察で良い状態を保つ。</td></tr>
+    <tr><td>プレシニア</td><td>3〜4歳頃</td><td>老化が始まるとされる時期。小さな変化を見逃さないよう観察を丁寧に。</td></tr>
+    <tr><td>シニア(高齢期)</td><td>4歳頃〜</td><td>シニアと呼ばれることが多い時期。噛む力の低下や食事量の変化などに注意。</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">※区切りには複数の考え方があり、「4〜5歳頃から老化のサインが見られ始める」とする資料もあります。4〜5歳を迎えても元気な個体もいて、老いの進み方には個体差があります。</p>
+
+<h2 id="kansan">人間の年齢への換算は「諸説あり」</h2>
+<p>犬の「最初の2年で24歳分」のような、広く定着した人間換算の式は、モルモットには<strong>存在しません</strong>。ネットや書籍では次のような説が紹介されていますが、数値は資料によって大きく異なります。</p>
+<ul>
+  <li>モルモットは<strong>人間の約10倍の速さ</strong>で年を取る(1歳=約10歳)とする説</li>
+  <li>モルモットの<strong>1歳は人間の18歳くらい</strong>に相当するとする説</li>
+</ul>
+<p>このように諸説あり、どれが標準というものはありません。そこで本ツールでは、無理に「人間の何歳」と言い切るのではなく、<strong>ライフステージの判定と平均寿命との比較</strong>という形でモルモットの年齢を捉えられるようにしています。</p>
+
+<h2 id="jumyou">モルモットの平均寿命</h2>
+<p>モルモットの平均寿命は<strong>5〜7年前後</strong>といわれます(6〜7年程度とする資料もあります)。飼育環境を整えることで、それ以上長生きする可能性もあります。最長寿の記録としては、<strong>14歳10ヶ月</strong>まで生きたモルモットがギネス記録に認定されています。</p>
+<p>寿命を延ばす特効薬はありませんが、毎日の食事と食べる量・飲水量・排泄の様子・体重をこまめに観察し、変化があれば早めに小動物(エキゾチックアニマル)を診られる動物病院に相談することが、結果として長生きにつながると考えられています。モルモットは不調を隠しやすい動物なので、「なんとなくいつもと違う」に気づけるのは毎日世話をしている飼い主だけです。</p>
+
+<h2 id="sign">シニア期のサイン</h2>
+<p>次のような変化が見られたら、加齢による体の変化が始まっているサインかもしれません。</p>
+<ul>
+  <li>活動量が減る、動きがゆっくりになる</li>
+  <li>毛ヅヤが悪くなる、白髪が増える</li>
+  <li>食べる量が減る、食べるのに時間がかかる</li>
+  <li>噛む力が弱くなり、硬い牧草を残すようになる</li>
+  <li>歯のトラブル(不正咬合など)が増える</li>
+  <li>体重が減ってくる</li>
+</ul>
+<p>これらは病気のサインと重なることも多いため、「年のせい」と決めつけずに、小動物を診られる動物病院で相談することが大切です。特に食欲の低下は、モルモットでは短期間で体調悪化につながりやすいため、早めの受診をおすすめします。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>モルモットの平均寿命は?</summary>
+  <p>平均寿命は<strong>5〜7年前後</strong>といわれます(6〜7年程度とする資料もあります)。飼育環境を整えることでそれ以上長生きする可能性もあり、最長寿のギネス記録は<strong>14歳10ヶ月</strong>です。</p>
+</details>
+
+<details class="faq">
+  <summary>モルモットの1歳は人間の何歳?</summary>
+  <p>「人間の約10倍の速さで年を取る(<strong>1歳=約10歳</strong>)」とする説や、「<strong>1歳=18歳くらい</strong>」とする説など<strong>諸説あり</strong>、定着した換算式はありません。本ツールでは無理に換算せず、ライフステージ判定と平均寿命との比較を行っています。</p>
+</details>
+
+<details class="faq">
+  <summary>モルモットは何歳からシニア?</summary>
+  <p>一般に<strong>3〜4歳頃から老化が始まり</strong>、<strong>4歳頃からはシニア(高齢期)</strong>と呼ばれることが多いです。ただし個体差が大きく、4〜5歳でも元気な個体もいます。サインが見られたら年齢にかかわらず動物病院に相談してください。</p>
+</details>
+
+<details class="faq">
+  <summary>入力したデータは外部に送信される?</summary>
+  <p>いいえ。処理はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した内容が外部サーバーに送信されることは一切ありません。</p>
+</details>
+
+<!-- AD-SLOT: pet-senior -->
+
+</article>
+
+<section class="related">
+  <p class="related-title">関連ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../dog-age/">
+      <h3>犬の年齢を人間に換算</h3>
+      <p>犬の年齢(年+月)とサイズから人間換算年齢とライフステージを計算。2019年発表の対数式も併記。</p>
+    </a>
+    <a class="card" href="../cat-age/">
+      <h3>猫の年齢を人間に換算</h3>
+      <p>猫の年齢(年+月)から人間換算年齢とライフステージを計算。室内飼い・外に出る場合の寿命の違いも解説。</p>
+    </a>
+    <a class="card" href="../inko-age/">
+      <h3>セキセイインコの年齢電卓</h3>
+      <p>セキセイインコの年齢からライフステージを判定し、平均寿命(7〜8年)と比較。老鳥期のサインも紹介。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ペット電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var resultEl = document.getElementById('moru-result');
+
+  /* 平均寿命の目安:5〜7年(比較には中間の6年を使用) */
+  var LIFESPAN_LOW = 5;
+  var LIFESPAN_HIGH = 7;
+  var LIFESPAN_MID = 6;
+
+  var STAGES = {
+    baby:   { label: 'ベビー(子ども)', desc: '急速に成長する時期です。モルモットは生後2ヶ月ほどで大人の仲間入りをするといわれます。成長に合った食事と環境づくりを大切に。' },
+    adult:  { label: 'アダルト(成体)', desc: '体力が充実する時期です。食事・体重管理と毎日の観察で良い状態を保ちましょう。' },
+    presen: { label: 'プレシニア',     desc: '老化が始まるとされる時期です。活動量や食べ方の小さな変化を見逃さないよう、観察をいっそう丁寧にしましょう。' },
+    senior: { label: 'シニア(高齢期)', desc: 'シニアと呼ばれることが多い時期です。噛む力の低下や食事量・体重の変化に注意し、変化があれば早めに小動物を診られる動物病院へ相談を。' }
+  };
+
+  var SENIOR_CHECKS = [
+    '活動量が減っていないか、動きが極端にゆっくりになっていないか',
+    '毛ヅヤの低下・白髪の増加はないか',
+    '食べる量が減っていないか、食べるのに時間がかかっていないか',
+    '硬い牧草を残すようになっていないか(噛む力の低下)',
+    '歯のトラブル(不正咬合など)のサインはないか',
+    '体重を定期的に測って記録しているか'
+  ];
+
+  function lifeStage(age) {
+    if (age < 2 / 12) return 'baby';
+    if (age < 3) return 'adult';
+    if (age < 4) return 'presen';
+    return 'senior';
+  }
+
+  function ageLabel(y, m) {
+    if (y === 0) return '生後' + m + 'ヶ月';
+    return m > 0 ? y + '歳' + m + 'ヶ月' : y + '歳';
+  }
+
+  function showError(msg) {
+    resultEl.innerHTML = '<span class="result-error">' + msg + '</span>';
+    resultEl.hidden = false;
+  }
+
+  document.getElementById('moru-run').addEventListener('click', function () {
+    var yRaw = document.getElementById('moru-years').value;
+    var y = yRaw === '' ? 0 : parseInt(yRaw, 10);
+    var m = parseInt(document.getElementById('moru-months').value, 10);
+
+    if (isNaN(y) || y < 0) { showError('年齢(年)を正しく入力してください。'); return; }
+    if (y > 20) { showError('20歳以下で入力してください。'); return; }
+    var age = y + m / 12;
+    if (age <= 0) { showError('年齢を入力してください(例:0年+3ヶ月)。'); return; }
+
+    var stageKey = lifeStage(age);
+    var stage = STAGES[stageKey];
+
+    var html = '<div class="result-main">ライフステージ:<span class="stage-badge">' + stage.label + '</span></div>';
+    html += '<div class="result-sub">モルモット・実年齢' + ageLabel(y, m) + '/一般的なライフステージの目安による判定</div>';
+    html += '<div class="result-sub">' + stage.desc + '</div>';
+
+    html += '<hr class="result-divider">';
+    if (age > LIFESPAN_HIGH) {
+      html += '<div><strong>平均寿命(' + LIFESPAN_LOW + '〜' + LIFESPAN_HIGH + '年)をすでに超えています。</strong></div>';
+      html += '<div class="result-sub">とても大切に育てられてきた長寿さんです。最長寿のギネス記録は14歳10ヶ月。これまで通りの丁寧なケアを続けましょう。</div>';
+    } else if (age >= LIFESPAN_LOW) {
+      html += '<div><strong>平均寿命(' + LIFESPAN_LOW + '〜' + LIFESPAN_HIGH + '年)の範囲にさしかかっています。</strong></div>';
+      html += '<div class="result-sub">平均はあくまで平均です。飼育環境を整えることでそれ以上長生きする可能性もあります。体調の変化にいっそう気を配りましょう。</div>';
+    } else {
+      var pct = Math.round(age / LIFESPAN_MID * 100);
+      html += '<div>平均寿命(' + LIFESPAN_LOW + '〜' + LIFESPAN_HIGH + '年)と比べると:目安の約<strong>' + pct + '%</strong>を生きてきた計算</div>';
+      html += '<div class="result-sub">※平均寿命の中間値(6年)で単純計算した参考値です。個体差が大きいため、あくまで目安です。</div>';
+    }
+
+    html += '<hr class="result-divider">';
+    html += '<div class="result-sub">参考:モルモットの人間換算には「1歳=約10歳」説や「1歳=18歳くらい」説などがありますが、諸説あり定着した式はないため、本ツールでは換算値を表示していません。</div>';
+
+    if (stageKey === 'presen' || stageKey === 'senior') {
+      html += '<hr class="result-divider">';
+      html += '<div><strong>シニア期の観察チェックポイント</strong></div>';
+      html += '<ul class="check-list">';
+      SENIOR_CHECKS.forEach(function (c) { html += '<li>' + c + '</li>'; });
+      html += '</ul>';
+    }
+
+    html += '<hr class="result-divider">';
+    html += '<div class="note">※獣医師の監修を受けたものではなく、一般的な目安による判定です。健康に関する判断は小動物を診られる獣医師にご相談ください。</div>';
+
+    resultEl.innerHTML = html;
+    resultEl.hidden = false;
+  });
+
+  document.getElementById('moru-clear').addEventListener('click', function () {
+    document.getElementById('moru-years').value = '';
+    document.getElementById('moru-months').value = '0';
+    resultEl.hidden = true;
+  });
+})();
+</script>
+
+</body>
+</html>

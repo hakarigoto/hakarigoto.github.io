@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リボ払いチェッカー|その買い物、リボだと総額いくら?|ローン電卓</title>
+<meta name="description" content="利用額と毎月の支払額を入れるだけで、リボ払いの完済までの月数・手数料総額・総支払額を無料計算。月5,000円のリボが何年続くのか、残高が半分になるのはいつかもその場でわかります。手数料率は実質年率で変更可能。登録不要・入力データは送信されません。">
+<link rel="canonical" href="https://hakarigoto.github.io/loan/ribo/">
+<meta property="og:site_name" content="ローン電卓">
+<meta property="og:type" content="website">
+<meta property="og:title" content="リボ払いチェッカー|その買い物、リボだと総額いくら?|ローン電卓">
+<meta property="og:description" content="利用額と毎月の支払額から、リボ払いの完済までの月数と手数料総額を計算。「月5,000円のリボが何年続くか」がその場でわかります。">
+<meta property="og:url" content="https://hakarigoto.github.io/loan/ribo/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%238c3f5d%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>ロ</text></svg>">
+<style>:root{--accent:#8c3f5d;--accent-hover:#733248;--accent-weak:#f6ebef;}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "リボ払いの手数料率はどれくらいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "多くのカードで実質年率15.0%前後に設定されています。手数料は毎月の残高に対してかかるため、残高が減らない限り毎月発生し続けます。正確な料率はお使いのカードの会員規約・明細で確認してください。本ツールでは料率を自由に変更して試算できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "毎月の支払額を上げるとどれくらい早く完済できますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "利用額10万円・実質年率15.0%の計算例では、毎月5,000円の支払いだと完済まで24ヶ月・手数料総額は15,795円ですが、毎月10,000円に上げると11ヶ月・7,503円になります。支払額を2倍にすると、完済までの期間も手数料も半分以下になる計算です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "リボ残高をまとめて支払うことはできますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "多くのカードでは、繰り上げ返済(まとめ払い・一括返済・増額返済)の仕組みが用意されています。まとめて払った分は元本から直接減るため、以後の手数料がかからなくなります。手続き方法(会員サイト・電話・ATMなど)や締め日との関係はカードにより異なるので、カード会社の案内で確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "リボ払いの支払いが苦しいときはどうすればよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般的な選択肢としては、(1)毎月の支払額を可能な範囲で増額して手数料の発生期間を短くする、(2)より低い金利のローンへの借り換えを検討する、(3)返済の目処が立たない場合は弁護士・司法書士等の専門家や公的な相談窓口に相談する、という順で考えるのが基本です。借り換えは審査や条件次第で、必ず負担が軽くなるとは限りません。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">ローン<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">ローン電卓</a> › リボ払いチェッカー</nav>
+
+<div class="page-head">
+  <h1>リボ払いチェッカー|その買い物、リボだと総額いくら?</h1>
+  <p class="lead">利用額・毎月の支払額・手数料率(実質年率)を入れるだけで、リボ払いの完済までの月数・手数料総額・総支払額を計算します。残高が半分になる月や1年ごとの残高の推移も表示するので、「月5,000円のリボが何年続くのか」が一目でわかります。結果は定額方式を前提にした試算であり、実際の手数料はカードの方式・締め日により異なります。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月17日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>10万円の買い物を月5,000円のリボにすると、完済まで<span class="mk">24ヶ月・手数料総額15,795円</span>(実質年率15.0%の場合)</li>
+    <li>残高30万円を月5,000円のままにすると完済まで<span class="mk">112ヶ月=9年4ヶ月</span>、手数料は約25万8,000円と元本に迫る</li>
+    <li>残高40万円だと初月の手数料だけで5,000円になり、<span class="mk">月5,000円の支払いでは永久に完済できない</span></li>
+    <li>支払額を月5,000円から10,000円に上げるだけで、10万円の完済は<span class="mk">24ヶ月→11ヶ月・手数料は半分以下</span>(15,795円→7,503円)に</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#sim">リボ払いシミュレーション</a></li>
+    <li><a href="#shikumi">リボ払いの仕組み(定額方式と残高スライド方式)</a></li>
+    <li><a href="#teigaku">最低支払額を下げると完済が遠のく構造</a></li>
+    <li><a href="#matome">繰り上げ返済(まとめ払い)の効果</a></li>
+    <li><a href="#kurushii">返済が苦しくなったときの選択肢</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<section class="tool-panel" id="sim">
+  <h2>条件を入力してください</h2>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="riyo">利用額・リボ残高(円)</label>
+      <input type="number" id="riyo" value="100000" min="1" step="10000">
+    </div>
+    <div class="field">
+      <label for="shiharai">毎月の支払額(円)</label>
+      <input type="number" id="shiharai" value="5000" min="1" step="1000">
+      <p class="note">カードの明細にある「毎月のお支払い金額」です。</p>
+    </div>
+    <div class="field">
+      <label for="ritsu">手数料率(実質年率%)</label>
+      <input type="number" id="ritsu" value="15.0" min="0" step="0.1">
+      <p class="note">多くのカードで実質年率15.0%前後です。明細で確認して変更できます。</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="calcBtn" type="button">総額をチェックする</button>
+  </div>
+
+  <div class="result-box" id="resultBox" style="display:none;" aria-live="polite">
+    <div id="resultMain"></div>
+    <div class="table-wrap">
+      <table id="summaryTable">
+        <thead><tr><th>項目</th><th>金額・期間</th></tr></thead>
+        <tbody id="summaryBody"></tbody>
+      </table>
+    </div>
+    <div class="table-wrap">
+      <table id="timelineTable">
+        <thead><tr><th>経過</th><th>残高(支払い後)</th><th>メモ</th></tr></thead>
+        <tbody id="timelineBody"></tbody>
+      </table>
+    </div>
+    <p class="note" id="resultNote"></p>
+  </div>
+
+  <p class="note" style="margin-top:16px;">本ツールは「毎月、残高×実質年率÷12の手数料を加算し、定額を支払う」という定額方式のモデルで計算した試算です。実際のカードの手数料は日割り計算・締め日・支払方式(残高スライドなど)・新たな利用の有無によって変わります。正確な金額はカード会社の明細・シミュレーションでご確認ください。</p>
+</section>
+<!-- AD-SLOT: cardloan -->
+
+<div class="cta-box">
+  <p class="cta-box-title">分割やローンで借りた場合の返済額も気になったら</p>
+  <p>借入額・金利・期間から毎月の返済額と利息総額を計算できます。元利均等・元金均等の比較や金利±1%の影響もその場で確認できます。</p>
+  <a class="cta-btn" href="../hensai/">ローン返済額を無料でシミュレーションする</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+
+<h2 id="shikumi">リボ払いの仕組み(定額方式と残高スライド方式)</h2>
+<p>リボ払い(リボルビング払い)は、利用額や件数にかかわらず<strong>毎月の支払額をあらかじめ決めた額に固定する</strong>支払い方式です。支払いには残高に応じた手数料が上乗せされ、<strong>多くのカードで実質年率15.0%前後</strong>に設定されています。方式は大きく2つあります。</p>
+<ul>
+  <li><strong>定額方式</strong> — 残高がいくらでも毎月の支払額が一定。本ツールはこの方式をモデルにしています。</li>
+  <li><strong>残高スライド方式</strong> — 残高の水準に応じて支払額が段階的に変わる方式。残高が増えると支払額も増えますが、増え方が緩やかだと完済までの期間は長くなりがちです。</li>
+</ul>
+<p>リボ払いの怖さは、<strong>支払額が一定なせいで「いくら使ったか」と「毎月いくら出ていくか」が切り離される</strong>ことにあります。分割払いなら「10万円を10回で」と終わりが見えますが、リボは残高が増えても月々の負担が変わらないため、手数料を払い続けている感覚が持ちにくいのです。まずは本ツールで、今の残高と支払額のままだと完済がいつになるのかを確認してみてください。</p>
+
+<h2 id="teigaku">最低支払額を下げると完済が遠のく構造</h2>
+<p>毎月の支払額のうち、手数料を引いた残りだけが元本の返済に充てられます。実質年率15.0%なら、手数料は毎月およそ「残高×1.25%」。つまり<strong>残高10万円なら月約1,250円、残高30万円なら月約3,750円が手数料に消え、元本はその残りでしか減りません</strong>。</p>
+<p>ここから、支払額を下げたときの影響が見えてきます。計算例(実質年率15.0%)を比べてみてください。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>条件(計算例)</th><th>完済までの期間</th><th>手数料総額</th></tr></thead>
+  <tbody>
+    <tr><td>残高10万円・月10,000円</td><td>11ヶ月</td><td>7,503円</td></tr>
+    <tr><td>残高10万円・月5,000円</td><td>24ヶ月</td><td>15,795円</td></tr>
+    <tr><td>残高10万円・月3,000円</td><td>44ヶ月(3年8ヶ月)</td><td>30,170円</td></tr>
+    <tr><td>残高30万円・月5,000円</td><td>112ヶ月(9年4ヶ月)</td><td>約25万8,000円</td></tr>
+    <tr><td>残高40万円・月5,000円</td><td>完済できない</td><td>手数料だけで月5,000円</td></tr>
+  </tbody>
+</table>
+</div>
+<p>支払額が手数料に近づくほど元本の減りが遅くなり、完済は加速度的に遠のきます。残高40万円・実質年率15.0%では初月の手数料が5,000円ちょうどになるため、月5,000円の支払いでは<strong>元本が1円も減りません</strong>。「月々の負担を軽くする」ための減額設定が、支払う総額を大きく増やす方向に働くことは、構造として知っておくべきです。</p>
+
+<h2 id="matome">繰り上げ返済(まとめ払い)の効果</h2>
+<p>リボ払いの手数料は残高に対して毎月かかるため、<strong>残高を早く減らすことがそのまま手数料の節約</strong>になります。多くのカードには、毎月の定額とは別にまとめて支払う仕組み(まとめ払い・増額返済・一括返済)が用意されています。ボーナスや臨時収入があったときに残高をまとめて減らせば、その分に以後かかるはずだった手数料が丸ごとなくなります。</p>
+<p>効果の方向性はローンの繰り上げ返済と同じで、<strong>早いほど・多いほど効きます</strong>。特にリボは手数料率が高めなぶん、同じ1万円の繰り上げでも利息の圧縮効果は低金利のローンより大きくなります。手続きの方法(会員サイト・電話・提携ATMなど)や反映のタイミングはカードによって異なるため、カード会社の案内で確認してください。また、新たな買い物をリボに追加すれば残高は元に戻ってしまいます。まとめ払いと同時に、リボでの新規利用を止める(支払方法の設定を見直す)ことも重要です。</p>
+
+<h2 id="kurushii">返済が苦しくなったときの選択肢</h2>
+<p>リボ残高が膨らんで支払いが苦しいと感じたときの、一般的な選択肢を挙げます。</p>
+<ul>
+  <li><strong>毎月の支払額の増額</strong> — 可能な範囲で支払額を上げるだけで、手数料の発生期間が短くなり総額が減ります。上の計算例のとおり、月5,000円→10,000円で手数料が半分以下になるケースもあります。</li>
+  <li><strong>借り換えの検討</strong> — より低い金利のローンで残高をまとめて返済し、以後はそのローンを返していく方法です。ただし審査があり、金利・手数料・返済期間の条件次第では負担が軽くならない場合もあります。借り換え後にまたリボを使ってしまうと残高が二重になる点にも注意が必要です。</li>
+  <li><strong>専門家・公的窓口への相談</strong> — 収入に対して返済の目処が立たない場合は、ひとりで抱え込まず、弁護士・司法書士等の専門家や、自治体・公的機関の借金相談窓口に早めに相談してください。状況に応じた法的な手続きの説明を受けられます。</li>
+</ul>
+<p>大切なのは、<strong>現状を数字で把握すること</strong>です。残高・支払額・手数料率を本ツールに入れて、完済までの期間と手数料総額をまず確認する。そのうえで、無理のない範囲で支払額を上げる、まとめ払いで残高を削る、それでも難しければ相談する、という順で動くのが基本です。</p>
+
+<h2 id="faq">よくある質問</h2>
+
+<details class="faq">
+  <summary>リボ払いの手数料率はどれくらい?</summary>
+  <p>多くのカードで実質年率15.0%前後に設定されています。手数料は毎月の残高に対してかかるため、残高が減らない限り毎月発生し続けます。正確な料率はお使いのカードの会員規約・明細で確認してください。</p>
+</details>
+
+<details class="faq">
+  <summary>毎月の支払額を上げるとどれくらい早く終わる?</summary>
+  <p>利用額10万円・実質年率15.0%の計算例では、月5,000円だと完済まで24ヶ月・手数料15,795円ですが、月10,000円なら11ヶ月・7,503円です。支払額を2倍にすると期間も手数料も半分以下になる計算です。</p>
+</details>
+
+<details class="faq">
+  <summary>リボ残高をまとめて支払うことはできる?</summary>
+  <p>多くのカードで、まとめ払い・増額返済・一括返済の仕組みが用意されています。まとめて払った分は元本から直接減るため、以後の手数料がかからなくなります。手続き方法はカードにより異なるので、カード会社の案内で確認してください。</p>
+</details>
+
+<details class="faq">
+  <summary>支払いが苦しいときはどうすればいい?</summary>
+  <p>一般的には、(1)可能な範囲で毎月の支払額を増額する、(2)より低い金利のローンへの借り換えを検討する、(3)返済の目処が立たない場合は弁護士・司法書士等の専門家や公的な相談窓口に相談する、の順で考えるのが基本です。借り換えは条件次第で、必ず負担が軽くなるとは限りません。</p>
+</details>
+
+<h2>関連ツール</h2>
+<p>分割やローンで借りた場合の毎月返済額・利息総額は <a href="../hensai/">ローン返済シミュレーター</a> で計算できます。返済の目処がついたら、姉妹サイトの <a href="../../tsumitate/simulator/">つみたてシミュレーター(姉妹サイト)</a> で積立の計画もどうぞ。</p>
+
+<!-- AD-SLOT: cardloan -->
+</article>
+
+<section class="related">
+  <p class="related-title">あわせて使いたい計算ツール</p>
+  <div class="card-grid">
+    <a class="card" href="../hensai/">
+      <h3>ローン返済シミュレーター</h3>
+      <p>借入額・年利・期間から毎月返済額と利息総額を計算。元利均等・元金均等に対応しています。</p>
+    </a>
+    <a class="card" href="../">
+      <h3>ローン電卓トップ</h3>
+      <p>ローンの返済とリボ払いに関する無料計算ツールの一覧です。</p>
+    </a>
+    <a class="card" href="../../tsumitate/simulator/">
+      <h3>つみたてシミュレーター</h3>
+      <p>毎月いくら×何年でいくらになる?複利の積立計算は姉妹サイトでどうぞ。</p>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ローン電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var yen = function (n) { return Math.round(n).toLocaleString("ja-JP") + "円"; };
+
+  function fmtSpan(months) {
+    var y = Math.floor(months / 12);
+    var m = months % 12;
+    if (y === 0) return m + "ヶ月";
+    if (m === 0) return months + "ヶ月(" + y + "年)";
+    return months + "ヶ月(" + y + "年" + m + "ヶ月)";
+  }
+
+  function addRow(tbody, cells) {
+    var tr = document.createElement("tr");
+    cells.forEach(function (c) {
+      var td = document.createElement("td");
+      td.textContent = c;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  }
+
+  function calc() {
+    var P = Math.max(0, parseFloat($("riyo").value) || 0);
+    var pmt = Math.max(0, parseFloat($("shiharai").value) || 0);
+    var annual = Math.max(0, parseFloat($("ritsu").value) || 0);
+    var r = annual / 12 / 100;
+
+    var resultMain = $("resultMain");
+    var summaryBody = $("summaryBody");
+    var timelineBody = $("timelineBody");
+    summaryBody.innerHTML = "";
+    timelineBody.innerHTML = "";
+    resultMain.innerHTML = "";
+
+    if (P <= 0 || pmt <= 0) {
+      resultMain.textContent = "利用額と毎月の支払額を入力してください。";
+      $("resultNote").textContent = "";
+      $("resultBox").style.display = "";
+      return;
+    }
+
+    // 支払額が月々の手数料(残高×年率÷12)以下なら残高が減らず完済できない
+    var firstFee = P * r;
+    if (pmt <= firstFee) {
+      var strongW = document.createElement("strong");
+      strongW.textContent = "この条件では完済できません。";
+      resultMain.appendChild(strongW);
+      resultMain.appendChild(document.createTextNode(
+        " 残高" + yen(P) + "に対する初月の手数料は約" + yen(firstFee) +
+        "で、毎月の支払額" + yen(pmt) + "が手数料以下のため、元本が減りません。支払額の増額が必要です。"));
+      $("resultNote").textContent = "支払額を初月手数料(約" + yen(firstFee) + ")より大きい金額にして再計算してください。";
+      $("resultBox").style.display = "";
+      return;
+    }
+
+    // 月次シミュレーション: 毎月、手数料 = 残高×年率/12/100 を加算し、支払額を引く
+    var bal = P;
+    var months = 0;
+    var totalFee = 0;
+    var totalPaid = 0;
+    var halfMonth = null;
+    var yearEnds = []; // 12ヶ月ごとの支払い後残高
+    var LIMIT = 1200;  // 100年で打ち切り(安全弁)
+
+    while (bal > 0.005 && months < LIMIT) {
+      months++;
+      var fee = bal * r;
+      totalFee += fee;
+      bal += fee;
+      var pay = Math.min(pmt, bal); // 最終回は残額のみ
+      totalPaid += pay;
+      bal -= pay;
+      if (halfMonth === null && bal <= P / 2) halfMonth = months;
+      if (months % 12 === 0 && bal > 0.005) yearEnds.push({ m: months, bal: bal });
+    }
+
+    if (months >= LIMIT && bal > 0.005) {
+      var strongL = document.createElement("strong");
+      strongL.textContent = "完済まで100年以上かかる計算です。";
+      resultMain.appendChild(strongL);
+      resultMain.appendChild(document.createTextNode(" 支払額の増額を検討してください。"));
+      $("resultNote").textContent = "";
+      $("resultBox").style.display = "";
+      return;
+    }
+
+    var strong = document.createElement("strong");
+    strong.textContent = "完済まで " + fmtSpan(months) + "・手数料総額 約 " +
+      Math.round(totalFee).toLocaleString("ja-JP") + "円";
+    resultMain.appendChild(strong);
+    resultMain.appendChild(document.createTextNode(
+      "(" + yen(P) + "の利用が、総支払額 約 " + Math.round(totalPaid).toLocaleString("ja-JP") + "円になります)"));
+
+    addRow(summaryBody, ["完済までの期間", fmtSpan(months)]);
+    addRow(summaryBody, ["手数料総額", yen(totalFee)]);
+    addRow(summaryBody, ["総支払額(元本+手数料)", yen(totalPaid)]);
+    addRow(summaryBody, ["残高が半分になるのは", halfMonth ? halfMonth + "ヶ月目" : "-"]);
+
+    // 推移テーブル: 開始 → 残高半分 → 12ヶ月ごと → 完済
+    var events = [{ m: 0, label: "開始時", bal: P, memo: "毎月" + yen(pmt) + "を支払い" }];
+    if (halfMonth && halfMonth < months) {
+      events.push({ m: halfMonth, label: halfMonth + "ヶ月目", bal: P / 2, memo: "残高がようやく半分に", half: true });
+    }
+    yearEnds.forEach(function (e) {
+      events.push({ m: e.m, label: e.m + "ヶ月目(" + (e.m / 12) + "年)", bal: e.bal, memo: "" });
+    });
+    events.push({ m: months, label: months + "ヶ月目", bal: 0, memo: "完済" });
+    events.sort(function (a, b) { return a.m - b.m || (a.half ? -1 : 1); });
+    events.forEach(function (e) {
+      addRow(timelineBody, [e.label, e.half ? "約" + yen(e.bal) + "以下" : yen(e.bal), e.memo]);
+    });
+
+    $("resultNote").textContent =
+      "利用額" + yen(P) + "・毎月" + yen(pmt) + "・実質年率" + annual +
+      "%(定額方式)での試算です。日割り計算・締め日・新たな利用は反映していません。正確な金額はカード会社の明細で確認してください。";
+
+    $("resultBox").style.display = "";
+  }
+
+  $("calcBtn").addEventListener("click", calc);
+})();
+</script>
+</body>
+</html>
