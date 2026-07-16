@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>画像リサイズ・圧縮ツール(JPEG/PNG/WebP対応)|ラクツール</title>
+<meta name="description" content="画像をブラウザ上で無料でリサイズ・圧縮できるツール。JPEG・PNG・WebP対応、幅・長辺指定やSNSアイコン用の正方形トリミングも可能。画像はサーバーに一切アップロードされないので安心です。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 36px 16px;
+    text-align: center;
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: border-color 0.12s ease, background 0.12s ease;
+    margin-bottom: 16px;
+  }
+  .drop-zone.dragover { border-color: var(--accent); background: var(--accent-weak); }
+  .drop-zone strong { color: var(--text); }
+  .privacy-banner {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--accent-weak);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 14px; }
+  .preset-row .btn-secondary { padding: 6px 14px; font-size: 0.88rem; }
+  .result-item { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+  .result-item img.thumb {
+    width: 96px; height: 96px; object-fit: contain;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .result-item .result-meta { flex: 1 1 220px; font-size: 0.92rem; }
+  .result-item .result-meta .fname { font-weight: 600; word-break: break-all; }
+  .result-item .saving { font-weight: 700; color: var(--accent); }
+  .result-item .grew { font-weight: 700; }
+  .result-item .btn { margin-top: 8px; padding: 8px 18px; font-size: 0.92rem; }
+  .result-error { border-left: 4px solid #c0392b; }
+  .warn-text { color: #b3541e; font-size: 0.85rem; }
+  #qualityVal { font-weight: 700; }
+</style>
+<link rel="canonical" href="https://hakarigoto.github.io/tools/image-resize/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/tools/image-resize/">
+<meta property="og:site_name" content="ラクツール">
+<meta property="og:title" content="画像リサイズ・圧縮ツール(JPEG/PNG/WebP対応)|ラクツール">
+<meta property="og:description" content="画像をブラウザ上で無料でリサイズ・圧縮できるツール。JPEG・PNG・WebP対応、幅・長辺指定やSNSアイコン用の正方形トリミングも可能。画像はサーバーに一切アップロードされないので安心です。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../../">ラク<span>ツール</span></a><nav class="site-nav"><a href="../../#tools">ツール一覧</a><a href="../../blog/">コラム</a><a href="../../about/">このサイトについて</a></nav></div></header>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="../../">ホーム</a> &gt; <a href="../../#tools">ツール一覧</a> &gt; 画像リサイズ・圧縮</nav>
+
+  <div class="page-head">
+    <h1>画像リサイズ・圧縮ツール</h1>
+    <p class="lead">JPEG・PNG・WebP画像をブラウザだけでリサイズ&amp;圧縮。メール添付やWebサイト用に、画像をサッと軽くできます。複数ファイル対応・インストール不要・完全無料。</p>
+  </div>
+
+  <section class="tool-panel">
+    <div class="privacy-banner">
+      <span aria-hidden="true">🔒</span>
+      <span>画像はブラウザ内で処理され、サーバーには一切アップロードされません。機密資料や個人の写真も安心してご利用いただけます。</span>
+    </div>
+
+    <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="画像ファイルを選択">
+      <strong>ここに画像をドラッグ&amp;ドロップ</strong><br>
+      またはクリックしてファイルを選択(JPEG / PNG / WebP、複数可)
+    </div>
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple hidden>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="modeSelect">リサイズ方法</label>
+        <select id="modeSelect">
+          <option value="longest" selected>長辺を指定</option>
+          <option value="width">幅を指定</option>
+          <option value="height">高さを指定</option>
+          <option value="percent">パーセント指定</option>
+          <option value="icon">正方形トリミング(アイコン用)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sizeValue" id="sizeLabel">長辺のサイズ(px)</label>
+        <input type="number" id="sizeValue" value="1920" min="1" step="1">
+      </div>
+      <div class="field">
+        <label for="formatSelect">出力形式</label>
+        <select id="formatSelect">
+          <option value="image/jpeg" selected>JPEG(写真向き・軽い)</option>
+          <option value="image/png">PNG(透過を維持)</option>
+          <option value="image/webp">WebP(透過対応・最軽量)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="preset-row">
+      <button type="button" class="btn btn-secondary" data-preset="1920">長辺1920px</button>
+      <button type="button" class="btn btn-secondary" data-preset="1280">長辺1280px</button>
+      <button type="button" class="btn btn-secondary" data-preset="800">長辺800px</button>
+      <button type="button" class="btn btn-secondary" data-preset="icon">SNSアイコン 400×400</button>
+    </div>
+
+    <div class="field" id="qualityField">
+      <label for="qualitySlider">JPEG/WebP品質: <span id="qualityVal">0.80</span></label>
+      <input type="range" id="qualitySlider" min="0.5" max="0.95" step="0.05" value="0.8" style="width:100%;">
+      <p class="note" style="margin:4px 0 0;">数値が低いほどファイルは軽く、画質は粗くなります。0.7〜0.85がバランスの良い範囲です。</p>
+    </div>
+
+    <div class="field">
+      <label style="font-weight:600;"><input type="checkbox" id="noUpscale" checked style="width:auto;margin-right:6px;">元の画像より大きくしない(拡大しない)</label>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="processBtn" disabled>リサイズ・圧縮する</button>
+      <button type="button" class="btn btn-secondary" id="clearBtn">クリア</button>
+    </div>
+
+    <p class="note" id="statusNote" style="margin-top:12px;"></p>
+    <div id="results"></div>
+  </section>
+
+  <article class="article">
+    <h2>使い方</h2>
+    <ol>
+      <li>点線の枠に画像を<strong>ドラッグ&amp;ドロップ</strong>するか、枠をクリック(スマホはタップ)して画像を選びます。複数ファイルをまとめて選択できます。</li>
+      <li>リサイズ方法を選びます。迷ったら「長辺を指定」のまま、プリセットボタン(1920px/1280px/800px)を押すのが簡単です。SNSのプロフィール画像を作りたいときは「SNSアイコン 400×400」を押すと、画像の中央を正方形に切り抜いて400×400pxに整えます。</li>
+      <li>出力形式(JPEG/PNG/WebP)と、JPEG・WebPの場合は品質スライダーを調整します。</li>
+      <li>「リサイズ・圧縮する」を押すと、ファイルごとに変換前後のピクセル寸法・ファイル容量・削減率が表示されます。プレビューを確認して、各ファイルの「ダウンロード」ボタンで保存してください。ファイル名は「元のファイル名_resized.拡張子」になります。</li>
+    </ol>
+    <p><strong>処理はすべてお使いの端末のブラウザ内で完結します。</strong>画像がインターネット上に送信されることはないため、社外秘の資料や家族の写真でも安心して使えます。通信も発生しないので、大きな画像でも待ち時間はほとんどありません。</p>
+
+    <h2>画像を軽くする目安 ― メール添付・Web掲載</h2>
+    <p>スマホやデジカメで撮った写真は、1枚で3〜10MB・長辺4000px以上になることが珍しくありません。しかし実際の用途では、そこまでの大きさが必要な場面はまれです。用途別の目安は次のとおりです。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>用途</th><th>おすすめの長辺</th><th>容量の目安</th></tr>
+        <tr><td>メール添付(ビジネス)</td><td>1280〜1920px</td><td>1枚 500KB以下、合計2〜3MBまで</td></tr>
+        <tr><td>Webサイト・ブログ掲載</td><td>1200〜1920px</td><td>1枚 200〜500KB</td></tr>
+        <tr><td>資料(Word/PowerPoint)への貼り付け</td><td>800〜1280px</td><td>1枚 100〜300KB</td></tr>
+        <tr><td>SNSアイコン・プロフィール画像</td><td>400×400px</td><td>100KB以下</td></tr>
+        <tr><td>印刷用(A4フチなし想定)</td><td>3000px以上</td><td>リサイズ非推奨</td></tr>
+      </table>
+    </div>
+    <p>特にメールは、多くの企業で受信できる添付ファイルの上限が10MB前後に設定されており、相手の環境によってはそれ以下のこともあります。マナーとしては<strong>添付の合計を2〜3MB以内</strong>に収めるのが無難です。写真を数枚添付するなら、1枚あたり長辺1280px・品質0.8程度に圧縮すれば、見た目をほとんど損なわずに合計容量を大幅に減らせます。逆に、あとから印刷したり切り抜いたりする可能性がある「原本」は、リサイズ前のファイルを別に残しておきましょう。</p>
+
+    <h2>JPEG・PNG・WebPの違いと使い分け</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>形式</th><th>圧縮方式</th><th>透過</th><th>向いている用途</th></tr>
+        <tr><td>JPEG</td><td>非可逆(画質を少し犠牲に大幅圧縮)</td><td>×(白背景になる)</td><td>写真全般。もっとも互換性が高い</td></tr>
+        <tr><td>PNG</td><td>可逆(画質劣化なし)</td><td>○</td><td>ロゴ・図表・スクリーンショット・透過が必要な画像</td></tr>
+        <tr><td>WebP</td><td>非可逆/可逆(JPEGより2〜3割軽い)</td><td>○</td><td>Web掲載全般。軽さ最優先のとき</td></tr>
+      </table>
+    </div>
+    <p><strong>JPEG</strong>は写真向きの定番形式です。人の目に気づかれにくい部分の情報を間引いて圧縮するため、風景や人物写真なら品質0.8前後でも見た目はほぼ変わらず、容量は大きく減ります。ただし文字やベタ塗りの多い画像では輪郭ににじみ(モスキートノイズ)が出やすく、透過情報は保持できません。</p>
+    <p><strong>PNG</strong>は劣化のない可逆圧縮で、スクリーンショットやロゴ、図表に最適です。反面、写真をPNGにすると容量がかえって大きくなることが多いため、写真には向きません。</p>
+    <p><strong>WebP</strong>はGoogleが開発した比較的新しい形式で、同じ見た目ならJPEGより2〜3割軽く、PNGのような透過も扱えます。現在は主要ブラウザすべてで表示でき、Webサイト用途なら第一候補になります。ただし、古いソフトや一部の官公庁システムでは開けないことがあるため、メール添付など相手の環境が不明な場合はJPEGが無難です。</p>
+
+    <h3>透過PNGを変換するときの注意</h3>
+    <p>背景が透明なPNG(透過PNG)をJPEGに変換すると、JPEGは透過を表現できないため、このツールでは<strong>透明部分を白色で塗りつぶして</strong>出力します。透過を保ったまま軽くしたい場合は、出力形式にPNGまたはWebPを選んでください。</p>
+
+    <h3>画質と容量のトレードオフ</h3>
+    <p>ファイル容量は「ピクセル数 × 1ピクセルあたりの情報量」でほぼ決まります。つまり容量を減らす方法は大きく2つ、<strong>①ピクセル寸法を小さくする(リサイズ)</strong>と<strong>②圧縮率を上げる(品質を下げる)</strong>です。効果が大きいのは①で、長辺4000pxの写真を1280pxにすると面積は約1/10になり、容量もおおむねそれに比例して減ります。②の品質は下げすぎると写真がざらついて見えるため、まず寸法を用途に合わせて落とし、そのうえで品質0.7〜0.85の範囲で微調整するのがおすすめです。変換後は必ずプレビューと削減率を確認しましょう。</p>
+
+    <h3>スマホでの使い方</h3>
+    <p>このツールはスマートフォンのブラウザ(Safari/Chrome)でもそのまま動きます。ファイル選択欄をタップすると「フォトライブラリ」や「写真を撮る」が選べるので、その場で撮影した写真を圧縮することも可能です。ダウンロードした画像は、iPhoneでは「ファイル」アプリのダウンロードフォルダ、Androidでは「ダウンロード」フォルダに保存されます。アプリのインストールが不要なので、会社支給の端末でも使いやすいのが利点です。</p>
+
+    <h2>よくある質問</h2>
+    <details class="faq">
+      <summary>画像がサーバーに送信されることはありませんか?</summary>
+      <p>ありません。このツールはJavaScriptのCanvas APIを使い、すべての処理をお使いのブラウザ内で行います。画像データが外部に送信されることは一切なく、ページを閉じればデータは残りません。機密性の高い画像でも安心してご利用ください。</p>
+    </details>
+    <details class="faq">
+      <summary>対応しているファイル形式は何ですか?</summary>
+      <p>読み込みはJPEG・PNG・WebPに対応しています。出力もJPEG・PNG・WebPから選べます。HEIC(iPhoneの標準形式)は直接読み込めないため、iPhoneの設定で「互換性優先」にして撮影するか、共有時にJPEGへ変換してからご利用ください。</p>
+    </details>
+    <details class="faq">
+      <summary>複数の画像をまとめて処理できますか?</summary>
+      <p>できます。ファイル選択やドラッグ&amp;ドロップで複数の画像を渡すと、1枚ずつ順番に処理され、それぞれにダウンロードボタンが表示されます。同じ設定が全ファイルに適用されるので、写真をまとめて同じサイズに揃えたいときに便利です。</p>
+    </details>
+    <details class="faq">
+      <summary>透過PNGをJPEGにすると背景はどうなりますか?</summary>
+      <p>JPEGは透過情報を持てないため、透明だった部分は白色で塗りつぶされます。透過を維持したい場合は、出力形式にPNGまたはWebPを選択してください。どちらも透過を保ったまま出力できます。</p>
+    </details>
+    <details class="faq">
+      <summary>「拡大しない」チェックはどういう意味ですか?</summary>
+      <p>指定したサイズが元画像より大きい場合に、無理に引き伸ばさず元のサイズのまま出力する設定です。小さい画像を拡大すると画質がぼやけて劣化するだけなので、通常はオンのままをおすすめします。意図的に拡大したい場合のみチェックを外してください。</p>
+    </details>
+    <details class="faq">
+      <summary>元の画像は上書きされますか?</summary>
+      <p>いいえ。元のファイルには一切手を加えません。変換結果は「元のファイル名_resized.拡張子」という別ファイルとしてダウンロードされるので、原本はそのまま残ります。</p>
+    </details>
+  </article>
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "画像がサーバーに送信されることはありませんか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ありません。このツールはJavaScriptのCanvas APIを使い、すべての処理をお使いのブラウザ内で行います。画像データが外部に送信されることは一切なく、ページを閉じればデータは残りません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "対応しているファイル形式は何ですか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "読み込みはJPEG・PNG・WebPに対応しています。出力もJPEG・PNG・WebPから選べます。HEICは直接読み込めないため、JPEGへ変換してからご利用ください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "複数の画像をまとめて処理できますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "できます。複数の画像を渡すと1枚ずつ順番に処理され、それぞれにダウンロードボタンが表示されます。同じ設定が全ファイルに適用されます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "透過PNGをJPEGにすると背景はどうなりますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "JPEGは透過情報を持てないため、透明だった部分は白色で塗りつぶされます。透過を維持したい場合は、出力形式にPNGまたはWebPを選択してください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "「拡大しない」チェックはどういう意味ですか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "指定したサイズが元画像より大きい場合に、無理に引き伸ばさず元のサイズのまま出力する設定です。拡大は画質劣化の原因になるため、通常はオンのままをおすすめします。" }
+    },
+    {
+      "@type": "Question",
+      "name": "元の画像は上書きされますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "いいえ。元のファイルには一切手を加えません。変換結果は「元のファイル名_resized.拡張子」という別ファイルとしてダウンロードされるので、原本はそのまま残ります。" }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  var dropZone = document.getElementById("dropZone");
+  var fileInput = document.getElementById("fileInput");
+  var modeSelect = document.getElementById("modeSelect");
+  var sizeValue = document.getElementById("sizeValue");
+  var sizeLabel = document.getElementById("sizeLabel");
+  var formatSelect = document.getElementById("formatSelect");
+  var qualitySlider = document.getElementById("qualitySlider");
+  var qualityVal = document.getElementById("qualityVal");
+  var qualityField = document.getElementById("qualityField");
+  var noUpscale = document.getElementById("noUpscale");
+  var processBtn = document.getElementById("processBtn");
+  var clearBtn = document.getElementById("clearBtn");
+  var statusNote = document.getElementById("statusNote");
+  var resultsEl = document.getElementById("results");
+
+  var selectedFiles = [];
+  var objectUrls = [];
+  var processing = false;
+
+  var ACCEPTED = { "image/jpeg": true, "image/png": true, "image/webp": true };
+  var HUGE_PX = 8000;
+
+  var MODE_LABELS = {
+    longest: "長辺のサイズ(px)",
+    width: "幅(px)",
+    height: "高さ(px)",
+    percent: "縮小率(%)",
+    icon: "正方形の一辺(px)"
+  };
+  var MODE_DEFAULTS = { longest: 1920, width: 1920, height: 1080, percent: 50, icon: 400 };
+
+  // ---- UI wiring -----------------------------------------------------------
+
+  modeSelect.addEventListener("change", function () {
+    sizeLabel.textContent = MODE_LABELS[modeSelect.value];
+    sizeValue.value = MODE_DEFAULTS[modeSelect.value];
+  });
+
+  qualitySlider.addEventListener("input", function () {
+    qualityVal.textContent = Number(qualitySlider.value).toFixed(2);
+  });
+
+  formatSelect.addEventListener("change", function () {
+    var isPng = formatSelect.value === "image/png";
+    qualitySlider.disabled = isPng;
+    qualityField.style.opacity = isPng ? "0.45" : "1";
+  });
+
+  var presetButtons = document.querySelectorAll("[data-preset]");
+  for (var i = 0; i < presetButtons.length; i++) {
+    presetButtons[i].addEventListener("click", function () {
+      var p = this.getAttribute("data-preset");
+      if (p === "icon") {
+        modeSelect.value = "icon";
+        sizeValue.value = 400;
+      } else {
+        modeSelect.value = "longest";
+        sizeValue.value = p;
+      }
+      sizeLabel.textContent = MODE_LABELS[modeSelect.value];
+      if (selectedFiles.length && !processing) runAll();
+    });
+  }
+
+  dropZone.addEventListener("click", function () { fileInput.click(); });
+  dropZone.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }
+  });
+  dropZone.addEventListener("dragover", function (e) {
+    e.preventDefault();
+    dropZone.classList.add("dragover");
+  });
+  dropZone.addEventListener("dragleave", function () {
+    dropZone.classList.remove("dragover");
+  });
+  dropZone.addEventListener("drop", function (e) {
+    e.preventDefault();
+    dropZone.classList.remove("dragover");
+    if (e.dataTransfer && e.dataTransfer.files) acceptFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener("change", function () {
+    acceptFiles(fileInput.files);
+    fileInput.value = "";
+  });
+
+  function acceptFiles(fileList) {
+    selectedFiles = Array.prototype.slice.call(fileList);
+    processBtn.disabled = selectedFiles.length === 0;
+    if (selectedFiles.length) {
+      setStatus(selectedFiles.length + " 個のファイルを読み込みました。設定を確認して「リサイズ・圧縮する」を押してください。");
+    }
+  }
+
+  function setStatus(msg) { statusNote.textContent = msg; }
+
+  clearBtn.addEventListener("click", function () {
+    selectedFiles = [];
+    processBtn.disabled = true;
+    resultsEl.textContent = "";
+    setStatus("");
+    revokeAll();
+  });
+
+  function revokeAll() {
+    for (var j = 0; j < objectUrls.length; j++) URL.revokeObjectURL(objectUrls[j]);
+    objectUrls = [];
+  }
+
+  processBtn.addEventListener("click", runAll);
+
+  // ---- Processing ----------------------------------------------------------
+
+  function runAll() {
+    if (processing || !selectedFiles.length) return;
+    var val = parseInt(sizeValue.value, 10);
+    if (!isFinite(val) || val < 1) {
+      setStatus("サイズには1以上の数値を指定してください。");
+      return;
+    }
+    processing = true;
+    processBtn.disabled = true;
+    resultsEl.textContent = "";
+    revokeAll();
+
+    var settings = {
+      mode: modeSelect.value,
+      value: val,
+      mime: formatSelect.value,
+      quality: Number(qualitySlider.value),
+      noUpscale: noUpscale.checked
+    };
+
+    var idx = 0;
+    function next() {
+      if (idx >= selectedFiles.length) {
+        processing = false;
+        processBtn.disabled = false;
+        setStatus(selectedFiles.length + " 個のファイルの処理が完了しました。すべてブラウザ内で処理され、外部への送信はありません。");
+        return;
+      }
+      var file = selectedFiles[idx];
+      setStatus("処理中… (" + (idx + 1) + "/" + selectedFiles.length + ") " + file.name);
+      idx++;
+      processFile(file, settings)
+        .then(function (node) { resultsEl.appendChild(node); })
+        .catch(function (err) {
+          resultsEl.appendChild(errorBox(file.name, err && err.message ? err.message : "処理に失敗しました。"));
+        })
+        .then(next);
+    }
+    next();
+  }
+
+  function processFile(file, s) {
+    if (!ACCEPTED[file.type]) {
+      return Promise.reject(new Error("画像ファイル(JPEG/PNG/WebP)ではないためスキップしました。"));
+    }
+    return loadImage(file).then(function (img) {
+      var w = img.naturalWidth, h = img.naturalHeight;
+      if (!w || !h) throw new Error("画像を読み取れませんでした。ファイルが壊れている可能性があります。");
+
+      var warn = "";
+      if (w > HUGE_PX || h > HUGE_PX) {
+        warn = "注意: " + w + "×" + h + "px の巨大な画像です。端末によっては処理に時間がかかるか、失敗することがあります。";
+      }
+
+      var d = computeDimensions(w, h, s);
+      var canvas = document.createElement("canvas");
+      canvas.width = d.dw;
+      canvas.height = d.dh;
+      var ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("お使いのブラウザではCanvasが利用できません。");
+      if (s.mime === "image/jpeg") {
+        // JPEGは透過を持てないため、透明部分は白で塗りつぶす
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, d.dw, d.dh);
+      }
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(img, d.sx, d.sy, d.sw, d.sh, 0, 0, d.dw, d.dh);
+
+      return canvasToBlob(canvas, s.mime, s.quality).then(function (blob) {
+        if (!blob) throw new Error("この形式への変換に失敗しました。別の出力形式をお試しください。");
+        var actualMime = blob.type || s.mime;
+        if (actualMime !== s.mime) {
+          warn += (warn ? " " : "") + "お使いのブラウザは" + mimeLabel(s.mime) + "出力に未対応のため、" + mimeLabel(actualMime) + "で出力しました。";
+        }
+        return buildResult(file, blob, actualMime, w, h, d.dw, d.dh, warn);
+      });
+    });
+  }
+
+  function loadImage(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = function () {
+        URL.revokeObjectURL(url);
+        reject(new Error("画像の読み込みに失敗しました。対応していない形式か、ファイルが壊れている可能性があります。"));
+      };
+      img.src = url;
+    });
+  }
+
+  function canvasToBlob(canvas, mime, quality) {
+    return new Promise(function (resolve) {
+      var q = (mime === "image/png") ? undefined : quality;
+      canvas.toBlob(function (blob) { resolve(blob); }, mime, q);
+    });
+  }
+
+  // 戻り値: 元画像の切り出し範囲 (sx,sy,sw,sh) と出力サイズ (dw,dh)
+  function computeDimensions(w, h, s) {
+    var sx = 0, sy = 0, sw = w, sh = h, dw = w, dh = h, v = s.value;
+
+    if (s.mode === "icon") {
+      var side = Math.min(w, h);
+      sx = Math.floor((w - side) / 2);
+      sy = Math.floor((h - side) / 2);
+      sw = side;
+      sh = side;
+      var target = s.noUpscale ? Math.min(v, side) : v;
+      dw = target;
+      dh = target;
+    } else if (s.mode === "width") {
+      var tw = s.noUpscale ? Math.min(v, w) : v;
+      dw = tw;
+      dh = Math.round(h * tw / w);
+    } else if (s.mode === "height") {
+      var th = s.noUpscale ? Math.min(v, h) : v;
+      dh = th;
+      dw = Math.round(w * th / h);
+    } else if (s.mode === "percent") {
+      var p = v / 100;
+      if (s.noUpscale) p = Math.min(p, 1);
+      dw = Math.round(w * p);
+      dh = Math.round(h * p);
+    } else { // longest
+      var longest = Math.max(w, h);
+      var tl = s.noUpscale ? Math.min(v, longest) : v;
+      var scale = tl / longest;
+      dw = Math.round(w * scale);
+      dh = Math.round(h * scale);
+    }
+    dw = Math.max(1, dw);
+    dh = Math.max(1, dh);
+    return { sx: sx, sy: sy, sw: sw, sh: sh, dw: dw, dh: dh };
+  }
+
+  // ---- Result rendering ----------------------------------------------------
+
+  function buildResult(file, blob, mime, ow, oh, dw, dh, warn) {
+    var url = URL.createObjectURL(blob);
+    objectUrls.push(url);
+
+    var box = document.createElement("div");
+    box.className = "result-box result-item";
+
+    var thumb = document.createElement("img");
+    thumb.className = "thumb";
+    thumb.src = url;
+    thumb.alt = "変換後のプレビュー: " + file.name;
+    box.appendChild(thumb);
+
+    var meta = document.createElement("div");
+    meta.className = "result-meta";
+
+    var nameEl = document.createElement("div");
+    nameEl.className = "fname";
+    nameEl.textContent = file.name;
+    meta.appendChild(nameEl);
+
+    var dims = document.createElement("div");
+    dims.textContent = ow + "×" + oh + "px → " + dw + "×" + dh + "px";
+    meta.appendChild(dims);
+
+    var sizes = document.createElement("div");
+    var delta = file.size > 0 ? (1 - blob.size / file.size) * 100 : 0;
+    sizes.textContent = formatBytes(file.size) + " → " + formatBytes(blob.size) + " ";
+    var deltaEl = document.createElement("span");
+    if (delta >= 0) {
+      deltaEl.className = "saving";
+      deltaEl.textContent = "(" + delta.toFixed(1) + "% 削減)";
+    } else {
+      deltaEl.className = "grew";
+      deltaEl.textContent = "(" + Math.abs(delta).toFixed(1) + "% 増加)";
+    }
+    sizes.appendChild(deltaEl);
+    meta.appendChild(sizes);
+
+    if (warn) {
+      var warnEl = document.createElement("div");
+      warnEl.className = "warn-text";
+      warnEl.textContent = warn;
+      meta.appendChild(warnEl);
+    }
+
+    var link = document.createElement("a");
+    link.className = "btn";
+    link.href = url;
+    link.download = downloadName(file.name, mime);
+    link.textContent = "ダウンロード";
+    meta.appendChild(link);
+
+    box.appendChild(meta);
+    return box;
+  }
+
+  function errorBox(name, message) {
+    var box = document.createElement("div");
+    box.className = "result-box result-error";
+    var nameEl = document.createElement("strong");
+    nameEl.textContent = name;
+    box.appendChild(nameEl);
+    box.appendChild(document.createElement("br"));
+    box.appendChild(document.createTextNode(message));
+    return box;
+  }
+
+  function downloadName(original, mime) {
+    var ext = mime === "image/png" ? "png" : mime === "image/webp" ? "webp" : "jpg";
+    var base = original.replace(/\.[^.]+$/, "");
+    return base + "_resized." + ext;
+  }
+
+  function mimeLabel(mime) {
+    return mime === "image/png" ? "PNG" : mime === "image/webp" ? "WebP" : "JPEG";
+  }
+
+  function formatBytes(bytes) {
+    if (bytes >= 1048576) return (bytes / 1048576).toFixed(2) + " MB";
+    if (bytes >= 1024) return (bytes / 1024).toFixed(1) + " KB";
+    return bytes + " B";
+  }
+})();
+</script>
+</body>
+</html>

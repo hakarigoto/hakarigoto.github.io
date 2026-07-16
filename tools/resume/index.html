@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>履歴書作成ツール(無料・PDF保存対応)|ラクツール</title>
+<meta name="description" content="JIS規格様式に準じた履歴書を無料で作成できるWebツール。フォームに入力するだけでリアルタイムプレビュー。証明写真の貼り付け・和暦変換・年齢自動計算に対応。データはブラウザ内にのみ保存され安心です。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+/* ===== ツール内レイアウト ===== */
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 10px; }
+.chip {
+  font-size: 0.8rem; padding: 3px 10px; border-radius: 999px; cursor: pointer;
+  background: var(--accent-weak); color: var(--accent); border: 1px solid var(--accent);
+  font-family: inherit;
+}
+.chip:hover { background: var(--accent); color: #fff; }
+.rrow { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
+.rrow .r-y { width: 92px; flex: none; }
+.rrow .r-m { width: 64px; flex: none; }
+.rrow .r-c { flex: 1 1 auto; min-width: 120px; }
+.rrow .r-del {
+  flex: none; width: 34px; height: 34px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text-sub);
+  font-size: 1rem; line-height: 1;
+}
+.rrow .r-del:hover { border-color: #c0392b; color: #c0392b; }
+fieldset.fs {
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 16px 10px; margin: 0 0 18px;
+}
+fieldset.fs legend { font-weight: 700; font-size: 0.95rem; padding: 0 8px; }
+.photo-thumb { max-height: 80px; border: 1px solid var(--border); border-radius: 4px; vertical-align: middle; }
+
+/* ===== 履歴書プレビュー(JIS風・独自定義) ===== */
+#previewArea {
+  background: #8d99a6; padding: 16px 8px; border-radius: 8px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.rz-page {
+  width: 210mm; min-height: 297mm; margin: 0 auto 16px; padding: 12mm 13mm;
+  background: #fff; color: #000; box-shadow: 0 2px 10px rgba(0,0,0,.35);
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", serif;
+  font-size: 10.5pt; line-height: 1.5;
+}
+.rz-page:last-child { margin-bottom: 0; }
+.rz-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4mm; }
+.rz-title { font-size: 17pt; font-weight: 700; letter-spacing: 0.5em; }
+.rz-date { font-size: 9.5pt; }
+.rz-headwrap { display: flex; gap: 4mm; align-items: flex-start; }
+.rz-headleft { flex: 1 1 auto; min-width: 0; }
+.rz-photo {
+  flex: none; width: 30mm; height: 40mm; border: 1px dashed #666;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-size: 7.5pt; color: #666; overflow: hidden; margin-top: 2mm;
+}
+.rz-photo.filled { border: 1px solid #000; color: #000; }
+.rz-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+table.rz-t { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 3mm; }
+.rz-t th, .rz-t td {
+  border: 1px solid #000; padding: 1mm 2mm; font-weight: normal;
+  vertical-align: middle; word-break: break-all; text-align: left;
+}
+.rz-t th { text-align: center; font-size: 9pt; }
+.rz-t td.lb { font-size: 8pt; width: 20mm; }
+.rz-t .v-kana { font-size: 8.5pt; height: 6mm; }
+.rz-t .v-name { font-size: 15pt; height: 13mm; }
+.rz-t .ctr { text-align: center; }
+.rz-t .rgt { text-align: right; padding-right: 6mm; }
+.rz-hist .c-y { width: 20mm; }
+.rz-hist .c-m { width: 12mm; }
+.rz-hist td { height: 7.5mm; }
+.rz-hist td.c-y, .rz-hist td.c-m { text-align: center; }
+.rz-free { border: 1px solid #000; padding: 2mm; }
+.rz-free .cap { font-size: 8pt; display: block; }
+.rz-free .body { min-height: 48mm; white-space: normal; }
+.rz-free .body.short { min-height: 28mm; }
+.rz-bottom td { height: 12mm; vertical-align: top; }
+.rz-bottom td .cap { font-size: 8pt; display: block; }
+
+/* ===== 印刷用 ===== */
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  .page-head, #formArea, .note, .no-print { display: none !important; }
+  main.container { max-width: none; padding: 0; margin: 0; }
+  .tool-panel { border: none; border-radius: 0; padding: 0; margin: 0; box-shadow: none; background: #fff; }
+  #previewArea { background: none; padding: 0; border-radius: 0; overflow: visible; }
+  .rz-page {
+    width: auto; min-height: 0; margin: 0; box-shadow: none;
+    padding: 12mm 13mm; page-break-after: always;
+  }
+  .rz-page:last-child { page-break-after: auto; }
+  .rz-hist tr, .rz-t tr { page-break-inside: avoid; }
+}
+</style>
+<link rel="canonical" href="https://hakarigoto.github.io/tools/resume/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/tools/resume/">
+<meta property="og:site_name" content="ラクツール">
+<meta property="og:title" content="履歴書作成ツール(無料・PDF保存対応)|ラクツール">
+<meta property="og:description" content="JIS規格様式に準じた履歴書を無料で作成できるWebツール。フォームに入力するだけでリアルタイムプレビュー。証明写真の貼り付け・和暦変換・年齢自動計算に対応。データはブラウザ内にのみ保存され安心です。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../../">ラク<span>ツール</span></a><nav class="site-nav"><a href="../../#tools">ツール一覧</a><a href="../../blog/">コラム</a><a href="../../about/">このサイトについて</a></nav></div></header>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="../../">ホーム</a> › <a href="../../#tools">ツール一覧</a> › 履歴書作成ツール</nav>
+
+  <div class="page-head">
+    <h1>履歴書作成ツール(PDF保存対応)</h1>
+    <p class="lead">JIS規格様式に準じた履歴書をブラウザだけで作成。フォームに入力するとリアルタイムでプレビューされ、そのまま印刷・PDF保存できます。登録不要・完全無料。</p>
+  </div>
+
+  <div class="tool-panel">
+    <div id="formArea">
+      <fieldset class="fs">
+        <legend>基本情報</legend>
+        <div class="field-row">
+          <div class="field"><label for="f_kana">ふりがな</label><input type="text" id="f_kana" placeholder="やまだ たろう"></div>
+          <div class="field"><label for="f_name">氏名</label><input type="text" id="f_name" placeholder="山田 太郎"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f_birth">生年月日(年齢は自動計算)</label><input type="date" id="f_birth"></div>
+          <div class="field"><label for="f_gender">性別(任意・未記載可)</label>
+            <select id="f_gender"><option value="">記載しない</option><option value="男">男</option><option value="女">女</option></select>
+          </div>
+        </div>
+        <div class="field"><label for="f_addr_kana">住所ふりがな</label><input type="text" id="f_addr_kana" placeholder="とうきょうと ちよだく ○○"></div>
+        <div class="field"><label for="f_addr">現住所(郵便番号から)</label><input type="text" id="f_addr" placeholder="〒100-0001 東京都千代田区○○1-2-3 ○○マンション101"></div>
+        <div class="field-row">
+          <div class="field"><label for="f_tel">電話番号</label><input type="tel" id="f_tel" placeholder="090-1234-5678"></div>
+          <div class="field"><label for="f_email">メールアドレス</label><input type="email" id="f_email" placeholder="taro@example.com"></div>
+        </div>
+        <div class="field">
+          <label for="f_photo">証明写真(縦4cm×横3cm推奨)</label>
+          <input type="file" id="f_photo" accept="image/*">
+          <p class="note" style="margin:6px 0 0">写真はブラウザ内でプレビューに埋め込むだけで、どこにもアップロードされません。
+            <span id="photoState"></span> <button type="button" class="chip" id="photoDel" hidden>写真を削除</button></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend>学歴(年は西暦で入力)</legend>
+        <div class="chip-row">
+          <button type="button" class="chip" data-target="rows_edu" data-text="入学">「入学」を追記</button>
+          <button type="button" class="chip" data-target="rows_edu" data-text="卒業">「卒業」を追記</button>
+          <button type="button" class="chip" data-target="rows_edu" data-text="卒業見込み">「卒業見込み」を追記</button>
+        </div>
+        <div id="rows_edu"></div>
+        <button type="button" class="btn btn-secondary" data-add="rows_edu">+ 行を追加</button>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend>職歴(年は西暦で入力)</legend>
+        <div class="chip-row">
+          <button type="button" class="chip" data-target="rows_work" data-text="入社">「入社」を追記</button>
+          <button type="button" class="chip" data-target="rows_work" data-text="退社">「退社」を追記</button>
+          <button type="button" class="chip" data-target="rows_work" data-text="一身上の都合により退社">「一身上の都合により退社」を追記</button>
+          <button type="button" class="chip" data-target="rows_work" data-text="現在に至る">「現在に至る」を追記</button>
+          <button type="button" class="chip" data-target="rows_work" data-text="以上">「以上」を追記</button>
+        </div>
+        <div id="rows_work"></div>
+        <button type="button" class="btn btn-secondary" data-add="rows_work">+ 行を追加</button>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend>免許・資格</legend>
+        <div class="chip-row">
+          <button type="button" class="chip" data-target="rows_lic" data-text="取得">「取得」を追記</button>
+          <button type="button" class="chip" data-target="rows_lic" data-text="合格">「合格」を追記</button>
+        </div>
+        <div id="rows_lic"></div>
+        <button type="button" class="btn btn-secondary" data-add="rows_lic">+ 行を追加</button>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend>自己PR・その他</legend>
+        <div class="field"><label for="f_motive">志望動機・自己PR(趣味・特技など)</label><textarea id="f_motive" rows="5" placeholder="貴社の○○という理念に共感し…"></textarea></div>
+        <div class="field"><label for="f_wish">本人希望記入欄</label><textarea id="f_wish" rows="3" placeholder="貴社規定に従います。"></textarea></div>
+        <div class="field-row">
+          <div class="field"><label for="f_commute">通勤時間</label><input type="text" id="f_commute" placeholder="約1時間10分"></div>
+          <div class="field"><label for="f_dependents">扶養家族数(配偶者を除く)</label><input type="number" id="f_dependents" min="0" placeholder="0"></div>
+          <div class="field"><label for="f_spouse">配偶者</label>
+            <select id="f_spouse"><option value=""></option><option value="有">有</option><option value="無">無</option></select></div>
+          <div class="field"><label for="f_spouse_sup">配偶者の扶養義務</label>
+            <select id="f_spouse_sup"><option value=""></option><option value="有">有</option><option value="無">無</option></select></div>
+        </div>
+      </fieldset>
+    </div><!-- /#formArea -->
+
+    <p class="note">🔒 入力内容はブラウザ内(localStorage)にのみ保存され、サーバーには一切送信されません。履歴書の個人情報が外部に渡ることはなく、再訪時には前回の入力内容が自動で復元されます。共用パソコンで使う場合は、作成後に「クリア」ボタンでデータを消去してください。</p>
+
+    <div class="btn-row no-print">
+      <button type="button" class="btn" id="btnPrint">印刷 / PDF保存</button>
+      <button type="button" class="btn btn-secondary" id="btnClear">クリア(保存データも削除)</button>
+      <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;margin:0">
+        <input type="checkbox" id="useWareki" style="width:auto"> 年を和暦(令和・平成など)で表示
+      </label>
+    </div>
+
+    <h2 class="no-print" style="margin-top:24px">プレビュー(A4・2ページ)</h2>
+    <p class="note no-print">画面が狭い場合は横にスクロールできます。「印刷 / PDF保存」を押すと、この履歴書部分だけがA4・2ページで出力されます。</p>
+    <div id="previewArea">
+      <div class="rz-page" id="page1"></div>
+      <div class="rz-page" id="page2"></div>
+    </div>
+  </div>
+
+  <article class="article">
+    <h2>使い方</h2>
+    <ol>
+      <li>基本情報(氏名・生年月日・住所など)を入力します。生年月日を入れると年齢が自動計算され、プレビューに「満○歳」と表示されます。</li>
+      <li>証明写真を選ぶと、プレビューの写真枠(縦4cm×横3cm)に自動ではめ込まれます。画像はブラウザの中だけで処理され、アップロードはされません。</li>
+      <li>学歴・職歴・免許/資格は「+ 行を追加」で必要な行数だけ増やせます。年は西暦(例: 2022)で入力すればよく、「和暦で表示」にチェックを入れると令和・平成表記に自動変換されます。「入学」「卒業」「入社」「退社」などの定型文ボタンを使うと入力がラクです。</li>
+      <li>プレビューを確認したら「印刷 / PDF保存」を押し、印刷ダイアログでプリンターを選べばそのまま印刷、送信先を「PDFに保存」にすればPDFファイルとして保存できます。</li>
+    </ol>
+
+    <h2>履歴書の書き方の基本</h2>
+    <p>履歴書は「あなたがどんな人か」を採用担当者が最初に確認する書類です。凝った表現よりも、<strong>正確さ・統一感・読みやすさ</strong>が何より重要です。まず年号は西暦か和暦のどちらかに統一します(本ツールはチェック1つで一括切替できます)。氏名や住所のふりがなは、様式が「ふりがな」ならひらがな、「フリガナ」ならカタカナで書くのが慣例です。住所は都道府県から省略せずに書き、マンション名・部屋番号まで正確に記載します。</p>
+    <p>職歴は会社名を正式名称で書き(「(株)」ではなく「株式会社」)、入社・退社を1行ずつ分けて時系列で記載します。退職理由は自己都合なら「一身上の都合により退社」、在職中なら最後に「現在に至る」と書き、職歴の最終行の次の行に右寄せで「以上」と締めるのがマナーです。志望動機は使い回しではなく、応募先ごとに「なぜこの会社なのか」を具体的に書くと印象が大きく変わります。本人希望記入欄は原則「貴社規定に従います。」とし、勤務地や連絡可能時間帯など本当に譲れない条件だけを簡潔に書きます。</p>
+
+    <h3>学歴はいつから書く?</h3>
+    <p>法律で決まっているわけではありませんが、一般的には<strong>中学校卒業から</strong>書くのが無難とされています。新卒の就職活動では「中学卒業→高校入学→高校卒業→大学入学→大学卒業(見込み)」の流れで、転職の場合は職歴が長くなることも多いため、高校入学または高校卒業からに省略しても問題ありません。学校名は「○○高校」ではなく「○○県立○○高等学校」のように正式名称で、学部・学科・専攻まで記載します。1行目の中央に「学歴」と書き、行を分けて時系列に並べるのがJIS様式の書き方で、本ツールではこの見出し行を自動で挿入します。</p>
+
+    <h3>証明写真のサイズと注意点</h3>
+    <p>履歴書の証明写真は<strong>縦4cm×横3cm</strong>が標準サイズです(本ツールの写真枠もこの比率です)。撮影から3か月以内のものを使い、正面向き・無帽・背景は白か薄い青などの無地が基本です。服装は応募先に合わせ、ビジネス職ならスーツが無難です。スマートフォンで撮る場合も、明るい場所で影が出ないように撮影し、画質の粗い写真や過度な加工は避けましょう。印刷後に写真を貼る場合に備えて、写真の裏に氏名を書いておくと、剥がれたときにも安心です。</p>
+
+    <h3>手書きとパソコン作成、どちらが良い?</h3>
+    <p>現在は<strong>パソコン作成の履歴書が広く受け入れられており</strong>、厚生労働省が示す様式例もデータでの作成を前提としています。IT企業や外資系、Web応募ではむしろPC作成が標準です。一方、企業によっては「人柄が伝わる」として手書きを好む場合もあり、応募先から指定があればそれに従います。PC作成のメリットは、修正が容易なこと・複数社への応募で使い回しつつ志望動機だけ差し替えられること・誤字のリスクが減ることです。本ツールなら入力内容がブラウザに自動保存されるので、応募先ごとに志望動機を書き換えて何度でも印刷・PDF化できます。</p>
+
+    <h2>よくある質問</h2>
+    <details class="faq">
+      <summary>入力した個人情報はどこかに送信されませんか?</summary>
+      <p>送信されません。このツールは完全にブラウザ内(クライアントサイド)で動作し、入力内容と写真はお使いのブラウザのlocalStorageにのみ保存されます。サーバーへの送信・保存は一切行いません。共用パソコンで使った場合は、作成後に「クリア」ボタンで保存データを削除してください。</p>
+    </details>
+    <details class="faq">
+      <summary>PDFファイルとして保存するにはどうすればいいですか?</summary>
+      <p>「印刷 / PDF保存」ボタンを押すと印刷ダイアログが開きます。送信先(プリンター)の選択で「PDFに保存」を選び、保存ボタンを押すとA4・2ページのPDFがダウンロードされます。Windows・Mac・スマートフォンのいずれの主要ブラウザでも同様の操作でPDF化できます。</p>
+    </details>
+    <details class="faq">
+      <summary>学歴はいつから書けばいいですか?</summary>
+      <p>一般的には中学校卒業から書くのが無難です。転職などで職歴が長い場合は、高校入学または高校卒業からに省略しても問題ありません。学校名・学部・学科は省略せず正式名称で記載しましょう。</p>
+    </details>
+    <details class="faq">
+      <summary>和暦と西暦、どちらで書くべきですか?</summary>
+      <p>どちらでも構いませんが、履歴書全体(生年月日・学歴・職歴・資格)で必ず統一してください。応募書類全体(職務経歴書など)とも揃っているとより丁寧です。本ツールでは西暦で入力しておき、チェックボックス1つで和暦表示に一括変換できます。</p>
+    </details>
+    <details class="faq">
+      <summary>証明写真のサイズはどのくらいですか?</summary>
+      <p>縦4cm×横3cmが標準です。撮影から3か月以内の、正面向き・無帽・無地背景の写真を使いましょう。本ツールの写真枠も同じ縦横比で、選択した画像を枠に合わせて自動的にトリミング表示します。</p>
+    </details>
+    <details class="faq">
+      <summary>スマートフォンでも使えますか?</summary>
+      <p>使えます。プレビューはA4実寸で表示されるため横スクロールが必要ですが、入力・自動保存・PDF保存(共有メニューやブラウザの印刷機能から)は可能です。レイアウトの最終確認と印刷はパソコンで行うのがおすすめです。</p>
+    </details>
+  </article>
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "入力した個人情報はどこかに送信されませんか?", "acceptedAnswer": {"@type": "Answer", "text": "送信されません。このツールは完全にブラウザ内で動作し、入力内容と写真はブラウザのlocalStorageにのみ保存されます。サーバーへの送信・保存は一切行いません。共用パソコンでは作成後にクリアボタンでデータを削除してください。"}},
+    {"@type": "Question", "name": "PDFファイルとして保存するにはどうすればいいですか?", "acceptedAnswer": {"@type": "Answer", "text": "「印刷 / PDF保存」ボタンで印刷ダイアログを開き、送信先で「PDFに保存」を選ぶと、A4・2ページのPDFとして保存できます。"}},
+    {"@type": "Question", "name": "学歴はいつから書けばいいですか?", "acceptedAnswer": {"@type": "Answer", "text": "一般的には中学校卒業から書くのが無難です。職歴が長い場合は高校入学または高校卒業からに省略しても問題ありません。学校名は正式名称で記載します。"}},
+    {"@type": "Question", "name": "和暦と西暦、どちらで書くべきですか?", "acceptedAnswer": {"@type": "Answer", "text": "どちらでも構いませんが、履歴書全体で必ず統一してください。このツールでは西暦で入力し、チェック1つで和暦表示に一括変換できます。"}},
+    {"@type": "Question", "name": "証明写真のサイズはどのくらいですか?", "acceptedAnswer": {"@type": "Answer", "text": "縦4cm×横3cmが標準です。撮影から3か月以内の、正面向き・無帽・無地背景の写真を使いましょう。"}},
+    {"@type": "Question", "name": "スマートフォンでも使えますか?", "acceptedAnswer": {"@type": "Answer", "text": "使えます。プレビューは横スクロールが必要ですが、入力・自動保存・PDF保存が可能です。最終確認と印刷はパソコンがおすすめです。"}}
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var LS_KEY = 'rakutool_resume_v1';
+  var $ = function (id) { return document.getElementById(id); };
+  var photoData = '';           // 証明写真の dataURL(縮小済み)
+  var lastContentInput = {};    // セクションごとに最後にフォーカスされた内容欄
+  var saveTimer = null;
+
+  var FIELD_IDS = ['f_name', 'f_kana', 'f_birth', 'f_gender', 'f_addr_kana', 'f_addr',
+    'f_tel', 'f_email', 'f_motive', 'f_wish', 'f_commute', 'f_dependents',
+    'f_spouse', 'f_spouse_sup'];
+  var ROW_IDS = ['rows_edu', 'rows_work', 'rows_lic'];
+  var ROW_PLACEHOLDER = {
+    rows_edu: '○○県立○○高等学校 入学',
+    rows_work: '株式会社○○ 入社',
+    rows_lic: '普通自動車第一種運転免許 取得'
+  };
+
+  /* ---------- ユーティリティ ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function nl2br(s) { return esc(s).replace(/\n/g, '<br>'); }
+
+  // 元号一覧(開始日)
+  var ERAS = [
+    { n: '令和', y: 2019, m: 5, d: 1 },
+    { n: '平成', y: 1989, m: 1, d: 8 },
+    { n: '昭和', y: 1926, m: 12, d: 25 },
+    { n: '大正', y: 1912, m: 7, d: 30 },
+    { n: '明治', y: 1868, m: 1, d: 25 }
+  ];
+  // 「令和8」「平成元」のような元号+年を返す(変換不能なら西暦のまま)
+  function eraYear(y, m, d) {
+    y = +y; m = +m || 7; d = +d || 1;
+    for (var i = 0; i < ERAS.length; i++) {
+      var e = ERAS[i];
+      if (y > e.y || (y === e.y && (m > e.m || (m === e.m && d >= e.d)))) {
+        var n = y - e.y + 1;
+        return e.n + (n === 1 ? '元' : n);
+      }
+    }
+    return String(y);
+  }
+  function fmtTableYear(y, m, useW) {
+    if (!y) return '';
+    return useW ? eraYear(y, m) : String(y);
+  }
+  function fmtFullDate(y, m, d, useW) {
+    return (useW ? eraYear(y, m, d) : y) + '年' + m + '月' + d + '日';
+  }
+  function calcAge(y, m, d) {
+    var t = new Date();
+    var a = t.getFullYear() - y;
+    if ((t.getMonth() + 1) < m || ((t.getMonth() + 1) === m && t.getDate() < d)) a--;
+    return a;
+  }
+
+  /* ---------- 行(学歴・職歴・資格) ---------- */
+  function addRow(containerId, y, m, c) {
+    var row = document.createElement('div');
+    row.className = 'rrow';
+    row.innerHTML =
+      '<input class="r-y" type="number" min="1900" max="2100" placeholder="西暦" aria-label="年(西暦)">' +
+      '<input class="r-m" type="number" min="1" max="12" placeholder="月" aria-label="月">' +
+      '<input class="r-c" type="text" aria-label="内容" placeholder="' + esc(ROW_PLACEHOLDER[containerId] || '') + '">' +
+      '<button type="button" class="r-del" title="この行を削除" aria-label="この行を削除">×</button>';
+    row.querySelector('.r-y').value = y || '';
+    row.querySelector('.r-m').value = m || '';
+    row.querySelector('.r-c').value = c || '';
+    $(containerId).appendChild(row);
+    return row;
+  }
+  function getRows(containerId) {
+    var out = [];
+    var rows = $(containerId).querySelectorAll('.rrow');
+    for (var i = 0; i < rows.length; i++) {
+      out.push({
+        y: rows[i].querySelector('.r-y').value.trim(),
+        m: rows[i].querySelector('.r-m').value.trim(),
+        c: rows[i].querySelector('.r-c').value
+      });
+    }
+    return out;
+  }
+
+  /* ---------- 状態の収集・保存・復元 ---------- */
+  function collect() {
+    var d = { wareki: $('useWareki').checked, photo: photoData };
+    FIELD_IDS.forEach(function (id) { d[id] = $(id).value; });
+    ROW_IDS.forEach(function (id) { d[id] = getRows(id); });
+    return d;
+  }
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      var d = collect();
+      try {
+        localStorage.setItem(LS_KEY, JSON.stringify(d));
+      } catch (e) {
+        // 写真が大きすぎて容量超過した場合は写真抜きで保存
+        try { d.photo = ''; localStorage.setItem(LS_KEY, JSON.stringify(d)); } catch (e2) { /* 保存不可 */ }
+      }
+    }, 300);
+  }
+  function restore() {
+    var d = null;
+    try { d = JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { d = null; }
+    if (d) {
+      FIELD_IDS.forEach(function (id) { if (d[id] != null) $(id).value = d[id]; });
+      $('useWareki').checked = !!d.wareki;
+      photoData = d.photo || '';
+      ROW_IDS.forEach(function (id) {
+        var arr = Array.isArray(d[id]) ? d[id] : [];
+        if (arr.length === 0) { addRow(id); return; }
+        arr.forEach(function (r) { addRow(id, r.y, r.m, r.c); });
+      });
+    } else {
+      // 初期状態: 空行をいくつか用意
+      addRow('rows_edu'); addRow('rows_edu'); addRow('rows_edu');
+      addRow('rows_work'); addRow('rows_work');
+      addRow('rows_lic'); addRow('rows_lic');
+    }
+    updatePhotoState();
+  }
+  function updatePhotoState() {
+    $('photoState').textContent = photoData ? '(写真設定済み)' : '';
+    $('photoDel').hidden = !photoData;
+  }
+
+  /* ---------- プレビュー描画 ---------- */
+  function histRowsHtml(rows, useW, minBody, headings) {
+    // headings: [{label:'学 歴', rows:[...]}, ...] 見出し行+データ行を生成
+    var html = '';
+    var count = 0;
+    headings.forEach(function (sec) {
+      html += '<tr><td class="c-y"></td><td class="c-m"></td><td class="ctr">' + sec.label + '</td></tr>';
+      count++;
+      sec.rows.forEach(function (r) {
+        if (!r.y && !r.m && !r.c.trim()) return; // 完全な空行はスキップ(埋め草で補う)
+        var cls = r.c.trim() === '以上' ? ' class="rgt"' : '';
+        html += '<tr><td class="c-y">' + esc(fmtTableYear(r.y, r.m, useW)) + '</td>' +
+          '<td class="c-m">' + esc(r.m) + '</td>' +
+          '<td' + cls + '>' + esc(r.c) + '</td></tr>';
+        count++;
+      });
+      html += '<tr><td class="c-y"></td><td class="c-m"></td><td></td></tr>'; // 区切りの空行
+      count++;
+    });
+    for (; count < minBody; count++) {
+      html += '<tr><td class="c-y"></td><td class="c-m"></td><td></td></tr>';
+    }
+    return html;
+  }
+
+  function render() {
+    var d = collect();
+    var useW = d.wareki;
+    var t = new Date();
+    var todayStr = fmtFullDate(t.getFullYear(), t.getMonth() + 1, t.getDate(), useW) + '現在';
+
+    // 生年月日+年齢
+    var birthStr = '', ageStr = '';
+    if (d.f_birth) {
+      var p = d.f_birth.split('-').map(Number);
+      if (p.length === 3 && p[0]) {
+        birthStr = fmtFullDate(p[0], p[1], p[2], useW) + '生';
+        ageStr = '(満' + calcAge(p[0], p[1], p[2]) + '歳)';
+      }
+    }
+
+    var photoHtml = photoData
+      ? '<div class="rz-photo filled"><img src="' + photoData + '" alt="証明写真"></div>'
+      : '<div class="rz-photo">写　真<br>縦4cm×横3cm</div>';
+
+    // ---- 1ページ目 ----
+    var p1 = '' +
+      '<div class="rz-top"><div class="rz-title">履歴書</div><div class="rz-date">' + esc(todayStr) + '</div></div>' +
+      '<div class="rz-headwrap"><div class="rz-headleft">' +
+      '<table class="rz-t">' +
+      '<tr><td class="lb">ふりがな</td><td class="v-kana">' + esc(d.f_kana) + '</td></tr>' +
+      '<tr><td class="lb">氏　名</td><td class="v-name">' + esc(d.f_name) + '</td></tr>' +
+      '<tr><td class="lb">生年月日</td><td>' + esc(birthStr) + (ageStr ? '　<span style="font-size:9pt">' + esc(ageStr) + '</span>' : '') +
+      (d.f_gender ? '<span style="float:right">性別：' + esc(d.f_gender) + '　</span>' : '') + '</td></tr>' +
+      '</table>' +
+      '</div>' + photoHtml + '</div>' +
+      '<table class="rz-t">' +
+      '<tr><td class="lb">ふりがな</td><td colspan="3" class="v-kana">' + esc(d.f_addr_kana) + '</td></tr>' +
+      '<tr><td class="lb">現住所</td><td colspan="3" style="height:12mm;vertical-align:top">' + esc(d.f_addr) + '</td></tr>' +
+      '<tr><td class="lb">電　話</td><td>' + esc(d.f_tel) + '</td>' +
+      '<td class="lb" style="width:20mm">メール</td><td style="font-size:9pt">' + esc(d.f_email) + '</td></tr>' +
+      '</table>' +
+      '<table class="rz-t rz-hist">' +
+      '<tr><th class="c-y">年</th><th class="c-m">月</th><th>学歴・職歴(各別にまとめて書く)</th></tr>' +
+      histRowsHtml(null, useW, 17, [
+        { label: '学　歴', rows: d.rows_edu },
+        { label: '職　歴', rows: d.rows_work }
+      ]) +
+      '</table>';
+    $('page1').innerHTML = p1;
+
+    // ---- 2ページ目 ----
+    var licHtml = '';
+    var licCount = 0;
+    d.rows_lic.forEach(function (r) {
+      if (!r.y && !r.m && !r.c.trim()) return;
+      licHtml += '<tr><td class="c-y">' + esc(fmtTableYear(r.y, r.m, useW)) + '</td>' +
+        '<td class="c-m">' + esc(r.m) + '</td><td>' + esc(r.c) + '</td></tr>';
+      licCount++;
+    });
+    for (; licCount < 7; licCount++) {
+      licHtml += '<tr><td class="c-y"></td><td class="c-m"></td><td></td></tr>';
+    }
+    var p2 = '' +
+      '<table class="rz-t rz-hist">' +
+      '<tr><th class="c-y">年</th><th class="c-m">月</th><th>免許・資格</th></tr>' + licHtml + '</table>' +
+      '<div class="rz-free" style="margin-bottom:3mm"><span class="cap">志望の動機、自己PR、趣味、特技など</span>' +
+      '<div class="body">' + nl2br(d.f_motive) + '</div></div>' +
+      '<table class="rz-t rz-bottom">' +
+      '<tr>' +
+      '<td style="width:25%"><span class="cap">通勤時間</span>' + esc(d.f_commute) + '</td>' +
+      '<td style="width:25%"><span class="cap">扶養家族数(配偶者を除く)</span>' + (d.f_dependents !== '' ? esc(d.f_dependents) + '人' : '') + '</td>' +
+      '<td style="width:25%"><span class="cap">配偶者</span>' + esc(d.f_spouse) + '</td>' +
+      '<td style="width:25%"><span class="cap">配偶者の扶養義務</span>' + esc(d.f_spouse_sup) + '</td>' +
+      '</tr></table>' +
+      '<div class="rz-free"><span class="cap">本人希望記入欄(特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入)</span>' +
+      '<div class="body short">' + nl2br(d.f_wish) + '</div></div>';
+    $('page2').innerHTML = p2;
+  }
+
+  function update() { render(); save(); }
+
+  /* ---------- イベント ---------- */
+  // フォーム全体の入力を監視(写真input以外)
+  $('formArea').addEventListener('input', function (e) {
+    if (e.target.id === 'f_photo') return;
+    update();
+  });
+  $('formArea').addEventListener('change', function (e) {
+    if (e.target.id === 'f_photo') return;
+    update();
+  });
+  $('useWareki').addEventListener('change', update);
+
+  // 行の削除・追加・定型文(イベント委譲)
+  ROW_IDS.forEach(function (id) {
+    $(id).addEventListener('click', function (e) {
+      if (e.target.classList.contains('r-del')) {
+        var container = $(id);
+        e.target.closest('.rrow').remove();
+        if (!container.querySelector('.rrow')) addRow(id); // 最低1行は残す
+        if (lastContentInput[id] && !container.contains(lastContentInput[id])) lastContentInput[id] = null;
+        update();
+      }
+    });
+    $(id).addEventListener('focusin', function (e) {
+      if (e.target.classList.contains('r-c')) lastContentInput[id] = e.target;
+    });
+  });
+  document.querySelectorAll('[data-add]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var row = addRow(btn.getAttribute('data-add'));
+      row.querySelector('.r-y').focus();
+      update();
+    });
+  });
+  document.querySelectorAll('.chip[data-target]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-target');
+      var input = lastContentInput[id];
+      if (!input || !$(id).contains(input)) {
+        var all = $(id).querySelectorAll('.r-c');
+        input = all.length ? all[all.length - 1] : addRow(id).querySelector('.r-c');
+      }
+      var text = btn.getAttribute('data-text');
+      input.value = input.value ? input.value.replace(/[\s　]+$/, '') + '　' + text : text;
+      input.focus();
+      update();
+    });
+  });
+
+  // 証明写真: 読み込み→縮小→dataURL化(すべてブラウザ内)
+  $('f_photo').addEventListener('change', function () {
+    var file = this.files && this.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        var MAX_W = 450, MAX_H = 600; // 3:4 に十分な解像度に縮小して容量を節約
+        var r = Math.min(MAX_W / img.width, MAX_H / img.height, 1);
+        var w = Math.max(1, Math.round(img.width * r));
+        var h = Math.max(1, Math.round(img.height * r));
+        var cv = document.createElement('canvas');
+        cv.width = w; cv.height = h;
+        cv.getContext('2d').drawImage(img, 0, 0, w, h);
+        photoData = cv.toDataURL('image/jpeg', 0.85);
+        updatePhotoState();
+        update();
+      };
+      img.onerror = function () { alert('画像を読み込めませんでした。別のファイルをお試しください。'); };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  $('photoDel').addEventListener('click', function () {
+    photoData = '';
+    $('f_photo').value = '';
+    updatePhotoState();
+    update();
+  });
+
+  // 印刷 / PDF保存
+  $('btnPrint').addEventListener('click', function () { window.print(); });
+
+  // クリア(localStorageも削除)
+  $('btnClear').addEventListener('click', function () {
+    if (!confirm('入力内容とブラウザに保存されたデータをすべて削除します。よろしいですか?')) return;
+    clearTimeout(saveTimer); // 直前の自動保存が後から走らないようにする
+    try { localStorage.removeItem(LS_KEY); } catch (e) { /* noop */ }
+    FIELD_IDS.forEach(function (id) { $(id).value = ''; });
+    ROW_IDS.forEach(function (id) { $(id).innerHTML = ''; });
+    lastContentInput = {};
+    addRow('rows_edu'); addRow('rows_edu'); addRow('rows_edu');
+    addRow('rows_work'); addRow('rows_work');
+    addRow('rows_lic'); addRow('rows_lic');
+    photoData = '';
+    $('f_photo').value = '';
+    $('useWareki').checked = false;
+    updatePhotoState();
+    render(); // クリア後は保存しない(保存すると空データが残るだけなので render のみ)
+  });
+
+  /* ---------- 初期化 ---------- */
+  restore();
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文字数カウント(原稿用紙換算・SNS上限チェック対応)|ラクツール</title>
+<meta name="description" content="入力するだけで文字数を即カウントする無料ツール。スペース込み/なし、全角・半角の内訳、原稿用紙換算、読み上げ時間、X(旧Twitter)やInstagramの文字数上限チェックに対応。ブラウザ内で完結し送信されません。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+.stat-cell {
+  background: var(--accent-weak);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+.stat-cell .stat-label { font-size: 0.8rem; color: var(--text-sub); display: block; }
+.stat-cell .stat-value { font-size: 1.35rem; font-weight: 700; }
+.stat-cell .stat-unit { font-size: 0.85rem; font-weight: 400; margin-left: 2px; }
+.detail-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.92rem; }
+.detail-table th, .detail-table td { border: 1px solid var(--border); padding: 6px 12px; text-align: left; }
+.detail-table th { background: var(--accent-weak); font-weight: 600; white-space: nowrap; }
+.limit-item { margin-top: 14px; }
+.limit-label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.88rem; flex-wrap: wrap; }
+.limit-label .limit-status { font-weight: 600; }
+.limit-label .limit-status.over { color: #c0392b; }
+@media (prefers-color-scheme: dark) { .limit-label .limit-status.over { color: #ff8a7a; } }
+.limit-bar { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin-top: 4px; }
+.limit-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 5px; transition: width 0.15s ease; }
+.limit-fill.over { background: #c0392b; }
+</style>
+<link rel="canonical" href="https://hakarigoto.github.io/tools/charcount/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/tools/charcount/">
+<meta property="og:site_name" content="ラクツール">
+<meta property="og:title" content="文字数カウント(原稿用紙換算・SNS上限チェック対応)|ラクツール">
+<meta property="og:description" content="入力するだけで文字数を即カウントする無料ツール。スペース込み/なし、全角・半角の内訳、原稿用紙換算、読み上げ時間、X(旧Twitter)やInstagramの文字数上限チェックに対応。ブラウザ内で完結し送信されません。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../../">ラク<span>ツール</span></a><nav class="site-nav"><a href="../../#tools">ツール一覧</a><a href="../../blog/">コラム</a><a href="../../about/">このサイトについて</a></nav></div></header>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="../../">ホーム</a> &gt; <a href="../../#tools">ツール一覧</a> &gt; 文字数カウント</nav>
+
+  <div class="page-head">
+    <h1>文字数カウント</h1>
+    <p class="lead">テキストを入力するだけで、文字数・行数・原稿用紙換算・読み上げ時間をリアルタイムに表示。X(旧Twitter)やInstagramなどの文字数上限との比較もひと目で分かります。</p>
+  </div>
+
+  <section class="tool-panel">
+    <div class="field">
+      <label for="input-text">テキストを入力(貼り付け)してください</label>
+      <textarea id="input-text" rows="10" placeholder="ここに文章を入力すると、下に結果が即時表示されます。" autofocus></textarea>
+    </div>
+    <p class="note">入力したテキストはサーバーに送信されません。すべてブラウザ内(お使いの端末上)で処理されます。入力内容はこのブラウザのlocalStorageに自動保存され、次回開いたときに復元されます。</p>
+    <div class="btn-row">
+      <button type="button" class="btn" id="btn-copy">テキストをコピー</button>
+      <button type="button" class="btn btn-secondary" id="btn-clear">クリア</button>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-cell"><span class="stat-label">文字数(スペース・改行を含む)</span><span class="stat-value" id="count-with">0</span><span class="stat-unit">字</span></div>
+      <div class="stat-cell"><span class="stat-label">文字数(スペース・改行を含まない)</span><span class="stat-value" id="count-without">0</span><span class="stat-unit">字</span></div>
+    </div>
+
+    <div class="result-box">
+      <div class="table-wrap">
+        <table class="detail-table">
+          <tbody>
+            <tr><th>全角文字</th><td><span id="count-zen">0</span> 字</td><th>半角文字</th><td><span id="count-han">0</span> 字</td></tr>
+            <tr><th>行数</th><td><span id="count-lines">0</span> 行</td><th>段落数</th><td><span id="count-paras">0</span> 段落</td></tr>
+            <tr><th>単語数(英単語)</th><td><span id="count-words">0</span> 語</td><th>原稿用紙換算<br>(400字詰め)</th><td><span id="count-genko">0</span> 枚</td></tr>
+            <tr><th>読み上げ時間の目安<br>(1分300字)</th><td id="time-speak">0秒</td><th>黙読時間の目安<br>(1分600字)</th><td id="time-read">0秒</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-bottom:0;">※原稿用紙換算は「文字数(スペース・改行を含む)÷400」の切り上げによる単純換算です。実際に原稿用紙へ書く場合は改行や段落の空きマスで枚数が増えます。読み上げ・黙読時間はスペース・改行を除いた文字数から算出しています。</p>
+    </div>
+
+    <h2 style="font-size:1.05rem; margin:24px 0 0;">よくある上限との比較</h2>
+    <div id="limits"></div>
+  </section>
+
+  <article class="article">
+    <h2>使い方</h2>
+    <ol>
+      <li>上のテキストボックスに文章を入力するか、他のアプリで書いた文章を貼り付けます。</li>
+      <li>入力と同時に、文字数・行数・原稿用紙換算・読み上げ時間などが自動で更新されます。ボタンを押す必要はありません。</li>
+      <li>「テキストをコピー」ボタンで入力内容をクリップボードへコピーできます。「クリア」で入力と保存データを消去します。</li>
+    </ol>
+    <p>入力内容はブラウザのlocalStorageに自動保存されるため、うっかりタブを閉じても次回アクセス時に復元されます。サーバーへの送信は一切行っていないので、社外秘の文書や応募書類の下書きにも安心して使えます。</p>
+
+    <h2>文字数の数え方の基本 — スペースや改行は含む?</h2>
+    <p>「文字数」と一口に言っても、数え方にはいくつかの流儀があります。もっとも一般的なのは<strong>スペースや改行も1文字として数える</strong>方法で、Wordの「文字カウント(スペースを含める)」やX(旧Twitter)の文字数判定はこちらに近い考え方です。一方、小論文やエントリーシート(ES)では「純粋な文章の量」を見るために、スペース・改行を除いた文字数が基準とされることもあります。</p>
+    <p>提出先によって基準が異なるため、このツールでは<strong>「含む」「含まない」の両方を常に表示</strong>しています。指定字数が「400字以内」のように示されている場合は、募集要項にどちらの数え方か明記されていないか確認し、不明な場合は多めに数える「含む」を基準にしておくと安全です。</p>
+    <p>また、全角と半角の内訳も表示しています。日本語の文書では原則すべて1文字と数えますが、システムによっては半角文字を0.5文字と換算したり、バイト数で制限したりするケースがあるため、内訳が分かると調整がしやすくなります。</p>
+
+    <h2>原稿用紙換算のルール</h2>
+    <p>400字詰め原稿用紙への換算は、読書感想文・小論文・出版原稿などでよく使われる目安です。本来の原稿用紙の使い方では、段落の書き出しは1マス空け、改行すると行の残りマスは空白のまま次の行へ移るため、<strong>同じ文字数でも改行が多い文章ほど実際の枚数は増えます</strong>。</p>
+    <p>このツールの換算は「文字数÷400の切り上げ」という単純計算です。たとえば1,000字なら3枚、401字なら2枚と表示されます。会話文や改行が多い小説原稿では、表示枚数より1〜2割ほど多くなると見込んでおくとよいでしょう。逆に「原稿用紙5枚程度」という課題であれば、おおよそ1,800〜2,000字を目安に書けば収まります。</p>
+
+    <h2>SNS・ES・小論文の文字数目安</h2>
+    <p>用途ごとのよくある文字数の上限・目安をまとめました。ツール下部の比較バーでは、このうち代表的な4つとの差分を自動表示しています。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>用途</th><th>上限・目安</th><th>補足</th></tr></thead>
+        <tbody>
+          <tr><td>X(旧Twitter)</td><td>140字</td><td>全角換算。半角英数字は280字まで(半角は0.5字換算)</td></tr>
+          <tr><td>Instagram キャプション</td><td>2,200字</td><td>ハッシュタグは30個まで</td></tr>
+          <tr><td>YouTube 概要欄</td><td>5,000字</td><td>冒頭2〜3行が検索・視聴者の目に付きやすい</td></tr>
+          <tr><td>履歴書の自己PR</td><td>300〜400字</td><td>欄の大きさに合わせて9割以上埋めるのが目安</td></tr>
+          <tr><td>ESの設問</td><td>200〜800字</td><td>「〇字以内」なら8〜9割以上書くのが通例</td></tr>
+          <tr><td>小論文(入試・昇進試験)</td><td>600〜1,200字</td><td>指定字数の9割以上・超過ゼロが原則</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>SNSは「超過すると投稿できない」タイプの上限、ESや小論文は「少なすぎると評価が下がる」タイプの目安という違いがあります。比較バーが赤くなったら削る、余裕が大きすぎたら具体例を足す、という使い方がおすすめです。</p>
+
+    <h2>絵文字が2文字と数えられる仕組み(サロゲートペア)</h2>
+    <p>JavaScriptをはじめ多くのプログラムでは、文字列を「UTF-16」という単位で管理しています。ひらがなや漢字の大半は1単位で表せますが、絵文字(😀など)や「𠮟」「𩸽」といった一部の漢字は2単位を組み合わせて表現されます。これを<strong>サロゲートペア</strong>と呼び、単純に文字列の長さ(<code>length</code>)を数えるツールでは絵文字が「2文字」とカウントされてしまいます。</p>
+    <p>このツールでは文字列をコードポイント単位(<code>[...str]</code>)で分解してカウントしているため、<strong>絵文字も1文字として数えます</strong>。ただし、肌の色を変えた絵文字や家族の絵文字のように複数の絵文字を結合して1つに見せているもの(絵文字シーケンス)は、見た目1つでも2文字以上と数えられる場合があります。投稿先のサービスがどの方式で数えているかによって判定が変わる点は頭の片隅に置いておきましょう。たとえばXは多くの絵文字を2字分として扱います。</p>
+
+    <h2>よくある質問</h2>
+    <details class="faq">
+      <summary>入力した文章が外部に送られることはありませんか?</summary>
+      <p>ありません。カウント処理はすべてお使いのブラウザ内(端末上)のJavaScriptで完結しており、テキストがサーバーへ送信されることは一切ありません。自動保存もブラウザのlocalStorageという端末内の領域に保存されるだけです。</p>
+    </details>
+    <details class="faq">
+      <summary>スペースや改行は文字数に含まれますか?</summary>
+      <p>両方の数え方を同時に表示しています。「スペース・改行を含む」はすべての空白・改行を1文字として数えた値、「含まない」はそれらを除いた値です。提出先の指定に合わせて使い分けてください。</p>
+    </details>
+    <details class="faq">
+      <summary>原稿用紙換算はどう計算していますか?</summary>
+      <p>「文字数(スペース・改行を含む)÷400」を切り上げた単純換算です。実際に原稿用紙へ書く場合は、改行後の空きマスや段落頭の1マス空けの分だけ枚数が増えるため、改行の多い文章では表示より多めに見積もってください。</p>
+    </details>
+    <details class="faq">
+      <summary>絵文字は何文字としてカウントされますか?</summary>
+      <p>このツールではコードポイント単位で数えているため、基本的な絵文字は1文字です。ただし複数の絵文字を組み合わせた結合絵文字(家族・肌色バリエーションなど)は2文字以上になることがあります。また、投稿先のサービス(Xなど)は独自の数え方をする場合があります。</p>
+    </details>
+    <details class="faq">
+      <summary>段落数・単語数はどう数えていますか?</summary>
+      <p>段落数は空行(連続した改行)で区切られたまとまりの数、単語数は半角スペースなどで区切られた英数字のかたまり(英単語)の数です。日本語は分かち書きをしないため、日本語文の単語数は集計対象外です。</p>
+    </details>
+    <details class="faq">
+      <summary>ブラウザを閉じると入力内容は消えますか?</summary>
+      <p>消えません。入力のたびにブラウザのlocalStorageへ自動保存され、次回このページを開いたときに自動復元されます。完全に消したい場合は「クリア」ボタンを押すと入力欄と保存データの両方が削除されます。</p>
+    </details>
+  </article>
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "入力した文章が外部に送られることはありませんか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ありません。カウント処理はすべてブラウザ内のJavaScriptで完結しており、テキストがサーバーへ送信されることは一切ありません。自動保存もブラウザのlocalStorageという端末内の領域に保存されるだけです。" }
+    },
+    {
+      "@type": "Question",
+      "name": "スペースや改行は文字数に含まれますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "両方の数え方を同時に表示しています。「スペース・改行を含む」はすべての空白・改行を1文字として数えた値、「含まない」はそれらを除いた値です。提出先の指定に合わせて使い分けてください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "原稿用紙換算はどう計算していますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "文字数(スペース・改行を含む)を400で割って切り上げた単純換算です。実際に原稿用紙へ書く場合は改行後の空きマスなどの分だけ枚数が増えるため、改行の多い文章では表示より多めに見積もってください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "絵文字は何文字としてカウントされますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "このツールではコードポイント単位で数えているため、基本的な絵文字は1文字です。ただし複数の絵文字を組み合わせた結合絵文字は2文字以上になることがあり、投稿先のサービスによっては独自の数え方をする場合があります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "段落数・単語数はどう数えていますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "段落数は空行(連続した改行)で区切られたまとまりの数、単語数は半角スペースなどで区切られた英数字のかたまり(英単語)の数です。日本語文の単語数は集計対象外です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "ブラウザを閉じると入力内容は消えますか?",
+      "acceptedAnswer": { "@type": "Answer", "text": "消えません。入力のたびにブラウザのlocalStorageへ自動保存され、次回ページを開いたときに自動復元されます。「クリア」ボタンを押すと入力欄と保存データの両方が削除されます。" }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  var STORAGE_KEY = "rakutool_charcount_text";
+  var textarea = document.getElementById("input-text");
+  var btnCopy = document.getElementById("btn-copy");
+  var btnClear = document.getElementById("btn-clear");
+
+  var LIMITS = [
+    { name: "X(旧Twitter)", limit: 140 },
+    { name: "履歴書の自己PR", limit: 400 },
+    { name: "Instagram キャプション", limit: 2200 },
+    { name: "YouTube 概要欄", limit: 5000 }
+  ];
+
+  // 比較バーのDOMを生成
+  var limitsWrap = document.getElementById("limits");
+  var limitEls = LIMITS.map(function (item) {
+    var container = document.createElement("div");
+    container.className = "limit-item";
+
+    var label = document.createElement("div");
+    label.className = "limit-label";
+    var name = document.createElement("span");
+    name.textContent = item.name + "(" + item.limit.toLocaleString("ja-JP") + "字)";
+    var status = document.createElement("span");
+    status.className = "limit-status";
+    label.appendChild(name);
+    label.appendChild(status);
+
+    var bar = document.createElement("div");
+    bar.className = "limit-bar";
+    var fill = document.createElement("div");
+    fill.className = "limit-fill";
+    bar.appendChild(fill);
+
+    container.appendChild(label);
+    container.appendChild(bar);
+    limitsWrap.appendChild(container);
+    return { limit: item.limit, status: status, fill: fill };
+  });
+
+  function fmt(n) {
+    return n.toLocaleString("ja-JP");
+  }
+
+  // 秒数を「◯分◯秒」形式に
+  function fmtTime(totalSeconds) {
+    if (totalSeconds <= 0) return "0秒";
+    var m = Math.floor(totalSeconds / 60);
+    var s = totalSeconds % 60;
+    if (m === 0) return s + "秒";
+    if (s === 0) return "約" + fmt(m) + "分";
+    return "約" + fmt(m) + "分" + s + "秒";
+  }
+
+  // 半角判定: ASCII印字文字・タブ・半角カナ
+  function isHankaku(cp) {
+    return (cp >= 0x20 && cp <= 0x7e) || cp === 0x09 || (cp >= 0xff61 && cp <= 0xff9f);
+  }
+
+  function update() {
+    var text = textarea.value;
+
+    // サロゲートペア(絵文字等)を1文字と数えるためコードポイント単位で分解
+    var chars = Array.from(text);
+    var withSpaces = chars.length;
+
+    var withoutSpaces = 0;
+    var zen = 0;
+    var han = 0;
+    for (var i = 0; i < chars.length; i++) {
+      var ch = chars[i];
+      var cp = ch.codePointAt(0);
+      if (!/\s/.test(ch)) withoutSpaces++;
+      if (ch === "\n" || ch === "\r") continue; // 改行は内訳から除外
+      if (isHankaku(cp)) han++;
+      else zen++;
+    }
+
+    var lines = text === "" ? 0 : text.split(/\r\n|\r|\n/).length;
+
+    var paragraphs = 0;
+    if (text.trim() !== "") {
+      paragraphs = text.split(/(?:\r\n|\r|\n)[ \t　]*(?:\r\n|\r|\n)+/)
+        .filter(function (p) { return p.trim() !== ""; }).length;
+    }
+
+    var words = (text.match(/[A-Za-z0-9]+(?:['’.-][A-Za-z0-9]+)*/g) || []).length;
+
+    var genko = Math.ceil(withSpaces / 400);
+    var speakSec = Math.ceil(withoutSpaces / 300 * 60);
+    var readSec = Math.ceil(withoutSpaces / 600 * 60);
+
+    document.getElementById("count-with").textContent = fmt(withSpaces);
+    document.getElementById("count-without").textContent = fmt(withoutSpaces);
+    document.getElementById("count-zen").textContent = fmt(zen);
+    document.getElementById("count-han").textContent = fmt(han);
+    document.getElementById("count-lines").textContent = fmt(lines);
+    document.getElementById("count-paras").textContent = fmt(paragraphs);
+    document.getElementById("count-words").textContent = fmt(words);
+    document.getElementById("count-genko").textContent = fmt(genko);
+    document.getElementById("time-speak").textContent = fmtTime(speakSec);
+    document.getElementById("time-read").textContent = fmtTime(readSec);
+
+    // 上限比較バー(スペース・改行を含む文字数で判定)
+    limitEls.forEach(function (el) {
+      var ratio = Math.min(100, (withSpaces / el.limit) * 100);
+      el.fill.style.width = ratio + "%";
+      if (withSpaces > el.limit) {
+        el.status.textContent = fmt(withSpaces - el.limit) + "字超過";
+        el.status.classList.add("over");
+        el.fill.classList.add("over");
+      } else {
+        el.status.textContent = "残り" + fmt(el.limit - withSpaces) + "字";
+        el.status.classList.remove("over");
+        el.fill.classList.remove("over");
+      }
+    });
+
+    // 自動保存(プライベートモード等で失敗しても無視)
+    try {
+      if (text === "") localStorage.removeItem(STORAGE_KEY);
+      else localStorage.setItem(STORAGE_KEY, text);
+    } catch (e) { /* noop */ }
+  }
+
+  // 復元
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if (saved !== null) textarea.value = saved;
+  } catch (e) { /* noop */ }
+
+  textarea.addEventListener("input", update);
+
+  btnCopy.addEventListener("click", function () {
+    var text = textarea.value;
+    var done = function () {
+      var original = btnCopy.textContent;
+      btnCopy.textContent = "コピーしました";
+      setTimeout(function () { btnCopy.textContent = original; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () {
+        fallbackCopy();
+        done();
+      });
+    } else {
+      fallbackCopy();
+      done();
+    }
+    function fallbackCopy() {
+      textarea.select();
+      try { document.execCommand("copy"); } catch (e) { /* noop */ }
+      window.getSelection && window.getSelection().removeAllRanges();
+    }
+  });
+
+  btnClear.addEventListener("click", function () {
+    textarea.value = "";
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* noop */ }
+    update();
+    textarea.focus();
+  });
+
+  update();
+})();
+</script>
+</body>
+</html>

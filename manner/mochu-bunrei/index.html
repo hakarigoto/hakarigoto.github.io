@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>喪中はがき 文例ジェネレーター|続柄を選ぶだけで文面を自動作成|マナー電卓</title>
+<meta name="description" content="故人の続柄・亡くなった月・享年を入れるだけで、喪中はがき(年賀欠礼状)の文面を自動作成。句読点なしの正式スタイルにも対応し、はがき風プレビューとワンクリックコピー付き。無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#3f4d8c;--accent-hover:#333f73;--accent-weak:#e9ebf5;}@media (prefers-color-scheme: dark){:root{--accent:#98a5e8;--accent-hover:#aeb8ee;--accent-weak:#1d2238;}}</style>
+<style>
+.radio-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.radio-row label { font-weight: 400; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 0; }
+.check-label { font-weight: 400; display: inline-flex; align-items: center; gap: 6px; }
+.variant-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.variant-btn {
+  font-family: inherit; font-size: 0.9rem; font-weight: 600;
+  padding: 8px 16px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); color: var(--text-sub); cursor: pointer;
+}
+.variant-btn[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.hagaki-wrap { overflow-x: auto; margin-top: 14px; }
+.hagaki {
+  writing-mode: vertical-rl;
+  height: 460px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 36px 28px;
+  background: #fdfbf5;
+  color: #2a2a2a;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "BIZ UDMincho", serif;
+  font-size: 1rem;
+  line-height: 2.4;
+}
+@media (prefers-color-scheme: dark) {
+  .hagaki { background: #23262e; color: #e8ecf1; }
+}
+.hagaki .h-greet { font-size: 1.15rem; font-weight: 600; }
+.hagaki .h-date { margin-right: 1.5em; }
+.hagaki .h-sender { color: var(--text-sub); font-size: 0.85rem; }
+.copied-msg { font-size: 0.85rem; color: var(--accent); align-self: center; }
+.manner-note {
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  background: var(--surface);
+}
+.related-tools { margin: 32px 0 0; }
+.related-tools h2 { font-size: 1.1rem; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "喪中はがきはいつまでに出せばいいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "相手が年賀状の準備を始める前、11月中旬から12月上旬に届くように出すのがマナーです。年賀はがきの発売(11月頃)から相手が投函を終える12月中旬までに間に合わない場合は、無理に出さず年明けに寒中見舞いで欠礼を伝えます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "どの範囲の親族が亡くなったら喪中はがきを出しますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般的には2親等以内(配偶者・父母・子・兄弟姉妹・祖父母・孫と、それぞれの配偶者)が亡くなった場合に出します。ただし厳密な決まりはなく、同居していたか、気持ちのうえで喪に服したいかで判断して構いません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "故人の名前や年齢は必ず書かないといけませんか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "必須ではありません。「本年◯月に父が永眠いたしました」のように続柄と月だけでも失礼にはあたりません。名前や享年を入れると、受け取った側が誰のことか分かりやすくなるという利点があります。家族葬などで詳細を伏せたい場合は省略して問題ありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "喪中はがきを出しそびれてしまった場合はどうすればいいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "松の内が明けた1月8日頃から立春(2月4日頃)までの間に寒中見舞いを出し、年賀欠礼の報告とご挨拶が遅れたお詫びを伝えます。12月に不幸があった場合も同様に寒中見舞いで対応するのが一般的です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "喪中はがきに句読点を入れないのはなぜですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "儀礼的な挨拶状は毛筆の書状の流れをくむため、句読点を使わず行頭の字下げもしないのが正式とされてきました。「途切れない」「区切りをつけない」という縁起の意味合いで説明されることもあります。ただし現代では読みやすさを優先して句読点を入れても失礼にはあたりません。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/manner/mochu-bunrei/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/manner/mochu-bunrei/">
+<meta property="og:site_name" content="マナー電卓">
+<meta property="og:title" content="喪中はがき 文例ジェネレーター|続柄を選ぶだけで文面を自動作成|マナー電卓">
+<meta property="og:description" content="故人の続柄・亡くなった月・享年を入れるだけで、喪中はがき(年賀欠礼状)の文面を自動作成。句読点なしの正式スタイルにも対応し、はがき風プレビューとワンクリックコピー付き。無料。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../">マナー<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../#columns">コラム</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="../">マナー電卓</a> › 喪中はがき 文例ジェネレーター</nav>
+
+  <div class="page-head">
+    <h1>喪中はがき 文例ジェネレーター</h1>
+    <p class="lead">故人の続柄や亡くなった月を選ぶだけで、喪中はがき(年賀欠礼状)の文面を自動作成。正式な句読点なしスタイルにも対応し、そのままコピーして使えます。</p>
+  </div>
+
+  <section class="tool-panel">
+    <h2>内容を入力</h2>
+    <div class="field-row">
+      <div class="field">
+        <label for="relation">故人の続柄(差出人から見て)</label>
+        <select id="relation">
+          <option value="父" selected>父</option>
+          <option value="母">母</option>
+          <option value="夫">夫</option>
+          <option value="妻">妻</option>
+          <option value="息子">息子</option>
+          <option value="娘">娘</option>
+          <option value="祖父">祖父</option>
+          <option value="祖母">祖母</option>
+          <option value="兄">兄</option>
+          <option value="姉">姉</option>
+          <option value="弟">弟</option>
+          <option value="妹">妹</option>
+          <option value="義父">義父</option>
+          <option value="義母">義母</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="name">故人の名前(任意)</label>
+        <input type="text" id="name" placeholder="例:太郎(下の名前のみ)">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="month">亡くなった月</label>
+        <select id="month">
+          <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
+          <option value="4">4月</option><option value="5">5月</option><option value="6">6月</option>
+          <option value="7" selected>7月</option><option value="8">8月</option><option value="9">9月</option>
+          <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="age">享年(任意)</label>
+        <input type="number" id="age" min="0" max="130" placeholder="例:85">
+      </div>
+      <div class="field">
+        <span style="font-weight:600;font-size:0.9rem;">年齢の数え方</span>
+        <div class="radio-row">
+          <label><input type="radio" name="ageType" value="kazoe" checked>数え年(享年)</label>
+          <label><input type="radio" name="ageType" value="man">満年齢</label>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <span style="font-weight:600;font-size:0.9rem;">差出人</span>
+      <div class="radio-row">
+        <label><input type="radio" name="sender" value="single" checked>個人</label>
+        <label><input type="radio" name="sender" value="couple">夫婦連名</label>
+      </div>
+    </div>
+    <div class="field">
+      <label class="check-label"><input type="checkbox" id="thanks" checked>生前のお付き合いへの感謝の一文を入れる</label>
+    </div>
+    <div class="field">
+      <span style="font-weight:600;font-size:0.9rem;">文体スタイル</span>
+      <div class="radio-row">
+        <label><input type="radio" name="style" value="formal" checked>正式(句読点なし・漢数字)</label>
+        <label><input type="radio" name="style" value="modern">現代(句読点あり・読みやすい)</label>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="genBtn">文面を作成する</button>
+    </div>
+
+    <div id="result" hidden>
+      <div class="variant-tabs" role="tablist">
+        <button type="button" class="variant-btn" role="tab" data-variant="0" aria-selected="true">文例A(標準)</button>
+        <button type="button" class="variant-btn" role="tab" data-variant="1" aria-selected="false">文例B(丁寧)</button>
+        <button type="button" class="variant-btn" role="tab" data-variant="2" aria-selected="false">文例C(簡潔)</button>
+      </div>
+      <div class="hagaki-wrap"><div class="hagaki" id="hagaki"></div></div>
+      <p class="note" id="senderNote"></p>
+      <div class="btn-row">
+        <button type="button" class="btn" id="copyBtn">文面をコピー</button>
+        <span class="copied-msg" id="copiedMsg" hidden>コピーしました</span>
+      </div>
+      <div class="manner-note">
+        <strong>出す時期のマナー:</strong>喪中はがきは相手が年賀状を準備する前、<strong>11月中旬〜12月上旬に届くように</strong>投函しましょう。間に合わない場合は年明けの<strong>寒中見舞い</strong>(1月8日頃〜立春)で欠礼を伝えます。
+      </div>
+    </div>
+    <!-- AD-SLOT: sogi -->
+  </section>
+
+  <article class="article">
+    <h2>喪中はがきの基本</h2>
+    <h3>誰に出す?</h3>
+    <p>喪中はがきは「今年は身内に不幸があったため、新年のご挨拶(年賀状)を控えます」と事前に知らせる<strong>年賀欠礼状</strong>です。毎年年賀状をやり取りしている相手全員に出すのが基本です。葬儀に参列してくれた親族など、すでに喪中と知っている相手には省略しても構いませんが、丁寧にするなら出しても問題ありません。仕事関係の相手には、私的な事情を持ち込まないという考えから通常どおり年賀状を出すケースもあります。</p>
+    <h3>いつ出す?</h3>
+    <p>相手が年賀状の準備を始める前に届くよう、<strong>11月中旬から12月上旬</strong>に投函するのが目安です。早すぎると相手が年賀状を書く頃に忘れられてしまうことがあり、遅すぎると相手がすでに投函を済ませてしまいます。12月に不幸があった場合など間に合わないときは、無理に出さず年明けに寒中見舞いで伝えます。</p>
+    <h3>どこまでの続柄で出す?</h3>
+    <p>一般的には<strong>2親等以内</strong>(配偶者・父母・子・兄弟姉妹・祖父母・孫と、それぞれの配偶者)が亡くなった場合に喪中とします。ただし法律や宗教上の厳密な決まりはなく、別居の祖父母なら出さない人もいれば、3親等でも同居していた場合や思い入れが深い場合に出す人もいます。最終的には自分の気持ちで判断して構いません。</p>
+
+    <h2>書き方の注意点</h2>
+    <ul>
+      <li>「年賀」という言葉は避け、<strong>「年頭」「新年」「年末年始」のご挨拶</strong>と表現します。</li>
+      <li>結婚・出産・引っ越しなどの<strong>近況報告は書かない</strong>のがマナー。伝えたい場合は寒中見舞いや別便で。</li>
+      <li>正式なスタイルでは<strong>句読点を使わず、行頭の字下げもしません</strong>。数字は漢数字にします。</li>
+      <li>私製はがきの場合、切手は<strong>弔事用の花文様切手</strong>を使います。郵便局の通常はがきなら胡蝶蘭柄が定番です。</li>
+      <li>夫婦連名で出す場合、故人の続柄は<strong>世帯主(夫)から見た書き方</strong>に統一するのが一般的です(妻の父なら「父」ではなく「岳父」や「妻◯◯の父」など)。</li>
+    </ul>
+
+    <h2>寒中見舞いとの関係</h2>
+    <p>寒中見舞いは松の内が明けた<strong>1月8日頃から立春(2月4日頃)まで</strong>に出す季節の挨拶状で、喪中と深い関わりがあります。使われる場面は主に3つです。</p>
+    <ul>
+      <li><strong>喪中はがきを出しそびれた</strong>場合の年賀欠礼の報告とお詫び</li>
+      <li><strong>喪中に年賀状をいただいた</strong>場合の返礼(喪中のため挨拶を控えた旨を添える)</li>
+      <li>喪中と知らずに<strong>年賀状を出してしまった相手へのお詫び</strong></li>
+    </ul>
+    <p>喪中はがきはあくまで「事前のお知らせ」、寒中見舞いは「事後のご挨拶」と覚えておくと使い分けに迷いません。</p>
+
+    <h2>よくある質問</h2>
+    <details class="faq">
+      <summary>喪中はがきはいつまでに出せばいいですか?</summary>
+      <p>相手が年賀状の準備を始める前、11月中旬から12月上旬に届くように出すのがマナーです。間に合わない場合は無理に出さず、年明けに寒中見舞いで欠礼を伝えます。</p>
+    </details>
+    <details class="faq">
+      <summary>どの範囲の親族が亡くなったら喪中はがきを出しますか?</summary>
+      <p>一般的には2親等以内(配偶者・父母・子・兄弟姉妹・祖父母・孫など)です。ただし厳密な決まりはなく、同居の有無や気持ちのうえで喪に服したいかどうかで判断して構いません。</p>
+    </details>
+    <details class="faq">
+      <summary>故人の名前や年齢は必ず書かないといけませんか?</summary>
+      <p>必須ではありません。続柄と亡くなった月だけでも失礼にはあたりません。名前や享年を入れると受け取った側に誰のことか伝わりやすくなります。伏せたい場合は省略して問題ありません。</p>
+    </details>
+    <details class="faq">
+      <summary>喪中はがきを出しそびれてしまった場合はどうすればいいですか?</summary>
+      <p>1月8日頃から立春までの間に寒中見舞いを出し、年賀欠礼の報告と挨拶が遅れたお詫びを伝えます。12月の不幸で間に合わない場合も同様です。</p>
+    </details>
+    <details class="faq">
+      <summary>喪中はがきに句読点を入れないのはなぜですか?</summary>
+      <p>儀礼的な挨拶状は毛筆書状の伝統を受け継ぎ、句読点なし・字下げなしが正式とされてきたためです。現代では読みやすさを優先して句読点を入れても失礼にはあたりません。</p>
+    </details>
+
+    <section class="related-tools">
+      <h2>関連ツール</h2>
+      <div class="card-grid">
+        <a class="card" href="../koden/"><span class="card-icon">💴</span><h3>香典金額チェッカー</h3><p>続柄・年代・立場から香典の金額相場を確認できます。</p></a>
+        <a class="card" href="../kibiki/"><span class="card-icon">📅</span><h3>忌引き休暇 日数チェッカー</h3><p>続柄別の忌引き日数の目安と会社への連絡のポイント。</p></a>
+      </div>
+    </section>
+    <!-- AD-SLOT: sogi -->
+  </article>
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 マナー電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  var KAN = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+  function toKanji(n) {
+    n = Math.floor(n);
+    if (n <= 0 || n > 999) return String(n);
+    var s = "";
+    var h = Math.floor(n / 100), t = Math.floor((n % 100) / 10), o = n % 10;
+    if (h) s += (h > 1 ? KAN[h] : "") + "百";
+    if (t) s += (t > 1 ? KAN[t] : "") + "十";
+    if (o) s += KAN[o];
+    return s;
+  }
+
+  var VARIANTS = [
+    { // A 標準
+      greet: "喪中につき年末年始のご挨拶をご遠慮申し上げます",
+      thanks: "生前に賜りましたご厚情に深く感謝申し上げます",
+      close: ["明年も変わらぬご交誼のほどお願い申し上げます",
+              "皆様がよき新年をお迎えになりますようお祈り申し上げます"]
+    },
+    { // B 丁寧
+      greet: "喪中につき新年のご挨拶を謹んでご遠慮申し上げます",
+      thanks: "故人が生前に賜りましたご厚誼に心より御礼申し上げます",
+      close: ["明年も変わらぬお付き合いのほどよろしくお願い申し上げます",
+              "皆様がお健やかに新しい年をお迎えになりますようお祈りいたします"]
+    },
+    { // C 簡潔
+      greet: "服喪中につき年頭のご挨拶を失礼させていただきます",
+      thanks: "生前のご厚情に深く御礼申し上げます",
+      close: ["皆様にはどうぞよき新年をお迎えください"]
+    }
+  ];
+
+  var currentVariant = 0;
+  var currentLines = [];
+
+  function radioValue(name) {
+    var els = document.getElementsByName(name);
+    for (var i = 0; i < els.length; i++) if (els[i].checked) return els[i].value;
+    return "";
+  }
+
+  function buildLines(v) {
+    var variant = VARIANTS[v];
+    var formal = radioValue("style") === "formal";
+    var rel = document.getElementById("relation").value;
+    var name = document.getElementById("name").value.trim();
+    var month = parseInt(document.getElementById("month").value, 10);
+    var ageRaw = document.getElementById("age").value;
+    var age = ageRaw === "" ? null : parseInt(ageRaw, 10);
+    var kazoe = radioValue("ageType") === "kazoe";
+    var withThanks = document.getElementById("thanks").checked;
+
+    var lines = [];
+    lines.push({ text: variant.greet, cls: "h-greet" });
+
+    // 故人情報の行
+    var monthStr = formal ? toKanji(month) + "月" : month + "月";
+    var who = formal ? (rel + (name ? " " + name : "")) : (rel + (name ? "・" + name : ""));
+    var ageStr = "";
+    if (age !== null && !isNaN(age)) {
+      if (formal) {
+        ageStr = kazoe ? "享年" + toKanji(age) : "満" + toKanji(age) + "歳";
+      } else {
+        ageStr = kazoe ? "享年" + age : "満" + age + "歳";
+      }
+    }
+    var deadLine;
+    if (formal) {
+      deadLine = "本年" + monthStr + "に " + who + " が" + (ageStr ? ageStr + "にて" : "") + "永眠いたしました";
+    } else {
+      deadLine = "本年" + monthStr + "に" + who + (ageStr ? "(" + ageStr + ")" : "") + "が永眠いたしました。";
+    }
+    lines.push({ text: deadLine, cls: "" });
+
+    if (withThanks) {
+      lines.push({ text: variant.thanks + (formal ? "" : "。"), cls: "" });
+    }
+    variant.close.forEach(function (c) {
+      lines.push({ text: c + (formal ? "" : "。"), cls: "" });
+    });
+
+    // 日付行(令和◯年十一月)
+    var now = new Date();
+    var reiwa = now.getFullYear() - 2018;
+    var dateMonth = now.getMonth() + 1 === 12 ? 12 : 11;
+    var dateLine = formal
+      ? "令和" + toKanji(reiwa) + "年" + toKanji(dateMonth) + "月"
+      : "令和" + reiwa + "年" + dateMonth + "月";
+    lines.push({ text: dateLine, cls: "h-date" });
+
+    return lines;
+  }
+
+  function render() {
+    currentLines = buildLines(currentVariant);
+    var hagaki = document.getElementById("hagaki");
+    hagaki.innerHTML = "";
+    currentLines.forEach(function (l) {
+      var div = document.createElement("div");
+      if (l.cls) div.className = l.cls;
+      div.textContent = l.text;
+      hagaki.appendChild(div);
+    });
+
+    // 差出人プレビュー(コピー対象外)
+    var couple = radioValue("sender") === "couple";
+    var senderDiv = document.createElement("div");
+    senderDiv.className = "h-sender";
+    senderDiv.textContent = couple ? "(住所) 夫氏名 妻名" : "(住所) 差出人氏名";
+    hagaki.appendChild(senderDiv);
+
+    var note = document.getElementById("senderNote");
+    note.textContent = couple
+      ? "※ 差出人欄はご自身の住所・夫婦のお名前に置き換えてください。夫婦連名の場合、故人の続柄は世帯主(夫)から見た表記に統一するのが一般的です。"
+      : "※ 差出人欄はご自身の住所・お名前に置き換えてください(プレビューの差出人行はコピーされません)。";
+
+    document.getElementById("result").hidden = false;
+    document.getElementById("copiedMsg").hidden = true;
+  }
+
+  document.getElementById("genBtn").addEventListener("click", render);
+
+  var tabs = document.querySelectorAll(".variant-btn");
+  Array.prototype.forEach.call(tabs, function (btn) {
+    btn.addEventListener("click", function () {
+      Array.prototype.forEach.call(tabs, function (b) { b.setAttribute("aria-selected", "false"); });
+      btn.setAttribute("aria-selected", "true");
+      currentVariant = parseInt(btn.getAttribute("data-variant"), 10);
+      render();
+    });
+  });
+
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    var text = currentLines.map(function (l) { return l.text; }).join("\n");
+    function done() {
+      var msg = document.getElementById("copiedMsg");
+      msg.hidden = false;
+      setTimeout(function () { msg.hidden = true; }, 2000);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+    } else {
+      fallback();
+    }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  });
+})();
+</script>
+</body>
+</html>

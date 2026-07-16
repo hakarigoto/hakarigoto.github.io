@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>西暦⇔和暦変換・年齢計算ツール|ラクツール</title>
+<meta name="description" content="西暦と和暦(明治・大正・昭和・平成・令和)を相互変換し、生年月日から満年齢・数え年・干支・学年まで計算できる無料ツール。改元日も正確に判定。和暦西暦早見表付き。登録不要・完全無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 2px solid var(--border); margin-bottom: 20px; }
+.tab-btn {
+  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  padding: 10px 16px; border: none; background: transparent; color: var(--text-sub);
+  border-bottom: 3px solid transparent; margin-bottom: -2px; cursor: pointer;
+}
+.tab-btn[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-btn:hover { color: var(--accent); }
+.tab-panel[hidden] { display: none; }
+.result-main { font-size: 1.4rem; font-weight: 700; }
+.result-sub { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+.result-error { color: #c0392b; font-weight: 600; }
+@media (prefers-color-scheme: dark) { .result-error { color: #ff8a7a; } }
+.copy-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.btn-copy { padding: 6px 14px; font-size: 0.85rem; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "昭和64年はいつまでですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "昭和64年は1989年1月7日までです。昭和天皇の崩御に伴い、翌1989年1月8日から平成元年が始まりました。つまり1989年は1月7日までが昭和64年、1月8日以降が平成元年です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "「令和元年」と「令和1年」はどちらが正しいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "どちらも同じ2019年を指しますが、公文書や履歴書などの正式な書類では「元年」と書くのが慣例です。役所の書類でも「令和元年」の表記が使われています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "履歴書の日付は和暦と西暦のどちらで書くべきですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "どちらでも構いませんが、1枚の書類の中で和暦と西暦を混在させないことが重要です。生年月日を「平成8年」と書いたら、学歴・職歴・提出日もすべて和暦で統一しましょう。官公庁向けは和暦、外資系企業は西暦が好まれる傾向があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "数え年とは何ですか?満年齢との違いは?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "数え年は生まれた時点を1歳とし、以後1月1日(正月)を迎えるたびに1歳ずつ加える数え方です。満年齢は生まれた時点を0歳とし、誕生日ごとに1歳加えます。数え年は満年齢より1歳または2歳大きくなり、七五三や厄年などの伝統行事で使われます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "早生まれとは?学年の区切りはいつですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "学年は4月2日生まれから翌年4月1日生まれまでが同じ学年です。1月1日から4月1日に生まれた人を「早生まれ」と呼び、同学年の中では誕生日が遅いため1つ上の年度の学年に入ります。4月1日生まれが前の学年になるのは、法律上、誕生日の前日に年齢が加算されるためです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力した生年月日などのデータは送信されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。このツールの計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した生年月日などのデータが外部のサーバーに送信されることは一切ありません。安心してご利用ください。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/tools/wareki/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/tools/wareki/">
+<meta property="og:site_name" content="ラクツール">
+<meta property="og:title" content="西暦⇔和暦変換・年齢計算ツール|ラクツール">
+<meta property="og:description" content="西暦と和暦(明治・大正・昭和・平成・令和)を相互変換し、生年月日から満年齢・数え年・干支・学年まで計算できる無料ツール。改元日も正確に判定。和暦西暦早見表付き。登録不要・完全無料。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../../">ラク<span>ツール</span></a><nav class="site-nav"><a href="../../#tools">ツール一覧</a><a href="../../blog/">コラム</a><a href="../../about/">このサイトについて</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../../">ホーム</a> › <a href="../../#tools">ツール一覧</a> › 西暦⇔和暦変換・年齢計算</nav>
+
+<div class="page-head">
+  <h1>西暦⇔和暦変換・年齢計算ツール</h1>
+  <p class="lead">西暦と和暦(明治・大正・昭和・平成・令和)をワンクリックで相互変換。生年月日から満年齢・数え年・干支・学年も計算できます。改元日(昭和64年→平成元年など)も正確に判定。登録不要・完全無料です。</p>
+</div>
+
+<div class="tool-panel">
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" id="tabbtn-s2w" role="tab" aria-selected="true" aria-controls="tab-s2w">西暦→和暦</button>
+    <button class="tab-btn" id="tabbtn-w2s" role="tab" aria-selected="false" aria-controls="tab-w2s">和暦→西暦</button>
+    <button class="tab-btn" id="tabbtn-age" role="tab" aria-selected="false" aria-controls="tab-age">年齢計算</button>
+  </div>
+
+  <!-- 西暦→和暦 -->
+  <section class="tab-panel" id="tab-s2w" role="tabpanel" aria-labelledby="tabbtn-s2w">
+    <h2>西暦から和暦に変換</h2>
+    <div class="field-row">
+      <div class="field">
+        <label for="s2w-year">年(西暦)<span class="note">※必須</span></label>
+        <input type="number" id="s2w-year" min="1868" max="2200" placeholder="例: 1996" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="s2w-month">月<span class="note">※任意</span></label>
+        <input type="number" id="s2w-month" min="1" max="12" placeholder="例: 4" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="s2w-day">日<span class="note">※任意</span></label>
+        <input type="number" id="s2w-day" min="1" max="31" placeholder="例: 2" inputmode="numeric">
+      </div>
+    </div>
+    <p class="note">改元の年(1912年・1926年・1989年・2019年)は月日まで入力すると正確に判定します。年のみの場合は両方の元号を表示します。</p>
+    <div class="btn-row">
+      <button class="btn" id="s2w-run">和暦に変換</button>
+      <button class="btn btn-secondary" id="s2w-clear">クリア</button>
+    </div>
+    <div class="result-box" id="s2w-result" hidden></div>
+  </section>
+
+  <!-- 和暦→西暦 -->
+  <section class="tab-panel" id="tab-w2s" role="tabpanel" aria-labelledby="tabbtn-w2s" hidden>
+    <h2>和暦から西暦に変換</h2>
+    <div class="field-row">
+      <div class="field">
+        <label for="w2s-era">元号</label>
+        <select id="w2s-era">
+          <option value="令和">令和</option>
+          <option value="平成">平成</option>
+          <option value="昭和">昭和</option>
+          <option value="大正">大正</option>
+          <option value="明治">明治</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="w2s-year">年(元年は1)</label>
+        <input type="number" id="w2s-year" min="1" max="99" placeholder="例: 8" inputmode="numeric">
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="w2s-run">西暦に変換</button>
+      <button class="btn btn-secondary" id="w2s-clear">クリア</button>
+    </div>
+    <div class="result-box" id="w2s-result" hidden></div>
+  </section>
+
+  <!-- 年齢計算 -->
+  <section class="tab-panel" id="tab-age" role="tabpanel" aria-labelledby="tabbtn-age" hidden>
+    <h2>生年月日から年齢を計算</h2>
+    <div class="field">
+      <label for="age-birth">生年月日</label>
+      <input type="date" id="age-birth" min="1868-01-25">
+    </div>
+    <p class="note">今日(このページを開いた日)時点の満年齢・数え年・干支・学年早見を表示します。計算はすべてブラウザ内で行われ、入力内容が送信されることはありません。</p>
+    <div class="btn-row">
+      <button class="btn" id="age-run">年齢を計算</button>
+      <button class="btn btn-secondary" id="age-clear">クリア</button>
+    </div>
+    <div class="result-box" id="age-result" hidden></div>
+  </section>
+</div>
+
+<article class="article">
+
+<h2>使い方</h2>
+<p>このツールには3つの機能があり、上部のタブで切り替えられます。</p>
+<ol>
+  <li><strong>西暦→和暦</strong>:西暦の年を入力して「和暦に変換」を押すと、「令和◯年」「平成◯年」などの和暦表記を表示します。改元があった年(1912年・1926年・1989年・2019年)は月日まで入力すると、切り替わり日をもとに正確に判定します。年だけ入力した場合は「昭和64年/平成元年」のように両方の可能性を表示します。</li>
+  <li><strong>和暦→西暦</strong>:元号(明治・大正・昭和・平成・令和)と年数を選んで変換します。「昭和65年」のような実在しない年はエラーとしてお知らせします。</li>
+  <li><strong>年齢計算</strong>:生年月日を入力すると、今日時点の満年齢・数え年・生まれ年の干支・今年の誕生日を迎えたかどうか、さらに小学校〜高校の入学・卒業年度の早見を表示します。履歴書にそのまま使える「平成8年4月2日生まれ」形式の表記はコピーボタンでコピーできます。</li>
+</ol>
+
+<h2>元号の切り替わり日一覧</h2>
+<p>和暦と西暦の変換で間違えやすいのが「改元をまたぐ年」です。元号は年の途中で切り替わるため、同じ西暦の年でも日付によって元号が異なります。切り替わり日は次のとおりです。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>元号</th><th>期間</th><th>西暦換算式</th></tr></thead>
+  <tbody>
+    <tr><td>明治</td><td>1868年〜1912年7月29日(明治45年)</td><td>明治N年 = 1867 + N</td></tr>
+    <tr><td>大正</td><td>1912年7月30日(大正元年)〜1926年12月24日(大正15年)</td><td>大正N年 = 1911 + N</td></tr>
+    <tr><td>昭和</td><td>1926年12月25日(昭和元年)〜1989年1月7日(昭和64年)</td><td>昭和N年 = 1925 + N</td></tr>
+    <tr><td>平成</td><td>1989年1月8日(平成元年)〜2019年4月30日(平成31年)</td><td>平成N年 = 1988 + N</td></tr>
+    <tr><td>令和</td><td>2019年5月1日(令和元年)〜現在</td><td>令和N年 = 2018 + N</td></tr>
+  </tbody>
+</table>
+</div>
+<p>たとえば1989年1月7日生まれの人は「昭和64年生まれ」、翌日の1月8日生まれの人は「平成元年生まれ」です。同様に2019年4月30日までは平成31年、5月1日からは令和元年になります。書類の生年月日を書くときは、この境界を必ず確認しましょう。なお、暗算したいときは換算式が便利です。昭和なら西暦の下2桁から25を引く(1980年→昭和55年)、平成なら西暦から1988を引く(2005年→平成17年)、令和なら2018を引く(2026年→令和8年)と覚えておくと素早く変換できます。</p>
+
+<h2>履歴書は和暦と西暦どちらで書くべき?</h2>
+<p>履歴書の日付や生年月日は、<strong>和暦・西暦のどちらで書いても問題ありません</strong>。法律上の決まりはなく、採用担当者がどちらかで不利に扱うこともまずありません。ただし絶対に守りたいルールが1つあります。それは<strong>「1枚の書類の中で表記を統一する」</strong>ことです。生年月日は「平成8年4月2日」なのに学歴欄は「2012年3月卒業」というように混在していると、読み手が年数の対応を頭の中で変換しなければならず、書類作成の丁寧さを疑われる原因にもなります。</p>
+<p>傾向としては、官公庁や金融機関など伝統的な組織へ提出する書類は和暦、外資系企業やIT企業では西暦が好まれることが多いといわれます。提出先の応募要項や記入例に合わせるのが最も無難です。また、卒業年・入社年を和暦で書く場合は本ツールの早見表で確認すれば、「平成何年に卒業したか」を間違えずに記入できます。</p>
+
+<h2>数え年と満年齢の違い</h2>
+<p>年齢の数え方には「満年齢」と「数え年」の2種類があります。</p>
+<ul>
+  <li><strong>満年齢</strong>:生まれた時点を0歳とし、誕生日を迎えるたびに1歳ずつ増える数え方です。現在の法律・行政手続き・履歴書などで使われるのはすべて満年齢です。</li>
+  <li><strong>数え年</strong>:生まれた時点を1歳とし、誕生日ではなく<strong>1月1日(正月)を迎えるたびに</strong>1歳ずつ増える数え方です。「その年の西暦 − 生まれた年の西暦 + 1」で計算できます。</li>
+</ul>
+<p>数え年は満年齢より常に1歳または2歳大きくなります。誕生日を迎える前は2歳差、迎えた後は1歳差です。極端な例では、12月31日に生まれた赤ちゃんは生まれた瞬間に数え年1歳、翌日の1月1日には数え年2歳になります(満年齢は0歳のまま)。現在では日常的にほとんど使われませんが、<strong>七五三・厄年・長寿祝い(還暦・古希など)</strong>といった伝統行事では今も数え年が基準になることが多いため、神社やお寺の案内を見るときには注意が必要です。なお還暦(数え61歳・満60歳)は、生まれ年と同じ干支(十干十二支)が60年で一巡して戻ってくることに由来します。</p>
+
+<h2>和暦・西暦 早見表</h2>
+<p>明治から令和までの対応早見表です。改元をまたぐ年には両方の元号を記載しています。</p>
+
+<h3>令和</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>和暦</th><th>西暦</th><th>和暦</th><th>西暦</th></tr></thead>
+  <tbody>
+    <tr><td>令和元年(5/1〜)</td><td>2019年</td><td>令和7年</td><td>2025年</td></tr>
+    <tr><td>令和2年</td><td>2020年</td><td>令和8年</td><td>2026年</td></tr>
+    <tr><td>令和3年</td><td>2021年</td><td>令和9年</td><td>2027年</td></tr>
+    <tr><td>令和4年</td><td>2022年</td><td>令和10年</td><td>2028年</td></tr>
+    <tr><td>令和5年</td><td>2023年</td><td>令和11年</td><td>2029年</td></tr>
+    <tr><td>令和6年</td><td>2024年</td><td>令和12年</td><td>2030年</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>平成</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>和暦</th><th>西暦</th><th>和暦</th><th>西暦</th></tr></thead>
+  <tbody>
+    <tr><td>平成元年(1/8〜)</td><td>1989年</td><td>平成17年</td><td>2005年</td></tr>
+    <tr><td>平成2年</td><td>1990年</td><td>平成18年</td><td>2006年</td></tr>
+    <tr><td>平成3年</td><td>1991年</td><td>平成19年</td><td>2007年</td></tr>
+    <tr><td>平成4年</td><td>1992年</td><td>平成20年</td><td>2008年</td></tr>
+    <tr><td>平成5年</td><td>1993年</td><td>平成21年</td><td>2009年</td></tr>
+    <tr><td>平成6年</td><td>1994年</td><td>平成22年</td><td>2010年</td></tr>
+    <tr><td>平成7年</td><td>1995年</td><td>平成23年</td><td>2011年</td></tr>
+    <tr><td>平成8年</td><td>1996年</td><td>平成24年</td><td>2012年</td></tr>
+    <tr><td>平成9年</td><td>1997年</td><td>平成25年</td><td>2013年</td></tr>
+    <tr><td>平成10年</td><td>1998年</td><td>平成26年</td><td>2014年</td></tr>
+    <tr><td>平成11年</td><td>1999年</td><td>平成27年</td><td>2015年</td></tr>
+    <tr><td>平成12年</td><td>2000年</td><td>平成28年</td><td>2016年</td></tr>
+    <tr><td>平成13年</td><td>2001年</td><td>平成29年</td><td>2017年</td></tr>
+    <tr><td>平成14年</td><td>2002年</td><td>平成30年</td><td>2018年</td></tr>
+    <tr><td>平成15年</td><td>2003年</td><td>平成31年(〜4/30)</td><td>2019年</td></tr>
+    <tr><td>平成16年</td><td>2004年</td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>昭和(主要年)</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>和暦</th><th>西暦</th><th>和暦</th><th>西暦</th></tr></thead>
+  <tbody>
+    <tr><td>昭和元年(12/25〜)</td><td>1926年</td><td>昭和40年</td><td>1965年</td></tr>
+    <tr><td>昭和5年</td><td>1930年</td><td>昭和45年</td><td>1970年</td></tr>
+    <tr><td>昭和10年</td><td>1935年</td><td>昭和50年</td><td>1975年</td></tr>
+    <tr><td>昭和15年</td><td>1940年</td><td>昭和55年</td><td>1980年</td></tr>
+    <tr><td>昭和20年</td><td>1945年</td><td>昭和60年</td><td>1985年</td></tr>
+    <tr><td>昭和25年</td><td>1950年</td><td>昭和63年</td><td>1988年</td></tr>
+    <tr><td>昭和30年</td><td>1955年</td><td>昭和64年(〜1/7)</td><td>1989年</td></tr>
+    <tr><td>昭和35年</td><td>1960年</td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>大正</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>和暦</th><th>西暦</th><th>和暦</th><th>西暦</th></tr></thead>
+  <tbody>
+    <tr><td>大正元年(7/30〜)</td><td>1912年</td><td>大正9年</td><td>1920年</td></tr>
+    <tr><td>大正2年</td><td>1913年</td><td>大正10年</td><td>1921年</td></tr>
+    <tr><td>大正3年</td><td>1914年</td><td>大正11年</td><td>1922年</td></tr>
+    <tr><td>大正4年</td><td>1915年</td><td>大正12年</td><td>1923年</td></tr>
+    <tr><td>大正5年</td><td>1916年</td><td>大正13年</td><td>1924年</td></tr>
+    <tr><td>大正6年</td><td>1917年</td><td>大正14年</td><td>1925年</td></tr>
+    <tr><td>大正7年</td><td>1918年</td><td>大正15年(〜12/24)</td><td>1926年</td></tr>
+    <tr><td>大正8年</td><td>1919年</td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>明治(主要年)</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>和暦</th><th>西暦</th><th>和暦</th><th>西暦</th></tr></thead>
+  <tbody>
+    <tr><td>明治元年</td><td>1868年</td><td>明治30年</td><td>1897年</td></tr>
+    <tr><td>明治10年</td><td>1877年</td><td>明治40年</td><td>1907年</td></tr>
+    <tr><td>明治20年</td><td>1887年</td><td>明治45年(〜7/29)</td><td>1912年</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>よくある質問</h2>
+
+<details class="faq">
+  <summary>昭和64年はいつまで?</summary>
+  <p>昭和64年は<strong>1989年1月7日まで</strong>です。翌1月8日から平成元年が始まりました。1989年生まれの方は、1月7日以前なら昭和64年生まれ、1月8日以降なら平成元年生まれになります。</p>
+</details>
+
+<details class="faq">
+  <summary>「令和元年」と「令和1年」はどちらが正しい?</summary>
+  <p>どちらも同じ2019年(5月1日以降)を指しますが、公文書や履歴書などの正式な書類では<strong>「元年」</strong>と書くのが慣例です。役所の様式でも「令和元年」の表記が使われています。</p>
+</details>
+
+<details class="faq">
+  <summary>履歴書の生年月日は和暦と西暦どちらで書くべき?</summary>
+  <p>どちらでも構いませんが、<strong>同じ書類の中で表記を統一する</strong>ことが大切です。生年月日を和暦で書いたら、学歴・職歴・提出日もすべて和暦にそろえましょう。提出先に記入例がある場合はそれに合わせるのが確実です。</p>
+</details>
+
+<details class="faq">
+  <summary>数え年とは?満年齢とどう違う?</summary>
+  <p>数え年は生まれた時点を1歳とし、<strong>1月1日を迎えるたびに1歳加える</strong>数え方です。満年齢(誕生日ごとに加齢、生まれた時は0歳)より1〜2歳大きくなります。七五三や厄年、長寿祝いなどの伝統行事では数え年が使われることがあります。</p>
+</details>
+
+<details class="faq">
+  <summary>早生まれとは?学年の区切りはいつ?</summary>
+  <p>学年は<strong>4月2日生まれから翌年4月1日生まれまで</strong>が同じ学年です。1月1日〜4月1日生まれの人を「早生まれ」と呼びます。4月1日生まれが前の学年に入るのは、法律上、年齢が誕生日の前日の終了時に加算されるためです。</p>
+</details>
+
+<details class="faq">
+  <summary>入力したデータは外部に送信される?</summary>
+  <p>いいえ。変換・計算はすべてお使いのブラウザ内(JavaScript)で完結しており、生年月日などの入力内容が外部サーバーに送信されることは一切ありません。</p>
+</details>
+
+</article>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== 元号データ =====
+     start: 元号の開始日 [年, 月, 日](グレゴリオ暦)
+     end:   元号の最終日(令和は null)
+     明治は慶応4年1月1日(1868年1月25日)に遡って適用 */
+  var ERAS = [
+    { name: '令和', start: [2019, 5, 1],   end: null },
+    { name: '平成', start: [1989, 1, 8],   end: [2019, 4, 30] },
+    { name: '昭和', start: [1926, 12, 25], end: [1989, 1, 7] },
+    { name: '大正', start: [1912, 7, 30],  end: [1926, 12, 24] },
+    { name: '明治', start: [1868, 1, 25],  end: [1912, 7, 29] }
+  ];
+
+  var ETO = ['子(ね)', '丑(うし)', '寅(とら)', '卯(う)', '辰(たつ)', '巳(み)', '午(うま)', '未(ひつじ)', '申(さる)', '酉(とり)', '戌(いぬ)', '亥(い)'];
+
+  function dnum(y, m, d) { return y * 10000 + m * 100 + d; }
+
+  function eraYearLabel(n) { return n === 1 ? '元年' : n + '年'; }
+
+  function maxEraYear(era) { return era.end ? era.end[0] - era.start[0] + 1 : null; }
+
+  /* 完全な日付 → { era, year } / 明治より前は null */
+  function dateToWareki(y, m, d) {
+    var v = dnum(y, m, d);
+    for (var i = 0; i < ERAS.length; i++) {
+      var e = ERAS[i];
+      if (v >= dnum(e.start[0], e.start[1], e.start[2])) {
+        return { era: e, year: y - e.start[0] + 1 };
+      }
+    }
+    return null;
+  }
+
+  /* 年のみ → その年に存在しうる元号の配列(新しい順) */
+  function yearToWarekiList(y) {
+    var list = [];
+    for (var i = 0; i < ERAS.length; i++) {
+      var e = ERAS[i];
+      var lastY = e.end ? e.end[0] : 9999;
+      if (y >= e.start[0] && y <= lastY) {
+        list.push({ era: e, year: y - e.start[0] + 1 });
+      }
+    }
+    return list;
+  }
+
+  function warekiStr(w) { return w.era.name + eraYearLabel(w.year); }
+
+  function isValidDate(y, m, d) {
+    var dt = new Date(y, m - 1, d);
+    return dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d;
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function show(el, html) { el.innerHTML = html; el.hidden = false; }
+  function showError(el, msg) { show(el, '<span class="result-error">' + esc(msg) + '</span>'); }
+
+  /* ===== コピー ===== */
+  function copyText(text, btn) {
+    function done() {
+      var orig = btn.textContent;
+      btn.textContent = 'コピーしました';
+      setTimeout(function () { btn.textContent = orig; }, 1500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+    } else {
+      fallback();
+    }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  }
+
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('[data-copy]');
+    if (btn) copyText(btn.getAttribute('data-copy'), btn);
+  });
+
+  function copyLineHtml(label, text) {
+    return '<div class="copy-line"><span>' + esc(label) + ':<strong> ' + esc(text) + '</strong></span>' +
+      '<button type="button" class="btn btn-secondary btn-copy" data-copy="' + esc(text) + '">コピー</button></div>';
+  }
+
+  /* ===== タブ ===== */
+  var tabs = [['tabbtn-s2w', 'tab-s2w'], ['tabbtn-w2s', 'tab-w2s'], ['tabbtn-age', 'tab-age']];
+  tabs.forEach(function (pair) {
+    document.getElementById(pair[0]).addEventListener('click', function () {
+      tabs.forEach(function (p) {
+        document.getElementById(p[0]).setAttribute('aria-selected', p[0] === pair[0] ? 'true' : 'false');
+        document.getElementById(p[1]).hidden = (p[0] !== pair[0]);
+      });
+    });
+  });
+
+  /* ===== 1. 西暦 → 和暦 ===== */
+  var s2wResult = document.getElementById('s2w-result');
+
+  document.getElementById('s2w-run').addEventListener('click', function () {
+    var y = parseInt(document.getElementById('s2w-year').value, 10);
+    var mRaw = document.getElementById('s2w-month').value;
+    var dRaw = document.getElementById('s2w-day').value;
+    var m = mRaw === '' ? null : parseInt(mRaw, 10);
+    var d = dRaw === '' ? null : parseInt(dRaw, 10);
+
+    if (isNaN(y)) { showError(s2wResult, '年(西暦)を入力してください。'); return; }
+    if (y < 1868) { showError(s2wResult, '1868年(明治元年)より前の年には対応していません。'); return; }
+    if (y > 2200) { showError(s2wResult, '2200年までの年を入力してください。'); return; }
+
+    if (m !== null && d !== null) {
+      if (m < 1 || m > 12 || !isValidDate(y, m, d)) {
+        showError(s2wResult, '存在しない日付です。月日を確認してください。');
+        return;
+      }
+      var w = dateToWareki(y, m, d);
+      if (!w) {
+        showError(s2wResult, y + '年' + m + '月' + d + '日は明治改元(慶応4年1月1日=1868年1月25日)より前のため、慶応以前の元号になります。');
+        return;
+      }
+      var full = warekiStr(w) + m + '月' + d + '日';
+      var html = '<div class="result-main">' + esc(y + '年' + m + '月' + d + '日 → ' + full) + '</div>';
+      html += copyLineHtml('和暦表記', full);
+      html += copyLineHtml('履歴書用(生年月日)', full + '生まれ');
+      show(s2wResult, html);
+    } else {
+      var list = yearToWarekiList(y);
+      var html2;
+      if (list.length === 1) {
+        html2 = '<div class="result-main">' + esc(y + '年 → ' + warekiStr(list[0])) + '</div>';
+        html2 += copyLineHtml('和暦表記', warekiStr(list[0]));
+      } else {
+        var parts = list.slice().reverse(); // 古い元号 → 新しい元号の順
+        html2 = '<div class="result-main">' + esc(y + '年 → ' + parts.map(warekiStr).join(' / ')) + '</div>';
+        var notes = parts.map(function (w2) {
+          var e = w2.era;
+          if (e.end && w2.year === e.end[0] - e.start[0] + 1 && e.end[0] === y) {
+            return warekiStr(w2) + 'は' + e.end[1] + '月' + e.end[2] + '日まで';
+          }
+          return warekiStr(w2) + 'は' + e.start[1] + '月' + e.start[2] + '日から';
+        });
+        html2 += '<div class="result-sub">この年は改元がありました:' + esc(notes.join(' / ')) + '。月日を入力すると確定できます。</div>';
+        parts.forEach(function (w2) { html2 += copyLineHtml('和暦表記', warekiStr(w2)); });
+      }
+      if (y === 1868) {
+        html2 += '<div class="result-sub">※1868年は旧暦では慶応4年=明治元年です(明治への改元は慶応4年1月1日に遡って適用)。</div>';
+      }
+      show(s2wResult, html2);
+    }
+  });
+
+  document.getElementById('s2w-clear').addEventListener('click', function () {
+    ['s2w-year', 's2w-month', 's2w-day'].forEach(function (id) { document.getElementById(id).value = ''; });
+    s2wResult.hidden = true;
+  });
+
+  /* ===== 2. 和暦 → 西暦 ===== */
+  var w2sResult = document.getElementById('w2s-result');
+
+  document.getElementById('w2s-run').addEventListener('click', function () {
+    var eraName = document.getElementById('w2s-era').value;
+    var n = parseInt(document.getElementById('w2s-year').value, 10);
+    var era = null;
+    for (var i = 0; i < ERAS.length; i++) { if (ERAS[i].name === eraName) { era = ERAS[i]; break; } }
+
+    if (!era || isNaN(n)) { showError(w2sResult, '元号と年を入力してください。'); return; }
+    if (n < 1) { showError(w2sResult, '年は1(元年)以上で入力してください。'); return; }
+    var max = maxEraYear(era);
+    if (max !== null && n > max) {
+      showError(w2sResult, eraName + n + '年は存在しません。' + eraName + 'は' + eraName + eraYearLabel(max) + '(' + era.end[0] + '年' + era.end[1] + '月' + era.end[2] + '日)までです。');
+      return;
+    }
+    if (max === null && n > 100) { showError(w2sResult, '年数が大きすぎます。100年以内で入力してください。'); return; }
+
+    var seireki = era.start[0] + n - 1;
+    var html = '<div class="result-main">' + esc(eraName + eraYearLabel(n) + ' → ' + seireki + '年') + '</div>';
+    var subs = [];
+    if (n === 1) {
+      subs.push(eraName + '元年は' + era.start[0] + '年' + era.start[1] + '月' + era.start[2] + '日から始まりました');
+    }
+    if (max !== null && n === max) {
+      subs.push(eraName + n + '年は' + era.end[1] + '月' + era.end[2] + '日までです(以降は改元)');
+    }
+    if (subs.length) html += '<div class="result-sub">※' + esc(subs.join('。')) + '。</div>';
+    html += copyLineHtml('西暦表記', seireki + '年');
+    show(w2sResult, html);
+  });
+
+  document.getElementById('w2s-clear').addEventListener('click', function () {
+    document.getElementById('w2s-year').value = '';
+    w2sResult.hidden = true;
+  });
+
+  /* ===== 3. 年齢計算 ===== */
+  var ageResult = document.getElementById('age-result');
+  var birthInput = document.getElementById('age-birth');
+  (function () {
+    var t = new Date();
+    birthInput.max = t.getFullYear() + '-' + ('0' + (t.getMonth() + 1)).slice(-2) + '-' + ('0' + t.getDate()).slice(-2);
+  })();
+
+  document.getElementById('age-run').addEventListener('click', function () {
+    var val = birthInput.value;
+    if (!val) { showError(ageResult, '生年月日を入力してください。'); return; }
+    var p = val.split('-');
+    var by = parseInt(p[0], 10), bm = parseInt(p[1], 10), bd = parseInt(p[2], 10);
+    if (!isValidDate(by, bm, bd)) { showError(ageResult, '正しい日付を入力してください。'); return; }
+
+    var today = new Date();
+    var ty = today.getFullYear(), tm = today.getMonth() + 1, td = today.getDate();
+
+    if (dnum(by, bm, bd) > dnum(ty, tm, td)) { showError(ageResult, '未来の日付は入力できません。'); return; }
+
+    // 満年齢
+    var age = ty - by;
+    var hadBirthday = (tm > bm) || (tm === bm && td >= bd);
+    if (!hadBirthday) age--;
+
+    // 数え年(生まれた時1歳、1月1日ごとに+1)
+    var kazoe = ty - by + 1;
+
+    // 干支(1868年=辰。(年-4)%12 → 子=0)
+    var eto = ETO[((by - 4) % 12 + 12) % 12];
+
+    // 和暦の生年月日
+    var w = dateToWareki(by, bm, bd);
+    var warekiBirth = w ? warekiStr(w) + bm + '月' + bd + '日' : null;
+
+    // 学年早見(4月2日〜翌4月1日生まれが同学年)
+    var fy = (bm < 4 || (bm === 4 && bd === 1)) ? by - 1 : by; // 生まれ年度
+    var hayaumare = (bm < 4 || (bm === 4 && bd === 1));
+
+    var html = '<div class="result-main">満年齢:' + age + '歳</div>';
+    html += '<div class="result-sub">今日(' + esc(ty + '年' + tm + '月' + td + '日') + ')時点。今年の誕生日は' +
+      (hadBirthday ? '<strong>すでに迎えています</strong>' : '<strong>まだ迎えていません</strong>(誕生日を迎えると' + (age + 1) + '歳)') + '。</div>';
+    html += '<hr style="border:none;border-top:1px solid var(--border);margin:12px 0">';
+    html += '<div>数え年:<strong>' + kazoe + '歳</strong> <span class="note">(生まれた時1歳、1月1日ごとに加齢)</span></div>';
+    html += '<div>干支(生まれ年):<strong>' + esc(eto) + '</strong></div>';
+    if (warekiBirth) {
+      html += copyLineHtml('和暦の生年月日', warekiBirth);
+      html += copyLineHtml('履歴書用', warekiBirth + '生まれ');
+    }
+    html += '<hr style="border:none;border-top:1px solid var(--border);margin:12px 0">';
+    html += '<div><strong>学年早見</strong>' + (hayaumare ? ' <span class="note">(早生まれ:前年度の学年になります)</span>' : '') + '</div>';
+    html += '<ul style="margin:6px 0 0;padding-left:1.4em">' +
+      '<li>小学校入学:' + (fy + 7) + '年4月(卒業:' + (fy + 13) + '年3月)</li>' +
+      '<li>中学校入学:' + (fy + 13) + '年4月(卒業:' + (fy + 16) + '年3月)</li>' +
+      '<li>高校入学:' + (fy + 16) + '年4月(卒業:' + (fy + 19) + '年3月)</li>' +
+      '<li>大学入学(現役):' + (fy + 19) + '年4月(4年制卒業:' + (fy + 23) + '年3月)</li>' +
+      '</ul>';
+    show(ageResult, html);
+  });
+
+  document.getElementById('age-clear').addEventListener('click', function () {
+    birthInput.value = '';
+    ageResult.hidden = true;
+  });
+})();
+</script>
+
+</body>
+</html>

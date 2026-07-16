@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>退職金の手取り計算シミュレーター(税金自動計算)|やめどきナビ</title>
+<meta name="description" content="退職金の手取り額を無料でシミュレーション。勤続年数から退職所得控除を自動計算し、所得税・復興特別所得税・住民税を差し引いた手取り額と実効税率を表示。2026年時点の税制に対応、登録不要。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e66b8;--accent-hover:#17538f;--accent-weak:#e5eef8;}@media (prefers-color-scheme: dark){:root{--accent:#5aa4f0;--accent-hover:#7db8f4;--accent-weak:#16283a;}}</style>
+<style>
+.radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
+.radio-group label, .check-line label { display: flex; align-items: center; gap: 6px; font-weight: 400; margin-bottom: 0; cursor: pointer; }
+.check-line { margin-bottom: 14px; }
+.result-main { font-size: 1.6rem; font-weight: 700; }
+.result-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
+.result-table th, .result-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.result-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.result-table tr.total th, .result-table tr.total td { font-weight: 700; font-size: 1.1rem; border-bottom: none; }
+.result-error { color: #c0392b; font-weight: 600; }
+@media (prefers-color-scheme: dark) { .result-error { color: #ff8a7a; } }
+details.breakdown { margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0 14px; font-size: 0.9rem; }
+details.breakdown summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
+details.breakdown ol { padding-left: 20px; }
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+.compare-table th, .compare-table td { padding: 6px 10px; border: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.compare-table th { background: var(--accent-weak); text-align: center; }
+.compare-table tr.current td { background: var(--accent-weak); font-weight: 700; }
+.related-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 24px 0; }
+.related-box h2 { margin: 0 0 6px; font-size: 1.05rem; }
+.related-box p { margin: 0; font-size: 0.92rem; }
+.privacy-note { margin-top: 12px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "退職金にはどんな税金がかかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "退職金には所得税(および復興特別所得税)と住民税がかかります。ただし勤続年数に応じた退職所得控除が差し引かれ、さらに残額の2分の1だけが課税対象になるため、給与に比べて税負担はかなり軽く設計されています。社会保険料は退職金には原則かかりません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "勤続年数に1年未満の端数がある場合はどう数えますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "退職所得控除の計算では、勤続年数の1年未満の端数は切り上げます。例えば勤続10年1か月なら11年として計算します。1日でも端数があれば1年に切り上げられるため、退職日が数日違うだけで控除額が40万円(または70万円)変わることがあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "「退職所得の受給に関する申告書」を出さないとどうなりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "申告書を勤務先に提出しないと、退職所得控除が適用されず、退職金の収入金額に対して一律20.42%の所得税等が源泉徴収されます。多くの場合は払いすぎになるため、確定申告をすれば還付を受けられますが、手間を避けるためにも退職前に必ず提出しておきましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "勤続5年以下だと税金が高くなるのはなぜですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "役員等としての勤続年数が5年以下の場合(特定役員退職手当等)は2分の1課税が適用されません。また従業員でも勤続5年以下の場合(短期退職手当等)は、退職所得控除を引いた残額のうち300万円を超える部分について2分の1課税が適用されず、税負担が重くなります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力した退職金額などのデータは送信されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。このシミュレーターの計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した退職金額や勤続年数が外部のサーバーに送信されることは一切ありません。保存もされないため、安心してご利用ください。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/taishoku/taishokukin/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/taishoku/taishokukin/">
+<meta property="og:site_name" content="やめどきナビ">
+<meta property="og:title" content="退職金の手取り計算シミュレーター(税金自動計算)|やめどきナビ">
+<meta property="og:description" content="退職金の手取り額を無料でシミュレーション。勤続年数から退職所得控除を自動計算し、所得税・復興特別所得税・住民税を差し引いた手取り額と実効税率を表示。2026年時点の税制に対応、登録不要。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../">やめどき<span>ナビ</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../#columns">コラム</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="../">やめどきナビ</a> › 退職金の手取り計算シミュレーター</nav>
+
+  <div class="page-head">
+    <h1>退職金の手取り計算シミュレーター(税金自動計算)</h1>
+    <p class="lead">退職金額と勤続年数を入れるだけで、退職所得控除・所得税・住民税を自動計算し、手取り額と実効税率を表示します。2026年時点の税制に基づく目安です。</p>
+  </div>
+
+  <section class="tool-panel">
+    <h2>条件を入力</h2>
+    <div class="field-row">
+      <div class="field">
+        <label for="amount">退職金額(額面・万円)</label>
+        <input type="number" id="amount" inputmode="decimal" min="0" step="1" placeholder="例:1000" value="">
+      </div>
+      <div class="field">
+        <label for="years">勤続年数(年)</label>
+        <input type="number" id="years" inputmode="numeric" min="1" max="60" step="1" placeholder="例:20">
+        <p class="note">1年未満の端数月は切り上げて入力してください(例:10年1か月 → 11年)。</p>
+      </div>
+    </div>
+    <div class="field">
+      <label>退職時の立場</label>
+      <div class="radio-group">
+        <label><input type="radio" name="position" value="employee" checked> 従業員</label>
+        <label><input type="radio" name="position" value="officer"> 役員等(取締役・執行役など)</label>
+      </div>
+    </div>
+    <div class="check-line">
+      <label><input type="checkbox" id="disability"> 障害者になったことが直接の原因の退職(退職所得控除+100万円)</label>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">手取り額を計算する</button>
+      <button type="button" class="btn btn-secondary" id="resetBtn">クリア</button>
+    </div>
+    <p class="note privacy-note">計算はすべてブラウザ内で完結し、入力内容がサーバーに送信されることはありません。</p>
+
+    <div id="resultArea" hidden>
+      <div class="result-box" id="resultBox"></div>
+      <details class="breakdown" id="breakdownBox">
+        <summary>計算の内訳を見る</summary>
+        <div id="breakdownBody"></div>
+      </details>
+      <div id="compareBox"></div>
+    </div>
+  </section>
+
+  <!-- AD-SLOT: money -->
+
+  <aside class="related-box">
+    <h2>あわせて使いたい</h2>
+    <p><a href="../shitsugyo-hoken/">失業保険シミュレーター</a> ─ 退職後にもらえる失業保険(基本手当)の金額と期間を試算できます。退職金と合わせて退職後の生活資金を見積もりましょう。</p>
+  </aside>
+
+  <article class="article">
+    <h2>退職所得控除の仕組み ─ 退職金の税金が軽い理由</h2>
+    <p>退職金は「長年の勤労に対する報償」という性格を持つため、税制上とても優遇されています。優遇の柱が<strong>退職所得控除</strong>です。控除額は勤続年数だけで決まり、次の式で計算します。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>勤続年数</th><th>退職所得控除額</th></tr>
+        <tr><td>20年以下</td><td>40万円 × 勤続年数(80万円未満のときは80万円)</td></tr>
+        <tr><td>20年超</td><td>800万円 + 70万円 ×(勤続年数 − 20年)</td></tr>
+      </table>
+    </div>
+    <p>例えば勤続30年なら控除額は800万円+70万円×10年=1,500万円。退職金が1,500万円以下ならまるごと非課税です。勤続年数の1年未満の端数は切り上げるため、10年1か月勤めた人は11年として計算できます。また、障害者になったことが直接の原因で退職した場合は、この控除額に100万円が加算されます。</p>
+    <p>さらに、控除を引いた残額の<strong>2分の1だけ</strong>が課税対象(退職所得)になり、他の所得と合算しない分離課税で税率が適用されます。この「控除 → 2分の1 → 分離課税」の三段構えにより、同じ金額を給与でもらう場合と比べて税負担は大幅に軽くなります。ただし例外があり、役員等としての勤続が5年以下の退職金(特定役員退職手当等)は2分の1課税なし、従業員でも勤続5年以下(短期退職手当等)は控除後300万円を超える部分に2分の1課税が使えません。</p>
+
+    <h2>一時金でもらうか、年金でもらうか ─ 税金の違い</h2>
+    <p>企業年金や確定拠出年金(iDeCo・企業型DC)では、退職給付を「一時金」と「年金(分割受取)」から選べることがあります。税金の扱いは大きく異なります。</p>
+    <p><strong>一時金受取</strong>は上で説明した退職所得となり、退職所得控除と2分の1課税が使えます。控除枠に収まるなら税負担ゼロも珍しくなく、社会保険料もかかりません。<strong>年金受取</strong>は雑所得として毎年の公的年金等控除の対象になりますが、公的年金と合算されるため控除枠を超えやすく、毎年の所得が増えることで国民健康保険料や介護保険料の負担が上がる場合があります。</p>
+    <p>一般には「退職所得控除の枠内なら一時金が有利」といわれますが、控除を大きく超える金額を一括で受け取ると累進税率で税額が跳ね上がることもあります。受取時期をずらして控除を使い分けるテクニックもあるため、金額が大きい場合は税理士など専門家への相談をおすすめします。</p>
+
+    <h2>「退職所得の受給に関する申告書」を出さないと損をする</h2>
+    <p>退職金の税金は原則として会社が源泉徴収して完結しますが、それには<strong>「退職所得の受給に関する申告書」</strong>を退職金の支払日までに勤務先へ提出しておく必要があります。この申告書を出していれば、会社が退職所得控除を適用した正しい税額を計算してくれるため、確定申告は原則不要です。</p>
+    <p>提出しないと、退職所得控除が一切適用されず、退職金の<strong>収入金額に対して一律20.42%</strong>(所得税20%+復興特別所得税0.42%)が源泉徴収されてしまいます。例えば退職金1,000万円なら204万2千円が天引きされる計算で、本来の税額との差額は非常に大きくなりがちです。払いすぎた分は確定申告(還付申告)をすれば取り戻せますが、手間と時間がかかります。申告書は会社が用意してくれることがほとんどなので、退職手続きの際に必ず記入・提出しましょう。</p>
+
+    <h2>よくある質問</h2>
+    <details class="faq">
+      <summary>退職金にはどんな税金がかかりますか?</summary>
+      <p>所得税(および復興特別所得税)と住民税がかかります。ただし勤続年数に応じた退職所得控除が差し引かれ、さらに残額の2分の1だけが課税対象になるため、給与に比べて税負担はかなり軽く設計されています。社会保険料(健康保険・厚生年金)は退職金には原則かかりません。</p>
+    </details>
+    <details class="faq">
+      <summary>勤続年数に1年未満の端数がある場合はどう数えますか?</summary>
+      <p>退職所得控除の計算では1年未満の端数は切り上げます。勤続10年1か月なら11年として計算します。1日でも端数があれば切り上げなので、退職日が数日違うだけで控除額が40万円(20年超の部分なら70万円)変わることがあります。退職日を選べるなら意識してみましょう。</p>
+    </details>
+    <details class="faq">
+      <summary>「退職所得の受給に関する申告書」を出さないとどうなりますか?</summary>
+      <p>退職所得控除が適用されず、退職金の額面に対して一律20.42%の所得税等が源泉徴収されます。多くの場合は払いすぎになるため、確定申告をすれば還付を受けられますが、退職前に提出しておくのが確実です。</p>
+    </details>
+    <details class="faq">
+      <summary>勤続5年以下だと税金が高くなるのはなぜですか?</summary>
+      <p>役員等としての勤続が5年以下の場合(特定役員退職手当等)は2分の1課税が適用されません。従業員でも勤続5年以下の場合(短期退職手当等)は、退職所得控除を引いた残額のうち300万円を超える部分について2分の1課税が使えません。短期間で高額の退職金を受け取る節税スキームを防ぐための規定です。</p>
+    </details>
+    <details class="faq">
+      <summary>入力した退職金額などのデータは送信されますか?</summary>
+      <p>いいえ。計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した退職金額や勤続年数が外部のサーバーに送信されることは一切ありません。保存もされません。</p>
+    </details>
+
+    <h2>このシミュレーターの計算基準と免責事項</h2>
+    <p>本シミュレーターは<strong>2026年(令和8年)時点の税制</strong>に基づく目安を表示します。計算内容:退職所得控除(勤続20年以下は40万円×年数・最低80万円、20年超は800万円+70万円×超過年数、障害者退職は+100万円)、課税退職所得(1,000円未満切捨て、特定役員退職手当等・短期退職手当等の特例を反映)、所得税の累進税率(速算表)+復興特別所得税2.1%、住民税10%(市町村民税6%+道府県民税4%、各100円未満切捨て)。</p>
+    <p class="note">実際の税額は、同年中の他の退職金の有無、前年以前の退職所得控除の調整、自治体の取り扱い、税制改正などにより異なる場合があります。本ツールの結果はあくまで参考値であり、正確な金額は勤務先・税務署・税理士にご確認ください。本ツールの利用により生じたいかなる損害についても、当サイトは責任を負いません。</p>
+  </article>
+
+  <!-- AD-SLOT: money -->
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 やめどきナビ</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var BRACKETS = [
+    [1949000, 0.05, 0],
+    [3299000, 0.10, 97500],
+    [6949000, 0.20, 427500],
+    [8999000, 0.23, 636000],
+    [17999000, 0.33, 1536000],
+    [39999000, 0.40, 2796000],
+    [Infinity, 0.45, 4796000]
+  ];
+
+  function incomeTaxBase(taxable) {
+    for (var i = 0; i < BRACKETS.length; i++) {
+      if (taxable <= BRACKETS[i][0]) {
+        return Math.floor(taxable * BRACKETS[i][1] - BRACKETS[i][2]);
+      }
+    }
+    return 0;
+  }
+
+  function calc(amount, years, isOfficer, isDisability) {
+    var deduction;
+    if (years <= 20) {
+      deduction = Math.max(400000 * years, 800000);
+    } else {
+      deduction = 8000000 + 700000 * (years - 20);
+    }
+    if (isDisability) deduction += 1000000;
+
+    var base = Math.max(0, amount - deduction);
+    var taxable;
+    var half = "full"; // "full" = 全額1/2, "partial" = 300万円超は1/2なし, "none" = 1/2なし
+    if (isOfficer && years <= 5) {
+      taxable = base;
+      half = "none";
+    } else if (!isOfficer && years <= 5 && base > 3000000) {
+      taxable = 1500000 + (base - 3000000);
+      half = "partial";
+    } else {
+      taxable = base / 2;
+    }
+    taxable = Math.floor(taxable / 1000) * 1000;
+
+    var taxBase = taxable > 0 ? incomeTaxBase(taxable) : 0;
+    var incomeTax = Math.floor(taxBase * 1021 / 1000);
+    var residentCity = Math.floor(taxable * 0.06 / 100) * 100;
+    var residentPref = Math.floor(taxable * 0.04 / 100) * 100;
+    var residentTax = residentCity + residentPref;
+    var totalTax = incomeTax + residentTax;
+    var net = amount - totalTax;
+
+    return {
+      amount: amount, years: years,
+      deduction: deduction, base: base, taxable: taxable, half: half,
+      taxBase: taxBase, incomeTax: incomeTax,
+      residentCity: residentCity, residentPref: residentPref, residentTax: residentTax,
+      totalTax: totalTax, net: net,
+      effRate: amount > 0 ? totalTax / amount : 0
+    };
+  }
+
+  function yen(n) { return n.toLocaleString("ja-JP") + "円"; }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var resultArea = $("resultArea");
+  var resultBox = $("resultBox");
+  var breakdownBody = $("breakdownBody");
+  var compareBox = $("compareBox");
+
+  function render() {
+    var amountMan = parseFloat($("amount").value);
+    var years = parseInt($("years").value, 10);
+    var isOfficer = document.querySelector('input[name="position"]:checked').value === "officer";
+    var isDisability = $("disability").checked;
+
+    if (!isFinite(amountMan) || amountMan < 0 || !isFinite(years) || years < 1) {
+      resultArea.hidden = false;
+      resultBox.innerHTML = '<span class="result-error">退職金額(0以上)と勤続年数(1年以上の整数)を入力してください。</span>';
+      breakdownBody.innerHTML = "";
+      compareBox.innerHTML = "";
+      $("breakdownBox").style.display = "none";
+      return;
+    }
+    $("breakdownBox").style.display = "";
+    if (years > 60) years = 60;
+
+    var amount = Math.round(amountMan * 10000);
+    var r = calc(amount, years, isOfficer, isDisability);
+
+    var effPct = (r.effRate * 100).toFixed(2);
+    var rows = "";
+    rows += "<tr><th>退職金額(額面)</th><td class='num'>" + yen(r.amount) + "</td></tr>";
+    rows += "<tr><th>退職所得控除額</th><td class='num'>" + yen(r.deduction) + "</td></tr>";
+    rows += "<tr><th>課税退職所得金額</th><td class='num'>" + yen(r.taxable) + "</td></tr>";
+    rows += "<tr><th>所得税+復興特別所得税</th><td class='num'>−" + yen(r.incomeTax) + "</td></tr>";
+    rows += "<tr><th>住民税(10%)</th><td class='num'>−" + yen(r.residentTax) + "</td></tr>";
+    rows += "<tr class='total'><th>手取り額</th><td class='num'>" + yen(r.net) + "</td></tr>";
+    rows += "<tr><th>税額合計/実効税率</th><td class='num'>" + yen(r.totalTax) + "(" + effPct + "%)</td></tr>";
+
+    resultBox.innerHTML =
+      "<div>手取り額(目安)</div>" +
+      "<div class='result-main'>" + yen(r.net) + "</div>" +
+      "<table class='result-table'>" + rows + "</table>" +
+      "<p class='note'>2026年時点の税制による目安です。「退職所得の受給に関する申告書」を提出している前提で計算しています。</p>";
+
+    // 内訳
+    var dedFormula = years <= 20
+      ? "40万円 × " + years + "年 = " + yen(400000 * years) + (400000 * years < 800000 ? " → 最低保障により80万円" : "")
+      : "800万円 + 70万円 ×(" + years + "年 − 20年)= " + yen(8000000 + 700000 * (years - 20));
+    var halfNote;
+    if (r.half === "none") {
+      halfNote = "役員等として勤続5年以下(特定役員退職手当等)のため、2分の1課税は適用されません。課税退職所得 = " + yen(r.base) + "(1,000円未満切捨てで " + yen(r.taxable) + ")";
+    } else if (r.half === "partial") {
+      halfNote = "従業員で勤続5年以下(短期退職手当等)のため、控除後300万円を超える部分は2分の1課税が適用されません。課税退職所得 = 300万円 × 1/2 +(" + yen(r.base) + " − 300万円)= " + yen(r.taxable) + "(1,000円未満切捨て後)";
+    } else {
+      halfNote = "課税退職所得 =(" + yen(r.amount) + " − " + yen(r.deduction) + ")× 1/2 = " + yen(r.taxable) + "(1,000円未満切捨て後)";
+    }
+    var bd = "<ol>";
+    bd += "<li>退職所得控除:" + esc(dedFormula) + (isDisability ? " + 障害者加算100万円 = " + yen(r.deduction) : "") + "</li>";
+    bd += "<li>" + esc(halfNote) + "</li>";
+    bd += "<li>所得税(速算表):" + yen(r.taxBase) + " → 復興特別所得税2.1%を加えて " + yen(r.incomeTax) + "(1円未満切捨て)</li>";
+    bd += "<li>住民税:市町村民税6% " + yen(r.residentCity) + " + 道府県民税4% " + yen(r.residentPref) + " = " + yen(r.residentTax) + "(各100円未満切捨て)</li>";
+    bd += "<li>手取り額:" + yen(r.amount) + " − " + yen(r.incomeTax) + " − " + yen(r.residentTax) + " = <strong>" + yen(r.net) + "</strong></li>";
+    bd += "</ol>";
+    breakdownBody.innerHTML = bd;
+
+    // 勤続年数 ±2年 比較
+    var cmp = "<h3 style='margin:18px 0 4px;font-size:1rem;'>勤続年数が変わると?(±2年の比較)</h3>";
+    cmp += "<div class='table-wrap'><table class='compare-table'>";
+    cmp += "<tr><th>勤続年数</th><th>退職所得控除</th><th>税額合計</th><th>手取り額</th></tr>";
+    for (var y = years - 2; y <= years + 2; y++) {
+      if (y < 1) continue;
+      var c = calc(amount, y, isOfficer, isDisability);
+      cmp += "<tr" + (y === years ? " class='current'" : "") + ">";
+      cmp += "<td style='text-align:center;'>" + y + "年" + (y === years ? "(入力値)" : "") + "</td>";
+      cmp += "<td>" + yen(c.deduction) + "</td><td>" + yen(c.totalTax) + "</td><td>" + yen(c.net) + "</td></tr>";
+    }
+    cmp += "</table></div>";
+    cmp += "<p class='note'>端数月は切り上げのため、退職日を少し延ばすだけで1年分の控除が増えることがあります。</p>";
+    compareBox.innerHTML = cmp;
+
+    resultArea.hidden = false;
+  }
+
+  $("calcBtn").addEventListener("click", render);
+  ["amount", "years"].forEach(function (id) {
+    $(id).addEventListener("keydown", function (e) {
+      if (e.key === "Enter") render();
+    });
+  });
+  $("resetBtn").addEventListener("click", function () {
+    $("amount").value = "";
+    $("years").value = "";
+    document.querySelector('input[name="position"][value="employee"]').checked = true;
+    $("disability").checked = false;
+    resultArea.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忌引き休暇 日数チェッカー|続柄別の目安日数がすぐわかる|マナー電卓</title>
+<meta name="description" content="亡くなった方との続柄を選ぶだけで、忌引き休暇の一般的な日数の目安を表示。喪主や遠方への移動がある場合の補正、起算日の考え方、会社への連絡の仕方まで解説。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#3f4d8c;--accent-hover:#333f73;--accent-weak:#e9ebf5;}@media (prefers-color-scheme: dark){:root{--accent:#98a5e8;--accent-hover:#aeb8ee;--accent-weak:#1d2238;}}</style>
+<style>
+.radio-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.radio-row label { font-weight: 400; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 0; }
+.result-main { font-size: 1.5rem; font-weight: 700; }
+.result-breakdown { margin: 10px 0 0; padding-left: 1.2em; font-size: 0.95rem; }
+.result-breakdown li { margin: 2px 0; }
+.warn-box {
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  background: var(--surface);
+}
+.warn-box strong { color: var(--accent); }
+.info-block { margin-top: 14px; font-size: 0.92rem; }
+.info-block h3 { margin: 0 0 4px; font-size: 1rem; }
+.info-block ul { margin: 4px 0 0; padding-left: 1.2em; }
+.related-tools { margin: 32px 0 0; }
+.related-tools h2 { font-size: 1.1rem; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "パートやアルバイトでも忌引き休暇は取れますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "会社の就業規則によります。忌引き休暇は法律で定められた休暇ではないため、正社員のみを対象とする会社もあれば、パート・アルバイトにも認める会社もあります。規則に定めがない場合でも、欠勤やシフト調整で対応してもらえることが多いので、まずは勤務先に相談しましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "忌引き期間に土日や祝日を挟んだ場合はどうなりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "多くの会社では忌引き休暇は「暦日(カレンダーの日数)」で数えるため、土日祝日も日数に含まれます。一方で「営業日(出勤日)」で数える会社もあります。同じ3日でも実際に休める期間が大きく変わるため、就業規則または人事担当者に確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "忌引き休暇は連続して取らないといけませんか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "原則として死亡日または葬儀を起点に連続して取得する運用が一般的です。ただし、四十九日法要や後日のお別れ会に分割して使える会社もあります。分割取得を希望する場合は、事前に人事担当者へ確認しましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "後日行われる葬儀やお別れ会でも忌引き休暇は使えますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "会社によります。忌引き休暇は死亡日や葬儀日を起算日とする規定が多く、日を空けて行われるお別れ会・偲ぶ会は対象外となる場合があります。その場合は有給休暇での対応が一般的です。事情を説明して相談すれば柔軟に対応してもらえることもあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "忌引き休暇の日数が足りない場合はどうすればいいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有給休暇を組み合わせるのが一般的です。遠方への移動や喪主としての諸手続きで日数が足りない場合は、早めに上司へ相談し、忌引き休暇に続けて有給休暇を取得する形を取りましょう。会社によっては喪主の場合の加算日数が規定されていることもあります。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/manner/kibiki/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/manner/kibiki/">
+<meta property="og:site_name" content="マナー電卓">
+<meta property="og:title" content="忌引き休暇 日数チェッカー|続柄別の目安日数がすぐわかる|マナー電卓">
+<meta property="og:description" content="亡くなった方との続柄を選ぶだけで、忌引き休暇の一般的な日数の目安を表示。喪主や遠方への移動がある場合の補正、起算日の考え方、会社への連絡の仕方まで解説。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../">マナー<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../#columns">コラム</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="../">マナー電卓</a> › 忌引き休暇 日数チェッカー</nav>
+
+  <div class="page-head">
+    <h1>忌引き休暇 日数チェッカー</h1>
+    <p class="lead">亡くなった方との続柄を選ぶだけで、一般的な忌引き休暇の日数の目安と、喪主・遠方の場合の補正、会社への連絡のポイントを確認できます。</p>
+  </div>
+
+  <section class="tool-panel">
+    <h2>条件を入力</h2>
+    <div class="field">
+      <label for="relation">亡くなった方との続柄</label>
+      <select id="relation">
+        <option value="spouse">配偶者(夫・妻)</option>
+        <option value="parent" selected>父母</option>
+        <option value="child">子</option>
+        <option value="sibling">兄弟姉妹</option>
+        <option value="grandparent">祖父母</option>
+        <option value="grandchild">孫</option>
+        <option value="spouse-parent">配偶者の父母</option>
+        <option value="spouse-grandparent">配偶者の祖父母</option>
+        <option value="uncle-aunt">おじ・おば</option>
+      </select>
+    </div>
+    <div class="field">
+      <span style="font-weight:600;font-size:0.9rem;">喪主を務めますか?</span>
+      <div class="radio-row">
+        <label><input type="radio" name="moshu" value="no" checked>務めない</label>
+        <label><input type="radio" name="moshu" value="yes">務める</label>
+      </div>
+    </div>
+    <div class="field">
+      <span style="font-weight:600;font-size:0.9rem;">遠方への移動はありますか?</span>
+      <div class="radio-row">
+        <label><input type="radio" name="far" value="no" checked>ない(近隣)</label>
+        <label><input type="radio" name="far" value="yes">ある(泊まりがけの移動)</label>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="checkBtn">日数の目安を見る</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="result-main" id="resultMain"></div>
+      <ul class="result-breakdown" id="resultBreakdown"></ul>
+      <div class="warn-box">
+        <strong>重要:</strong>忌引き休暇は<strong>法律で定められた休暇ではなく、日数は会社の就業規則によって異なります</strong>。ここで表示されるのはあくまで一般的な目安です。必ずお勤め先の就業規則・人事担当者に確認してください。
+      </div>
+      <div class="info-block">
+        <h3>起算日の考え方(会社により異なる)</h3>
+        <ul>
+          <li><strong>死亡日から数える</strong>会社と、<strong>死亡日の翌日から数える</strong>会社があります。</li>
+          <li><strong>土日祝日を含む暦日</strong>で数える会社が多数派ですが、<strong>営業日(出勤日)</strong>で数える会社もあります。</li>
+          <li>同じ「3日」でも実際に休める期間が変わるため、規則の文言を確認しましょう。</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>会社への連絡の要点</h3>
+        <ul>
+          <li>わかった時点で<strong>まず電話で直属の上司へ</strong>連絡(深夜ならメール後、朝に電話)。</li>
+          <li>伝える内容:亡くなった方との<strong>続柄</strong>/<strong>通夜・葬儀の日程と場所</strong>/<strong>休みたい日数</strong>/<strong>忌引き中の緊急連絡先</strong>。</li>
+          <li>仕事の引き継ぎ事項は簡潔にメールで残しておくと安心です。</li>
+        </ul>
+      </div>
+    </div>
+    <!-- AD-SLOT: sogi -->
+  </section>
+
+  <article class="article">
+    <h2>忌引き休暇は法律上の義務ではない</h2>
+    <p>意外に思われるかもしれませんが、忌引き休暇(慶弔休暇)は労働基準法などの法律で定められた休暇ではありません。付与するかどうか、何日にするか、有給扱いにするか無給にするかは、すべて<strong>各会社の就業規則</strong>に委ねられています。そのため「配偶者10日・父母7日」といった日数はあくまで多くの会社で採用されている<strong>慣例的な目安</strong>であり、自分の会社の規則を確認することが何より重要です。</p>
+
+    <h2>一般的な忌引き日数の目安</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>続柄</th><th>日数の目安</th></tr>
+        <tr><td>配偶者</td><td>10日</td></tr>
+        <tr><td>父母</td><td>7日</td></tr>
+        <tr><td>子</td><td>5日</td></tr>
+        <tr><td>兄弟姉妹</td><td>3日</td></tr>
+        <tr><td>祖父母</td><td>3日</td></tr>
+        <tr><td>配偶者の父母</td><td>3日</td></tr>
+        <tr><td>孫</td><td>1日</td></tr>
+        <tr><td>配偶者の祖父母</td><td>1日</td></tr>
+        <tr><td>おじ・おば</td><td>1日</td></tr>
+      </table>
+    </div>
+    <p>喪主を務める場合は<strong>プラス1〜2日</strong>、遠方への移動が必要な場合は<strong>往復の移動日数を加算</strong>する規定を持つ会社もあります。</p>
+
+    <h2>公務員の忌引きは慣例がはっきりしている</h2>
+    <p>国家公務員の場合、人事院規則により忌引き(服喪休暇)の日数が定められており、配偶者・父母は7日、子は5日、祖父母・兄弟姉妹は3日などとされています。地方公務員も多くの自治体がこれに準じた条例・規則を設けています。民間企業の就業規則も、この公務員の基準を参考に作られていることが多く、世間的な「相場」の根拠になっています。</p>
+
+    <h2>証明書類を求められることがある</h2>
+    <p>忌引き休暇の申請時や事後に、会社から証明書類の提出を求められる場合があります。代表的なものは次のとおりです。</p>
+    <ul>
+      <li><strong>会葬礼状</strong>(葬儀の参列者に渡される礼状)</li>
+      <li><strong>死亡診断書(死体検案書)の写し</strong></li>
+      <li><strong>火葬許可証・埋葬許可証の写し</strong></li>
+      <li><strong>葬儀施行証明書</strong>(葬儀社が発行)</li>
+    </ul>
+    <p>家族葬などで会葬礼状を用意しない場合は、葬儀社に証明書の発行を依頼できます。どの書類が必要かは会社によって異なるため、連絡の際に確認しておくとスムーズです。</p>
+
+    <h2>有給休暇との違い</h2>
+    <p>忌引き休暇は「特別休暇」の一種で、有給休暇とは別枠です。ただし忌引き休暇が<strong>有給扱いか無給扱いかは会社次第</strong>で、無給の会社では、収入面を考えて有給休暇を充てる選択肢もあります。また、忌引き日数が足りない場合に有給休暇を続けて取得するのは一般的な対応です。有給休暇の残日数と合わせて検討しましょう。</p>
+
+    <h2>よくある質問</h2>
+    <details class="faq">
+      <summary>パートやアルバイトでも忌引き休暇は取れますか?</summary>
+      <p>会社の就業規則によります。忌引き休暇は法定の休暇ではないため、正社員のみを対象とする会社もあれば、パート・アルバイトにも認める会社もあります。規則に定めがなくても欠勤やシフト調整で対応してもらえることが多いので、まずは勤務先に相談しましょう。</p>
+    </details>
+    <details class="faq">
+      <summary>忌引き期間に土日や祝日を挟んだ場合はどうなりますか?</summary>
+      <p>多くの会社では暦日(カレンダーの日数)で数えるため土日祝日も含まれますが、営業日で数える会社もあります。実際に休める期間が大きく変わるため、就業規則か人事担当者に確認してください。</p>
+    </details>
+    <details class="faq">
+      <summary>忌引き休暇は連続して取らないといけませんか?</summary>
+      <p>原則は死亡日または葬儀を起点とした連続取得ですが、四十九日法要などに分割して使える会社もあります。希望する場合は事前に人事担当者へ確認しましょう。</p>
+    </details>
+    <details class="faq">
+      <summary>後日行われる葬儀やお別れ会でも忌引き休暇は使えますか?</summary>
+      <p>会社によります。死亡日や葬儀日を起算日とする規定が多く、日を空けたお別れ会・偲ぶ会は対象外となり有給休暇で対応するケースが一般的です。事情を説明して相談してみましょう。</p>
+    </details>
+    <details class="faq">
+      <summary>忌引き休暇の日数が足りない場合はどうすればいいですか?</summary>
+      <p>有給休暇を組み合わせるのが一般的です。遠方への移動や喪主としての手続きで足りない場合は、早めに上司へ相談し、忌引きに続けて有給を取得する形を取りましょう。</p>
+    </details>
+
+    <section class="related-tools">
+      <h2>関連ツール</h2>
+      <div class="card-grid">
+        <a class="card" href="../koden/"><span class="card-icon">💴</span><h3>香典金額チェッカー</h3><p>続柄・年代・立場から香典の金額相場を確認できます。</p></a>
+        <a class="card" href="../mochu-bunrei/"><span class="card-icon">🖋️</span><h3>喪中はがき 文例ジェネレーター</h3><p>続柄や亡くなった月を入れるだけで喪中はがきの文面を作成。</p></a>
+      </div>
+    </section>
+    <!-- AD-SLOT: sogi -->
+  </article>
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 マナー電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  var DAYS = {
+    "spouse":             { label: "配偶者",         days: 10 },
+    "parent":             { label: "父母",           days: 7 },
+    "child":              { label: "子",             days: 5 },
+    "sibling":            { label: "兄弟姉妹",       days: 3 },
+    "grandparent":        { label: "祖父母",         days: 3 },
+    "grandchild":         { label: "孫",             days: 1 },
+    "spouse-parent":      { label: "配偶者の父母",   days: 3 },
+    "spouse-grandparent": { label: "配偶者の祖父母", days: 1 },
+    "uncle-aunt":         { label: "おじ・おば",     days: 1 }
+  };
+
+  function radioValue(name) {
+    var els = document.getElementsByName(name);
+    for (var i = 0; i < els.length; i++) if (els[i].checked) return els[i].value;
+    return "";
+  }
+
+  document.getElementById("checkBtn").addEventListener("click", function () {
+    var rel = document.getElementById("relation").value;
+    var base = DAYS[rel];
+    var moshu = radioValue("moshu") === "yes";
+    var far = radioValue("far") === "yes";
+
+    var min = base.days, max = base.days;
+    var items = ["基本日数:" + base.days + "日(" + base.label + ")"];
+    if (moshu) {
+      min += 1; max += 2;
+      items.push("喪主を務める:+1〜2日(会社によっては規定なし)");
+    }
+    if (far) {
+      min += 1; max += 2;
+      items.push("遠方への移動:+往復の移動日数(目安 +1〜2日)");
+    }
+
+    var mainText = (min === max)
+      ? "目安:" + min + "日程度"
+      : "目安:" + min + "〜" + max + "日程度";
+    document.getElementById("resultMain").textContent = mainText;
+
+    var ul = document.getElementById("resultBreakdown");
+    ul.innerHTML = "";
+    items.forEach(function (t) {
+      var li = document.createElement("li");
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

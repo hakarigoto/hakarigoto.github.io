@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>バイク・原付の維持費は年間いくら？税金・自賠責・車検まるごと計算機｜バイク電卓</title>
+<meta name="description" content="排気量区分と自賠責の契約年数を選ぶだけで、バイク・原付の年間維持費（軽自動車税・自賠責・重量税・車検・任意保険・ガソリン代）を無料試算。月あたり負担や125cc・250ccとの比較表も自動計算します。">
+<link rel="canonical" href="https://hakarigoto.github.io/bike/iji-hi/">
+<meta property="og:site_name" content="バイク電卓">
+<meta property="og:type" content="website">
+<meta property="og:title" content="バイク・原付の維持費は年間いくら？税金・自賠責・車検まるごと計算機｜バイク電卓">
+<meta property="og:description" content="排気量区分・自賠責の契約年数・燃費と走行距離を入れるだけで、バイクの年間維持費と月あたりコストを試算。排気量区分別の比較ミニ表つき。">
+<meta property="og:url" content="https://hakarigoto.github.io/bike/iji-hi/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#7a3fa0;--accent-hover:#663486;--accent-weak:#f3eaf8;}@media (prefers-color-scheme: dark){:root{--accent:#c79be8;--accent-hover:#d5b3ee;--accent-weak:#2a1d33;}}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "原付二種（125cc以下）の維持費が安いと言われるのはなぜですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "軽自動車税が年2,000〜2,400円と安く、車検も自動車重量税もありません。さらに家族の自動車保険に「ファミリーバイク特約」（年1万〜2万円程度が目安）を付けられるため、単独でバイク任意保険に入るより保険料を大きく抑えられます。燃費も良い車種が多く、法定コストは年5,000円前後、燃料込みでも年数万円で維持できるケースが多いです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "250ccは車検がないから維持費が一番お得ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "126〜250ccの軽二輪は車検が不要で、自動車重量税も新規届出時に4,900円を1回納めるだけです。軽自動車税3,600円と自賠責（5年契約なら年2,840円相当）だけで法定コストは年6,000円台と、251cc以上（車検込みで年2万円超が目安）よりかなり安くなります。ただし車検がない分、点検整備は自己管理となり、ファミリーバイク特約は使えないため任意保険は単独契約になります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "自賠責を5年契約にして途中でバイクを手放したらどうなりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "廃車（一時抹消・返納）の手続きをすれば、残り期間分の保険料は解約返戻金として戻ってきます。バイクを売却する場合は、自賠責の残期間を次の所有者へ引き継ぐのが一般的です。長期契約にしたからといって損になるわけではないので、乗り続ける予定なら1年あたりが割安な長期契約がおすすめです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "自賠責保険料は2026年11月から変わりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。2026年11月1日始期の契約から全車種平均約6.2%の引き上げが決定しています。例えば125cc以下の原付は12か月6,910円が7,730円に、24か月8,560円が9,630円になる予定です。本ツールは2026年10月31日までに始期を迎える契約の現行料率で計算しています。値上げ前に長期契約で更新しておくと現行料率が満期まで適用されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "乗っていないバイクにも税金はかかりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "毎年4月1日時点の所有者（届出名義人）に軽自動車税（種別割）が課税されるため、乗っていなくてもナンバーが付いたままなら毎年課税されます。当分乗る予定がないなら、原付は市区町村でナンバー返納、軽二輪・小型二輪は運輸支局で届出済証返納や一時抹消の手続きをすれば翌年度から課税が止まります。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header"><div class="container"><a class="site-logo" href="../">バイク<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+
+<nav class="breadcrumb"><a href="../">バイク電卓</a> › バイク・原付の維持費計算機</nav>
+
+<div class="page-head">
+  <h1>バイク・原付の維持費計算機</h1>
+  <p class="lead">排気量区分・自賠責の契約年数・燃費と走行距離を入れるだけで、軽自動車税・自賠責保険・重量税・車検（251cc以上）・任意保険・ガソリン代をまとめた年間維持費を試算します。月あたりの負担額や、排気量区分別の比較ミニ表も自動表示。金額は目安であり、正確な金額は必ず各市区町村・保険会社・整備工場でご確認ください。</p>
+</div>
+
+<section class="tool-panel">
+  <h2>条件を入力してください</h2>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="bikeClass">排気量区分</label>
+      <select id="bikeClass">
+        <option value="g50">原付一種（〜50cc）</option>
+        <option value="g90">原付二種（51〜90cc）</option>
+        <option value="g125" selected>原付二種（91〜125cc）</option>
+        <option value="kei">軽二輪（126〜250cc）</option>
+        <option value="kogata">小型二輪（251cc〜）</option>
+      </select>
+      <p class="note" id="classNote"></p>
+    </div>
+    <div class="field">
+      <label for="jibaiTerm">自賠責保険の契約期間</label>
+      <select id="jibaiTerm"></select>
+      <p class="note" id="jibaiNote"></p>
+    </div>
+  </div>
+
+  <div class="field-row" id="kogataRow" style="display:none;">
+    <div class="field">
+      <label for="bikeAge">初度登録からの経過年数（重量税の重課判定）</label>
+      <select id="bikeAge">
+        <option value="1900" selected>12年以下（年1,900円）</option>
+        <option value="2300">13〜17年（年2,300円）</option>
+        <option value="2500">18年以上（年2,500円）</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="shakenBase">車検の基本料・整備費（2年ごと・法定費用以外）</label>
+      <input type="number" id="shakenBase" value="25000" min="0" step="1000">
+      <p class="note">目安：ユーザー車検 0円／バイク用品店・専門店 2〜4万円／ディーラー 4〜6万円。検査手数料1,800円は自動で加算します。</p>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="hokenPreset">任意保険（目安から選択）</label>
+      <select id="hokenPreset">
+        <option value="-1">金額を直接入力</option>
+        <option value="0">加入しない（0円）</option>
+        <option value="12000">ファミリーバイク特約の目安（年12,000円）</option>
+        <option value="30000" selected>30代以降の単独契約の目安（年30,000円）</option>
+        <option value="60000">若年層の単独契約の目安（年60,000円）</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="hokenYear">任意保険の年額（円）</label>
+      <input type="number" id="hokenYear" value="30000" min="0" step="1000">
+      <p class="note" id="famNote"></p>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="nenpi">燃費（km/L）</label>
+      <input type="number" id="nenpi" value="35" min="1" step="0.1">
+    </div>
+    <div class="field">
+      <label for="kyori">年間走行距離（km）</label>
+      <input type="number" id="kyori" value="3000" min="0" step="100">
+    </div>
+    <div class="field">
+      <label for="tanka">ガソリン単価（円/L）</label>
+      <input type="number" id="tanka" value="175" min="0" step="1">
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="parking">駐車場・駐輪場代（月額・任意）</label>
+      <input type="number" id="parking" value="0" min="0" step="500">
+    </div>
+    <div class="field">
+      <label for="mainte">メンテナンス費（年額・任意）</label>
+      <input type="number" id="mainte" value="10000" min="0" step="1000">
+      <p class="note">オイル交換・タイヤ・消耗品などの年間目安。</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="calcBtn" type="button">維持費を計算する</button>
+  </div>
+
+  <div class="result-box" id="resultBox" style="display:none;" aria-live="polite">
+    <div id="resultMain"></div>
+    <div class="table-wrap">
+      <table id="breakdownTable">
+        <thead><tr><th>内訳</th><th>年額</th><th>月あたり</th></tr></thead>
+        <tbody id="breakdownBody"></tbody>
+      </table>
+    </div>
+    <div class="table-wrap">
+      <p style="margin:12px 0 4px;font-weight:600;">排気量区分別・法定コスト比較（税金＋自賠責＋重量税＋車検の年割）</p>
+      <table id="compareTable">
+        <thead><tr><th>区分</th><th>税金/年</th><th>自賠責/年<span class="note">※</span></th><th>重量税＋車検/年</th><th>法定コスト計/年</th></tr></thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+      <p class="note">※250cc以下は5年契約の年割、251cc以上は車検ごとの24か月契約の年割で比較。車検の基本料は上の入力値（未表示時は25,000円）で計算。</p>
+    </div>
+    <p class="note" id="resultNote"></p>
+  </div>
+  <!-- AD-SLOT: bike-hoken -->
+
+  <p class="note" style="margin-top:16px;">【データ基準日】2026年7月時点。軽自動車税（種別割）は2016年度改定後の現行税額、自賠責保険料は2023年4月改定の本土（離島・沖縄以外）料率（2026年10月31日始期まで適用。2026年11月1日始期以降は引き上げ改定予定）、自動車重量税は現行税額に基づきます。任意保険・車検基本料・燃料費などは目安です。本ツールの結果は概算であり、正確性を保証するものではありません。実際の金額は各市区町村・保険会社・運輸支局・整備工場でご確認ください。</p>
+</section>
+
+<article class="article">
+
+<h2>排気量の区分で「かかるお金の仕組み」が変わる</h2>
+<p>バイクの維持費は、同じ二輪でも排気量の区分によって制度そのものが変わります。ポイントは大きく3つ。<strong>車検の有無</strong>、<strong>税金の額</strong>、そして<strong>任意保険の入り方</strong>です。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>区分</th><th>軽自動車税（年）</th><th>車検</th><th>自動車重量税</th><th>ファミリーバイク特約</th></tr></thead>
+  <tbody>
+    <tr><td>原付一種（〜50cc）</td><td>2,000円</td><td>不要</td><td>なし</td><td>使える</td></tr>
+    <tr><td>原付二種（51〜90cc）</td><td>2,000円</td><td>不要</td><td>なし</td><td>使える</td></tr>
+    <tr><td>原付二種（91〜125cc）</td><td>2,400円</td><td>不要</td><td>なし</td><td>使える</td></tr>
+    <tr><td>軽二輪（126〜250cc）</td><td>3,600円</td><td>不要</td><td>新規届出時のみ4,900円</td><td>使えない</td></tr>
+    <tr><td>小型二輪（251cc〜）</td><td>6,000円</td><td>2年ごと（新車初回は3年）</td><td>車検ごと年1,900円相当〜</td><td>使えない</td></tr>
+  </tbody>
+</table>
+</div>
+<p>125cc以下は税金が年2,000〜2,400円で車検も重量税もなし。しかも家族の自動車保険に「ファミリーバイク特約」を付ければ、単独の任意保険より安く対人・対物補償を確保できます。これが「原付二種は維持費最強」と言われる理由です。一方、251cc以上になると2年ごとの車検が加わり、重量税も車検のたびに納めます（12年以下は2年で3,800円、13年超は4,600円、18年超は5,000円と経年で増加）。126〜250ccの軽二輪はその中間で、車検なし・重量税は新規届出時に4,900円を1回納めるだけです。</p>
+
+<h2>自賠責は「長期契約」が圧倒的に得</h2>
+<p>250cc以下のバイクは自賠責を1〜5年から選べて、長いほど1年あたりが安くなります。125cc以下なら1年契約6,910円に対して5年契約は13,310円。<strong>1年あたり2,662円と、1年契約のほぼ4割以下</strong>になります。軽二輪（126〜250cc）も1年7,100円に対し5年14,200円（年2,840円）と半額以下。契約手続きの手間も5年に1回で済み、うっかり期限切れ（無保険運行は違反点数6点・免許停止＋刑事罰の対象）の防止にもなります。</p>
+<p>「長く乗るか分からないから短期で…」という心配は不要です。廃車手続きをすれば残期間分は解約返戻金が戻り、売却時は残期間ごと次の所有者に引き継げます。なお2026年11月1日始期の契約から自賠責は平均約6.2%の値上げが決まっているため、更新が近い人は値上げ前に長期で入り直すのも一手です。</p>
+
+<h2>251cc以上の車検費用はいくらかかる？</h2>
+<p>車検の費用は「法定費用」と「基本料・整備費」に分かれます。法定費用は自賠責24か月8,760円＋重量税3,800円（12年以下）＋検査手数料1,800円前後で、どこで受けても合計14,000円台。差がつくのは基本料・整備費で、ユーザー車検なら0円、バイク用品店や車検専門店なら2〜4万円、ディーラーなら4〜6万円が相場です。交換部品が多いとさらに上乗せされます。2年分をならすと、車検関連だけで年1万〜3万円程度を見込んでおくと現実的です。</p>
+
+<h2>バイクの維持費を下げる5つの方法</h2>
+<p><strong>1. 自賠責を最長の5年契約にする。</strong>125cc以下なら1年契約を5回続けるより21,240円も安くなります。<strong>2. 125cc以下ならファミリーバイク特約を検討する。</strong>家族の自動車保険に年1万〜2万円程度で追加でき、単独契約より大幅に安いのが一般的です（ロードサービスや車両補償が付かない点は要確認）。<strong>3. 車検はユーザー車検か専門店を使う。</strong>法定費用はどこでも同じなので、差がつく基本料を抑えます。<strong>4. 任意保険は毎年見積もりを取り直す。</strong>等級進行や年齢条件の変更で保険料は下がっていきます。<strong>5. 乗らない期間が長いなら廃車（ナンバー返納・一時抹消）する。</strong>4月1日をナンバー付きで迎えると、その年度の軽自動車税が丸ごとかかります。</p>
+<p>逆に、税金を惜しんで無保険・未整備で乗るのは論外です。維持費の節約は「制度上安くできるところ」だけにして、タイヤ・ブレーキなど安全に関わる整備費は削らないようにしましょう。</p>
+
+<h2>よくある質問</h2>
+
+<details class="faq">
+  <summary>原付二種（125cc以下）の維持費が安いと言われるのはなぜ？</summary>
+  <p>軽自動車税が年2,000〜2,400円と安く、車検も重量税もないためです。さらに家族の自動車保険にファミリーバイク特約（年1万〜2万円程度が目安）を付けられるので、任意保険も安く済みます。法定コストは年5,000円前後、燃料込みでも年数万円で維持できるケースが多いです。</p>
+</details>
+
+<details class="faq">
+  <summary>250ccは車検がないから一番お得？</summary>
+  <p>126〜250ccは車検不要で、重量税も新規届出時の4,900円のみ。軽自動車税3,600円＋自賠責（5年契約で年2,840円相当）で法定コストは年6,000円台に収まり、251cc以上より大幅に安くなります。ただし点検整備は自己管理になり、ファミリーバイク特約は使えないため任意保険は単独契約が必要です。</p>
+</details>
+
+<details class="faq">
+  <summary>自賠責を5年契約にして途中で手放したら損しない？</summary>
+  <p>損しません。廃車手続きをすれば残期間分の保険料は解約返戻金として戻り、売却する場合は残期間を次の所有者に引き継ぐのが一般的です。乗り続ける予定があるなら、1年あたりが割安な長期契約を選ぶのが合理的です。</p>
+</details>
+
+<details class="faq">
+  <summary>自賠責保険料は2026年11月から変わる？</summary>
+  <p>はい。2026年11月1日始期の契約から全車種平均約6.2%引き上げられます。125cc以下の原付なら12か月6,910円→7,730円、24か月8,560円→9,630円になる予定です。本ツールは2026年10月31日始期までの現行料率で計算しています。更新が近い人は値上げ前の長期契約がお得です。</p>
+</details>
+
+<details class="faq">
+  <summary>乗っていないバイクにも税金はかかる？</summary>
+  <p>かかります。毎年4月1日時点の所有者に軽自動車税（種別割）が課税されるため、乗らないまま放置していても納税通知書が届きます。当分乗らないなら、原付は市区町村でナンバー返納、軽二輪・小型二輪は運輸支局で返納・一時抹消の手続きをすれば翌年度から課税が止まります。</p>
+</details>
+
+<h2>関連ツール</h2>
+<p>手放すかどうか迷っている方は <a href="../teban/">バイクの手放しどき・買取相性診断</a> もどうぞ。クルマの維持費は姉妹サイトの <a href="../../kuruma/iji-hi/">車の維持費計算機（姉妹サイト）</a> で試算できます。</p>
+
+<!-- AD-SLOT: bike-kaitori -->
+</article>
+
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 バイク電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // ===== データ（2026年7月時点） =====
+  // 軽自動車税（種別割）年額：2016年度改定後の現行税額
+  var TAX = { g50: 2000, g90: 2000, g125: 2400, kei: 3600, kogata: 6000 };
+
+  // 自賠責保険料（本土・2023年4月改定、2026年10月31日始期まで適用）
+  var JIBAI = {
+    gentsuki: { 12: 6910, 24: 8560, 36: 10170, 48: 11760, 60: 13310 }, // 125cc以下
+    kei:      { 12: 7100, 24: 8920, 36: 10710, 48: 12470, 60: 14200 }, // 126〜250cc
+    kogata:   { 24: 8760 }                                             // 251cc〜（車検ごと）
+  };
+
+  var SHAKEN_FEE = 1800; // 継続検査手数料（印紙・証紙）の目安
+
+  var CLASS_LABEL = {
+    g50: "原付一種（〜50cc）", g90: "原付二種（51〜90cc）", g125: "原付二種（91〜125cc）",
+    kei: "軽二輪（126〜250cc）", kogata: "小型二輪（251cc〜）"
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var yen = function (n) { return Math.round(n).toLocaleString("ja-JP") + "円"; };
+
+  function jibaiTableFor(cls) {
+    if (cls === "kogata") return JIBAI.kogata;
+    if (cls === "kei") return JIBAI.kei;
+    return JIBAI.gentsuki;
+  }
+
+  function rebuildJibaiOptions() {
+    var cls = $("bikeClass").value;
+    var sel = $("jibaiTerm");
+    var table = jibaiTableFor(cls);
+    sel.innerHTML = "";
+    if (cls === "kogata") {
+      var op = document.createElement("option");
+      op.value = "24";
+      op.textContent = "24か月（車検ごとに更新）8,760円";
+      sel.appendChild(op);
+      $("jibaiNote").textContent = "251cc以上は車検に合わせて24か月契約が標準です（年あたり4,380円）。";
+    } else {
+      [60, 48, 36, 24, 12].forEach(function (m) {
+        var op = document.createElement("option");
+        op.value = String(m);
+        op.textContent = (m / 12) + "年契約 " + table[m].toLocaleString("ja-JP") + "円（年あたり" + yen(table[m] / (m / 12)) + "）";
+        sel.appendChild(op);
+      });
+      sel.value = "60";
+      $("jibaiNote").textContent = "長期契約ほど1年あたりが割安です。";
+    }
+  }
+
+  function updateClassUI() {
+    var cls = $("bikeClass").value;
+    $("kogataRow").style.display = (cls === "kogata") ? "" : "none";
+    var note = "";
+    if (cls === "kei") note = "車検は不要。重量税は新規届出時に4,900円を1回納めるだけです（年間費用には含めません）。";
+    if (cls === "kogata") note = "2年ごとの車検（新車初回は3年）と重量税がかかります。";
+    if (cls === "g50" || cls === "g90" || cls === "g125") note = "車検・重量税なし。家族の自動車保険のファミリーバイク特約が使えます。";
+    $("classNote").textContent = note;
+    $("famNote").textContent = (cls === "kei" || cls === "kogata")
+      ? "126cc以上はファミリーバイク特約の対象外です。"
+      : "125cc以下はファミリーバイク特約（年1万〜2万円目安）も選べます。";
+    rebuildJibaiOptions();
+  }
+
+  // 法定コスト（税＋自賠責年割＋重量税年割＋車検年割）を区分別に計算
+  function legalCost(cls, shakenBase, weightYear) {
+    var tax = TAX[cls];
+    var jibaiYear, heavy = 0, shaken = 0;
+    if (cls === "kogata") {
+      jibaiYear = JIBAI.kogata[24] / 2;                    // 4,380円
+      heavy = weightYear;                                   // 1,900 / 2,300 / 2,500
+      shaken = (shakenBase + SHAKEN_FEE) / 2;               // 基本料＋手数料の年割
+    } else {
+      var table = jibaiTableFor(cls);
+      jibaiYear = table[60] / 5;                            // 比較は5年契約の年割
+    }
+    return { tax: tax, jibai: jibaiYear, heavy: heavy, shaken: shaken,
+             total: tax + jibaiYear + heavy + shaken };
+  }
+
+  function calc() {
+    var cls = $("bikeClass").value;
+    var months = parseInt($("jibaiTerm").value, 10) || 24;
+    var table = jibaiTableFor(cls);
+    var jibaiYear = table[months] / (months / 12);
+
+    var tax = TAX[cls];
+    var weightYear = 0, shakenYear = 0;
+    var shakenBase = Math.max(0, parseFloat($("shakenBase").value) || 0);
+    if (cls === "kogata") {
+      weightYear = parseInt($("bikeAge").value, 10) || 1900;
+      shakenYear = (shakenBase + SHAKEN_FEE) / 2;
+    }
+
+    var hoken = Math.max(0, parseFloat($("hokenYear").value) || 0);
+    var nenpi = Math.max(0.1, parseFloat($("nenpi").value) || 0.1);
+    var kyori = Math.max(0, parseFloat($("kyori").value) || 0);
+    var tanka = Math.max(0, parseFloat($("tanka").value) || 0);
+    var fuel = kyori / nenpi * tanka;
+
+    var parking = Math.max(0, parseFloat($("parking").value) || 0) * 12;
+    var mainte = Math.max(0, parseFloat($("mainte").value) || 0);
+    var other = parking + mainte;
+
+    var rows = [
+      ["軽自動車税（種別割）", tax],
+      ["自賠責保険（" + months + "か月契約の年割）", jibaiYear]
+    ];
+    if (cls === "kogata") {
+      rows.push(["自動車重量税（車検ごと・年割）", weightYear]);
+      rows.push(["車検 基本料＋検査手数料（2年ごと・年割）", shakenYear]);
+    }
+    rows.push(["任意保険", hoken]);
+    rows.push(["燃料費（" + kyori.toLocaleString("ja-JP") + "km ÷ " + nenpi + "km/L × " + tanka + "円）", fuel]);
+    rows.push(["駐車場・メンテナンス等", other]);
+
+    var total = 0;
+    var tbody = $("breakdownBody");
+    tbody.innerHTML = "";
+    rows.forEach(function (r) {
+      var v = Math.round(r[1]);
+      total += v;
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td"); td1.textContent = r[0];
+      var td2 = document.createElement("td"); td2.textContent = v.toLocaleString("ja-JP") + "円";
+      var td3 = document.createElement("td"); td3.textContent = Math.round(v / 12).toLocaleString("ja-JP") + "円";
+      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+      tbody.appendChild(tr);
+    });
+    var trT = document.createElement("tr");
+    trT.innerHTML = "<th>合計</th><th>" + total.toLocaleString("ja-JP") + "円</th><th>" +
+      Math.round(total / 12).toLocaleString("ja-JP") + "円</th>";
+    tbody.appendChild(trT);
+
+    $("resultMain").innerHTML =
+      "<strong>" + CLASS_LABEL[cls] + " の年間維持費：約 " + total.toLocaleString("ja-JP") + "円</strong>" +
+      "（月あたり約 " + Math.round(total / 12).toLocaleString("ja-JP") + "円" +
+      (kyori > 0 ? "、1kmあたり約 " + (total / kyori).toFixed(1) + "円" : "") + "）";
+
+    // 区分別比較ミニ表
+    var cbody = $("compareBody");
+    cbody.innerHTML = "";
+    ["g50", "g90", "g125", "kei", "kogata"].forEach(function (c) {
+      var lc = legalCost(c, shakenBase, (c === cls && c === "kogata") ? weightYear : 1900);
+      var tr = document.createElement("tr");
+      if (c === cls) tr.style.background = "var(--accent-weak)";
+      tr.innerHTML =
+        "<td>" + CLASS_LABEL[c] + (c === cls ? "（選択中）" : "") + "</td>" +
+        "<td>" + yen(lc.tax) + "</td>" +
+        "<td>" + yen(lc.jibai) + "</td>" +
+        "<td>" + (lc.heavy + lc.shaken > 0 ? yen(lc.heavy + lc.shaken) : "—") + "</td>" +
+        "<td><strong>" + yen(lc.total) + "</strong></td>";
+      cbody.appendChild(tr);
+    });
+
+    var g125 = legalCost("g125", shakenBase, 1900);
+    var kei = legalCost("kei", shakenBase, 1900);
+    var kogata = legalCost("kogata", shakenBase, 1900);
+    $("resultNote").textContent =
+      "法定コストだけ見ると、125cc（年" + yen(g125.total) + "）と250cc（年" + yen(kei.total) + "）の差は年" +
+      yen(kei.total - g125.total) + "、250ccと251cc以上（年" + yen(kogata.total) + "）の差は年" +
+      yen(kogata.total - kei.total) + "です。任意保険・燃料費は条件により大きく変わります。";
+
+    $("resultBox").style.display = "";
+  }
+
+  $("bikeClass").addEventListener("change", updateClassUI);
+  $("hokenPreset").addEventListener("change", function () {
+    var v = parseInt(this.value, 10);
+    if (v >= 0) $("hokenYear").value = v;
+  });
+  $("calcBtn").addEventListener("click", calc);
+
+  updateClassUI();
+})();
+</script>
+</body>
+</html>

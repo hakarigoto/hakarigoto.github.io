@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>画像の容量を小さくする方法|メール添付・Web掲載向けの目安とやり方|ラクツール</title>
+<meta name="description" content="画像の容量(ファイルサイズ)を小さくする方法を解説。リサイズと圧縮の違い、JPEG・PNG・WebPの使い分け、メール添付やWeb掲載での容量の目安、Windows・Mac・スマホでの具体的な手順を紹介します。">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "画像の容量を小さくする方法|メール添付・Web掲載向けの目安とやり方",
+      "description": "画像のファイルサイズを小さくする2つの方法(リサイズ・圧縮)と、JPEG・PNG・WebPの使い分け、用途別の容量の目安、具体的な手順を解説します。",
+      "datePublished": "2026-07-15",
+      "dateModified": "2026-07-15",
+      "author": { "@type": "Organization", "name": "ラクツール" },
+      "publisher": { "@type": "Organization", "name": "ラクツール" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "画質をあまり落とさずに容量だけ小さくできますか?",
+          "acceptedAnswer": { "@type": "Answer", "text": "できます。写真の場合、まず表示サイズに合わせてピクセル数を減らし(リサイズ)、そのうえでJPEGの品質を80前後に設定するのが定石です。見た目の劣化はほとんど気付かれないまま、容量を大幅に減らせることが多いです。" }
+        },
+        {
+          "@type": "Question",
+          "name": "一度圧縮した画像を元に戻せますか?",
+          "acceptedAnswer": { "@type": "Answer", "text": "JPEGなどの非可逆圧縮で失われた情報は元に戻せません。リサイズで減らしたピクセルも同様です。必ず元の画像を別に保管し、圧縮・リサイズはコピーに対して行いましょう。" }
+        },
+        {
+          "@type": "Question",
+          "name": "スクリーンショットはJPEGとPNGのどちらがいいですか?",
+          "acceptedAnswer": { "@type": "Answer", "text": "文字や線が多いスクリーンショットはPNGが向いています。JPEGにすると文字の周りにノイズ(モスキートノイズ)が出やすく、かえって読みにくくなります。逆に写真はJPEGやWebPのほうが小さくなります。" }
+        },
+        {
+          "@type": "Question",
+          "name": "iPhoneで撮った写真(HEIC)が送れないときはどうすればいいですか?",
+          "acceptedAnswer": { "@type": "Answer", "text": "HEICは対応していない環境があるため、JPEGに変換してから送るのが確実です。iPhoneの設定でカメラの撮影フォーマットを「互換性優先」にするか、変換ツールでJPEGに変換してください。" }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/blog/image-shrink/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/blog/image-shrink/">
+<meta property="og:site_name" content="ラクツール">
+<meta property="og:title" content="画像の容量を小さくする方法|メール添付・Web掲載向けの目安とやり方|ラクツール">
+<meta property="og:description" content="画像の容量(ファイルサイズ)を小さくする方法を解説。リサイズと圧縮の違い、JPEG・PNG・WebPの使い分け、メール添付やWeb掲載での容量の目安、Windows・Mac・スマホでの具体的な手順を紹介します。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../../">ラク<span>ツール</span></a><nav class="site-nav"><a href="../../#tools">ツール一覧</a><a href="../../blog/">コラム</a><a href="../../about/">このサイトについて</a></nav></div></header>
+<main class="container">
+<nav class="breadcrumb"><a href="../../">ホーム</a> › <a href="../">コラム</a> › 画像の容量を小さくする方法</nav>
+<div class="page-head">
+<h1>画像の容量を小さくする方法|メール添付・Web掲載向けの目安とやり方</h1>
+<p class="lead">画像の容量を減らす方法は「リサイズ」と「圧縮」の2つ。用途別の容量の目安と、Windows・Mac・スマホ・ブラウザでの具体的な手順をまとめました。</p>
+</div>
+<article class="article">
+<p>画像の容量(ファイルサイズ)を小さくする方法は、大きく分けて2つしかありません。<strong>ピクセル数を減らす「リサイズ」</strong>と、<strong>データの持ち方を効率化する「圧縮(画質調整・形式変換)」</strong>です。スマホやデジカメで撮ったままの写真は数MB〜十数MBあることが多く、メール添付やWeb掲載にはそのままでは大きすぎます。まず用途別の目安を確認し、リサイズ→圧縮の順で減らしていきましょう。</p>
+
+<h2>用途別・画像容量の目安</h2>
+<p>「どこまで小さくすればいいか」は用途で決まります。一般的な目安は次のとおりです。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>用途</th><th>容量の目安</th><th>ピクセル数の目安(長辺)</th></tr>
+</thead>
+<tbody>
+<tr><td>メール添付</td><td>1通の合計で2〜3MB以内、1枚あたり数百KB</td><td>1200〜1600px</td></tr>
+<tr><td>Webサイト・ブログ掲載</td><td>1枚100〜300KB程度</td><td>1200〜1920px</td></tr>
+<tr><td>資料(Word・PowerPoint)への貼り付け</td><td>1枚100〜500KB程度</td><td>800〜1600px</td></tr>
+<tr><td>Web申請・応募フォーム</td><td>フォームの上限指定に従う(「2MB以内」などの指定が多い)</td><td>指定に合わせる</td></tr>
+<tr><td>印刷用</td><td>小さくしすぎない(圧縮は最小限に)</td><td>用途により高解像度のまま</td></tr>
+</tbody>
+</table>
+</div>
+<p>メールはサーバー側で受信できる容量に上限があることが多く、大きな添付は相手に届かないことがあります。数値はあくまで一般的な目安なので、提出先の指定があればそちらを優先してください。</p>
+
+<h2>方法1:リサイズ(ピクセル数を減らす)</h2>
+<p>容量を減らす効果が最も大きいのがリサイズです。画像の容量はおおむねピクセル数(縦×横)に比例するため、<strong>縦横をそれぞれ半分にすれば、ピクセル数は4分の1</strong>になり、容量も大きく減ります。</p>
+<p>スマホで撮った写真は長辺4000px以上あることが普通ですが、パソコンやスマホの画面で見るだけなら長辺1200〜1600pxで十分です。フルHDのディスプレイでも横幅は1920pxしかないため、それ以上のピクセル数は画面表示では活かされません。</p>
+<p>注意点は、<strong>一度小さくした画像を後から拡大しても画質は戻らない</strong>ことです。元の画像は必ず残しておき、リサイズはコピーに対して行いましょう。</p>
+
+<h2>方法2:圧縮と形式の使い分け</h2>
+<p>同じピクセル数でも、保存形式と品質設定で容量は大きく変わります。主な形式の特徴は次のとおりです。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>形式</th><th>圧縮方式</th><th>向いている画像</th><th>特徴</th></tr>
+</thead>
+<tbody>
+<tr><td>JPEG</td><td>非可逆</td><td>写真</td><td>品質(圧縮率)を調整可能。透過は不可。圧縮しすぎるとノイズが出る</td></tr>
+<tr><td>PNG</td><td>可逆</td><td>スクリーンショット、ロゴ、図表</td><td>劣化しないが写真では容量が大きくなりがち。透過に対応</td></tr>
+<tr><td>WebP</td><td>非可逆/可逆</td><td>Web掲載全般</td><td>同じ画質ならJPEG・PNGより小さくなることが多い。透過にも対応。主要ブラウザで表示可能</td></tr>
+<tr><td>HEIC</td><td>非可逆</td><td>iPhoneの撮影データ</td><td>高効率だが対応していない環境があり、提出用にはJPEG変換が無難</td></tr>
+</tbody>
+</table>
+</div>
+<h3>写真はJPEG品質80前後が目安</h3>
+<p>JPEGは保存時に品質(0〜100)を選べます。品質100と80では見た目の差がほとんど分からない一方、容量は大きく減ることが多いため、<strong>まずは品質75〜85で試す</strong>のがおすすめです。品質50を下回ると、輪郭のまわりにモヤモヤしたノイズが目立ちはじめます。</p>
+<h3>文字・図表はPNG、写真はJPEG/WebP</h3>
+<p>スクリーンショットや図表をJPEGにすると文字がにじみ、写真をPNGにすると容量が膨らみます。「くっきりした線・文字はPNG、グラデーションの多い写真はJPEGかWebP」と覚えておけば失敗しません。</p>
+
+<h2>具体的なやり方(環境別)</h2>
+<h3>ブラウザで完結させる(いちばん手軽)</h3>
+<p>アプリのインストールや会員登録なしで済ませたいなら、ブラウザ上で動くツールが手軽です。当サイトの<a href="../../tools/image-resize/">画像リサイズ・圧縮ツール</a>は、画像を選んで幅(ピクセル)と品質を指定するだけでリサイズと圧縮を同時に行えます。処理はすべてブラウザ内で完結し、<strong>画像がサーバーにアップロードされない</strong>ため、社外に出せない画像でも安心して使えます。</p>
+<h3>Windows</h3>
+<p>標準の「フォト」アプリで画像を開き、メニューから「画像のサイズ変更」を選ぶと、ピクセル数と品質を指定して保存できます。「ペイント」の「サイズ変更」でも縦横のピクセル数を変更できます。</p>
+<h3>Mac</h3>
+<p>標準の「プレビュー」で画像を開き、「ツール」→「サイズを調整」で幅・高さを変更します。「ファイル」→「書き出す」でJPEGを選ぶと品質のスライダで圧縮率を調整できます。</p>
+<h3>スマホ(iPhone/Android)</h3>
+<p>メールアプリによっては、写真を添付する際に「小・中・大」など送信サイズを選べます。また、多くのスマホでは共有メニューやギャラリーアプリの編集機能からサイズ変更が可能です。ブラウザから使えるツールなら、アプリを追加せずにスマホでもリサイズできます。</p>
+
+<h2>やってはいけないこと・注意点</h2>
+<ul>
+<li><strong>元画像を上書き保存しない</strong> — 非可逆圧縮で失われた情報とリサイズで減らしたピクセルは元に戻せません。必ずコピーに対して処理しましょう。</li>
+<li><strong>JPEGの再保存を繰り返さない</strong> — JPEGは保存のたびに劣化が蓄積します。編集は元データから行い、書き出しは1回にまとめるのが理想です。</li>
+<li><strong>拡張子の書き換えで形式は変わらない</strong> — ファイル名の「.png」を「.jpg」に変えても中身は変換されません。ツールやアプリで変換し直す必要があります。</li>
+<li><strong>印刷用途では縮めすぎない</strong> — 画面表示用の目安(長辺1200px程度)まで縮めた画像は、印刷では粗く見えることがあります。用途が確定するまで元データを保管しておきましょう。</li>
+</ul>
+
+<h2>まとめ:リサイズ→圧縮の順で試す</h2>
+<p>画像の容量削減は「①用途に合ったピクセル数へリサイズ → ②形式と品質を調整して圧縮」の順で行うのが効率的です。メール添付なら長辺1200〜1600px・1枚数百KB、Web掲載なら1枚100〜300KB程度を目安にすれば、まず困ることはありません。<a href="../../tools/image-resize/">画像リサイズ・圧縮ツール</a>を使えば、この2ステップをブラウザだけで無料・登録不要で行えます。</p>
+
+<h2>よくある質問</h2>
+<details class="faq">
+<summary>画質をあまり落とさずに容量だけ小さくできますか?</summary>
+<p>できます。写真の場合、まず表示サイズに合わせてピクセル数を減らし(リサイズ)、そのうえでJPEGの品質を80前後に設定するのが定石です。見た目の劣化はほとんど気付かれないまま、容量を大幅に減らせることが多いです。</p>
+</details>
+<details class="faq">
+<summary>一度圧縮した画像を元に戻せますか?</summary>
+<p>JPEGなどの非可逆圧縮で失われた情報は元に戻せません。リサイズで減らしたピクセルも同様です。必ず元の画像を別に保管し、圧縮・リサイズはコピーに対して行いましょう。</p>
+</details>
+<details class="faq">
+<summary>スクリーンショットはJPEGとPNGのどちらがいいですか?</summary>
+<p>文字や線が多いスクリーンショットはPNGが向いています。JPEGにすると文字の周りにノイズ(モスキートノイズ)が出やすく、かえって読みにくくなります。逆に写真はJPEGやWebPのほうが小さくなります。</p>
+</details>
+<details class="faq">
+<summary>iPhoneで撮った写真(HEIC)が送れないときはどうすればいいですか?</summary>
+<p>HEICは対応していない環境があるため、JPEGに変換してから送るのが確実です。iPhoneの設定でカメラの撮影フォーマットを「互換性優先」にするか、<a href="../../tools/image-resize/">画像リサイズ・圧縮ツール</a>のような変換ツールでJPEGに変換してください。</p>
+</details>
+</article>
+</main>
+<footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+</body>
+</html>

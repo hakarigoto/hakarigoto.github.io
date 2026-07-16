@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>積立シミュレーション|毎月いくら×何年でいくらになる?複利計算機|つみたて計算機</title>
+<meta name="description" content="毎月の積立額・年利・期間を入れるだけで、複利運用でいくらになるかを無料シミュレーション。目標額からの逆算や取り崩し計算、資産推移グラフ・年別推移表にも対応。登録不要・ブラウザ内で完結します。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#0f766e;--accent-hover:#0c5f59;--accent-weak:#e2f2f0;}@media (prefers-color-scheme: dark){:root{--accent:#4fd1c5;--accent-hover:#71dcd2;--accent-weak:#132c29;}}</style>
+<style>
+.tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 20px; flex-wrap: wrap; }
+.tab-btn {
+  padding: 10px 16px; background: none; border: none; border-bottom: 3px solid transparent;
+  font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text-sub);
+  cursor: pointer; margin-bottom: -2px;
+}
+.tab-btn[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-panel[hidden] { display: none; }
+
+.slider-row { display: flex; align-items: center; gap: 12px; }
+.slider-row input[type="range"] { flex: 1; accent-color: var(--accent); min-width: 120px; }
+.slider-val {
+  min-width: 4.2em; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums;
+  background: var(--accent-weak); color: var(--accent); border-radius: 6px; padding: 4px 8px;
+}
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 4px; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center; }
+.stat .stat-label { font-size: 0.8rem; color: var(--text-sub); }
+.stat .stat-value { font-size: 1.45rem; font-weight: 700; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.stat .stat-sub { font-size: 0.78rem; color: var(--text-sub); font-variant-numeric: tabular-nums; }
+.stat.stat-main .stat-value { color: var(--accent); font-size: 1.7rem; }
+.result-error { color: #c0392b; font-weight: 600; margin: 8px 0 0; }
+@media (prefers-color-scheme: dark) { .result-error { color: #ff8a7a; } }
+
+.ymyl-note {
+  border: 1px solid #d9a62e; border-left: 5px solid #d9a62e; background: #fdf6e3;
+  color: #6b5310; border-radius: 6px; padding: 10px 14px; margin: 16px 0; font-size: 0.9rem; font-weight: 600;
+}
+@media (prefers-color-scheme: dark) {
+  .ymyl-note { background: #2e2712; color: #eed48a; border-color: #8a7220; border-left-color: #d9a62e; }
+}
+
+.chart-wrap { margin-top: 18px; }
+#chart { width: 100%; height: 300px; display: block; }
+.chart-legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-sub); margin-top: 6px; }
+.chart-legend .chip { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.chip-principal { background: var(--text-sub); opacity: 0.45; }
+.chip-gain { background: var(--accent); opacity: 0.85; }
+
+details.yearly {
+  margin-top: 14px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 0 14px; font-size: 0.9rem;
+}
+details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
+.yearly-table { width: 100%; border-collapse: collapse; margin: 4px 0 14px; }
+.yearly-table th, .yearly-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.yearly-table th { background: var(--accent-weak); }
+.yearly-table th:first-child, .yearly-table td:first-child { text-align: center; }
+
+.nisa-note {
+  margin-top: 14px; font-size: 0.88rem; background: var(--accent-weak);
+  border-radius: 6px; padding: 10px 14px;
+}
+.copied-msg { font-size: 0.85rem; color: var(--accent); font-weight: 600; align-self: center; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "利回り(年利)は何%で入力すればよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "決まった正解はありません。株式を中心とした国際分散投資の過去の長期実績を参考に3〜7%程度で試算されることが多いですが、過去の実績は将来の成果を保証するものではありません。低め(例:3%)と高め(例:7%)の両方で計算して幅を持って見積もるのがおすすめです。預金や債券中心なら、より低い利回りで試算してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "複利と単利の違いは何ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "単利は元本に対してのみ利息が付く方式、複利は利息(運用益)を元本に組み入れて、その合計に対してさらに利息が付く方式です。期間が長くなるほど「利息が利息を生む」効果で差が広がります。本ツールは年利を12で割った月利で毎月複利計算しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "計算結果と実際の運用結果が違うのはなぜですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本ツールは一定の利回りが毎月続くと仮定した理論値です。実際の運用ではリターンは年ごとに大きく変動し、元本割れの期間もあり得ます。また、信託報酬などの手数料、売買時の税金(課税口座の場合は運用益に約20%)は考慮していません。あくまで目安としてご利用ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新NISAの投資枠とこのシミュレーション結果はどう関係しますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "新NISAには年間投資枠(つみたて投資枠120万円・成長投資枠240万円の合計最大360万円)と、生涯にわたる非課税保有限度額1,800万円があります。枠の管理は「買付金額(元本)ベース」なので、シミュレーションの元本合計と比べることで枠に収まるかの目安が分かります。枠を超える分は課税口座での運用になります。制度の詳細は金融庁や金融機関の最新情報をご確認ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力した金額などのデータは送信・保存されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した金額が外部のサーバーに送信されることはありません。「結果のURLをコピー」を使った場合も、条件がURLの文字列に含まれるだけで、当サイトに保存されることはありません。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/tsumitate/simulator/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/tsumitate/simulator/">
+<meta property="og:site_name" content="つみたて計算機">
+<meta property="og:title" content="積立シミュレーション|毎月いくら×何年でいくらになる?複利計算機|つみたて計算機">
+<meta property="og:description" content="毎月の積立額・年利・期間を入れるだけで、複利運用でいくらになるかを無料シミュレーション。目標額からの逆算や取り崩し計算、資産推移グラフ・年別推移表にも対応。登録不要・ブラウザ内で完結します。">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../">つみたて<span>計算機</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="../">つみたて計算機</a> › 積立シミュレーター</nav>
+
+  <div class="page-head">
+    <h1>積立シミュレーター(複利計算・グラフ付き)</h1>
+    <p class="lead">毎月の積立額・年利・期間を入れるだけで、複利運用で資産がいくらになるかを試算。目標金額からの逆算、資産の取り崩しシミュレーションにも対応しています。</p>
+  </div>
+
+  <p class="ymyl-note">利回りは将来を保証しません。本ツールは一定利回りを仮定した概算であり、特定の金融商品の勧誘・助言ではありません。実際の投資判断はご自身の責任で行ってください。</p>
+
+  <section class="tool-panel">
+    <div class="tabs" role="tablist" aria-label="計算モード">
+      <button type="button" class="tab-btn" id="tab-grow" role="tab" aria-selected="true" aria-controls="panel-grow">いくらになる?</button>
+      <button type="button" class="tab-btn" id="tab-goal" role="tab" aria-selected="false" aria-controls="panel-goal">目標から逆算</button>
+      <button type="button" class="tab-btn" id="tab-draw" role="tab" aria-selected="false" aria-controls="panel-draw">取り崩し</button>
+    </div>
+
+    <div class="tab-panel" id="panel-grow" role="tabpanel" aria-labelledby="tab-grow">
+      <div class="field-row">
+        <div class="field">
+          <label for="g-monthly">毎月の積立額(円)</label>
+          <input type="number" id="g-monthly" inputmode="numeric" min="0" step="1000" value="30000">
+        </div>
+        <div class="field">
+          <label for="g-initial">初期投資額(万円・任意)</label>
+          <input type="number" id="g-initial" inputmode="numeric" min="0" step="1" value="0" placeholder="例:100">
+        </div>
+        <div class="field">
+          <label for="g-years">積立期間(年)</label>
+          <input type="number" id="g-years" inputmode="numeric" min="1" max="50" step="1" value="20">
+        </div>
+      </div>
+      <div class="field">
+        <label for="g-rate">想定利回り(年利・%)</label>
+        <div class="slider-row">
+          <input type="range" id="g-rate" min="0" max="10" step="0.1" value="5">
+          <span class="slider-val" id="g-rate-val">5.0%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panel-goal" role="tabpanel" aria-labelledby="tab-goal" hidden>
+      <div class="field-row">
+        <div class="field">
+          <label for="t-target">目標金額(万円)</label>
+          <input type="number" id="t-target" inputmode="numeric" min="1" step="10" value="2000">
+        </div>
+        <div class="field">
+          <label for="t-years">積立期間(年)</label>
+          <input type="number" id="t-years" inputmode="numeric" min="1" max="50" step="1" value="20">
+        </div>
+      </div>
+      <div class="field">
+        <label for="t-rate">想定利回り(年利・%)</label>
+        <div class="slider-row">
+          <input type="range" id="t-rate" min="0" max="10" step="0.1" value="5">
+          <span class="slider-val" id="t-rate-val">5.0%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panel-draw" role="tabpanel" aria-labelledby="tab-draw" hidden>
+      <div class="field-row">
+        <div class="field">
+          <label for="d-asset">現在の資産額(万円)</label>
+          <input type="number" id="d-asset" inputmode="numeric" min="1" step="10" value="2000">
+        </div>
+        <div class="field">
+          <label for="d-monthly">毎月の取り崩し額(円)</label>
+          <input type="number" id="d-monthly" inputmode="numeric" min="1" step="1000" value="100000">
+        </div>
+      </div>
+      <div class="field">
+        <label for="d-rate">取り崩し中の想定利回り(年利・%)</label>
+        <div class="slider-row">
+          <input type="range" id="d-rate" min="0" max="10" step="0.1" value="3">
+          <span class="slider-val" id="d-rate-val">3.0%</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultArea" class="result-box" aria-live="polite">
+      <div class="stats" id="stats"></div>
+      <p class="result-error" id="errMsg" hidden></p>
+      <div class="chart-wrap">
+        <canvas id="chart" role="img" aria-label="資産推移グラフ"></canvas>
+        <div class="chart-legend" id="legend">
+          <span id="legend-principal"><span class="chip chip-principal"></span><span id="legend-principal-text">元本</span></span>
+          <span id="legend-gain"><span class="chip chip-gain"></span><span id="legend-gain-text">運用益</span></span>
+        </div>
+      </div>
+      <details class="yearly">
+        <summary>年ごとの推移表を見る</summary>
+        <div class="table-wrap"><table class="yearly-table" id="yearlyTable"></table></div>
+      </details>
+      <div class="nisa-note" id="nisaNote"></div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-secondary" id="shareBtn">結果のURLをコピー</button>
+        <span class="copied-msg" id="copiedMsg" hidden>コピーしました</span>
+      </div>
+      <p class="note">利回りは将来を保証しません。手数料・税金は考慮していない概算です。本ツールは特定の金融商品の勧誘・助言ではありません。計算はすべてブラウザ内で完結し、入力内容が送信されることはありません。</p>
+    </div>
+  </section>
+
+  <!-- AD-SLOT: shoken -->
+
+  <article class="article">
+    <h2>複利の仕組み — 単利との違い</h2>
+    <p>「複利」とは、運用で得た利益を元本に組み入れて、その合計に対してさらに利益が付く仕組みです。元本に対してだけ利息が付く「単利」と比べると、期間が長くなるほど<strong>利息が利息を生む</strong>効果で差が大きく広がります。</p>
+    <p>たとえば100万円を年利5%で運用した場合の比較です(税金・手数料は考慮しない理論値)。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>経過年数</th><th>単利(毎年5万円ずつ)</th><th>複利(年1回複利)</th><th>差額</th></tr>
+        <tr><td>10年</td><td>150万円</td><td>約163万円</td><td>約13万円</td></tr>
+        <tr><td>20年</td><td>200万円</td><td>約265万円</td><td>約65万円</td></tr>
+        <tr><td>30年</td><td>250万円</td><td>約432万円</td><td>約182万円</td></tr>
+      </table>
+    </div>
+    <p>本シミュレーターでは、年利を12で割った利率(月利)で毎月複利計算し、積立は毎月末に行うものとして計算しています。投資信託の基準価額のように日々変動する商品を厳密に再現するものではなく、あくまで「平均して年◯%で増えた場合」の目安です。</p>
+
+    <h2>利回りは何%で見積もるべき?</h2>
+    <p>将来の利回りは誰にも分かりません。参考として、全世界株式や米国株式のインデックスは過去の長期実績として年平均5〜9%程度(円ベース・期間の取り方により変動)だったとされる一方、<strong>過去の実績は将来の成果を保証するものではありません</strong>。実際には大きく上下する年を繰り返しながらの「平均」であり、10年単位でほとんど増えなかった時期も存在します。</p>
+    <p>実務的には、次のように<strong>幅を持たせて</strong>試算するのがおすすめです。</p>
+    <ul>
+      <li><strong>控えめケース:3%</strong> — 債券を組み入れた場合や、株式の期待リターンを保守的に見た場合</li>
+      <li><strong>標準ケース:5%</strong> — 株式インデックスの長期試算でよく使われる水準</li>
+      <li><strong>強気ケース:7%</strong> — 過去の株式の実績寄り。この水準を前提に生活設計を組むのはリスクが高め</li>
+    </ul>
+    <p>また、本ツールの結果には信託報酬などの手数料や税金(課税口座では運用益に約20%)が含まれていない点にもご注意ください。実質的な手取りはシミュレーション結果より少なくなり得ます。</p>
+
+    <h2>積立期間と複利効果の関係 — 「時間」が最大の味方</h2>
+    <p>複利の効果は期間の後半ほど加速します。毎月3万円・年利5%で積み立てた場合の推移を見ると、最初の10年で増える運用益より、最後の10年で増える運用益のほうがはるかに大きくなります。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>期間</th><th>元本合計</th><th>評価額(概算)</th><th>運用益(概算)</th></tr>
+        <tr><td>10年</td><td>360万円</td><td>約466万円</td><td>約106万円</td></tr>
+        <tr><td>20年</td><td>720万円</td><td>約1,233万円</td><td>約513万円</td></tr>
+        <tr><td>30年</td><td>1,080万円</td><td>約2,497万円</td><td>約1,417万円</td></tr>
+      </table>
+    </div>
+    <p>同じ月3万円でも、20年と30年では運用益が3倍近く違います。積立額を増やすことよりも「早く始めて長く続けること」がシミュレーション上は大きく効きます。逆に言えば、途中で大きく取り崩す前提の資金は、この加速部分の恩恵を受けにくいことになります。</p>
+
+    <h2>72の法則 — 資産が2倍になる年数の暗算</h2>
+    <p>「72 ÷ 年利(%) ≒ 資産が2倍になるおおよその年数」という経験則を<strong>72の法則</strong>と呼びます。複利計算の近似式で、暗算での目安づくりに便利です。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>年利</th><th>72の法則による2倍までの年数</th></tr>
+        <tr><td>2%</td><td>約36年</td></tr>
+        <tr><td>4%</td><td>約18年</td></tr>
+        <tr><td>6%</td><td>約12年</td></tr>
+        <tr><td>8%</td><td>約9年</td></tr>
+      </table>
+    </div>
+    <p>これは一括投資した元本が2倍になる年数の近似です。毎月積立の場合は後から入れたお金ほど運用期間が短いため、資産全体が2倍になるにはこれより長くかかります。厳密な数字は上のシミュレーターでご確認ください。</p>
+
+    <h2>新NISAの投資枠との関係</h2>
+    <p>新NISA(2024年開始)には、年間投資枠(つみたて投資枠120万円+成長投資枠240万円=最大360万円)と、生涯にわたる非課税保有限度額1,800万円(うち成長投資枠は1,200万円まで)があります。枠は<strong>買付金額(元本)ベース</strong>で管理されるため、シミュレーションの「元本合計」と比較すると枠に収まるかの目安になります。たとえば毎月3万円の積立なら年36万円で、生涯枠1,800万円に達するのは50年後です。枠を超えて積み立てる場合、超えた分は課税口座での運用になります。制度の内容は変更されることがあるため、最新の情報は金融庁や利用する金融機関でご確認ください。</p>
+
+    <h2>よくある質問</h2>
+    <details class="faq">
+      <summary>利回り(年利)は何%で入力すればよいですか?</summary>
+      <p>決まった正解はありません。株式中心の国際分散投資の過去の長期実績を参考に3〜7%程度で試算されることが多いですが、過去の実績は将来の成果を保証するものではありません。低め(3%)と高め(7%)の両方で計算し、幅を持って見積もるのがおすすめです。預金や債券中心なら、より低い利回りで試算してください。</p>
+    </details>
+    <details class="faq">
+      <summary>複利と単利の違いは何ですか?</summary>
+      <p>単利は元本に対してのみ利息が付く方式、複利は利息(運用益)を元本に組み入れた合計に対してさらに利息が付く方式です。期間が長いほど「利息が利息を生む」効果で差が広がります。本ツールは年利÷12の月利で毎月複利計算しています。</p>
+    </details>
+    <details class="faq">
+      <summary>計算結果と実際の運用結果が違うのはなぜですか?</summary>
+      <p>本ツールは一定の利回りが毎月続くと仮定した理論値です。実際のリターンは年ごとに大きく変動し、元本割れの期間もあり得ます。また信託報酬などの手数料や、課税口座での税金(運用益に約20%)は考慮していません。あくまで目安としてご利用ください。</p>
+    </details>
+    <details class="faq">
+      <summary>新NISAの投資枠とこの結果はどう関係しますか?</summary>
+      <p>新NISAの年間投資枠は最大360万円、生涯の非課税保有限度額は1,800万円で、いずれも買付金額(元本)ベースで管理されます。シミュレーションの元本合計と比べれば、枠に収まるかの目安が分かります。枠を超える分は課税口座での運用になります。詳細は金融庁や金融機関の最新情報をご確認ください。</p>
+    </details>
+    <details class="faq">
+      <summary>入力した金額などのデータは送信・保存されますか?</summary>
+      <p>いいえ。計算はすべてブラウザ内(JavaScript)で完結し、入力した金額が外部サーバーに送信されることはありません。「結果のURLをコピー」も、条件がURL文字列に含まれるだけで当サイトには保存されません。</p>
+    </details>
+
+    <!-- AD-SLOT: shoken -->
+  </article>
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 つみたて計算機</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var MAX_MONTHS = 600; // 50年
+  var $ = function (id) { return document.getElementById(id); };
+
+  var tabs = [
+    { tab: $("tab-grow"), panel: $("panel-grow"), mode: "grow" },
+    { tab: $("tab-goal"), panel: $("panel-goal"), mode: "goal" },
+    { tab: $("tab-draw"), panel: $("panel-draw"), mode: "draw" }
+  ];
+  var currentMode = "grow";
+
+  /* ---------- フォーマット ---------- */
+  function fmtYen(v) { return Math.round(v).toLocaleString("ja-JP") + "円"; }
+  function fmtMan(v) { // 円 → 「1億2,345万円」/「1,233万円」
+    var yen = Math.round(v);
+    var neg = yen < 0 ? "-" : "";
+    yen = Math.abs(yen);
+    var man = Math.round(yen / 10000);
+    if (man >= 10000) {
+      var oku = Math.floor(man / 10000);
+      var rest = man % 10000;
+      return neg + oku.toLocaleString("ja-JP") + "億" + (rest > 0 ? rest.toLocaleString("ja-JP") + "万" : "") + "円";
+    }
+    return neg + man.toLocaleString("ja-JP") + "万円";
+  }
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) ? v : NaN; }
+  function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+  /* ---------- 計算 ---------- */
+  // 月次複利・毎月末積立: series は月0(開始時点)〜月n の各時点の値
+  function simGrow(monthly, initial, years, ratePct) {
+    var r = ratePct / 100 / 12;
+    var n = Math.round(years * 12);
+    var principal = [initial], total = [initial];
+    var bal = initial, p = initial;
+    for (var m = 1; m <= n; m++) {
+      bal = bal * (1 + r) + monthly;
+      p += monthly;
+      principal.push(p);
+      total.push(bal);
+    }
+    return { months: n, principal: principal, total: total };
+  }
+  function requiredMonthly(target, years, ratePct) {
+    var r = ratePct / 100 / 12;
+    var n = Math.round(years * 12);
+    if (r === 0) return target / n;
+    return target * r / (Math.pow(1 + r, n) - 1);
+  }
+  function simDraw(asset, monthly, ratePct) {
+    var r = ratePct / 100 / 12;
+    var bal = asset, withdrawn = 0;
+    var balance = [asset], cumOut = [0];
+    var depletedMonth = null;
+    for (var m = 1; m <= MAX_MONTHS; m++) {
+      bal = bal * (1 + r) - monthly;
+      if (bal <= 0) {
+        // 最終月は残っている分だけ取り崩し
+        withdrawn += monthly + bal;
+        balance.push(0); cumOut.push(withdrawn);
+        depletedMonth = m;
+        break;
+      }
+      withdrawn += monthly;
+      balance.push(bal); cumOut.push(withdrawn);
+    }
+    return { balance: balance, cumOut: cumOut, depletedMonth: depletedMonth, sustainable: asset * r >= monthly };
+  }
+
+  /* ---------- 結果表示 ---------- */
+  function statHtml(label, value, sub, main) {
+    return '<div class="stat' + (main ? " stat-main" : "") + '">' +
+      '<div class="stat-label">' + label + '</div>' +
+      '<div class="stat-value">' + value + '</div>' +
+      (sub ? '<div class="stat-sub">' + sub + "</div>" : "") + "</div>";
+  }
+
+  function showError(msg) {
+    $("stats").innerHTML = "";
+    $("errMsg").textContent = msg;
+    $("errMsg").hidden = false;
+    $("yearlyTable").innerHTML = "";
+    $("nisaNote").textContent = "";
+    var c = $("chart");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+  }
+
+  function nisaText(monthlyYen, principalYen) {
+    var yearly = monthlyYen * 12;
+    var t = "【参考】新NISAの非課税保有限度額(生涯投資枠)は1,800万円、年間投資枠は最大360万円(つみたて投資枠120万円+成長投資枠240万円)で、いずれも買付金額(元本)ベースです。";
+    t += "この条件では年間の積立額は約" + fmtMan(yearly) + "、元本合計は約" + fmtMan(principalYen) + "で、";
+    var parts = [];
+    parts.push(yearly > 3600000 ? "年間投資枠360万円を超える計算です" : "年間投資枠360万円の範囲内です");
+    parts.push(principalYen > 18000000 ? "元本合計は生涯投資枠1,800万円を超える計算です(超える分は課税口座での運用になります)" : "元本合計は生涯投資枠1,800万円の範囲内です");
+    t += parts.join("。") + "。制度の詳細・最新情報は金融庁や金融機関でご確認ください。";
+    return t;
+  }
+
+  function yearlyTableGrow(sim) {
+    var html = "<tr><th>経過</th><th>元本累計</th><th>運用益</th><th>評価額</th></tr>";
+    var years = Math.ceil(sim.months / 12);
+    for (var y = 1; y <= years; y++) {
+      var i = Math.min(y * 12, sim.months);
+      var p = sim.principal[i], t = sim.total[i];
+      html += "<tr><td>" + y + "年</td><td>" + fmtMan(p) + "</td><td>" + fmtMan(t - p) + "</td><td>" + fmtMan(t) + "</td></tr>";
+    }
+    $("yearlyTable").innerHTML = html;
+  }
+  function yearlyTableDraw(sim) {
+    var html = "<tr><th>経過</th><th>累計取り崩し額</th><th>年末残高</th></tr>";
+    var last = sim.balance.length - 1;
+    var years = Math.ceil(last / 12);
+    for (var y = 1; y <= years; y++) {
+      var i = Math.min(y * 12, last);
+      html += "<tr><td>" + y + "年</td><td>" + fmtMan(sim.cumOut[i]) + "</td><td>" + fmtMan(sim.balance[i]) + "</td></tr>";
+      if (i === last) break;
+    }
+    $("yearlyTable").innerHTML = html;
+  }
+
+  /* ---------- グラフ(Canvas) ---------- */
+  var lastChart = null;
+  function niceStep(raw) {
+    var pow = Math.pow(10, Math.floor(Math.log10(raw)));
+    var cands = [1, 2, 2.5, 5, 10];
+    for (var i = 0; i < cands.length; i++) {
+      if (cands[i] * pow >= raw) return cands[i] * pow;
+    }
+    return 10 * pow;
+  }
+  function axisMoney(v) {
+    if (v >= 100000000) {
+      var oku = v / 100000000;
+      return (oku % 1 === 0 ? oku : oku.toFixed(1)) + "億";
+    }
+    return Math.round(v / 10000).toLocaleString("ja-JP") + "万";
+  }
+  // data: { lower: [...]|null, upper: [...], line2: [...]|null }
+  function drawChart(data) {
+    lastChart = data;
+    var canvas = $("chart");
+    var cssW = canvas.clientWidth || canvas.parentNode.clientWidth;
+    var cssH = 300;
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+    if (!data || !data.upper || data.upper.length < 2) return;
+
+    var cs = getComputedStyle(document.documentElement);
+    var accent = cs.getPropertyValue("--accent").trim();
+    var border = cs.getPropertyValue("--border").trim();
+    var textSub = cs.getPropertyValue("--text-sub").trim();
+
+    var n = data.upper.length - 1; // 月数
+    var maxV = 0;
+    for (var i = 0; i <= n; i++) {
+      if (data.upper[i] > maxV) maxV = data.upper[i];
+      if (data.line2 && data.line2[i] > maxV) maxV = data.line2[i];
+    }
+    if (maxV <= 0) maxV = 1;
+
+    var padL = 62, padR = 12, padT = 14, padB = 28;
+    var plotW = cssW - padL - padR, plotH = cssH - padT - padB;
+    var x = function (m) { return padL + plotW * m / n; };
+    var yStep = niceStep(maxV / 4);
+    var yMax = Math.ceil(maxV / yStep) * yStep;
+    var y = function (v) { return padT + plotH * (1 - v / yMax); };
+
+    ctx.font = "11px sans-serif";
+    // 横グリッド + y軸ラベル
+    ctx.strokeStyle = border;
+    ctx.fillStyle = textSub;
+    ctx.lineWidth = 1;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    for (var v = 0; v <= yMax + yStep / 2; v += yStep) {
+      var yy = y(v);
+      ctx.beginPath(); ctx.moveTo(padL, yy); ctx.lineTo(cssW - padR, yy); ctx.stroke();
+      ctx.fillText(axisMoney(v), padL - 6, yy);
+    }
+    // x軸ラベル(年)
+    var totalYears = n / 12;
+    var stepY = 1;
+    var candsX = [1, 2, 5, 10];
+    for (var c = 0; c < candsX.length; c++) { if (totalYears / candsX[c] <= 10) { stepY = candsX[c]; break; } stepY = 10; }
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    for (var yr = 0; yr <= totalYears + 0.001; yr += stepY) {
+      var xx = x(Math.round(yr * 12));
+      ctx.fillText(yr + "年", xx, cssH - padB + 6);
+      ctx.beginPath(); ctx.moveTo(xx, cssH - padB); ctx.lineTo(xx, cssH - padB + 3); ctx.stroke();
+    }
+
+    function areaPath(lowerArr, upperArr) {
+      ctx.beginPath();
+      ctx.moveTo(x(0), y(upperArr[0]));
+      for (var i = 1; i <= n; i++) ctx.lineTo(x(i), y(upperArr[i]));
+      if (lowerArr) {
+        for (var j = n; j >= 0; j--) ctx.lineTo(x(j), y(lowerArr[j]));
+      } else {
+        ctx.lineTo(x(n), y(0));
+        ctx.lineTo(x(0), y(0));
+      }
+      ctx.closePath();
+    }
+
+    if (data.lower) {
+      // 元本部分(下層)
+      ctx.globalAlpha = 0.45;
+      ctx.fillStyle = textSub;
+      areaPath(null, data.lower);
+      ctx.fill();
+      // 運用益部分(上層)
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = accent;
+      areaPath(data.lower, data.upper);
+      ctx.fill();
+    } else {
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = accent;
+      areaPath(null, data.upper);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    // 評価額ライン
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x(0), y(data.upper[0]));
+    for (var k = 1; k <= n; k++) ctx.lineTo(x(k), y(data.upper[k]));
+    ctx.stroke();
+    // 補助ライン(取り崩しモード: 累計取り崩し額)
+    if (data.line2) {
+      ctx.strokeStyle = textSub;
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.moveTo(x(0), y(data.line2[0]));
+      for (var k2 = 1; k2 <= n; k2++) ctx.lineTo(x(k2), y(data.line2[k2]));
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  }
+
+  /* ---------- 各モードの実行 ---------- */
+  function runGrow() {
+    var monthly = num("g-monthly");
+    var initialMan = $("g-initial").value === "" ? 0 : num("g-initial");
+    var years = num("g-years");
+    var rate = num("g-rate");
+    if (!(monthly >= 0) || !(initialMan >= 0) || (monthly === 0 && initialMan === 0)) { showError("毎月の積立額または初期投資額を入力してください。"); return; }
+    if (!(years >= 1)) { showError("積立期間は1〜50年で入力してください。"); return; }
+    years = clamp(Math.round(years), 1, 50);
+    var initial = initialMan * 10000;
+    var sim = simGrow(monthly, initial, years, rate);
+    var n = sim.months;
+    var total = sim.total[n], principal = sim.principal[n], gain = total - principal;
+    $("errMsg").hidden = true;
+    $("stats").innerHTML =
+      statHtml(years + "年後の評価額", "約" + fmtMan(total), fmtYen(total), true) +
+      statHtml("元本合計", fmtMan(principal), fmtYen(principal)) +
+      statHtml("運用益", "約" + fmtMan(gain), "元本の約" + (principal > 0 ? Math.round(gain / principal * 100) : 0) + "%");
+    setLegend("元本", "運用益", false);
+    drawChart({ lower: sim.principal, upper: sim.total, line2: null });
+    yearlyTableGrow(sim);
+    $("nisaNote").textContent = nisaText(monthly, principal);
+    $("chart").setAttribute("aria-label", "資産推移グラフ:毎月" + fmtYen(monthly) + "・年利" + rate + "%・" + years + "年で約" + fmtMan(total));
+  }
+
+  function runGoal() {
+    var targetMan = num("t-target");
+    var years = num("t-years");
+    var rate = num("t-rate");
+    if (!(targetMan > 0)) { showError("目標金額を入力してください。"); return; }
+    if (!(years >= 1)) { showError("積立期間は1〜50年で入力してください。"); return; }
+    years = clamp(Math.round(years), 1, 50);
+    var target = targetMan * 10000;
+    var monthly = requiredMonthly(target, years, rate);
+    var monthlyDisp = Math.ceil(monthly); // 切り上げで確実に到達
+    var sim = simGrow(monthlyDisp, 0, years, rate);
+    var n = sim.months;
+    var principal = sim.principal[n];
+    $("errMsg").hidden = true;
+    $("stats").innerHTML =
+      statHtml("必要な毎月の積立額", "約" + monthlyDisp.toLocaleString("ja-JP") + "円", "目標:" + fmtMan(target) + "/" + years + "年・年利" + rate + "%", true) +
+      statHtml("元本合計", fmtMan(principal), fmtYen(principal)) +
+      statHtml("運用益", "約" + fmtMan(target - principal), "目標額に占める割合 約" + Math.round((target - principal) / target * 100) + "%");
+    setLegend("元本", "運用益", false);
+    drawChart({ lower: sim.principal, upper: sim.total, line2: null });
+    yearlyTableGrow(sim);
+    $("nisaNote").textContent = nisaText(monthlyDisp, principal);
+    $("chart").setAttribute("aria-label", "資産推移グラフ:目標" + fmtMan(target) + "に" + years + "年で到達するには毎月約" + monthlyDisp.toLocaleString("ja-JP") + "円");
+  }
+
+  function runDraw() {
+    var assetMan = num("d-asset");
+    var monthly = num("d-monthly");
+    var rate = num("d-rate");
+    if (!(assetMan > 0)) { showError("現在の資産額を入力してください。"); return; }
+    if (!(monthly > 0)) { showError("毎月の取り崩し額を入力してください。"); return; }
+    var asset = assetMan * 10000;
+    var sim = simDraw(asset, monthly, rate);
+    $("errMsg").hidden = true;
+    var mainStat;
+    if (sim.sustainable) {
+      mainStat = statHtml("資産がもつ期間", "50年以上", "運用益の範囲内の取り崩しのため、計算上は資産が目減りしません", true);
+    } else if (sim.depletedMonth === null) {
+      mainStat = statHtml("資産がもつ期間", "50年以上", "50年時点の残高:約" + fmtMan(sim.balance[sim.balance.length - 1]), true);
+    } else {
+      var y = Math.floor(sim.depletedMonth / 12), m = sim.depletedMonth % 12;
+      mainStat = statHtml("資産がもつ期間", "約" + y + "年" + (m > 0 ? m + "か月" : ""), "毎月" + fmtYen(monthly) + "の取り崩し(定額)", true);
+    }
+    var last = sim.balance.length - 1;
+    $("stats").innerHTML =
+      mainStat +
+      statHtml("累計取り崩し額", "約" + fmtMan(sim.cumOut[last]), sim.depletedMonth ? "元本" + fmtMan(asset) + "+運用益" : last / 12 + "年間の合計") +
+      statHtml("年間の取り崩し額", fmtMan(monthly * 12), "資産額の約" + (monthly * 12 / asset * 100).toFixed(1) + "%/年");
+    setLegend("資産残高", "累計取り崩し額(点線)", true);
+    drawChart({ lower: null, upper: sim.balance, line2: sim.cumOut });
+    yearlyTableDraw(sim);
+    $("nisaNote").textContent = "【参考】新NISA口座内の資産は売却(取り崩し)しても運用益に課税されません。なお売却すると翌年以降に買付元本ベースで生涯投資枠(1,800万円)が復活します。課税口座では運用益部分に約20%の税金がかかるため、実際の手取りは本計算より少なくなる場合があります。";
+    $("chart").setAttribute("aria-label", "取り崩しシミュレーション:資産" + fmtMan(asset) + "・年利" + rate + "%・毎月" + fmtYen(monthly));
+  }
+
+  function setLegend(t1, t2, dashed) {
+    $("legend-principal-text").textContent = t1;
+    $("legend-gain-text").textContent = t2;
+    var chip1 = document.querySelector("#legend-principal .chip");
+    var chip2 = document.querySelector("#legend-gain .chip");
+    if (dashed) {
+      chip1.className = "chip chip-gain";
+      chip2.className = "chip chip-principal";
+    } else {
+      chip1.className = "chip chip-principal";
+      chip2.className = "chip chip-gain";
+    }
+  }
+
+  function recalc() {
+    if (currentMode === "grow") runGrow();
+    else if (currentMode === "goal") runGoal();
+    else runDraw();
+    updateUrl();
+  }
+
+  /* ---------- URL共有 ---------- */
+  function buildParams() {
+    var p = new URLSearchParams();
+    p.set("mode", currentMode);
+    if (currentMode === "grow") {
+      p.set("m", $("g-monthly").value); p.set("i", $("g-initial").value || "0");
+      p.set("r", $("g-rate").value); p.set("y", $("g-years").value);
+    } else if (currentMode === "goal") {
+      p.set("t", $("t-target").value); p.set("r", $("t-rate").value); p.set("y", $("t-years").value);
+    } else {
+      p.set("a", $("d-asset").value); p.set("r", $("d-rate").value); p.set("w", $("d-monthly").value);
+    }
+    return p;
+  }
+  function updateUrl() {
+    try { history.replaceState(null, "", location.pathname + "?" + buildParams().toString()); } catch (e) {}
+  }
+  function restoreFromUrl() {
+    var p = new URLSearchParams(location.search);
+    var mode = p.get("mode");
+    function setIf(id, key, lo, hi) {
+      var v = parseFloat(p.get(key));
+      if (isFinite(v)) $(id).value = clamp(v, lo, hi);
+    }
+    if (mode === "goal") {
+      setIf("t-target", "t", 1, 1000000); setIf("t-rate", "r", 0, 10); setIf("t-years", "y", 1, 50);
+    } else if (mode === "draw") {
+      setIf("d-asset", "a", 1, 10000000); setIf("d-rate", "r", 0, 10); setIf("d-monthly", "w", 1, 100000000);
+    } else if (mode === "grow") {
+      setIf("g-monthly", "m", 0, 100000000); setIf("g-initial", "i", 0, 10000000);
+      setIf("g-rate", "r", 0, 10); setIf("g-years", "y", 1, 50);
+    }
+    if (mode === "goal" || mode === "draw" || mode === "grow") selectTab(mode, false);
+  }
+  $("shareBtn").addEventListener("click", function () {
+    updateUrl();
+    var url = location.href;
+    function done() {
+      var msg = $("copiedMsg");
+      msg.hidden = false;
+      setTimeout(function () { msg.hidden = true; }, 2000);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { window.prompt("このURLをコピーしてください", url); });
+    } else {
+      window.prompt("このURLをコピーしてください", url);
+    }
+  });
+
+  /* ---------- タブ・イベント ---------- */
+  function selectTab(mode, doCalc) {
+    currentMode = mode;
+    tabs.forEach(function (t) {
+      var active = t.mode === mode;
+      t.tab.setAttribute("aria-selected", active ? "true" : "false");
+      t.panel.hidden = !active;
+    });
+    if (doCalc !== false) recalc();
+  }
+  tabs.forEach(function (t) {
+    t.tab.addEventListener("click", function () { selectTab(t.mode); });
+  });
+
+  // スライダー表示同期
+  [["g-rate", "g-rate-val"], ["t-rate", "t-rate-val"], ["d-rate", "d-rate-val"]].forEach(function (pair) {
+    var input = $(pair[0]), out = $(pair[1]);
+    var sync = function () { out.textContent = parseFloat(input.value).toFixed(1) + "%"; };
+    input.addEventListener("input", sync);
+    sync();
+  });
+
+  // 入力のたびに再計算
+  ["g-monthly", "g-initial", "g-years", "g-rate", "t-target", "t-years", "t-rate", "d-asset", "d-monthly", "d-rate"]
+    .forEach(function (id) { $(id).addEventListener("input", recalc); });
+
+  // リサイズ・カラースキーム変更で再描画
+  var resizeTimer = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { drawChart(lastChart); }, 150);
+  });
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    var onScheme = function () { drawChart(lastChart); };
+    if (mq.addEventListener) mq.addEventListener("change", onScheme);
+    else if (mq.addListener) mq.addListener(onScheme);
+  }
+
+  restoreFromUrl();
+  recalc();
+})();
+</script>
+</body>
+</html>

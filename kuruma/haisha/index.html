@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>廃車と売却どっちが得？車の手放しどき診断｜還付金も自動計算｜くるま電卓</title>
+<meta name="description" content="廃車と売却どちらが得かを車種・年式・状態から診断。永久抹消で戻る自動車税・重量税・自賠責の還付金も自動計算します。軽自動車は自動車税の還付なしなどの注意点、必要書類、13年超の重課も解説（2026年7月時点）。">
+<link rel="canonical" href="https://hakarigoto.github.io/kuruma/haisha/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/kuruma/haisha/">
+<meta property="og:site_name" content="くるま電卓">
+<meta property="og:title" content="廃車と売却どっちが得？車の手放しどき診断｜還付金も自動計算｜くるま電卓">
+<meta property="og:description" content="車種・年式・走行距離・状態から「売却検討／廃車買取業者へ／解体廃車」を診断。永久抹消時の自動車税・重量税・自賠責の還付金の目安も自動計算します。">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#b3382f;--accent-hover:#962e27;--accent-weak:#f9e9e7;}@media (prefers-color-scheme: dark){:root{--accent:#f0918a;--accent-hover:#f4a8a2;--accent-weak:#331a18;}}</style>
+<style>
+/* 判断フローチャート */
+.flow { margin: 16px 0; }
+.flow-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 auto;
+  max-width: 480px;
+  text-align: center;
+  font-size: 0.92rem;
+}
+.flow-box.flow-q { border-color: var(--accent); font-weight: 600; }
+.flow-box.flow-goal { background: var(--accent-weak); border-color: var(--accent); font-weight: 700; }
+.flow-arrow {
+  text-align: center;
+  color: var(--text-sub);
+  font-size: 0.8rem;
+  padding: 2px 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.flow-split { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 0 auto; max-width: 720px; }
+.flow-col { flex: 1 1 220px; min-width: 200px; }
+.flow-col .flow-box { max-width: none; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "廃車（抹消登録）にすると税金や保険料は戻ってきますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "普通車は、抹消登録をすると自動車税（種別割）が「抹消登録の翌月から3月まで」の月割で還付されます。さらに解体をともなう永久抹消登録（解体届出）で車検の残りが1ヶ月以上あれば、自動車重量税が車検残存期間分（納付額×残存月数÷車検有効月数）還付されます。自賠責保険も保険期間が1ヶ月以上残っていれば、保険会社での解約手続きにより月割の返戻金を受け取れます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "軽自動車でも自動車税は還付されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "軽自動車税（種別割）には月割還付の制度がなく、年度途中で廃車にしても税金は戻りません。4月1日時点の所有者に1年分が課税される仕組みのためです。一方、自動車重量税の還付（解体をともなう永久抹消で車検残1ヶ月以上）と自賠責保険の解約返戻金は、軽自動車でも対象になります。手放すなら4月1日を迎える前に手続きを済ませるのが得策です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "廃車の費用はいくらかかりますか？無料にする方法はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "自分で解体業者などに依頼する場合、解体費用がおおむね1万〜2万円、動かない車のレッカー（運搬）費用が5千〜1万円程度かかるのが一般的な目安です。一方、廃車買取業者は部品の再販や資源リサイクルで収益を得ているため、引取・レッカー・手続き代行まで無料のところが多く、車両に値段が付くケースもあります。費用を払う前に、まず無料引取や買取が可能か複数社に確認しましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "車検切れ・不動車・事故車でも引き取ってもらえますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "引き取ってもらえます。車検切れの車は公道を走れませんが、廃車買取業者の多くは積載車（レッカー）での引取に対応しており、対応エリア内なら無料の業者もあります。不動車や事故車も、使える部品や金属資源としての価値があるため、0円と思っていた車に値が付いた例は珍しくありません。処分費用を請求されたら、他社にも見積もりを取って比較するのがおすすめです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一時抹消登録と永久抹消登録はどちらを選ぶべきですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "また乗る可能性がある、または長期間乗らないだけなら「一時抹消登録」、解体して完全に処分するなら「永久抹消登録」です。自動車税の課税は一時抹消でも止まりますが、自動車重量税の還付は解体をともなう永久抹消登録（一時抹消後なら解体届出）が条件です。一時抹消のままでは重量税は戻らない点に注意してください。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><a class="site-logo" href="../">くるま<span>電卓</span></a><nav class="site-nav"><a href="../#tools">ツール</a><a href="../../about/">運営者情報</a></nav></div></header>
+
+<main>
+<div class="container">
+<nav class="breadcrumb"><a href="../">くるま電卓</a> › 廃車と売却どっちが得？手放しどき診断</nav>
+
+<div class="page-head">
+  <h1>廃車と売却どっちが得？手放しどき診断</h1>
+  <p class="lead">車種・年式・走行距離・状態を選ぶだけで、「売却検討／廃車買取業者へ／解体廃車」の目安を診断。永久抹消登録で戻ってくる自動車税・重量税・自賠責の還付金の概算も自動計算します（税額・保険料は2026年7月時点の情報に基づく）。</p>
+</div>
+
+<section class="tool-panel">
+  <h2>車の情報を入力してください</h2>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="carType">車種</label>
+      <select id="carType">
+        <option value="normal">普通車・小型車（白ナンバー）</option>
+        <option value="kei">軽自動車</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="firstYear">初度登録年（車検証の初度登録年月）</label>
+      <input type="number" id="firstYear" min="1980" max="2026" step="1" placeholder="例: 2012">
+    </div>
+    <div class="field">
+      <label for="mileage">走行距離（万km）</label>
+      <input type="number" id="mileage" min="0" max="100" step="0.1" placeholder="例: 12.5">
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="condition">車の状態</label>
+      <select id="condition">
+        <option value="ok">問題なく走行できる</option>
+        <option value="broken">故障・不動（エンジンがかからない等）</option>
+        <option value="accident">事故車（大きな損傷・修復歴あり）</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="shakenState">車検の状態</label>
+      <select id="shakenState">
+        <option value="valid">車検が残っている</option>
+        <option value="expired">車検切れ</option>
+      </select>
+    </div>
+    <div class="field" id="q-shaken-months">
+      <label for="shakenMonths">車検の残り月数（1ヶ月未満切捨て）</label>
+      <input type="number" id="shakenMonths" min="0" max="36" step="1" placeholder="例: 8">
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field" id="q-weight">
+      <label for="weightClass">車両重量（車検証の「車両重量」欄）</label>
+      <select id="weightClass">
+        <option value="1">〜0.5t</option>
+        <option value="2">0.5t超〜1.0t（コンパクトカー等）</option>
+        <option value="3" selected>1.0t超〜1.5t（セダン・小型ミニバン等）</option>
+        <option value="4">1.5t超〜2.0t（ミニバン・SUV等）</option>
+        <option value="5">2.0t超〜2.5t（大型ミニバン等）</option>
+        <option value="6">2.5t超〜3.0t</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="cancelMonth">抹消手続きの予定月</label>
+      <select id="cancelMonth">
+        <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
+        <option value="4">4月</option><option value="5">5月</option><option value="6">6月</option>
+        <option value="7">7月</option><option value="8">8月</option><option value="9">9月</option>
+        <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="zeigaku">自動車税の年額（円・任意）</label>
+      <input type="number" id="zeigaku" min="0" max="200000" step="100" placeholder="空欄なら1.5Lクラスで概算">
+      <p class="note" style="margin:4px 0 0;">納税通知書の金額。<a href="../iji-hi/">維持費計算機</a>で調べた額でもOK。</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn" id="btnJudge">診断する</button>
+    <button type="button" class="btn btn-secondary" id="btnReset">リセット</button>
+  </div>
+
+  <div id="resultArea" hidden>
+    <div class="result-box" id="resultBox"></div>
+    <!-- AD-SLOT: kaitori -->
+    <div class="result-box" id="refundBox"></div>
+    <div class="table-wrap article" id="compareWrap"></div>
+    <div class="result-box" id="checklistBox"></div>
+    <p class="note">※本診断は年式・距離・状態にもとづく一般的な目安であり、具体的な査定額を保証するものではありません。還付金は概算です。自動車税（種別割）の税額は都道府県、重量税はエコカー減税の適用状況、自賠責の返戻金は契約始期・保険会社により異なります。正確な金額は納税通知書・車検証・保険会社の早見表でご確認ください（税額・保険料は2026年7月時点）。</p>
+  </div>
+</section>
+
+<article class="article">
+
+<h2>迷ったらこれ：手放し方の判断フローチャート</h2>
+<div class="flow">
+  <div class="flow-box flow-q">その車は問題なく走行できますか？</div>
+  <div class="flow-arrow">▼</div>
+  <div class="flow-split">
+    <div class="flow-col">
+      <div class="flow-box">はい（走行可）</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box flow-q">初度登録から13年未満で<br>走行距離12万km未満？</div>
+      <div class="flow-arrow">はい ▼</div>
+      <div class="flow-box flow-goal">売却検討<br><span style="font-weight:400;font-size:0.85rem;">中古車買取店に複数査定</span></div>
+      <div class="flow-arrow">いいえ ▼</div>
+      <div class="flow-box flow-goal">廃車買取業者へ<br><span style="font-weight:400;font-size:0.85rem;">中古車査定と両方比較</span></div>
+    </div>
+    <div class="flow-col">
+      <div class="flow-box">いいえ（不動・事故車）</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box flow-q">廃車買取業者に査定依頼<br>（無料引取〜買取の例あり）</div>
+      <div class="flow-arrow">値が付かない・引取先がない場合 ▼</div>
+      <div class="flow-box flow-goal">解体廃車<br><span style="font-weight:400;font-size:0.85rem;">解体費1〜2万円＋レッカー代が目安。<br>払う前に必ず複数社へ確認を</span></div>
+    </div>
+  </div>
+</div>
+<p class="note">※あくまで一般的な目安のフローです。旧車・希少車は年式が古くても高値が付くことがあります。</p>
+
+<h2>永久抹消登録と一時抹消登録の違い</h2>
+<p>「廃車」と一口に言っても、手続きは2種類あります。<strong>永久抹消登録</strong>は、車を解体（スクラップ）したうえで登録を完全に消す手続きで、二度とその車には乗れません。<strong>一時抹消登録</strong>は、登録を一時的に止めて公道を走れない状態にする手続きで、長期間乗らない場合や再登録の可能性がある場合に使います。</p>
+<div class="table-wrap">
+<table>
+  <tr><th>項目</th><th>永久抹消登録（軽：解体返納）</th><th>一時抹消登録（軽：自動車検査証返納届）</th></tr>
+  <tr><td>車の状態</td><td>解体済み（リサイクル業者で解体）</td><td>解体せず保管。再登録すれば再び乗れる</td></tr>
+  <tr><td>自動車税（種別割）</td><td>課税停止＋普通車は月割還付</td><td>課税停止＋普通車は月割還付</td></tr>
+  <tr><td>自動車重量税の還付</td><td>対象（車検残1ヶ月以上）</td><td>対象外（その後の解体届出で対象に）</td></tr>
+  <tr><td>自賠責の解約返戻</td><td>対象（残1ヶ月以上）</td><td>対象（残1ヶ月以上）</td></tr>
+  <tr><td>手続き場所</td><td colspan="2">普通車：運輸支局・自動車検査登録事務所／軽自動車：軽自動車検査協会</td></tr>
+</table>
+</div>
+<p>ポイントは<strong>重量税の還付は「解体」が条件</strong>だということ。一時抹消登録をしただけでは重量税は戻りません。一時抹消後に解体した場合は、解体報告記録がなされた後に「解体届出」を提出することで、初めて重量税還付の対象になります。</p>
+
+<h2>廃車手続きの流れと必要書類</h2>
+<p>解体をともなう永久抹消（普通車）の一般的な流れは、①引取業者（自動車リサイクル法の登録業者）に車を引き渡す → ②解体が完了し「解体報告記録日」の連絡を受ける → ③運輸支局で永久抹消登録と重量税還付申請を同時に行う → ④保険会社で自賠責の解約手続き、という順番です。</p>
+<p>普通車の永久抹消で主に必要なのは、<strong>車検証、ナンバープレート前後2枚、所有者の印鑑証明書（発行後3ヶ月以内）と実印（代理申請なら委任状）、リサイクル券の移動報告番号と解体報告記録日のメモ</strong>です。軽自動車の解体返納は印鑑証明書が不要で、車検証・ナンバープレート・届出書等で手続きできます。廃車買取業者に依頼すれば、これらの手続きを代行してもらえるのが一般的です（委任状等への記入は必要）。</p>
+<p>注意したいのが<strong>ローン残債がある場合</strong>。車検証の「所有者」欄がディーラーや信販会社になっているときは、自分だけでは抹消手続きができません。先に残債を清算して「所有権解除」の書類をもらう必要があります。</p>
+
+<h2>廃車で戻ってくる3つのお金と受け取り方</h2>
+<p><strong>① 自動車税（種別割）の月割還付：</strong>普通車は、抹消登録をすると「抹消登録の翌月から3月まで」の月数分が月割で還付されます（還付額＝年税額÷12×残月数、100円未満切捨てが一般的）。手続き後、都道府県から届く還付通知に従って受け取ります。<strong>軽自動車税には月割還付の制度がありません。</strong>4月1日時点の所有者に1年分が課税されるため、軽自動車を手放すなら3月末までに抹消を済ませるのが鉄則です。</p>
+<p><strong>② 自動車重量税の還付：</strong>自動車リサイクル法にもとづき解体され、永久抹消登録（または解体届出）と同時に還付申請をした場合に、車検の残存期間分（納付税額×残存月数÷車検有効月数、1ヶ月未満切捨て）が国税として還付されます。車検残が1ヶ月以上あることが条件で、エコカー減税対象外の車でも納付していれば還付対象です（免税で納付額が0円の場合は還付もありません）。申請は抹消登録と同時にしかできないので、忘れると受け取れません。</p>
+<p><strong>③ 自賠責保険の解約返戻金：</strong>保険期間が1ヶ月以上残っていれば、抹消登録後に保険会社へ自賠責保険証明書・抹消が確認できる書類（登録事項等証明書など）・振込口座を提出して解約すると、未経過期間分が月割で戻ります。返戻金は「保険会社が書類を受理した日」から計算されるため、手続きが遅れるほど減っていきます。抹消登録が済んだら早めに動きましょう。</p>
+
+<h2>13年超の車はどうする？重課と手放しどきの考え方</h2>
+<p>初度登録から13年を超えたガソリン車は、自動車税（種別割）が概ね15%重課され（例：1.5Lクラスで34,500円→39,600円）、軽自動車は約20%重課で12,900円になります。重量税も13年経過で約4割、18年経過でさらに増額されます（例：1.5tクラスの2年車検分が24,600円→34,200円→37,800円）。つまり古い車ほど「持ち続けるコスト」が年々重くなる構造です。</p>
+<p>手放しどきの目安としてよく言われるのが<strong>「次の車検を通す前」</strong>。車検費用（法定費用＋整備費で軽でも数万円、普通車なら10万円前後になることも）を払った直後に手放すと、その大半は回収できません。逆に車検が長く残っているうちに永久抹消すれば、重量税・自賠責の還付が多く受け取れます。13年超・多走行の車でも、海外輸出や部品取りの需要で廃車買取業者が値を付ける例はあるので、「古いから0円」と決めつけずに査定と還付金を合わせた「実質手取り」で比較するのがおすすめです。</p>
+
+<h2>よくある質問</h2>
+<details class="faq"><summary>廃車（抹消登録）にすると税金や保険料は戻ってきますか？</summary>
+<p>普通車は自動車税（種別割）が「抹消登録の翌月から3月まで」の月割で還付されます。解体をともなう永久抹消で車検残が1ヶ月以上あれば重量税も残存期間分が還付され、自賠責保険も残1ヶ月以上なら解約返戻金を受け取れます。上の診断ツールで3つの合計の目安を計算できます。</p>
+</details>
+<details class="faq"><summary>軽自動車でも自動車税は還付されますか？</summary>
+<p>されません。軽自動車税（種別割）には月割還付の制度がなく、4月1日時点の所有者に1年分が課税されます。4月2日に廃車しても1年分の納税義務が残るため、手放すなら3月末までの抹消が得策です。重量税還付と自賠責の返戻は軽自動車でも対象です。</p>
+</details>
+<details class="faq"><summary>廃車の費用はいくら？無料にできますか？</summary>
+<p>自分で手配する場合、解体費用1万〜2万円、不動車のレッカー代5千〜1万円程度が一般的な目安です。ただし廃車買取業者なら引取・解体・手続き代行まで無料のところが多く、買取額が付くこともあります。費用を払う前に必ず複数社へ確認しましょう。</p>
+</details>
+<details class="faq"><summary>車検切れ・不動車・事故車でも引き取ってもらえますか？</summary>
+<p>可能です。車検切れの車は公道を走れませんが、多くの廃車買取業者が積載車での引取に対応しており、対応エリア内なら無料の場合もあります。不動車・事故車も部品や資源としての価値があるため、0円と思っていた車に値が付く例は珍しくありません。</p>
+</details>
+<details class="faq"><summary>一時抹消と永久抹消、どちらを選ぶべきですか？</summary>
+<p>また乗る可能性がある・長期間乗らないだけなら一時抹消、解体して完全に処分するなら永久抹消です。どちらでも自動車税の課税は止まりますが、重量税の還付は解体をともなう永久抹消（一時抹消後なら解体届出）が条件です。</p>
+</details>
+
+<h2>関連ツール</h2>
+<p>手放すか迷っている方は、まず今の車の年間コストを <a href="../iji-hi/">車の年間維持費まるごと計算機</a> で確認してみてください。維持費と還付金・査定額を並べると判断しやすくなります。</p>
+
+<p class="note">データ基準日：2026年7月時点。出典・根拠：国税庁「使用済自動車に係る自動車重量税の廃車還付制度」（還付額＝納付税額×車検残存月数÷車検有効月数、車検残1ヶ月以上・永久抹消／解体届出と同時申請が条件）、総務省・各都道府県の自動車税（種別割）月割還付制度、地方税法にもとづく軽自動車税（種別割）の年課税（月割還付なし）、損害保険料率算出機構の自賠責保険基準料率（2023年4月改定。2026年11月1日から平均6.2%引き上げ予定）。本ページの金額はすべて一般的な目安であり、正確な金額は運輸支局・都道府県税事務所・保険会社・依頼先業者にご確認ください。</p>
+
+<!-- AD-SLOT: hoken -->
+</article>
+
+</div>
+</main>
+
+<footer class="site-footer"><div class="container"><div>© 2026 くるま電卓</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var THIS_YEAR = 2026; // データ基準年
+
+  // 重量税(継続検査・2年・エコカー減税対象外の当分の間税率, 2026年7月時点)
+  // 普通車: 0.5tごとの2年分税額 / 軽: 定額(2年分)
+  var JURYO = {
+    normal: { base: 8200, y13: 11400, y18: 12600 }, // ×重量区分(0.5t単位)
+    kei:    { base: 6600, y13: 8200,  y18: 8800  }  // 定額
+  };
+  // 自賠責解約返戻金の1ヶ月あたり概算(2023年4月以降始期・本土契約の早見表ベース)
+  var JIBAI_PER_MONTH = { normal: 610, kei: 600 };
+  // 自動車税の概算デフォルト(1.5Lクラスの例)
+  // 2019年10月以降新規登録: 30,500円 / それ以前: 34,500円 / 13年超重課: 39,600円
+
+  function fmt(n) { return Math.round(n).toLocaleString("ja-JP"); }
+
+  function updateVisibility() {
+    var isKei = $("carType").value === "kei";
+    $("q-weight").hidden = isKei;
+    $("q-shaken-months").hidden = $("shakenState").value === "expired";
+  }
+
+  function defaultZeigaku(isKei, age, firstYear) {
+    if (isKei) {
+      // 軽は還付なしのため参考表示のみ
+      if (age > 13) return { amount: 12900, label: "軽自動車(13年超・重課)の例" };
+      return { amount: firstYear >= 2015 ? 10800 : 7200, label: "軽自動車(自家用)の例" };
+    }
+    if (age > 13) return { amount: 39600, label: "1.5Lクラス・13年超重課の例" };
+    if (firstYear >= 2020) return { amount: 30500, label: "1.5Lクラス(2019年10月以降登録)の例" };
+    return { amount: 34500, label: "1.5Lクラス(2019年9月以前登録)の例" };
+  }
+
+  function judge() {
+    var isKei = $("carType").value === "kei";
+    var firstYear = parseInt($("firstYear").value, 10);
+    var mileage = parseFloat($("mileage").value);
+    var cond = $("condition").value;
+    var expired = $("shakenState").value === "expired";
+    var shakenMonths = expired ? 0 : parseInt($("shakenMonths").value, 10);
+    var cancelMonth = parseInt($("cancelMonth").value, 10);
+    var zeiInput = parseFloat($("zeigaku").value);
+
+    if (!firstYear || firstYear < 1980 || firstYear > 2026) {
+      alert("初度登録年を1980〜2026の範囲で入力してください。");
+      return;
+    }
+    if (isNaN(mileage) || mileage < 0) {
+      alert("走行距離(万km)を入力してください。");
+      return;
+    }
+    if (!expired && (isNaN(shakenMonths) || shakenMonths < 0 || shakenMonths > 36)) {
+      alert("車検の残り月数を0〜36で入力してください(車検切れの場合は「車検切れ」を選択)。");
+      return;
+    }
+
+    var age = THIS_YEAR - firstYear; // 経過年数(概算)
+
+    // ---- 判定 ----
+    var verdict = "", reasons = [];
+    if (cond === "ok") {
+      if (age < 13 && mileage < 12) {
+        verdict = "売却検討";
+        reasons.push("走行可能で、初度登録から約" + age + "年・走行" + mileage + "万kmなら、中古車として値が付く可能性が十分あります。まずは中古車買取店の複数査定で相場を確認しましょう。");
+        reasons.push("査定額に納得できなければ、廃車買取業者の見積もりと比較してから決めても遅くありません。");
+      } else {
+        verdict = "廃車買取業者へ（中古車査定とも比較を）";
+        reasons.push("走行は可能ですが、初度登録から約" + age + "年" + (mileage >= 12 ? "・走行" + mileage + "万km" : "") + "となると一般の中古車査定は低くなりがちです。");
+        reasons.push("一方、廃車買取業者は海外輸出や部品・資源としての価値で値を付けるため、「0円と思っていた車に値が付いた」という例は珍しくありません。中古車査定と廃車買取の両方に見積もりを出して高い方を選ぶのが堅実です。");
+      }
+    } else {
+      var condLabel = cond === "broken" ? "故障・不動" : "事故車";
+      if (age >= 18 && mileage >= 20) {
+        verdict = "廃車買取業者へ（値が付かなければ解体廃車）";
+        reasons.push(condLabel + "で初度登録から約" + age + "年・走行" + mileage + "万kmのため、通常の売却は難しい可能性が高い状態です。");
+        reasons.push("それでも金属資源や部品としての価値はあるので、まず廃車買取業者に無料引取〜買取が可能か確認を。どこも引き取らない場合に初めて、解体業者への持込み(解体費1〜2万円＋不動車はレッカー代5千〜1万円程度が目安)を検討します。");
+      } else {
+        verdict = "廃車買取業者へ";
+        reasons.push(condLabel + "の場合、一般の中古車買取店では値が付きにくい一方、事故車・不動車を専門に扱う廃車買取業者は使える部品や輸出需要で値を付けることがあります。");
+        reasons.push("複数の廃車買取業者に査定を依頼し、引取・レッカー・手続き代行が無料かも含めて比較しましょう。「処分費用がかかる」と言われても即決せず、他社の見積もりと比べるのが鉄則です。");
+      }
+    }
+    if (expired) {
+      reasons.push("車検切れのため公道は走行できません。売却・引取とも出張査定＋積載車(レッカー)での引取になります。対応エリア内ならレッカー無料の業者もあるので確認を。");
+    } else if (shakenMonths <= 3 && shakenMonths >= 1) {
+      reasons.push("車検の残りが" + shakenMonths + "ヶ月と少なめです。次の車検を通すと車検費用の大半は回収できないため、一般論としては「車検を通す前」が手放しどきの目安です。");
+    }
+    if (age > 13) {
+      reasons.push("初度登録から13年超のため、持ち続けると自動車税は" + (isKei ? "約20%重課(軽は12,900円)" : "概ね15%重課") + "、重量税も13年・18年経過で段階的に増えます。維持コストの面では手放す合理性が高まっています。");
+    }
+
+    $("resultBox").innerHTML = "<strong>診断結果：「" + verdict + "」</strong><br>" +
+      reasons.map(function (r) { return "・" + r; }).join("<br>");
+
+    // ---- 還付金の目安(永久抹消した場合) ----
+    var lines = [];
+    var total = 0;
+
+    // 自動車税(種別割)月割還付 — 普通車のみ
+    var fiscalMonths = cancelMonth >= 4 ? 15 - cancelMonth : 3 - cancelMonth; // 抹消翌月〜3月
+    var zd = defaultZeigaku(isKei, age, firstYear);
+    var nenzei = (!isNaN(zeiInput) && zeiInput > 0) ? zeiInput : zd.amount;
+    var zeiLabel = (!isNaN(zeiInput) && zeiInput > 0) ? "入力値" : zd.label;
+    if (isKei) {
+      lines.push("・自動車税(軽自動車税種別割)：<strong>還付なし(0円)</strong> — 軽自動車税には月割還付の制度がありません。4月1日をまたぐと翌年度分(年額" + fmt(nenzei) + "円・" + zeiLabel + ")が丸ごと課税されるため、<strong>3月末までの抹消</strong>が得策です。");
+    } else {
+      var zeiRefund = Math.floor(nenzei / 12 * fiscalMonths / 100) * 100; // 100円未満切捨て
+      total += zeiRefund;
+      lines.push("・自動車税(種別割)月割還付：<strong>約" + fmt(zeiRefund) + "円</strong>(年額" + fmt(nenzei) + "円[" + zeiLabel + "] ÷12×" + fiscalMonths + "ヶ月分 = " + cancelMonth + "月抹消→翌月から3月まで。100円未満切捨て)");
+    }
+
+    // 重量税還付 — 永久抹消(解体)+車検残1ヶ月以上
+    if (!expired && shakenMonths >= 1) {
+      var rate = age >= 18 ? "y18" : (age >= 13 ? "y13" : "base");
+      var paid = isKei ? JURYO.kei[rate] : JURYO.normal[rate] * parseInt($("weightClass").value, 10);
+      var jRefund = Math.floor(paid * shakenMonths / 24);
+      total += jRefund;
+      lines.push("・自動車重量税還付：<strong>約" + fmt(jRefund) + "円</strong>(直前の車検で納付した2年分" + fmt(paid) + "円[エコカー減税対象外・" + (age >= 18 ? "18年超" : age >= 13 ? "13年超" : "通常") + "税率と仮定]×残り" + shakenMonths + "ヶ月÷24ヶ月。解体をともなう永久抹消+同時申請が条件。免税車は還付なし)");
+    } else {
+      lines.push("・自動車重量税還付：<strong>0円</strong>(車検残1ヶ月以上+解体をともなう永久抹消が条件のため、車検切れ・残1ヶ月未満では還付されません)");
+    }
+
+    // 自賠責解約返戻
+    if (!expired && shakenMonths >= 1) {
+      var jibai = JIBAI_PER_MONTH[isKei ? "kei" : "normal"] * shakenMonths;
+      total += jibai;
+      lines.push("・自賠責保険の解約返戻金：<strong>約" + fmt(jibai) + "円</strong>(残り約" + shakenMonths + "ヶ月×月あたり約" + fmt(JIBAI_PER_MONTH[isKei ? "kei" : "normal"]) + "円の概算。自賠責の残期間は車検と数ヶ月ずれることがあるため、正確な額は保険会社の早見表で確認を)");
+    } else {
+      lines.push("・自賠責保険の解約返戻金：<strong>0円の可能性大</strong>(残期間1ヶ月以上が条件。車検切れでも自賠責だけ残っていれば返戻される場合があるので証明書の満期日を確認)");
+    }
+
+    lines.push("<strong>還付金の合計目安：約" + fmt(total) + "円</strong>");
+    lines.push("<span class='note'>※永久抹消登録(軽は解体返納)をした場合の概算。売却(名義変更)では自動車税・重量税の還付はありません。買取業者に依頼する場合は「還付金相当分が査定額に含まれるか、別途受け取れるか」を必ず確認しましょう。</span>");
+    $("refundBox").innerHTML = "<strong>永久抹消した場合の還付金の目安</strong><br>" + lines.join("<br>");
+
+    // ---- 比較表 ----
+    $("compareWrap").innerHTML =
+      "<table>" +
+      "<tr><th>手放し方</th><th>手取り・費用の目安</th><th>還付金</th><th>向いているケース</th></tr>" +
+      "<tr><td><strong>売却(中古車買取)</strong></td><td>査定額(相場は状態次第)</td><td>自動車税・重量税の還付なし(名義変更のため)。未経過分は査定額で調整されることも</td><td>年式が新しい・走行可・需要のある車種</td></tr>" +
+      "<tr><td><strong>廃車買取業者</strong></td><td>0円〜買取額。引取・レッカー・手続き代行が無料の業者も</td><td>永久抹消なら還付対象(計約" + fmt(total) + "円の目安)。受取方法は業者に確認</td><td>過走行・13年超・不動車・事故車・車検切れ</td></tr>" +
+      "<tr><td><strong>解体廃車(自分で手配)</strong></td><td>解体費1〜2万円＋不動車はレッカー代5千〜1万円程度の負担が目安</td><td>永久抹消なら還付対象(計約" + fmt(total) + "円の目安)で費用と相殺できる場合も</td><td>引取先がどうしても見つからない場合の最終手段</td></tr>" +
+      "</table>";
+
+    // ---- チェックリスト ----
+    $("checklistBox").innerHTML =
+      "<strong>「廃車費用を払う前に」チェックリスト</strong>" +
+      "<ul style='margin:8px 0 0; padding-left:20px;'>" +
+      "<li><strong>無料引取・廃車買取業者を複数あたったか</strong>(廃車買取業者は部品再販・資源リサイクルで収益を得るため、引取〜買取まで無料の例が多数。1社の「処分費がかかります」で即決しない)</li>" +
+      "<li>レッカー代・解体費・抹消手続き代行費が<strong>無料かどうか見積書で確認</strong>したか</li>" +
+      "<li>必要書類をそろえたか — 普通車：車検証・ナンバープレート2枚・印鑑証明書(3ヶ月以内)・実印/委任状・リサイクル券。軽自動車：車検証・ナンバープレート・届出書等(印鑑証明書は不要)</li>" +
+      "<li><strong>ローン残債がある場合</strong>、車検証の所有者欄を確認したか(所有者がディーラー・信販会社なら先に所有権解除が必要)</li>" +
+      "<li>還付金(自動車税・重量税・自賠責)を<strong>自分で受け取れるか、査定額に含まれるか</strong>を業者に確認したか</li>" +
+      "<li>自賠責の解約は抹消後すみやかに(返戻金は保険会社が書類を受理した日から計算され、遅れるほど減る)</li>" +
+      "</ul>";
+
+    $("resultArea").hidden = false;
+    $("resultArea").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function reset() {
+    $("carType").value = "normal";
+    $("firstYear").value = "";
+    $("mileage").value = "";
+    $("condition").value = "ok";
+    $("shakenState").value = "valid";
+    $("shakenMonths").value = "";
+    $("weightClass").value = "3";
+    $("cancelMonth").value = String(new Date().getMonth() + 1);
+    $("zeigaku").value = "";
+    $("resultArea").hidden = true;
+    updateVisibility();
+  }
+
+  $("carType").addEventListener("change", updateVisibility);
+  $("shakenState").addEventListener("change", updateVisibility);
+  $("btnJudge").addEventListener("click", judge);
+  $("btnReset").addEventListener("click", reset);
+
+  $("cancelMonth").value = String(new Date().getMonth() + 1);
+  updateVisibility();
+})();
+</script>
+</body>
+</html>
