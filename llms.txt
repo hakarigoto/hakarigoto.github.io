@@ -14,6 +14,8 @@
 
 - [失業保険シミュレーター](https://hakarigoto.github.io/taishoku/shitsugyo-hoken/): 基本手当の日額・給付日数・総額・受給開始時期を計算。厚生労働省の現行基準(毎年8月改定)に追従。
 - [退職金の手取り計算](https://hakarigoto.github.io/taishoku/taishokukin/): 退職所得控除・所得税・住民税を自動計算。
+- [退職代行の選び方ガイド](https://hakarigoto.github.io/taishoku/blog/taishoku-daiko/): 民間・労働組合・弁護士の違いと料金相場を比較解説。
+- [看護師の退職とお金ガイド](https://hakarigoto.github.io/taishoku/blog/kangoshi-taishoku/): 夜勤手当を含む失業保険の計算ポイントを職種特化で解説。
 
 ## マナー電卓(冠婚葬祭)
 
@@ -21,6 +23,7 @@
 - [ご祝儀金額チェッカー](https://hakarigoto.github.io/manner/goshugi/): 新郎新婦との関係と出席形態からご祝儀相場とマナーを表示。
 - [忌引き休暇日数チェッカー](https://hakarigoto.github.io/manner/kibiki/): 続柄別の一般的な忌引き日数の目安。
 - [喪中はがき文例ジェネレーター](https://hakarigoto.github.io/manner/mochu-bunrei/): 続柄・月・享年から文面を自動生成。
+- [墓じまい費用シミュレーター](https://hakarigoto.github.io/manner/hakajimai/): 面積・柱数・改葬先タイプから撤去費・離檀料込みの総額目安をレンジ表示。
 
 ## ペット電卓
 
@@ -30,6 +33,22 @@
 ## つみたて計算機
 
 - [積立シミュレーター](https://hakarigoto.github.io/tsumitate/simulator/): 複利計算・目標金額からの逆算・取り崩しの3モード、グラフ付き。投資助言ではなく計算ツール。
+
+## かたづけ電卓(不用品処分・遺品整理)
+
+- [不用品の処分方法診断](https://hakarigoto.github.io/katazuke/shobun-shindan/): 品目と状態から最適な処分方法(自治体回収・買取・回収業者など)を診断。
+- [遺品整理費用シミュレーター](https://hakarigoto.github.io/katazuke/ihin-hiyo/): 間取り・荷物量・作業条件から費用相場をレンジ表示。
+- [デジタル遺品の整理ガイド](https://hakarigoto.github.io/katazuke/digital-ihin/): スマホ・ネット口座・サブスクの整理手順とチェックリスト。
+
+## くるま電卓
+
+- [車の年間維持費計算](https://hakarigoto.github.io/kuruma/iji-hi/): 自動車税(13年超の重課判定込み)・重量税・自賠責・車検・保険・燃料・駐車場を合算。
+- [廃車と売却どっちが得?診断](https://hakarigoto.github.io/kuruma/haisha/): 車齢・走行距離・状態から廃車か売却かを判定し、還付金も解説。
+
+## バイク電卓
+
+- [バイクの年間維持費計算](https://hakarigoto.github.io/bike/iji-hi/): 排気量区分別の税金・自賠責・車検・保険・ガソリン代を合算。
+- [バイクの手放しどき診断](https://hakarigoto.github.io/bike/teban/): 車齢・走行距離・稼働状況から売却推奨度を診断(プレミア判定つき)。
 
 ## トラック電卓
 
