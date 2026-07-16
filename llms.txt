@@ -10,7 +10,7 @@
 - [履歴書作成](https://hakarigoto.github.io/tools/resume/): JIS規格様式に準拠。証明写真の埋め込み・和暦変換対応。個人情報はブラウザ内のみで処理。
 - [文字数カウント](https://hakarigoto.github.io/tools/charcount/): 原稿用紙換算・SNS字数上限チェック・読み上げ時間の目安。
 - [画像リサイズ・圧縮](https://hakarigoto.github.io/tools/image-resize/): 画像をアップロードせずブラウザ内でリサイズ・圧縮・形式変換。
-- [西暦⇔和暦変換・年齢計算](https://hakarigoto.github.io/tools/wareki/): 改元日に正確に対応した相互変換と早見表、満年齢・数え年・干支。
+- [西暦⇔和暦変換・年齢計算](https://hakarigoto.github.io/tools/wareki/): 改元日に正確に対応した相互変換と早見表、満年齢・数え年・干支。お酒・たばこの年齢確認(20歳チェック)早見と、外国の身分証・パスポートの生年月日判定(日/月の並び順・台湾の民国暦・タイの仏暦対応)つき。
 
 ## やめどきナビ(退職・失業保険)
 
