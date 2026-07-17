@@ -33,21 +33,21 @@
     "hakajimai": `<a href="//af.moshimo.com/af/c/click?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade">海洋散骨(小型クルーザー・家族向け)の無料相談はこちら</a><img src="//i.moshimo.com/af/i/impression?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736" width="1" height="1" style="border:none;" loading="lazy" alt="">`, /* もしも シーセレモニー(海洋散骨) */
 
     /* ▼ かたづけ電卓(不用品・遺品整理) */
-    "ihin":            "", /* 承認済: A8 遺品整理110番6,000円 / ライフリセット2,200円 */
-    "fuyouhin":        "", /* 承認済: A8 不用品回収FireWorks 8,000円 */
-    "digital-shukatsu":"", /* 承認済(代替): A8 遺品整理110番6,000円 ※デジタクセルは審査中 */
+    "ihin":            `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+ACPE8Q+39GM+5MFLEA" rel="nofollow sponsored">遺品整理業者の無料一括見積もり【遺品整理110番】</a>`, /* A8 遺品整理110番 */
+    "fuyouhin":        `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+AINQAI+4X26+NTJWY" rel="nofollow sponsored">不用品回収の無料見積もりを依頼する</a>`, /* A8 不用品回収FireWorks */
+    "digital-shukatsu":`<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+ACPE8Q+39GM+5MFLEA" rel="nofollow sponsored">遺品整理・生前整理の無料見積もりはこちら【遺品整理110番】</a>`, /* A8 遺品整理110番(代替) */
 
     /* ▼ くるま・バイク・トラック電卓 */
-    "kaitori":      "", /* 承認済: A8 ユーカーパック7,000円 / 弥来精機 */
+    "kaitori":      `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+A4YRDM+3O80+5YJRM" rel="nofollow sponsored">愛車が今いくらか無料でチェック(オークション型査定)</a>`, /* A8 ユーカーパック */
     "hoken":        "", /* 未承認(自動車保険→提携待ち) */
-    "bike-kaitori": "", /* 承認済: A8 バイクワン5,000円 */
+    "bike-kaitori": `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+AM8BX6+1BFI+61RIA" rel="nofollow sponsored">バイクの無料出張査定を申し込む【バイクワン】</a>`, /* A8 バイクワン */
     "bike-hoken":   "", /* 未承認(バイク保険→提携待ち) */
-    "truck-kaitori":"", /* 承認済: A8 建機買取屋.コム11,000円 */
+    "truck-kaitori":`<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+AJ95WA+4HKO+BWVTE" rel="nofollow sponsored">重機・建機・トラックの無料査定【建機買取屋.コム】</a>`, /* A8 建機買取屋 */
 
     /* ▼ 金融(つみたて・ローン・FX) */
     "shoken":   "", /* 未承認(証券口座→アクセストレード等で提携予定) */
     "cardloan": "", /* 未承認(楽天銀行スーパーローン等→審査中) */
-    "fx-kouza": "", /* 承認済: A8 DMM FX 40,000円 */
+    "fx-kouza": `<a href="https://px.a8.net/svt/ejp?a8mat=3THCME+DD2ACA+1WP2+69WPU" rel="nofollow sponsored">FX口座を無料で開設する【DMM FX】</a>`, /* A8 DMM FX */
 
     /* ▼ ペット電卓 */
     "pet-senior": "" /* 未承認(ペット火葬・シニアケア→提携待ち) */
