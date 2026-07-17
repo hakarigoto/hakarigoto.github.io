@@ -276,6 +276,15 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
   <div class="ad-slot" data-ad="shoken"></div>
 
   <article class="article">
+    <h2 id="yomikata">結果の読み方 — この数字が含むもの・含まないもの</h2>
+    <ul>
+      <li><strong>元本と運用益は別のもの</strong> — 結果のうち「元本合計」は自分が入れたお金、「運用益」は利回りが実現した場合の上乗せ分です。確実なのは元本の拠出だけで、運用益は保証されません。</li>
+      <li><strong>利回りは仮定値</strong> — 入力した利回りが毎年一定で続く前提の理論値です。実際のリターンは年ごとに変動し、<strong>元本割れの期間もあり得ます</strong>。</li>
+      <li><strong>手数料を含みません</strong> — 投資信託の信託報酬などの手数料は計算に含まれていません。実質リターンはその分低くなります。</li>
+      <li><strong>税金を含みません</strong> — 課税口座では運用益に約20%の税金がかかります(NISA口座は非課税)。結果の金額は税引き前です。</li>
+      <li><strong>インフレを含みません</strong> — 物価が上がると、同じ金額で買えるものは減ります。長期の結果額は今のお金の価値とは異なります。</li>
+    </ul>
+
     <h2 id="fukuri">複利の仕組み — 単利との違い</h2>
     <p>「複利」とは、運用で得た利益を元本に組み入れて、その合計に対してさらに利益が付く仕組みです。元本に対してだけ利息が付く「単利」と比べると、期間が長くなるほど<strong>利息が利息を生む</strong>効果で差が大きく広がります。</p>
     <p>たとえば100万円を年利5%で運用した場合の比較です(税金・手数料は考慮しない理論値)。</p>
@@ -327,6 +336,32 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
 
     <h2 id="nisa">新NISAの投資枠との関係</h2>
     <p>新NISA(2024年開始)には、年間投資枠(つみたて投資枠120万円+成長投資枠240万円=最大360万円)と、生涯にわたる非課税保有限度額1,800万円(うち成長投資枠は1,200万円まで)があります。枠は<strong>買付金額(元本)ベース</strong>で管理されるため、シミュレーションの「元本合計」と比較すると枠に収まるかの目安になります。たとえば毎月3万円の積立なら年36万円で、生涯枠1,800万円に達するのは50年後です。枠を超えて積み立てる場合、超えた分は課税口座での運用になります。制度の内容は変更されることがあるため、最新の情報は金融庁や利用する金融機関でご確認ください。</p>
+
+    <h2 id="kouza-check">金融機関・口座を選ぶ前の確認項目</h2>
+    <p>積立を始める場合、金融機関ごとに条件が異なります。どこか1社が誰にとっても最適ということはありません。口座を開設する前に、以下を比較・確認してください。</p>
+    <ul>
+      <li><strong>取扱商品</strong> — 積み立てたい投資信託(インデックスファンド等)を扱っているか</li>
+      <li><strong>手数料</strong> — 購入時手数料の有無、保有中の信託報酬の水準</li>
+      <li><strong>最低積立額</strong> — 100円から可能か、1,000円以上かなど</li>
+      <li><strong>積立頻度</strong> — 毎月・毎週・毎日など選べる頻度</li>
+      <li><strong>NISA対応</strong> — つみたて投資枠・成長投資枠の取扱い</li>
+      <li><strong>クレジットカード積立</strong> — 対応カード・上限額・条件</li>
+      <li><strong>ポイント</strong> — 付与条件と率(ポイントだけで選ばない)</li>
+      <li><strong>出金条件</strong> — 売却から出金までの日数・手数料</li>
+      <li><strong>サポート</strong> — 店舗・電話・チャットなど相談手段</li>
+      <li><strong>リスク商品の説明</strong> — 元本割れリスクの説明が明確か</li>
+    </ul>
+    <p class="note">投資判断はご自身の責任で行ってください。当ページのシミュレーション結果は将来の利益を保証するものではなく、口座開設を推奨する結論でもありません。</p>
+    <details id="hikaku-ready">
+      <summary>比較を始める前のチェック(リスクの再確認)</summary>
+      <ul>
+        <li>投資信託は元本保証ではなく、購入額を下回る可能性があることを理解している</li>
+        <li>当面使う予定のないお金(生活防衛資金とは別)で積み立てる</li>
+        <li>手数料(信託報酬)が長期の結果に影響することを理解している</li>
+        <li>短期の値動きで売買を繰り返さない前提で考えている</li>
+      </ul>
+      <div class="offer-slot" data-slot="result-primary"></div>
+    </details>
 
     <h2 id="faq">よくある質問</h2>
     <details class="faq">
@@ -836,7 +871,30 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
   recalc();
 })();
 </script>
+<script src="/assets/offers.js"></script>
 <script src="/assets/ads.js"></script>
 <script src="/assets/nav.js" defer></script>
+<script>
+/* Sprint 8: 証券案件の文脈ゲート。
+   ユーザーが積立条件を自分で入力し、かつリスク再確認のチェック(details)を開いた
+   場合にのみ ready-to-compare を送る。単に高い試算額が出ただけでは何も表示しない。
+   金額・入力値はGA4へ送信しない(page_idとresult_typeのみ)。 */
+(function () {
+  "use strict";
+  var touched = false, fired = false;
+  var sim = document.getElementById("sim");
+  if (sim) sim.addEventListener("input", function () { touched = true; });
+  var dt = document.getElementById("hikaku-ready");
+  if (dt) dt.addEventListener("toggle", function () {
+    if (!dt.open || fired) return;
+    fired = true;
+    var rt = touched ? "ready-to-compare" : "learning-stage";
+    if (window.HKG) {
+      HKG.diagnosisComplete("tsumitate-simulator", rt);
+      HKG.render({ pageId: "tsumitate-simulator", resultType: rt, slotId: "result-primary" });
+    }
+  });
+})();
+</script>
 </body>
 </html>

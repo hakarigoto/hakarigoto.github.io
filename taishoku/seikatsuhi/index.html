@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【2026年】退職後の生活費はいくら必要?資金計画シミュレーター|やめどきナビ</title>
+<meta name="description" content="退職後から次の収入までの生活費と、使える資金(預貯金・退職金・失業保険)の差額を無料でシミュレーション。月間生活費・固定費・臨時支出を入力するだけで、余裕額または不足見込み額と資金が何か月分もつかの目安を表示。登録不要、入力データは送信されません。">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e66b8%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>や</text></svg>">
+<style>:root{--accent:#1e66b8;--accent-hover:#17538f;--accent-weak:#e5eef8;}</style>
+<style>
+.result-main { font-size: 1.6rem; font-weight: 700; }
+.result-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
+.result-table th, .result-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.result-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.result-table tr.total th, .result-table tr.total td { font-weight: 700; font-size: 1.1rem; border-bottom: none; }
+.result-error { color: #c0392b; font-weight: 600; }
+
+details.breakdown { margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0 14px; font-size: 0.9rem; }
+details.breakdown summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
+details.breakdown ol { padding-left: 20px; }
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+.compare-table th, .compare-table td { padding: 6px 10px; border: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.compare-table th { background: var(--accent-weak); text-align: center; }
+.compare-table tr.current td { background: var(--accent-weak); font-weight: 700; }
+.privacy-note { margin-top: 12px; }
+.months-adjust { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+.months-adjust button { font-size: 0.85rem; padding: 6px 12px; }
+.action-list { margin: 14px 0 0; padding-left: 20px; font-size: 0.93rem; }
+.action-list li { margin-bottom: 8px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "退職後すぐにかかるお金には何がありますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "毎月の生活費・家賃のほかに、住民税(前年の所得に対する分を納付書で支払う)、国民健康保険または任意継続の保険料、国民年金保険料などが代表的です。給与天引きだった支払いが自分で納付する形に変わるため、在職中より出費が増えたように感じやすい点に注意が必要です。引越しや資格取得などの一時支出がある場合は、臨時支出として資金計画に含めておくと安心です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "退職後の健康保険はどうなりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "主な選択肢は、それまでの健康保険を最長2年続けられる任意継続、市区町村の国民健康保険への加入、家族の被扶養者になる、の3つです。任意継続は退職日の翌日から20日以内、国民健康保険は14日以内の手続きが原則です。保険料は前年の収入や自治体によって変わるため、どちらが安いかは加入先の健康保険組合と市区町村窓口で見積もりを取って比べるのが確実です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "失業保険はいつから受け取れますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ハローワークで手続き後、7日間の待期期間があります。会社都合退職などは待期満了後から支給対象になりますが、自己都合退職の場合はさらに給付制限期間(原則1か月、5年以内に3回以上の自己都合退職がある場合などは3か月)が付きます。実際の振込は認定日の後になるため、退職から最初の入金まで自己都合では2か月以上かかることも想定して資金計画を立てておきましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力した金額などのデータは送信されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。このシミュレーターの計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した預貯金額や生活費などが外部のサーバーに送信されることは一切ありません。保存もされないため、安心してご利用ください。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/taishoku/seikatsuhi/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/taishoku/seikatsuhi/">
+<meta property="og:site_name" content="やめどきナビ">
+<meta property="og:title" content="【2026年】退職後の生活費はいくら必要?資金計画シミュレーター|やめどきナビ">
+<meta property="og:description" content="退職後から次の収入までの生活費と、使える資金(預貯金・退職金・失業保険)の差額を無料でシミュレーション。余裕額または不足見込み額と資金が何か月分もつかの目安を表示。登録不要、入力データは送信されません。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "仕事・退職", "item": "https://hakarigoto.github.io/taishoku/"}, {"@type": "ListItem", "position": 3, "name": "退職後の資金計画", "item": "https://hakarigoto.github.io/taishoku/seikatsuhi/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto" class="is-current" aria-current="true">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/taishoku/">仕事・退職</a></li><li aria-current="page">退職後の資金計画</li></ol></nav>
+
+  <div class="page-head">
+    <h1>【2026年】退職後の生活費はいくら必要?資金計画シミュレーター</h1>
+    <p class="lead">退職後から次の収入が始まるまでの支出見込みと、使える資金(預貯金・退職金・失業保険など)を並べて、余裕額または不足見込み額を概算します。FP相談などを前提にしたページではなく、ご自身で資金の過不足を整理するためのツールです。</p>
+    <div class="meta-line"><span>更新日:<b>2026年7月18日</b></span><span>執筆:<b>はかり</b></span><span>方式:<b>ブラウザ内で完結する概算計算</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+    <ul>
+      <li>退職後は給与が止まっても、<span class="mk">家賃・住民税・保険料などの支出は続く</span></li>
+      <li>「使える資金の合計」と「期間中の支出見込み」を並べると、<span class="mk">余裕か不足かが数字で見える</span></li>
+      <li>失業保険・退職金は各シミュレーターの試算値を<span class="mk">このページに転記して合算</span>できる</li>
+      <li>計算はすべてブラウザ内で完結。入力した金額が送信されることはありません</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">資金計画シミュレーション</a></li>
+      <li><a href="#shishutsu">退職後にかかるお金の整理</a></li>
+      <li><a href="#shikin">使える資金の整理</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+      <li><a href="#kijun">計算基準と免責事項</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
+    <h2>条件を入力</h2>
+    <h3 style="font-size:1rem;margin:8px 0 6px;">使える資金</h3>
+    <div class="field-row">
+      <div class="field">
+        <label for="savings">預貯金(円)</label>
+        <input type="text" id="savings" inputmode="numeric" placeholder="例:1,500,000" value="">
+      </div>
+      <div class="field">
+        <label for="severance">退職金の見込み(円)</label>
+        <input type="text" id="severance" inputmode="numeric" placeholder="例:1,000,000" value="">
+        <p class="note"><a href="/taishoku/taishokukin/">退職金の手取り計算</a>の試算値(手取り額)を転記できます。</p>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="unemployment">失業保険の見込み(受け取る合計額・円)</label>
+        <input type="text" id="unemployment" inputmode="numeric" placeholder="例:500,000" value="">
+        <p class="note"><a href="/taishoku/shitsugyo-hoken/">失業保険シミュレーター</a>の給付総額を転記できます。</p>
+      </div>
+      <div class="field">
+        <label for="otherIncome">その他の収入(配偶者収入・副業など月額・円)</label>
+        <input type="text" id="otherIncome" inputmode="numeric" placeholder="例:100,000" value="">
+      </div>
+    </div>
+    <h3 style="font-size:1rem;margin:16px 0 6px;">期間と支出</h3>
+    <div class="field-row">
+      <div class="field">
+        <label for="months">次の収入開始までの月数(か月)</label>
+        <input type="number" id="months" inputmode="numeric" min="1" max="120" step="1" value="6">
+        <p class="note">「6」は仮の初期値です。想定する再就職・収入再開の時期に合わせて変更してください。</p>
+      </div>
+      <div class="field">
+        <label for="livingCost">月間生活費(食費・日用品など・円)</label>
+        <input type="text" id="livingCost" inputmode="numeric" placeholder="例:120,000" value="">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="fixedCost">月間固定費(住居・保険・通信など・円)</label>
+        <input type="text" id="fixedCost" inputmode="numeric" placeholder="例:100,000" value="">
+      </div>
+      <div class="field">
+        <label for="oneTime">臨時支出(引越し・国保・住民税などの一時金・円)</label>
+        <input type="text" id="oneTime" inputmode="numeric" placeholder="例:300,000" value="">
+      </div>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">資金計画を試算する</button>
+      <button type="button" class="btn btn-secondary" id="resetBtn">クリア</button>
+    </div>
+    <p class="note privacy-note">計算はすべてブラウザ内で完結し、入力内容がサーバーに送信されることはありません。</p>
+
+    <div id="resultArea" hidden>
+      <div class="result-box" id="resultBox"></div>
+      <div class="months-adjust">
+        <span style="font-size:0.9rem;">月数を変えて再試算:</span>
+        <button type="button" class="btn btn-secondary" id="minus3Btn">−3か月</button>
+        <button type="button" class="btn btn-secondary" id="plus3Btn">+3か月</button>
+      </div>
+      <div id="compareBox"></div>
+      <div class="related-actions" id="actionBox">
+        <h3 style="margin:20px 0 4px;font-size:1rem;">結果を踏まえてできること</h3>
+        <ul class="action-list">
+          <li>月間生活費・固定費の入力を見直して再試算する(削れる固定費がないかの確認にも使えます)</li>
+          <li><a href="/taishoku/shitsugyo-hoken/">失業保険の受給額を確認する</a> ─ 試算した給付総額をこのページの「失業保険の見込み」に転記できます</li>
+          <li><a href="/taishoku/taishokukin/">退職金の手取りを確認する</a> ─ 税金を引いた手取り額を「退職金の見込み」に転記できます</li>
+          <li>健康保険・年金の支出を確認する ─ 退職後は健康保険を任意継続(最長2年)にするか国民健康保険に切り替えるかを選び、年金は国民年金(第1号被保険者)への切替が必要になる場合があります。保険料は前年の収入で決まるため、加入先の健康保険組合と市区町村窓口で見積もりを確認しておくと支出の精度が上がります</li>
+          <li>再就職・収入再開の時期(月数)を変えて試算する(上の±3か月ボタンでも変更できます)</li>
+          <li>公的な相談先を利用する ─ 仕事探しや失業保険は<a href="https://www.hellowork.mhlw.go.jp/" rel="noopener" target="_blank">ハローワーク</a>、国民健康保険・国民年金・住民税は市区町村の窓口で相談できます</li>
+          <li>支出と収入が複雑な場合は、FP(ファイナンシャルプランナー)等の専門家に相談する選択肢もあります</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+
+  <article class="article">
+    <h2 id="shishutsu">退職後にかかるお金の整理 ─ 給与が止まっても支出は続く</h2>
+    <p>退職後の資金計画で見落としやすいのは、毎月の生活費に加えて<strong>在職中は給与天引きだった支払いが自分で納付する形に変わる</strong>ことです。代表的なのは次の3つです。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>項目</th><th>内容</th></tr>
+        <tr><td>住民税</td><td>前年の所得に対して課税されるため、収入がなくなっても納付書での支払いが続く(退職時期によっては一括徴収)</td></tr>
+        <tr><td>健康保険</td><td>任意継続(最長2年)または国民健康保険に加入。在職中は会社が半分負担していた分がなくなるため、保険料負担が増えることが多い</td></tr>
+        <tr><td>国民年金</td><td>厚生年金から国民年金(第1号)へ切り替え。2026年度の保険料は月1万7千円台(免除・猶予制度あり)</td></tr>
+      </table>
+    </div>
+    <p>これらは本シミュレーターでは「月間固定費」や「臨時支出」として自分で入力する方式です。金額が分からない段階では、まずおおまかな見込み額で試算し、市区町村窓口などで確認できたら入れ替えて再試算するとよいでしょう。引越し費用や資格取得費用などの一時的な出費も「臨時支出」にまとめて入力できます。</p>
+
+    <h2 id="shikin">使える資金の整理 ─ 預貯金・退職金・失業保険を1か所に集める</h2>
+    <p>支出の見込みができたら、次は使える資金を1か所に集めて並べます。本シミュレーターでは<strong>預貯金・退職金の見込み・失業保険の見込み・その他の収入(月額)</strong>の4つを合算します。</p>
+    <p>退職金は額面ではなく<strong>税金を引いた手取り額</strong>で見るのが実態に近く、<a href="/taishoku/taishokukin/">退職金の手取り計算シミュレーター</a>で試算した金額をこのページに転記できます。失業保険も同様に、<a href="/taishoku/shitsugyo-hoken/">失業保険シミュレーター</a>で計算した給付総額を転記してください(このサイトではプライバシーの観点から、ページ間でURLによる金額の受け渡しは行わず、手入力での転記方式にしています)。なお失業保険は退職後すぐには振り込まれず、自己都合退職では最初の入金まで2か月以上かかることもあるため、期間が短い試算では預貯金側に余裕を見ておくと安全です。</p>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>退職後すぐにかかるお金には何がありますか?</summary>
+      <p>毎月の生活費・家賃のほかに、住民税(前年の所得に対する分を納付書で支払う)、国民健康保険または任意継続の保険料、国民年金保険料などが代表的です。給与天引きだった支払いが自分で納付する形に変わるため、在職中より出費が増えたように感じやすい点に注意が必要です。引越しや資格取得などの一時支出がある場合は、臨時支出として資金計画に含めておくと安心です。</p>
+    </details>
+    <details class="faq">
+      <summary>退職後の健康保険はどうなりますか?</summary>
+      <p>主な選択肢は、それまでの健康保険を最長2年続けられる任意継続、市区町村の国民健康保険への加入、家族の被扶養者になる、の3つです。任意継続は退職日の翌日から20日以内、国民健康保険は14日以内の手続きが原則です。保険料は前年の収入や自治体によって変わるため、どちらが安いかは加入先の健康保険組合と市区町村窓口で見積もりを取って比べるのが確実です。</p>
+    </details>
+    <details class="faq">
+      <summary>失業保険はいつから受け取れますか?</summary>
+      <p>ハローワークで手続き後、7日間の待期期間があります。会社都合退職などは待期満了後から支給対象になりますが、自己都合退職の場合はさらに給付制限期間(原則1か月、5年以内に3回以上の自己都合退職がある場合などは3か月)が付きます。実際の振込は認定日の後になるため、退職から最初の入金まで自己都合では2か月以上かかることも想定しておきましょう。詳しくは<a href="/taishoku/shitsugyo-hoken/">失業保険シミュレーター</a>で試算できます。</p>
+    </details>
+    <details class="faq">
+      <summary>入力した金額などのデータは送信されますか?</summary>
+      <p>いいえ。計算はすべてお使いのブラウザ内(JavaScript)で完結しており、入力した預貯金額や生活費などが外部のサーバーに送信されることは一切ありません。保存もされません。</p>
+    </details>
+
+    <h2 id="kijun">このシミュレーターの計算基準と免責事項</h2>
+    <p>本シミュレーターは、入力された「使える資金(預貯金+退職金見込み+失業保険見込み+その他の収入×月数)」と「期間中の支出見込み((月間生活費+月間固定費)×月数+臨時支出)」の差額を単純に計算する概算ツールです。次の点にご注意ください。</p>
+    <ul>
+      <li>結果はあくまで<strong>入力条件に基づく概算</strong>です。物価変動や想定外の支出は反映されません。</li>
+      <li>税金・社会保険料の計算は簡略化しています。住民税・国民健康保険料・国民年金保険料などは、固定費または臨時支出として自分で見込み額を入力する方式です。</li>
+    <li>失業保険・退職金の金額は、<a href="/taishoku/shitsugyo-hoken/">失業保険シミュレーター</a>・<a href="/taishoku/taishokukin/">退職金の手取り計算</a>の試算値を手入力で転記する方式です(URLパラメータ等での自動受け渡しは行いません)。</li>
+      <li>正確な金額は、ハローワーク・市区町村・年金事務所・勤務先など各機関でご確認ください。</li>
+    </ul>
+    <p class="note">本ツールの結果は参考値であり、資金計画や退職時期の判断を保証するものではありません。本ツールの利用により生じたいかなる損害についても、当サイトは責任を負いません。</p>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/taishoku/shitsugyo-hoken/" data-action-id="check-shitsugyo-hoken">
+        <strong>失業保険の受給額を計算する</strong>
+        <span>基本手当の日額・給付日数・総額と「いつからもらえるか」を試算します。</span>
+      </a>
+      <a class="next-action-card" href="/taishoku/taishokukin/" data-action-id="check-taishokukin">
+        <strong>退職金の手取りを計算する</strong>
+        <span>退職所得控除・税金を自動計算し、額面から手取り額を試算します。</span>
+      </a>
+      <a class="next-action-card" href="/taishoku/blog/taishoku-tetsuzuki/" data-action-id="check-taishoku-tetsuzuki">
+        <strong>退職後の手続きを期限順に確認する</strong>
+        <span>健康保険・年金・住民税・失業保険の手続きを時系列で整理しています。</span>
+      </a>
+      <a class="next-action-card" href="/taishoku/" data-action-id="check-taishoku-hub">
+        <strong>やめどきナビのツール一覧を見る</strong>
+        <span>退職・失業保険・退職代行など、仕事のやめどきに関するツールと記事の一覧です。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年7月18日</dd></div><div><dt>結果の位置づけ</dt><dd>入力条件に基づく概算です。実際の金額・可否は、制度・契約内容・勤務先の規程・地域などの個別条件で変わります。最終的な確認は必ず公的機関・契約先で行ってください。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><p class="trust-note">本ページの広告(PR表記のあるカード)と、本文・計算・診断結果は独立しています。広告の有無で結果は変わりません。</p><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 退職後から次の収入開始までの期間について、利用可能資金の合計(預貯金+退職金見込み+失業保険見込み+その他の収入×月数)と期間中の支出見込み((月間生活費+月間固定費)×月数+臨時支出)を計算し、余裕額または不足見込み額と、手元資金が生活費の何か月分に相当するかの目安を表示する。月数±3か月の比較表とボタンで再試算できる。</li><li><b>使用する入力値:</b> 預貯金(円)(#savings、初期値空欄)、退職金の見込み(円)(#severance、初期値空欄。退職金手取り計算の試算値を手入力で転記)、失業保険の見込み(受け取る合計額・円)(#unemployment、初期値空欄。失業保険シミュレーターの給付総額を手入力で転記)、その他の収入(配偶者収入・副業など月額・円)(#otherIncome、初期値空欄)、次の収入開始までの月数(か月)(#months、初期値6=仮の初期値と注記、1〜120)、月間生活費(食費・日用品など・円)(#livingCost、初期値空欄)、月間固定費(住居・保険・通信など・円)(#fixedCost、初期値空欄)、臨時支出(引越し・国保・住民税などの一時金・円)(#oneTime、初期値空欄)</li><li><b>使用する固定値:</b> 当サイトの仮の初期値(入力で変更できる場合は変更してください): 月数の初期値、月数の上限クランプ、比較表の刻み、金額入力の初期値</li><li><b>計算に含まれない項目:</b> 税金・社会保険料の詳細計算(住民税・国民健康保険料・任意継続保険料・国民年金保険料は自動計算せず、利用者が固定費・臨時支出として見込み額を入力する方式)、失業保険・退職金の金額算定(各シミュレーターの試算値を手入力で転記する方式。URLクエリ等での自動受け渡しは行わない)、物価変動・想定外の支出・資産運用益、失業保険の入金タイミング(待期・給付制限による受給開始の遅れは期間按分せず、合計額として一括加算)</li><li><b>結果が変わる主な要因:</b> 再就職・収入再開の実際の時期(月数の入力値次第で結果が大きく変わる)、住民税・国保・国民年金など退職後に自己納付となる支出の実額(前年所得・自治体により変動)、失業保険の給付制限期間による入金の遅れ(自己都合退職では最初の入金まで2か月以上かかることがある)、退職金の額面と手取りの差(勤務先規程・税制による)、引越し・資格取得など一時支出の発生有無</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.hellowork.mhlw.go.jp/" rel="noopener" target="_blank">厚生労働省「ハローワークインターネットサービス(雇用保険手続き案内)」</a>(確認日: 2026-07-18)</li><li><a href="https://www.shiruporuto.jp/public/" rel="noopener" target="_blank">金融広報中央委員会「知るぽると(金融広報中央委員会)」</a>(確認日: 2026-07-18)</li><li><a href="https://www.jafp.or.jp/" rel="noopener" target="_blank">NPO法人日本FP協会「日本FP協会」</a>(確認日: 2026-07-18)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/taishoku/seikatsuhi/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var MONEY_IDS = ["savings", "severance", "unemployment", "otherIncome", "livingCost", "fixedCost", "oneTime"];
+
+  function yen(n) { return n.toLocaleString("ja-JP") + "円"; }
+
+  /* カンマ・全角数字・空白を許容して0以上の整数に変換する。空欄・負数・非数は0扱い。 */
+  function parseMoney(id) {
+    var raw = String($(id).value || "");
+    raw = raw.replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); });
+    raw = raw.replace(/[,，\s円]/g, "");
+    var n = parseFloat(raw);
+    if (!isFinite(n) || n < 0) return 0;
+    return Math.round(n);
+  }
+
+  function formatInput(id) {
+    var n = parseMoney(id);
+    var el = $(id);
+    if (String(el.value).replace(/[\s]/g, "") === "") return; /* 空欄はそのまま */
+    el.value = n.toLocaleString("ja-JP");
+  }
+
+  var resultArea = $("resultArea");
+  var resultBox = $("resultBox");
+  var compareBox = $("compareBox");
+
+  function readMonths() {
+    var m = parseInt($("months").value, 10);
+    if (!isFinite(m)) return null;
+    if (m < 1) return null;
+    if (m > 120) m = 120;
+    return m;
+  }
+
+  function calc(input, months) {
+    var monthlyOut = input.livingCost + input.fixedCost;
+    var spend = monthlyOut * months + input.oneTime;
+    var incomeOther = input.otherIncome * months;
+    var available = input.savings + input.severance + input.unemployment + incomeOther;
+    return {
+      months: months,
+      monthlyOut: monthlyOut,
+      spend: spend,
+      available: available,
+      diff: available - spend
+    };
+  }
+
+  function render() {
+    var months = readMonths();
+    if (months === null) {
+      resultArea.hidden = false;
+      resultBox.innerHTML = '<span class="result-error">「次の収入開始までの月数」は1以上の整数で入力してください。</span>';
+      compareBox.innerHTML = "";
+      return;
+    }
+    $("months").value = months;
+
+    var input = {
+      savings: parseMoney("savings"),
+      severance: parseMoney("severance"),
+      unemployment: parseMoney("unemployment"),
+      otherIncome: parseMoney("otherIncome"),
+      livingCost: parseMoney("livingCost"),
+      fixedCost: parseMoney("fixedCost"),
+      oneTime: parseMoney("oneTime")
+    };
+
+    var r = calc(input, months);
+
+    /* 資金が生活費の何か月分か:
+       毎月の支出(生活費+固定費)からその他の収入(月額)を引いた実質の月間持ち出しで、
+       一時金(臨時支出)を除いた手元資金を割る。持ち出しが0以下なら換算しない。 */
+    var lumpFunds = input.savings + input.severance + input.unemployment;
+    var monthlyNet = r.monthlyOut - input.otherIncome;
+    var runway = null;
+    if (monthlyNet > 0) {
+      runway = Math.max(0, (lumpFunds - input.oneTime) / monthlyNet);
+      runway = Math.floor(runway * 10) / 10;
+    }
+
+    var headline, headlineLabel;
+    if (r.diff >= 0) {
+      headlineLabel = "余裕額(目安)";
+      headline = "現在の入力条件では、次の収入開始までの支出見込みに対して約" + yen(r.diff) + "の余裕がある試算です。";
+    } else {
+      headlineLabel = "不足見込み額(目安)";
+      headline = "現在の入力条件では、次の収入開始までの支出見込みに対して約" + yen(-r.diff) + "不足する可能性があります。";
+    }
+
+    var rows = "";
+    rows += "<tr><th>利用可能資金の合計</th><td class='num'>" + yen(r.available) + "</td></tr>";
+    rows += "<tr><td style='padding-left:24px;font-size:0.88rem;'>内訳:預貯金+退職金+失業保険</td><td class='num' style='font-size:0.88rem;'>" + yen(lumpFunds) + "</td></tr>";
+    rows += "<tr><td style='padding-left:24px;font-size:0.88rem;'>内訳:その他の収入(" + yen(input.otherIncome) + "×" + r.months + "か月)</td><td class='num' style='font-size:0.88rem;'>" + yen(input.otherIncome * r.months) + "</td></tr>";
+    rows += "<tr><th>期間中の支出見込み(" + r.months + "か月)</th><td class='num'>−" + yen(r.spend) + "</td></tr>";
+    rows += "<tr><td style='padding-left:24px;font-size:0.88rem;'>内訳:(生活費+固定費)" + yen(r.monthlyOut) + "×" + r.months + "か月+臨時支出" + yen(input.oneTime) + "</td><td class='num' style='font-size:0.88rem;'></td></tr>";
+    rows += "<tr class='total'><th>" + (r.diff >= 0 ? "余裕額" : "不足見込み額") + "</th><td class='num'>" + yen(Math.abs(r.diff)) + "</td></tr>";
+    if (runway !== null) {
+      rows += "<tr><th>手元資金は生活費の何か月分か</th><td class='num'>約" + runway.toLocaleString("ja-JP") + "か月分</td></tr>";
+    } else if (r.monthlyOut > 0) {
+      rows += "<tr><th>手元資金は生活費の何か月分か</th><td class='num'>毎月の収支が黒字のため換算していません</td></tr>";
+    }
+
+    resultBox.innerHTML =
+      "<div>" + headlineLabel + "</div>" +
+      "<div class='result-main'>" + (r.diff >= 0 ? "+" : "−") + yen(Math.abs(r.diff)) + "</div>" +
+      "<p style='margin:8px 0 0;'>" + headline + "</p>" +
+      "<table class='result-table'>" + rows + "</table>" +
+      "<p class='note'>入力条件に基づく概算です。税金・社会保険料は簡略化しており、住民税・国保・国民年金などは固定費・臨時支出として入力した金額のみを反映します。</p>";
+
+    /* 月数を変えた比較(±3か月) */
+    var cmp = "<h3 style='margin:18px 0 4px;font-size:1rem;'>収入開始までの月数が変わると?(±3か月の比較)</h3>";
+    cmp += "<div class='table-wrap'><table class='compare-table'>";
+    cmp += "<tr><th>月数</th><th>支出見込み</th><th>利用可能資金</th><th>余裕/不足</th></tr>";
+    for (var m = months - 3; m <= months + 3; m += 3) {
+      if (m < 1) continue;
+      var c = calc(input, m);
+      cmp += "<tr" + (m === months ? " class='current'" : "") + ">";
+      cmp += "<td style='text-align:center;'>" + m + "か月" + (m === months ? "(入力値)" : "") + "</td>";
+      cmp += "<td>" + yen(c.spend) + "</td><td>" + yen(c.available) + "</td>";
+      cmp += "<td>" + (c.diff >= 0 ? "+" : "−") + yen(Math.abs(c.diff)) + "</td></tr>";
+    }
+    cmp += "</table></div>";
+    cmp += "<p class='note'>「−3か月」「+3か月」ボタンで月数の入力値を変えて再試算できます。</p>";
+    compareBox.innerHTML = cmp;
+
+    resultArea.hidden = false;
+
+    /* resultType判定:
+       不足 → funding-gap / 臨時支出やその他の収入があり収支が複雑 → complex-planning / 余裕あり → consultation-optional */
+    var rt;
+    if (r.diff < 0) {
+      rt = "funding-gap";
+    } else if (input.oneTime > 0 || input.otherIncome > 0) {
+      rt = "complex-planning";
+    } else {
+      rt = "consultation-optional";
+    }
+    if (window.HKG) {
+      HKG.diagnosisComplete("taishoku-seikatsuhi", rt);
+      HKG.render({ pageId: "taishoku-seikatsuhi", resultType: rt, slotId: "result-primary" });
+    }
+  }
+
+  $("calcBtn").addEventListener("click", render);
+  $("resetBtn").addEventListener("click", function () {
+    MONEY_IDS.forEach(function (id) { $(id).value = ""; });
+    $("months").value = 6;
+    resultArea.hidden = true;
+    var slot = document.querySelector('.offer-slot[data-slot="result-primary"]');
+    if (slot) { slot.innerHTML = ""; slot.style.display = "none"; }
+  });
+
+  function shiftMonths(delta) {
+    var m = readMonths();
+    if (m === null) m = 6;
+    m = Math.min(120, Math.max(1, m + delta));
+    $("months").value = m;
+    render();
+  }
+  $("minus3Btn").addEventListener("click", function () { shiftMonths(-3); });
+  $("plus3Btn").addEventListener("click", function () { shiftMonths(3); });
+
+  MONEY_IDS.forEach(function (id) {
+    $(id).addEventListener("blur", function () { formatInput(id); });
+    $(id).addEventListener("keydown", function (e) { if (e.key === "Enter") render(); });
+  });
+  $("months").addEventListener("keydown", function (e) { if (e.key === "Enter") render(); });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+<script src="/assets/offers.js"></script>
+</body>
+</html>
