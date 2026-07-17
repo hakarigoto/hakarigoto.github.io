@@ -22,15 +22,15 @@
   /* スロットkey → 広告HTMLタグ。承認済み案件を貼る場所をコメントで明示。 */
   var ADS = {
     /* ▼ やめどきナビ(退職・失業保険) */
-    "tenshoku":          "", /* 承認済: もしも 弁護士法人ガイア法律事務所(退職代行) 14,000円 */
-    "taishoku-daiko":    "", /* 承認済: もしも 男の退職代行13,000円 / わたしNEXT12,000円 / ガイア14,000円 */
-    "tenshoku-kangoshi": "", /* 承認済: もしも わたしNEXT(女性退職代行) 12,000円 */
+    "tenshoku":          `<a href="//af.moshimo.com/af/c/click?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade">退職を自分で言い出せないときは — 弁護士法人ガイアの退職代行(無料相談)</a><img src="//i.moshimo.com/af/i/impression?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517" width="1" height="1" style="border:none;" loading="lazy" alt="">`, /* もしも ガイア(退職代行) */
+    "taishoku-daiko":    `<a href="//af.moshimo.com/af/c/click?a_id=5700575&p_id=2166&pc_id=4520&pl_id=29013" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade">男性向けの退職代行サービスをチェックする</a><img src="//i.moshimo.com/af/i/impression?a_id=5700575&p_id=2166&pc_id=4520&pl_id=29013" width="1" height="1" style="border:none;" loading="lazy" alt="">`, /* もしも 男の退職代行 */
+    "tenshoku-kangoshi": `<a href="//af.moshimo.com/af/c/click?a_id=5700576&p_id=2000&pc_id=4039&pl_id=27334" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade">女性向けの退職代行サービスをチェックする</a><img src="//i.moshimo.com/af/i/impression?a_id=5700576&p_id=2000&pc_id=4039&pl_id=27334" width="1" height="1" style="border:none;" loading="lazy" alt="">`, /* もしも わたしNEXT */
     "money":             "", /* 未承認(退職金→FP系の提携待ち) */
 
     /* ▼ マナー電卓(冠婚葬祭) */
     "sogi":    "", /* 未承認(家族葬のこれから・よりそう=A8審査中) */
     "wedding": "", /* 未承認(ご祝儀→ブライダル系の提携待ち) */
-    "hakajimai": "", /* 承認済: もしも ミキワ墓じまい資料請求1,000円 / シーセレモニー海洋散骨5,000円 */
+    "hakajimai": `<a href="//af.moshimo.com/af/c/click?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade">海洋散骨(小型クルーザー・家族向け)の無料相談はこちら</a><img src="//i.moshimo.com/af/i/impression?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736" width="1" height="1" style="border:none;" loading="lazy" alt="">`, /* もしも シーセレモニー(海洋散骨) */
 
     /* ▼ かたづけ電卓(不用品・遺品整理) */
     "ihin":            "", /* 承認済: A8 遺品整理110番6,000円 / ライフリセット2,200円 */
