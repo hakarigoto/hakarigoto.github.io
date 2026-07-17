@@ -132,6 +132,54 @@
       resultTypes: ["perpetual-memorial", "ossuary", "tree-burial", "sea-burial", "undecided"],
       eligiblePages: ["manner-hakajimai"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
+    },
+
+    gaiaTaishoku: {
+      offerId: "gaiaTaishoku", name: "弁護士法人ガイア(退職代行)", asp: "moshimo",
+      category: "taishoku-daiko", status: "active",
+      destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517",
+      impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "未払い賃金や有給の交渉・請求まで任せたい人向け(弁護士)",
+      summary: "弁護士法人が運営する退職代行。退職意思の伝達に加えて、有給消化や退職日の交渉、未払い賃金・残業代の請求、会社から損害賠償を主張された場合の対応まで依頼できます。",
+      recommendedFor: ["未払いの残業代・賃金・退職金を請求したい", "損害賠償を主張されている・ハラスメントなどのトラブルがある", "交渉から法的対応まで一つの窓口に任せたい"],
+      notRecommendedFor: ["料金は高め(弁護士は5万円〜が目安。未払い金請求は成功報酬が別途かかるのが一般的)", "退職意思の伝達だけでよい場合は、民間業者・労働組合の方が費用を抑えられます"],
+      feeText: "相談は無料",
+      areaText: "対応条件は公式サイトで確認",
+      resultTypes: ["legal-consultation", "agency-consideration"],
+      eligiblePages: ["taishoku-daiko"],
+      lastCheckedAt: "2026-07-17", disclosure: "PR"
+    },
+
+    otokoTaishoku: {
+      offerId: "otokoTaishoku", name: "男の退職代行", asp: "moshimo",
+      category: "taishoku-daiko", status: "active",
+      destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700575&p_id=2166&pc_id=4520&pl_id=29013",
+      impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700575&p_id=2166&pc_id=4520&pl_id=29013" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "男性向けサービスで退職を任せたい人向け",
+      summary: "男性の退職に特化した退職代行サービス。会社と直接やり取りせずに、退職の意思を代わりに伝えてもらう選択肢です。",
+      recommendedFor: ["自分から退職を言い出せない・会社と直接話したくない", "男性専門のサービスに相談したい"],
+      notRecommendedFor: ["未払い金の請求や損害賠償への対応など、法的対応が必要な場合(弁護士の領域です)", "有給消化や退職日の「交渉」を依頼したい場合は、運営元が交渉できる類型(労働組合・弁護士)かを公式サイトで確認してください"],
+      feeText: "料金・返金条件は公式サイトで確認",
+      areaText: "対応条件は公式サイトで確認",
+      resultTypes: ["agency-consideration"],
+      eligiblePages: ["taishoku-daiko"],
+      lastCheckedAt: "2026-07-17", disclosure: "PR"
+    },
+
+    watashiNext: {
+      offerId: "watashiNext", name: "わたしNEXT", asp: "moshimo",
+      category: "taishoku-daiko", status: "active",
+      destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700576&p_id=2000&pc_id=4039&pl_id=27334",
+      impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700576&p_id=2000&pc_id=4039&pl_id=27334" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "女性向けサービスで退職を任せたい人向け",
+      summary: "女性の退職に特化した退職代行サービス。会社と直接やり取りせずに、退職の意思を代わりに伝えてもらう選択肢です。",
+      recommendedFor: ["自分から退職を言い出せない・会社と直接話したくない", "女性向けのサービスに相談したい"],
+      notRecommendedFor: ["未払い金の請求や損害賠償への対応など、法的対応が必要な場合(弁護士の領域です)", "有給消化や退職日の「交渉」を依頼したい場合は、運営元が交渉できる類型(労働組合・弁護士)かを公式サイトで確認してください"],
+      feeText: "料金・返金条件は公式サイトで確認",
+      areaText: "対応条件は公式サイトで確認",
+      resultTypes: ["agency-consideration"],
+      eligiblePages: ["taishoku-daiko"],
+      lastCheckedAt: "2026-07-17", disclosure: "PR"
     }
   };
 

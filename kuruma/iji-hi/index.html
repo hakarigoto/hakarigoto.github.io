@@ -75,7 +75,7 @@
 
 <div class="page-head">
   <h1>【2026年】車の年間維持費まるごと計算機</h1>
-  <p class="lead">排気量・年式・燃費・走行距離などを入れるだけで、自動車税（13年超の重課判定込み）・重量税・自賠責・車検・任意保険・燃料費・駐車場代をまとめた年間維持費を試算します。月あたり・1kmあたりのコストも自動計算。金額は目安であり、正確な金額は必ず各機関・各社でご確認ください。</p>
+  <p class="lead">排気量・年式・燃費・走行距離などを入れるだけで、自動車税（13年超の重課判定込み）・重量税・自賠責・車検・任意保険・燃料費・駐車場代をまとめた年間維持費を試算します。月あたり・1kmあたりのコストも自動計算。金額は目安であり、正確な金額は必ず各機関・各社でご確認ください。入力した内容はサーバーに送信されず、お使いのブラウザ内だけで計算されます。</p>
   <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>執筆:<b>はかり</b></span></div>
 </div>
 
@@ -398,16 +398,23 @@
     var perMonth = total / 12;
     var perKm = kyori > 0 ? total / kyori : 0;
 
+    // 表示用の小計（固定費・変動費の区分。計算方法は従来と同じ）
+    var fixedTotal = tax + shakenYear + hoken;
+    var varTotal = fuelYear + parkYear;
+
     var html = "<strong style=\"font-size:1.25em\">年間維持費の目安：約 " + fmt(total) + " 円</strong><br>" +
       "月あたり 約 " + fmt(perMonth) + " 円" +
       (kyori > 0 ? "　／　1kmあたり 約 " + (Math.round(perKm * 10) / 10).toLocaleString("ja-JP") + " 円" : "") +
+      "<br>同じ条件が続いた場合、<strong>3年総額 約 " + fmt(total * 3) + " 円／5年総額 約 " + fmt(total * 5) + " 円</strong>（年間維持費×3・×5の単純合計）" +
       "<div class=\"table-wrap\"><table style=\"margin:12px 0 4px\">" +
       "<tr><th>費目</th><th>年額換算</th><th>備考</th></tr>" +
+      "<tr><th colspan=\"3\">固定費（税金・保険・車検）　小計 約 " + fmt(fixedTotal) + " 円/年</th></tr>" +
       "<tr><td>自動車税（種別割）</td><td>" + fmt(tax) + " 円</td><td>" + (isHeavy ? "重課適用" : "標準税率") + "</td></tr>" +
       "<tr><td>自動車重量税</td><td>" + fmt(wTax2y / 2) + " 円</td><td>車検2年分 " + fmt(wTax2y) + " 円の年割" + (years >= 18 ? "（18年超重課）" : years >= 13 ? "（13年超重課）" : eco ? "（本則税率）" : "") + "</td></tr>" +
       "<tr><td>自賠責保険料</td><td>" + fmt(jibai2y / 2) + " 円</td><td>24ヶ月 " + fmt(jibai2y) + " 円の年割</td></tr>" +
       "<tr><td>車検基本料等</td><td>" + fmt(shakenBase / 2) + " 円</td><td>1回 " + fmt(shakenBase) + " 円の年割</td></tr>" +
       "<tr><td>任意保険</td><td>" + fmt(hoken) + " 円</td><td>入力値</td></tr>" +
+      "<tr><th colspan=\"3\">変動費（燃料・その他）　小計 約 " + fmt(varTotal) + " 円/年</th></tr>" +
       "<tr><td>燃料費</td><td>" + fmt(fuelYear) + " 円</td><td>" + (nenpi > 0 ? fmt(kyori) + " km ÷ " + nenpi + " km/L × " + fmt(tanka) + " 円" : "燃費が未入力のため0円") + "</td></tr>" +
       "<tr><td>駐車場代</td><td>" + fmt(parkYear) + " 円</td><td>月 " + fmt(parking) + " 円 × 12</td></tr>" +
       "</table></div>";
@@ -415,7 +422,8 @@
     if (isHeavy || years >= 13) {
       html += "<p style=\"margin:10px 0 0\"><strong>税金が重課されています。</strong>年式の古い車は税負担が増えるため、乗り続ける場合の維持費と、買い替え・手放しの費用を比べる材料にしてください。→ <a href=\"../haisha/\">廃車・手放しどき診断</a></p>";
     }
-    html += "<p class=\"note\" style=\"margin:8px 0 0\">※ メンテナンス・消耗品・タイヤ代などは含みません。概算です。</p>";
+    html += "<p style=\"margin:10px 0 0\">維持費が高いと感じたら、<a href=\"../haisha/\">廃車と売却どっちが得？手放しどき診断</a>で手放した場合の目安（還付金など）と並べて考える方法もあります。売却だけが結論ではなく、任意保険や車検の受け方を見直して維持費そのものを下げる選択肢もあります（下の「維持費を下げる3つの方法」参照）。</p>";
+    html += "<p class=\"note\" style=\"margin:8px 0 0\">※ この計算に含まれないもの：故障時の修理費、タイヤ・オイルなど消耗品の交換費用、ローンの返済額・金利、高速道路料金、洗車代、駐車違反などの反則金。実際の負担はこれらが上乗せされる前提で見てください。</p>";
 
     var box = $("resultBox");
     box.innerHTML = html;

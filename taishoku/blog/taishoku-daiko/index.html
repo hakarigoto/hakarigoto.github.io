@@ -99,6 +99,8 @@
 <article class="article">
 <p>結論からいうと、退職代行選びで最初に確認すべきは料金ではなく<strong>「運営元がどの類型か」</strong>です。民間業者・労働組合・弁護士のどれかによって、法律上「会社と交渉できるか」「未払い金を請求できるか」が決まっており、自分の状況に合わない類型を選ぶと、料金を払ったのに肝心の要望(有給消化や未払い残業代の請求など)を対応してもらえないことになりかねません。以下で順に見ていきます。</p>
 
+<p>その前に、前提をひとつ。<strong>退職代行を使わなくても、退職は自分でできます</strong>。期間の定めのない雇用契約であれば、退職の意思表示から2週間が経過すれば雇用契約は終了します(民法627条)。上司が退職届を受け取ってくれない場合でも、<strong>退職届を内容証明郵便で会社へ送れば</strong>意思表示をした記録が残り、かかる費用は郵便料金の数千円程度です。退職代行は「会社と直接やり取りすることがどうしても難しい」「出社せずに今日から離れたい」という場合に検討する有料の選択肢、という位置づけで読み進めてください。</p>
+
 <h2 id="shurui">運営元3類型で「できること」がどう違うか</h2>
 <p>退職代行サービスの運営元は、大きく<strong>①民間業者(一般企業)、②労働組合、③弁護士(法律事務所)</strong>の3つに分かれます。違いを表にまとめると次のとおりです。</p>
 <div class="table-wrap">
@@ -123,6 +125,9 @@
 <h3>弁護士:交渉に加えて法的対応まで可能</h3>
 <p>弁護士(法律事務所)による退職代行は、交渉はもちろん、<strong>未払い残業代・退職金の請求、ハラスメントの損害賠償請求、会社から損害賠償を主張された場合の反論・対応</strong>など、法的トラブル全般を代理できます。費用は高めですが、金銭請求がある場合は回収額で費用を上回ることもあります(未払い金請求は成功報酬が別途かかるのが一般的です)。</p>
 
+<!-- OFFER-SLOT: legal(未払い・トラブルがある場合 → 弁護士系のみ表示) -->
+<div class="offer-slot" data-slot="legal" style="display:none"></div>
+
 <h2 id="erabikata">どういう人がどれを選ぶべきか</h2>
 <p>3類型の違いを踏まえると、選び方は次のように整理できます。</p>
 <div class="table-wrap">
@@ -140,8 +145,8 @@
 </div>
 <p>迷ったら、<strong>「会社に何かを『お願い・交渉』する必要があるか」</strong>を基準にしてください。伝えるだけでよければ民間か労組、交渉が要るなら労組、お金の請求や法的トラブルがあるなら弁護士、というのが基本の考え方です。有給がたくさん残っている人は、交渉できる類型を選んだほうが料金差以上のリターンになるケースが多いでしょう。</p>
 
-<!-- AD-SLOT: taishoku-daiko -->
-  <div class="ad-slot" data-ad="taishoku-daiko"></div>
+<!-- OFFER-SLOT: result-primary(検討層向け・3類型の案件カード) -->
+  <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
 
 <h2 id="ryokin">料金相場の目安</h2>
 <p>2026年7月時点での一般的な料金水準は次のとおりです(サービスや事案により幅があります)。</p>
@@ -214,8 +219,8 @@
 <p>退職代行を使った事実が離職票や雇用保険の記録に残ることはなく、転職先に通知される仕組みもありません。面接で自分から言わない限り、転職先が知る手段は基本的にないと考えてよいでしょう。退職理由の伝え方は、通常の退職と同じように準備すれば足ります。</p>
 </details>
 
-<!-- AD-SLOT: taishoku-daiko -->
-  <div class="ad-slot" data-ad="taishoku-daiko"></div>
+<!-- OFFER-SLOT: article-end(検討層向け・3類型の案件カード) -->
+  <div class="offer-slot" data-slot="article-end" style="display:none"></div>
 
 <p class="note">※本記事は2026年7月時点の一般的な制度・相場水準に基づく情報提供であり、特定のサービスの利用を推奨するものではありません。料金・サービス内容は各社の公式情報を、法的トラブルを伴う個別のケースは弁護士等の専門家にご確認ください。</p>
 </article>
@@ -239,6 +244,19 @@
 </section>
 </main>
 <footer class="site-footer"><div class="container"><div>© 2026 やめどきナビ</div><div><a href="../../../privacy/">プライバシーポリシー</a> <a href="../../../about/">運営者情報</a></div></div></footer>
+<script src="/assets/offers.js"></script>
+<script>
+(function () {
+  "use strict";
+  if (!window.HKG) return;
+  /* このページには診断ツールがないため、ページ読み込み時に描画する。
+     記事を読みに来た人 = 退職代行の検討層として agency-consideration を適用。 */
+  HKG.render({ pageId: "taishoku-daiko", resultType: "agency-consideration", slotId: "result-primary" });
+  HKG.render({ pageId: "taishoku-daiko", resultType: "agency-consideration", slotId: "article-end" });
+  /* 「未払い・トラブルがある場合」のセクション直後: 弁護士系(legal-consultation)のみ */
+  HKG.render({ pageId: "taishoku-daiko", resultType: "legal-consultation", slotId: "legal" });
+})();
+</script>
 <script src="/assets/ads.js"></script>
 </body>
 </html>

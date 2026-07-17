@@ -67,7 +67,7 @@
 
 <div class="page-head">
   <h1>【2026年】トラックの年間維持費計算</h1>
-  <p class="lead">サイズ区分(軽トラック・小型2t・中型4t・大型10t)と自家用・事業用の別、年間走行距離を入れるだけで、自動車税(種別割)・自動車重量税・自賠責保険・車検整備費・任意保険・燃料費・タイヤ代をまとめた年間維持費を試算します。月あたり・1kmあたりの負担額も自動表示。金額はすべて目安であり、正確な額は必ず管轄の運輸支局・県税事務所・保険会社でご確認ください。</p>
+  <p class="lead">サイズ区分(軽トラック・小型2t・中型4t・大型10t)と自家用・事業用の別、年間走行距離を入れるだけで、自動車税(種別割)・自動車重量税・自賠責保険・車検整備費・任意保険・燃料費・タイヤ代をまとめた年間維持費を試算します。月あたり・1kmあたりの負担額も自動表示。金額はすべて目安であり、正確な額は必ず管轄の運輸支局・県税事務所・保険会社でご確認ください。入力した内容はサーバーに送信されず、お使いのブラウザ内だけで計算されます。</p>
   <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>執筆:<b>はかり</b></span></div>
 </div>
 
@@ -165,6 +165,8 @@
       </table>
     </div>
     <p class="note" id="resultNote"></p>
+    <p class="note">※ この計算に含まれないもの：故障・事故時の修理費、車庫・駐車場代、高速道路料金、ローン・リースの支払額や金利、駐車違反などの反則金、ドライバーの人件費。実際の負担はこれらが上乗せされる前提で見てください。</p>
+    <p style="margin:10px 0 0;">維持費が高いと感じたら、<a href="../teban/">トラック・重機の売りどき診断</a>で手放した場合の見当を付ける方法もあります。売却だけが結論ではなく、当面使わないだけなら一時抹消登録で課税を止める、整備や保険を見直して維持費を下げるといった選択肢もあります。</p>
   </div>
   <!-- AD-SLOT: truck-kaitori -->
   <div class="ad-slot" data-ad="truck-kaitori"></div>
@@ -359,12 +361,14 @@
 
     var taxLabel = (cls === "kei") ? "軽自動車税(種別割)" : "自動車税(種別割)";
     var rows = [
+      ["@group", "固定費(税金・保険・車検)"],
       [taxLabel + "(" + (use === "eigyo" ? "営業用" : "自家用") + ")", tax],
       ["自動車重量税(車検ごと・年あたり目安)", weight],
       ["自賠責保険(年あたり目安)", jibai],
       ["車検印紙・検査手数料(年あたり目安)", printFee],
       ["車検・点検整備費(法定費用を除く)", seibi],
       ["任意保険", hoken],
+      ["@group", "変動費(燃料・その他)"],
       ["燃料費(" + kyori.toLocaleString("ja-JP") + "km ÷ " + nenpi + "km/L × " + tanka + "円)", fuel],
       ["タイヤ・消耗品費", tire]
     ];
@@ -373,6 +377,15 @@
     var tbody = $("breakdownBody");
     tbody.innerHTML = "";
     rows.forEach(function (r) {
+      if (r[0] === "@group") {
+        var trG = document.createElement("tr");
+        var thG = document.createElement("th");
+        thG.colSpan = 3;
+        thG.textContent = r[1];
+        trG.appendChild(thG);
+        tbody.appendChild(trG);
+        return;
+      }
       var v = Math.round(r[1]);
       total += v;
       var tr = document.createElement("tr");
@@ -390,7 +403,8 @@
     $("resultMain").innerHTML =
       "<strong>" + d.label + "(" + (use === "eigyo" ? "事業用" : "自家用") + ")の年間維持費:約 " + total.toLocaleString("ja-JP") + "円</strong>" +
       "(月あたり約 " + Math.round(total / 12).toLocaleString("ja-JP") + "円" +
-      (kyori > 0 ? "、1kmあたり約 " + (total / kyori).toFixed(1) + "円" : "") + ")";
+      (kyori > 0 ? "、1kmあたり約 " + (total / kyori).toFixed(1) + "円" : "") + ")" +
+      "<br>同じ条件が続いた場合、3年総額 約 " + (total * 3).toLocaleString("ja-JP") + "円/5年総額 約 " + (total * 5).toLocaleString("ja-JP") + "円(年間維持費×3・×5の単純合計)";
 
     var otherUse = (use === "eigyo") ? "jika" : "eigyo";
     var diff = d.tax[use] - d.tax[otherUse];
