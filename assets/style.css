@@ -315,3 +315,28 @@ details.faq p { margin-top: 0; }
   .site-header, .site-footer, .breadcrumb, .article, .btn-row, .no-print, .cta-box, .toc, .point-box { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* 広告スロット・PR表記 */
+.pr-banner {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-sub);
+  font-size: 0.72rem;
+  text-align: center;
+  padding: 3px 8px;
+  letter-spacing: 0.02em;
+}
+.ad-slot {
+  margin: 20px 0;
+  text-align: center;
+  overflow-x: auto;
+}
+.ad-slot-label {
+  display: block;
+  font-size: 0.68rem;
+  color: #9aa2ab;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+.ad-slot img { max-width: 100%; height: auto; }
+@media print { .ad-slot, .pr-banner { display: none !important; } }
