@@ -120,8 +120,9 @@
 
     mikiwaHakajimai: {
       offerId: "mikiwaHakajimai", name: "ミキワ(墓じまい)", asp: "moshimo",
-      category: "hakajimai", status: "pending", /* タグ取得待ち。取得後 destinationUrl を入れて active に */
-      destinationUrl: "",
+      category: "hakajimai", status: "active",
+      destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700586&p_id=1672&pc_id=3119&pl_id=90825",
+      impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700586&p_id=1672&pc_id=3119&pl_id=90825" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "墓じまいの進め方を資料で確認したい人向け",
       summary: "墓じまい代行サービスの資料請求。撤去工事や手続きの流れを、申し込み前に資料で確認できます。",
       recommendedFor: ["何から始めればいいか分からない", "費用の内訳を詳しく知りたい", "寺院との調整に不安がある"],
