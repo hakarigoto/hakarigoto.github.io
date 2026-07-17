@@ -22,14 +22,23 @@
   }
 
   /* ---------- 案件データ ----------
-     status: active / paused / pending / ended / rejected / replacement
+     status(表示制御): active / paused / ended / rejected / replacement
+     approvalStatus(ASP審査状態): not-applied / applied / approved / declined / expired / unknown
+       → 表示されるのは status==="active" かつ approvalStatus==="approved" のみ。
+         承認済みでもサイト都合で止めたい場合は status を paused にする。
+     endDate(任意): "YYYY-MM-DD"。過ぎたら自動的に表示停止。
+     replacementOfferId(任意): 終了案件の代替。代替は通常カードより弱い表現
+       (「関連サービス」表記)で表示され、「この結果に最適」等の断定はしない。
      resultTypes: このresultTypeの診断結果にのみ表示。"*" は結果を問わず表示可。
-     文言ルール: 事実確認できる内容のみ。断定・最上級表現は禁止。 */
+     文言ルール: 事実確認できる内容のみ。断定・最上級表現は禁止。
+       料金・地域・返金条件はASP案件詳細/広告主公式で確認できたものだけ記載し、
+       確認できないものは「公式サイトで確認」とする。
+     案件台帳(役割・確認日・レビュー予定)は ops側 sprint5/offers-ledger.json で管理。 */
   var OFFERS = {
 
     ucarpack: {
       offerId: "ucarpack", name: "ユーカーパック", asp: "a8",
-      category: "car-sale", status: "active",
+      category: "car-sale", status: "active", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+A4YRDM+3O80+5YJRM",
       headline: "まだ走れる車を、電話ラッシュなしで売却検討したい人向け",
       summary: "オークション形式で複数の買取店の価格を比較できるサービス。窓口が一本化されるため、一括査定にありがちな多数の業者からの電話対応を抑えられます。",
@@ -37,14 +46,14 @@
       notRecommendedFor: ["動かない車・解体前提の車(廃車専門サービスの方が適します)", "今日明日中に現金化したい場合"],
       feeText: "査定申込は無料",
       areaText: "対応地域は公式サイトで確認",
-      resultTypes: ["normal-sale", "high-resale-value"],
+      resultTypes: ["normal-sale"],
       eligiblePages: ["kuruma-haisha", "kuruma-iji-hi"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
 
     bikewan: {
       offerId: "bikewan", name: "バイクワン", asp: "a8",
-      category: "bike-sale", status: "active",
+      category: "bike-sale", status: "active", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+AM8BX6+1BFI+61RIA",
       headline: "バイクを出張査定で売却したい人向け",
       summary: "全国対応の無料出張買取サービス。自分でバイクを持ち込まずに、自宅での査定・売却を検討できます。",
@@ -59,7 +68,7 @@
 
     kenkikaitoriya: {
       offerId: "kenkikaitoriya", name: "建機買取屋.コム", asp: "a8",
-      category: "truck-sale", status: "active",
+      category: "truck-sale", status: "active", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+AJ95WA+4HKO+BWVTE",
       headline: "重機・建機・トラックの売却を検討している人向け",
       summary: "重機・建機の専門買取サービス。遊休機や使わなくなった車両の見積り査定を無料で依頼できます。",
@@ -74,7 +83,7 @@
 
     ihin110: {
       offerId: "ihin110", name: "遺品整理110番", asp: "a8",
-      category: "estate-cleanup", status: "active",
+      category: "estate-cleanup", status: "active", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+ACPE8Q+39GM+5MFLEA",
       headline: "遺品整理の費用を、業者に見積もってもらいたい人向け",
       summary: "遺品整理業者の紹介サービス。見積依頼は無料で、実際の費用は物量や作業条件をもとに業者が提示します。",
@@ -89,7 +98,7 @@
 
     fireworks: {
       offerId: "fireworks", name: "不用品回収(FireWorks)", asp: "a8",
-      category: "junk-removal", status: "active",
+      category: "junk-removal", status: "active", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+AINQAI+4X26+NTJWY",
       headline: "まとまった不用品を一度に処分したい人向け",
       summary: "不用品回収サービス。自治体回収では出せない量や大きさのものを、まとめて引き取ってもらう選択肢です。",
@@ -104,7 +113,7 @@
 
     seaceremony: {
       offerId: "seaceremony", name: "シーセレモニー", asp: "moshimo",
-      category: "sea-burial", status: "active",
+      category: "sea-burial", status: "active", approvalStatus: "approved",
       destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736",
       impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "改葬先として海洋散骨を検討している人向け",
@@ -120,7 +129,7 @@
 
     mikiwaHakajimai: {
       offerId: "mikiwaHakajimai", name: "ミキワ(墓じまい)", asp: "moshimo",
-      category: "hakajimai", status: "active",
+      category: "hakajimai", status: "active", approvalStatus: "approved",
       destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700586&p_id=1672&pc_id=3119&pl_id=90825",
       impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700586&p_id=1672&pc_id=3119&pl_id=90825" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "墓じまいの進め方を資料で確認したい人向け",
@@ -136,7 +145,7 @@
 
     gaiaTaishoku: {
       offerId: "gaiaTaishoku", name: "弁護士法人ガイア(退職代行)", asp: "moshimo",
-      category: "taishoku-daiko", status: "active",
+      category: "taishoku-daiko", status: "active", approvalStatus: "approved",
       destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517",
       impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "未払い賃金や有給の交渉・請求まで任せたい人向け(弁護士)",
@@ -152,7 +161,7 @@
 
     otokoTaishoku: {
       offerId: "otokoTaishoku", name: "男の退職代行", asp: "moshimo",
-      category: "taishoku-daiko", status: "active",
+      category: "taishoku-daiko", status: "active", approvalStatus: "approved",
       destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700575&p_id=2166&pc_id=4520&pl_id=29013",
       impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700575&p_id=2166&pc_id=4520&pl_id=29013" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "男性向けサービスで退職を任せたい人向け",
@@ -168,7 +177,7 @@
 
     watashiNext: {
       offerId: "watashiNext", name: "わたしNEXT", asp: "moshimo",
-      category: "taishoku-daiko", status: "active",
+      category: "taishoku-daiko", status: "active", approvalStatus: "approved",
       destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700576&p_id=2000&pc_id=4039&pl_id=27334",
       impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700576&p_id=2000&pc_id=4039&pl_id=27334" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "女性向けサービスで退職を任せたい人向け",
@@ -193,9 +202,20 @@
     return m ? (m[1] + "年" + parseInt(m[2], 10) + "月" + parseInt(m[3], 10) + "日") : iso;
   }
 
-  function cardHtml(o, slotId) {
+  /* 表示可否の一元判定(Sprint 5)
+     active かつ approved かつ リンクあり かつ 終了日前、のすべてを満たす場合のみ表示 */
+  function isLive(o) {
+    if (o.status !== "active") return false;
+    if (o.approvalStatus !== "approved") return false;
+    if (!o.destinationUrl) return false;
+    if (o.endDate && Date.now() > Date.parse(o.endDate + "T23:59:59+09:00")) return false;
+    return true;
+  }
+
+  function cardHtml(o, slotId, isReplacement) {
     var h = '<aside class="offer-card" data-offer-id="' + esc(o.offerId) + '">';
     h += '<div class="offer-card-label">PR</div>';
+    if (isReplacement) h += '<p class="offer-card-h">関連サービスとして確認できます</p>';
     h += '<p class="offer-card-title">' + esc(o.headline) + "</p>";
     h += '<p class="offer-card-summary">' + esc(o.summary) + "</p>";
     h += '<div class="offer-card-fit"><p class="offer-card-h">向いている人</p><ul>';
@@ -228,36 +248,76 @@
     if (!mount) mount = document.querySelector('.offer-slot[data-slot="' + slotId + '"]');
     if (!mount) return [];
 
-    var matches = [];
+    function matchesContext(o) {
+      if (o.eligiblePages.indexOf(pageId) === -1) return false;
+      if (o.resultTypes.indexOf("*") === -1) {
+        if (!resultType || o.resultTypes.indexOf(resultType) === -1) return false;
+      }
+      return true;
+    }
+
+    var matches = [];      /* {offer, isReplacement} */
+    var shownIds = {};
     for (var key in OFFERS) {
       var o = OFFERS[key];
-      if (o.status !== "active" || !o.destinationUrl) continue;
-      if (o.eligiblePages.indexOf(pageId) === -1) continue;
-      if (o.resultTypes.indexOf("*") === -1) {
-        if (!resultType || o.resultTypes.indexOf(resultType) === -1) continue;
+      if (!matchesContext(o)) continue;
+      if (isLive(o)) {
+        if (!shownIds[o.offerId]) { matches.push({ offer: o, isReplacement: false }); shownIds[o.offerId] = 1; }
+      } else if (o.replacementOfferId) {
+        /* 終了・停止した案件の代替。代替自体が有効な場合のみ、弱い表現で表示する。
+           完全一致案件と同列にしないため、代替はこのページの通常マッチには重複させない。 */
+        var r = OFFERS[o.replacementOfferId];
+        if (r && isLive(r) && !shownIds[r.offerId]) {
+          matches.push({ offer: r, isReplacement: true });
+          shownIds[r.offerId] = 1;
+        }
       }
-      matches.push(o);
     }
 
     if (!matches.length) { mount.innerHTML = ""; mount.style.display = "none"; return []; }
 
+    var POS = ["primary", "secondary", "third"];
+    function cardPos(i) { return POS[i] || "other"; }
+
     var html = "";
-    for (var i = 0; i < matches.length; i++) html += cardHtml(matches[i], slotId);
+    for (var i = 0; i < matches.length; i++) html += cardHtml(matches[i].offer, slotId, matches[i].isReplacement);
     mount.innerHTML = html;
     mount.style.display = "";
 
     for (var k = 0; k < matches.length; k++) {
-      track("affiliate_impression", { offer_id: matches[k].offerId, page_id: pageId, slot_id: slotId, result_type: resultType, variant: "card-a" });
+      track("affiliate_impression", {
+        offer_id: matches[k].offer.offerId,
+        page_id: pageId,
+        slot_id: slotId,
+        result_type: resultType,
+        category: matches[k].offer.category,
+        cta_variant: "eligibility-check",
+        card_position: cardPos(k),
+        offer_count: matches.length
+      });
     }
     var links = mount.querySelectorAll("a.offer-card-cta");
     for (var n = 0; n < links.length; n++) {
-      (function (a) {
+      (function (a, idx) {
         a.addEventListener("click", function () {
-          track("affiliate_click", { offer_id: a.getAttribute("data-offer-id"), page_id: pageId, slot_id: slotId, result_type: resultType, cta_variant: "eligibility-check" });
+          var oid = a.getAttribute("data-offer-id");
+          var od = OFFERS[oid] || {};
+          track("affiliate_click", {
+            offer_id: oid,
+            page_id: pageId,
+            slot_id: slotId,
+            result_type: resultType,
+            category: od.category || "",
+            cta_variant: "eligibility-check",
+            card_position: cardPos(idx),
+            offer_count: links.length
+          });
         });
-      })(links[n]);
+      })(links[n], n);
     }
-    return matches;
+    var out = [];
+    for (var m = 0; m < matches.length; m++) out.push(matches[m].offer);
+    return out;
   }
 
   function diagnosisComplete(pageId, resultType) {
