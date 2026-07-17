@@ -166,8 +166,46 @@
 </div>
 <p>迷ったら、<strong>「会社に何かを『お願い・交渉』する必要があるか」</strong>を基準にしてください。伝えるだけでよければ民間か労組、交渉が要るなら労組、お金の請求や法的トラブルがあるなら弁護士、というのが基本の考え方です。有給がたくさん残っている人は、交渉できる類型を選んだほうが料金差以上のリターンになるケースが多いでしょう。</p>
 
+<section class="conversion-prep" id="hikaku">
+<h2>提携中サービスの比較(事実情報)</h2>
+<p class="conv-pre">以下の表は、当サイトが提携中のサービスのみを対象とした事実情報の整理であり、PR表記の対象です。掲載順に意味はなく、順位付け・優劣の評価ではありません。</p>
+<div class="table-wrap">
+<table class="method-compare">
+<thead>
+<tr><th>比較軸</th><th>弁護士法人ガイア(退職代行)</th><th>男の退職代行</th><th>わたしNEXT</th></tr>
+</thead>
+<tbody>
+<tr><th>運営主体</th><td>弁護士法人</td><td>民間サービス(労働組合との提携有無は要公式確認)</td><td>民間サービス(労働組合との提携有無は要公式確認)</td></tr>
+<tr><th>主な対象</th><td>限定の記載なし(要公式確認)</td><td>男性の退職に特化</td><td>女性の退職に特化</td></tr>
+<tr><th>会社との交渉可否</th><td>可(有給消化・退職日等の交渉に対応)</td><td>運営類型により異なるため要公式確認</td><td>運営類型により異なるため要公式確認</td></tr>
+<tr><th>未払い賃金等の法的請求</th><td>対応可</td><td>不可(弁護士のみ対応できる領域)</td><td>不可(弁護士のみ対応できる領域)</td></tr>
+<tr><th>相談方法</th><td>相談は無料(方法は要公式確認)</td><td>要公式確認</td><td>要公式確認</td></tr>
+<tr><th>料金表示</th><td>弁護士は5万円〜が目安(未払い金請求は成功報酬が別途かかるのが一般的)</td><td>公式サイトで確認</td><td>公式サイトで確認</td></tr>
+<tr><th>返金条件</th><td>要公式確認</td><td>要公式確認</td><td>要公式確認</td></tr>
+<tr><th>対応時間</th><td>要公式確認</td><td>要公式確認</td><td>要公式確認</td></tr>
+<tr><th>情報確認日</th><td>2026年7月18日</td><td>2026年7月18日</td><td>2026年7月18日</td></tr>
+</tbody>
+</table>
+</div>
+<div class="pre-check">
+<h3>依頼前に確認すること</h3>
+<ul>
+<li>運営主体はどれか(弁護士/労働組合/民間)</li>
+<li>会社との「交渉」まで依頼したいか、伝達だけでよいか</li>
+<li>有給休暇の残日数・未払い賃金の有無</li>
+<li>貸与品(PC・制服・保険証等)の返却方法</li>
+<li>会社から本人・家族への連絡をどう扱ってもらえるか</li>
+<li>料金に含まれる範囲と追加料金の有無</li>
+<li>返金条件(退職できなかった場合の扱い)</li>
+<li>懲戒や損害賠償を主張されている場合は弁護士への相談を優先する</li>
+</ul>
+</div>
+</section>
+
+<p class="conv-pre">自分だけでの退職連絡が難しく、民間サービスの利用を検討する場合は、運営主体と対応範囲を確認したうえで選択してください。以下は診断・記事の内容に適合する提携サービスです(PR)。</p>
 <!-- OFFER-SLOT: result-primary(検討層向け・3類型の案件カード) -->
   <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+<p class="conv-post">民間サービスを利用しない場合は、勤務先の就業規則の退職手続きを確認するか、<a href="https://www.mhlw.go.jp/general/seido/chihou/kaiketu/soudan.html" rel="noopener" target="_blank">総合労働相談コーナー(無料・厚労省)</a>に相談できます。</p>
 
 <h2 id="ryokin">料金相場の目安</h2>
 <p>2026年7月時点での一般的な料金水準は次のとおりです(サービスや事案により幅があります)。</p>
@@ -290,10 +328,11 @@
   if (!window.HKG) return;
   /* このページには診断ツールがないため、ページ読み込み時に描画する。
      記事を読みに来た人 = 退職代行の検討層として agency-consideration を適用。 */
-  HKG.render({ pageId: "taishoku-daiko", resultType: "agency-consideration", slotId: "result-primary" });
-  HKG.render({ pageId: "taishoku-daiko", resultType: "agency-consideration", slotId: "article-end" });
+  HKG.render({ pageId: "taishoku-daiko", resultType: "agency-consideration", slotId: "result-primary", placementRole: "primary-conversion", moduleId: "taishoku-daiko-decision" });
+  /* article-end は result-primary と同一resultTypeで同じ3案件を重複表示する構成だったため、
+     同一案件の表示回数を抑える目的でrender呼び出しを削除(スロット自体は非表示のまま残置)。 */
   /* 「未払い・トラブルがある場合」のセクション直後: 弁護士系(legal-consultation)のみ */
-  HKG.render({ pageId: "taishoku-daiko", resultType: "legal-consultation", slotId: "legal" });
+  HKG.render({ pageId: "taishoku-daiko", resultType: "legal-consultation", slotId: "legal", placementRole: "primary-conversion", moduleId: "taishoku-daiko-decision" });
 })();
 </script>
 <script src="/assets/ads.js"></script>

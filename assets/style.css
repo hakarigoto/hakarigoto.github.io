@@ -560,3 +560,23 @@ details.faq p { margin-top: 0; }
 .content-trust .trust-report{display:inline-block;margin-top:8px;font-size:.85rem;color:#64748b;text-decoration:underline}
 .content-trust .trust-note{margin:8px 0 0;font-size:.84rem;color:#64748b}
 @media (max-width:560px){.content-trust dl div{flex-direction:column;gap:2px}.content-trust dt{flex:none}}
+
+/* ===== Sprint 9: conversion準備コンポーネント ===== */
+.conversion-prep{margin:28px 0}
+.method-compare{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+.method-compare th,.method-compare td{border:1px solid #e3e8ef;padding:8px 10px;text-align:left;vertical-align:top}
+.method-compare th{background:#f6f8fa;white-space:nowrap}
+.table-wrap{overflow-x:auto}
+.fit-cases{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.fit-cases>div{border:1px solid #e3e8ef;border-radius:10px;padding:12px 14px}
+.fit-cases h3,.fit-cases p.h{margin:0 0 8px;font-size:.95rem}
+.fit-yes h3{color:#166534}.fit-no h3{color:#9a3412}
+.fit-cases ul{margin:0;padding-left:1.2em}
+.fit-cases li{margin:4px 0}
+.pre-check{background:#f6f8fa;border:1px solid #e3e8ef;border-radius:10px;padding:14px 16px;margin:14px 0}
+.pre-check h3{margin:0 0 8px;font-size:.95rem}
+.pre-check ul{margin:0;padding-left:1.2em;columns:2;column-gap:24px}
+.pre-check li{margin:4px 0;break-inside:avoid}
+.conv-pre{margin:14px 0 6px;color:#475569}
+.conv-post{margin:10px 0 0;font-size:.9rem;color:#64748b}
+@media (max-width:600px){.fit-cases{grid-template-columns:1fr}.pre-check ul{columns:1}}

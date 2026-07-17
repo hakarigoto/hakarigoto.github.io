@@ -227,8 +227,52 @@
   </div>
 </section>
 
+<section class="conversion-prep">
+  <h2>遺品整理の進め方の比較</h2>
+  <div class="table-wrap">
+    <table class="method-compare">
+      <tr><th>方法</th><th>向いているケース</th><th>注意点</th></tr>
+      <tr><td>自分で少しずつ整理</td><td>時間に余裕があり、自分のペースで進めたい場合</td><td>物量が多いと長期化しやすく、大型品の搬出は負担になります</td></tr>
+      <tr><td>自治体回収の活用</td><td>粗大ごみなど、費用を抑えて処分したい場合</td><td>収集日程が決まっており、分別・搬出は自分で行う必要があります</td></tr>
+      <tr><td>買取・供養の個別依頼</td><td>貴金属・骨董などの買取対象品や、供養したい品がある場合</td><td>対象品目や供養の方法は依頼先ごとに異なります</td></tr>
+      <tr><td>遺品整理業者へ依頼</td><td>遠方の実家・物量が多い・期限があるなど、まとめて任せたい場合</td><td>料金と、処分方法（許可の有無）・契約条件を確認してください</td></tr>
+    </table>
+  </div>
+  <div class="fit-cases">
+    <div class="fit-yes">
+      <h3>業者への依頼が向くケース</h3>
+      <ul>
+        <li>遠方の実家の整理で、通うのが難しい</li>
+        <li>物量が多く、自分たちでは片づけきれない</li>
+        <li>退去・売却などの期限がある</li>
+      </ul>
+    </div>
+    <div class="fit-no">
+      <h3>向かないケース</h3>
+      <ul>
+        <li>自分のペースで整理できる場合</li>
+        <li>少量の場合（自治体回収の方が費用を抑えられます）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pre-check">
+    <h3>依頼前に確認すること</h3>
+    <ul>
+      <li>作業範囲（仕分け・清掃をどこまで含むか）</li>
+      <li>搬出条件（階段・エレベーターの有無）</li>
+      <li>追加料金が発生する条件</li>
+      <li>買取品の扱い（作業費との相殺の可否）</li>
+      <li>供養・形見分けへの対応</li>
+      <li>処分方法（一般廃棄物収集運搬の許可の有無）</li>
+      <li>キャンセル条件</li>
+      <li>見積書の内訳</li>
+    </ul>
+  </div>
+  <p class="conv-pre">遠方の実家や物量が多いなど、業者への依頼を検討する場合は、選択肢の一つとして以下の提携サービス（PR）を確認できます。</p>
+</section>
 <!-- AD-SLOT: ihin (offer-card管理) -->
   <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+<p class="conv-post">自治体の粗大ごみ受付など正規の処分ルートは市区町村の案内で確認できます。契約トラブルなどの相談は国民生活センター（消費者ホットライン188）へ。</p>
 
 <div class="cta-box">
   <p class="cta-box-title">品物ごとの正しい捨て方も30秒で診断</p>
@@ -489,7 +533,7 @@
     if (window.HKG) {
       var rt = "estate-cleanup";
       HKG.diagnosisComplete("katazuke-ihin-hiyo", rt);
-      HKG.render({ pageId: "katazuke-ihin-hiyo", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "katazuke-ihin-hiyo", resultType: rt, slotId: "result-primary", placementRole: "primary-conversion", moduleId: "ihin-decision" });
       HKG.render({ pageId: "katazuke-ihin-hiyo", resultType: rt, slotId: "article-end" });
     }
   });

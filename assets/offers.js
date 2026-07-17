@@ -47,7 +47,7 @@
       feeText: "査定申込は無料",
       areaText: "対応地域は公式サイトで確認",
       resultTypes: ["normal-sale"],
-      eligiblePages: ["kuruma-haisha", "kuruma-iji-hi"],
+      eligiblePages: ["kuruma-haisha"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
 
@@ -62,7 +62,7 @@
       feeText: "出張査定は無料",
       areaText: "対応地域は公式サイトで確認",
       resultTypes: ["normal-sale", "custom-bike"],
-      eligiblePages: ["bike-teban", "bike-iji-hi"],
+      eligiblePages: ["bike-teban"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
 
@@ -77,7 +77,7 @@
       feeText: "見積り査定は無料",
       areaText: "対応地域は公式サイトで確認",
       resultTypes: ["normal-sale"],
-      eligiblePages: ["truck-teban", "truck-iji-hi"],
+      eligiblePages: ["truck-teban"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
 
@@ -141,6 +141,22 @@
       resultTypes: ["perpetual-memorial", "ossuary", "tree-burial", "sea-burial", "undecided"],
       eligiblePages: ["manner-hakajimai"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
+    },
+
+
+    dmmfx: {
+      offerId: "dmmfx", name: "DMM FX", asp: "a8",
+      category: "fx", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=3THCME+DD2ACA+1WP2+69WPU",
+      headline: "リスクを理解したうえで口座条件を確認したい人向け",
+      summary: "FX口座の一つ。取引条件・スプレッド・サポート等は口座ごとに異なるため、複数口座の公式情報を比較して判断してください。",
+      recommendedFor: ["必要証拠金と余裕資金を確認した", "ロスカットの仕組みを理解している", "複数口座の条件を比較する段階にいる"],
+      notRecommendedFor: ["FXは元本を超える損失(追証)が生じ得るハイリスク取引です", "生活資金・使途の決まったお金での取引", "仕組みを理解する前の口座開設"],
+      feeText: "口座開設・維持は無料(取引コストは公式サイトで確認)",
+      areaText: "取引条件・キャンペーンは公式サイトで確認",
+      resultTypes: ["ready-to-trade"],
+      eligiblePages: ["fx-shokokin"],
+      lastCheckedAt: "2026-07-18", disclosure: "PR"
     },
 
     gaiaTaishoku: {
@@ -243,6 +259,8 @@
      mount: 描画先要素 or セレクタ。省略時は .offer-slot[data-slot=slotId] を探す。 */
   function renderOffers(opts) {
     var pageId = opts.pageId, resultType = opts.resultType || null, slotId = opts.slotId || "result-primary";
+    var placementRole = opts.placementRole || "primary-conversion";
+    var moduleId = opts.moduleId || null;
     var mount = opts.mount;
     if (typeof mount === "string") mount = document.querySelector(mount);
     if (!mount) mount = document.querySelector('.offer-slot[data-slot="' + slotId + '"]');
@@ -301,7 +319,9 @@
         category: matches[k].offer.category,
         cta_variant: "eligibility-check",
         card_position: cardPos(k),
-        offer_count: matches.length
+        offer_count: matches.length,
+        placement_role: placementRole,
+        conversion_module_id: moduleId
       });
     }
     var links = mount.querySelectorAll("a.offer-card-cta");
@@ -318,7 +338,9 @@
             category: od.category || "",
             cta_variant: "eligibility-check",
             card_position: cardPos(idx),
-            offer_count: links.length
+            offer_count: links.length,
+            placement_role: placementRole,
+            conversion_module_id: moduleId
           });
         });
       })(links[n], n);

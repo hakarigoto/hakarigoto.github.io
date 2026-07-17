@@ -51,7 +51,7 @@
   /* スロットkey → 広告HTMLタグ。承認済み案件を貼る場所をコメントで明示。 */
   var ADS = {
     /* ▼ やめどきナビ(退職・失業保険) */
-    "tenshoku":          `<a href="//af.moshimo.com/af/c/click?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade">退職を自分で言い出せないときは — 弁護士法人ガイアの退職代行(無料相談)</a><img src="//i.moshimo.com/af/i/impression?a_id=5700573&p_id=5546&pc_id=15198&pl_id=71517" width="1" height="1" style="border:none;" loading="lazy" alt="">`, /* もしも ガイア(退職代行) */
+    "tenshoku":          "", /* Sprint 9: 静的表示廃止。退職代行はoffers.jsのカード(taishoku-daiko)に一元化し、記事からは内部リンク経由 */
     "taishoku-daiko":    "", /* 男の退職代行 → offer-card管理へ移行(assets/offers.js の otokoTaishoku / watashiNext / gaiaTaishoku)。静的スロットは廃止 */
     "tenshoku-kangoshi": "", /* わたしNEXT → offer-card管理へ移行(assets/offers.js の watashiNext)。静的スロットは廃止 */
     "money":             "", /* 未承認(退職金→FP系の提携待ち) */
@@ -59,24 +59,24 @@
     /* ▼ マナー電卓(冠婚葬祭) */
     "sogi":    "", /* 未承認(家族葬のこれから・よりそう=A8審査中) */
     "wedding": "", /* 未承認(ご祝儀→ブライダル系の提携待ち) */
-    "hakajimai": `<a href="//af.moshimo.com/af/c/click?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade">海洋散骨(小型クルーザー・家族向け)の無料相談はこちら</a><img src="//i.moshimo.com/af/i/impression?a_id=5700585&p_id=4822&pc_id=12801&pl_id=63736" width="1" height="1" style="border:none;" loading="lazy" alt="">`, /* もしも シーセレモニー(海洋散骨) */
+    "hakajimai": "", /* Sprint 9: 未使用タグを廃止(offer-card管理に移行済み) */
 
     /* ▼ かたづけ電卓(不用品・遺品整理) */
-    "ihin":            `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+ACPE8Q+39GM+5MFLEA" rel="nofollow sponsored">遺品整理業者の無料一括見積もり【遺品整理110番】</a>`, /* A8 遺品整理110番 */
-    "fuyouhin":        `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+AINQAI+4X26+NTJWY" rel="nofollow sponsored">不用品回収の無料見積もりを依頼する</a>`, /* A8 不用品回収FireWorks */
+    "ihin":            "", /* Sprint 9: 未使用タグを廃止(offer-card管理に移行済み) */
+    "fuyouhin":        "", /* Sprint 9: 未使用タグを廃止(offer-card管理に移行済み) */
     "digital-shukatsu": "", /* 案件消滅を確認(2026-07-18 A8検索0件)。デジタル遺品分野の新案件が出るまで空のまま */
 
     /* ▼ くるま・バイク・トラック電卓 */
-    "kaitori":      `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+A4YRDM+3O80+5YJRM" rel="nofollow sponsored">愛車が今いくらか無料でチェック(オークション型査定)</a>`, /* A8 ユーカーパック */
+    "kaitori":      "", /* Sprint 9: 維持費ページの直接査定広告を廃止(手放し診断経由に一本化) */
     "hoken":        "", /* 未承認(自動車保険→提携待ち) */
-    "bike-kaitori": `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+AM8BX6+1BFI+61RIA" rel="nofollow sponsored">バイクの無料出張査定を申し込む【バイクワン】</a>`, /* A8 バイクワン */
+    "bike-kaitori": "", /* Sprint 9: 同上(手放し診断経由に一本化) */
     "bike-hoken":   "", /* 未承認(バイク保険→提携待ち) */
-    "truck-kaitori":`<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+AJ95WA+4HKO+BWVTE" rel="nofollow sponsored">重機・建機・トラックの無料査定【建機買取屋.コム】</a>`, /* A8 建機買取屋 */
+    "truck-kaitori":"", /* Sprint 9: 同上(手放し診断経由に一本化) */
 
     /* ▼ 金融(つみたて・ローン・FX) */
     "shoken":   "", /* 未承認(証券口座→アクセストレード等で提携予定) */
     "cardloan": "", /* 未承認(楽天銀行スーパーローン等→審査中) */
-    "fx-kouza": `<a href="https://px.a8.net/svt/ejp?a8mat=3THCME+DD2ACA+1WP2+69WPU" rel="nofollow sponsored">FX口座を無料で開設する【DMM FX】</a>`, /* A8 DMM FX */
+    "fx-kouza": "", /* Sprint 9: offers.jsのdmmfxへ構造化移行(fx-shokokinで文脈ゲート表示) */
 
     /* ▼ ペット電卓 */
     "pet-senior": "" /* 未承認(ペット火葬・シニアケア→提携待ち) */

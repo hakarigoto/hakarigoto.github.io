@@ -234,9 +234,60 @@
 </details>
 
 <p class="note">【データ基準日】2026年7月時点。個人口座のレバレッジ上限25倍(証拠金率4%以上)は金融商品取引業等に関する内閣府令に基づく制度の説明です。計算結果は入力値に基づく概算であり、実際の必要証拠金・ロスカット水準・執行価格はFX会社ごとの基準・相場状況により異なります。本ページは計算ツールおよび制度の一般的な解説であり、投資助言・勧誘ではありません。外国為替証拠金取引には元本を上回る損失が生じるおそれがあります。</p>
-<!-- AD-SLOT: fx-kouza -->
-  <div class="ad-slot" data-ad="fx-kouza"></div>
+
+<section class="conversion-prep" id="kouza-check">
+  <h2>口座を検討する前に</h2>
+  <p>FX口座はどこか1社が誰にとっても最適ということはありません。取引を始めるかどうか自体を含めて、次を確認してから判断してください。</p>
+  <div class="fit-cases">
+    <div class="fit-yes"><h3>口座の比較に進んでよい状態</h3><ul>
+      <li>必要証拠金だけでなく余裕資金を確認した</li>
+      <li>ロスカット・追証の仕組みを理解している</li>
+      <li>失っても生活に影響しない資金で始める</li>
+    </ul></div>
+    <div class="fit-no"><h3>まだ口座を作るべきでない状態</h3><ul>
+      <li>レバレッジと損失リスクの理解に自信がない</li>
+      <li>生活資金・使途の決まったお金しかない</li>
+      <li>「簡単に儲かる」といった話を根拠にしている</li>
+    </ul></div>
+  </div>
+  <div class="pre-check"><h3>口座を選ぶ前に確認すること</h3><ul>
+    <li>投資に回せる金額(余裕資金)</li>
+    <li>想定する最大損失額</li>
+    <li>ロスカットの基準(会社ごとに異なる)</li>
+    <li>スプレッド(実質コスト)</li>
+    <li>取引・入出金の手数料</li>
+    <li>出金の条件と日数</li>
+    <li>デモ口座の有無</li>
+    <li>公式のリスク説明を読んだか</li>
+  </ul></div>
+  <details id="fx-ready">
+    <summary>リスクを確認したうえで、提携口座の条件を見る(PR)</summary>
+    <p class="conv-pre">条件を自分で入力して計算し、上記のリスクを確認した場合は、口座の一つとして以下の提携サービスを確認できます。複数口座の公式情報を比較して判断してください。</p>
+    <div class="offer-slot" data-slot="result-primary"></div>
+    <p class="conv-post">口座を開設しない選択肢もあります。少額・デモでの練習や、<a href="https://www.shiruporuto.jp/public/" rel="noopener" target="_blank">知るぽると</a>などの中立的な情報で理解を深めてから再検討してください。</p>
+  </details>
+</section>
 </article>
+<script>
+/* Sprint 9: DMM FXの文脈ゲート。自分で入力して計算し、リスク確認のdetailsを
+   開いた場合のみ ready-to-trade でカードを表示。計算結果の表示だけでは出さない。 */
+(function () {
+  "use strict";
+  var touched = false, fired = false;
+  var sim = document.getElementById("sim");
+  if (sim) sim.addEventListener("input", function () { touched = true; });
+  var dt = document.getElementById("fx-ready");
+  if (dt) dt.addEventListener("toggle", function () {
+    if (!dt.open || fired || !window.HKG) return;
+    fired = true;
+    if (touched) {
+      HKG.diagnosisComplete("fx-shokokin", "ready-to-trade");
+      HKG.render({ pageId: "fx-shokokin", resultType: "ready-to-trade", slotId: "result-primary",
+                   placementRole: "primary-conversion", moduleId: "fx-account-decision" });
+    }
+  });
+})();
+</script>
 
 <section class="next-actions" aria-labelledby="next-actions-title">
   <h2 id="next-actions-title">次に確認すること</h2>
@@ -396,6 +447,7 @@
   updateQtyUI();
 })();
 </script>
+<script src="/assets/offers.js"></script>
 <script src="/assets/ads.js"></script>
 <script src="/assets/nav.js" defer></script>
 </body>

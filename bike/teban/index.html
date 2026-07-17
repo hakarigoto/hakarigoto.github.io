@@ -204,8 +204,53 @@
   </div>
 
   <div class="result-box" id="resultBox" style="display:none" aria-live="polite"></div>
+  <section class="conversion-prep">
+    <h2>手放し方の比較</h2>
+    <div class="table-wrap">
+      <table class="method-compare">
+        <tr><th>選択肢</th><th>向いているケース</th><th>注意点</th></tr>
+        <tr><td>保有を続ける</td><td>維持費を負担でき、今後も乗る予定がある</td><td>軽自動車税・自賠責・保管場所の負担と、放置による状態悪化が続く</td></tr>
+        <tr><td>下取り</td><td>次のバイクを購入する予定がある</td><td>購入額と一体になり、売却価格だけを切り出して比較しにくい</td></tr>
+        <tr><td>買取</td><td>走行でき、中古車両としての価値が見込める（旧車・絶版車は不動でも対象になる例あり）</td><td>査定条件・引き渡し条件・書類の要否を事前に確認</td></tr>
+        <tr><td>廃車（返納手続き）</td><td>不動・事故で値が付かず、再利用の見込みがない</td><td>原付は市区町村役場、126cc以上は運輸支局での手続き。車体の処分方法・費用も確認</td></tr>
+      </table>
+    </div>
+    <div class="fit-cases">
+      <div class="fit-yes">
+        <h3>民間の査定サービスが向いているケース</h3>
+        <ul>
+          <li>走行できるバイクの売却を検討している</li>
+          <li>店舗へ持ち込まず、自宅での出張査定を希望する</li>
+          <li>手放すかどうか決める前に価格を知りたい</li>
+        </ul>
+      </div>
+      <div class="fit-no">
+        <h3>向かないケース</h3>
+        <ul>
+          <li>名義や書類（標識交付証明書・車検証など）が揃っていない</li>
+          <li>対応車種・対応エリアに入っているか未確認（公式サイトでの確認が必要）</li>
+          <li>今日明日中など、急いで現金化したい</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pre-check">
+      <h3>査定を依頼する前に確認すること</h3>
+      <ul>
+        <li>査定対象になるか（メーカー・車種・年式）</li>
+        <li>走行の可否・不動や事故歴の状態</li>
+        <li>標識交付証明書・車検証など書類の有無</li>
+        <li>ローン残債・名義の状態</li>
+        <li>引き渡し方法（出張査定か持込か）</li>
+        <li>キャンセル条件</li>
+        <li>手数料の有無</li>
+        <li>入金時期</li>
+      </ul>
+    </div>
+    <p class="conv-pre">走行できるバイクの売却を検討する場合は、査定方法の一つとして以下の提携サービス（PR）を確認できます。</p>
+  </section>
   <!-- AD-SLOT: bike-kaitori (offer-card管理) -->
   <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+  <p class="conv-post">廃車（ナンバー返納）の手続きは、原付（125cc以下）は市区町村役場、126cc以上は運輸支局で確認できます。軽自動車税（種別割）については市区町村の税務窓口が案内しています。買い替えの場合は購入先の販売店でも下取りを相談できます。条件を変えて<a href="#sim">診断をやり直す</a>こともできます。</p>
   <p class="note">※ 本診断は一般に報じられている中古バイク市場の傾向に基づく目安であり、実際に値が付くかどうか・金額を保証するものではありません。査定額は車種・個体の状態・時期・業者によって大きく変わります。</p>
 </section>
 
@@ -475,7 +520,7 @@
         : (v.custom !== "stock") ? "custom-bike"
         : "normal-sale";
       HKG.diagnosisComplete("bike-teban", rt);
-      HKG.render({ pageId: "bike-teban", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "bike-teban", resultType: rt, slotId: "result-primary", placementRole: "primary-conversion", moduleId: "bike-sale-decision" });
     }
   }
 

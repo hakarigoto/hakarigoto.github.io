@@ -227,8 +227,53 @@
 
   <div id="resultArea" hidden>
     <div class="result-box" id="resultBox"></div>
+    <section class="conversion-prep">
+      <h2>手放し方の比較</h2>
+      <div class="table-wrap">
+        <table class="method-compare">
+          <tr><th>選択肢</th><th>向いているケース</th><th>注意点</th></tr>
+          <tr><td>保有を続ける</td><td>維持費を負担でき、今後も利用する予定がある</td><td>車検・保険・修理費の負担が続く。13年超は税の重課もある</td></tr>
+          <tr><td>下取り</td><td>次の車を購入する予定がある</td><td>購入額と一体になり、売却価格だけを切り出して比較しにくい</td></tr>
+          <tr><td>買取</td><td>走行でき、中古車としての価値が見込める</td><td>査定条件・引き渡し条件・キャンセル可否を事前に確認</td></tr>
+          <tr><td>廃車・解体</td><td>不動・事故・価値が低い場合</td><td>手続き・費用のほか、税や自賠責の還付の扱いを確認</td></tr>
+        </table>
+      </div>
+      <div class="fit-cases">
+        <div class="fit-yes">
+          <h3>民間の査定サービスが向いているケース</h3>
+          <ul>
+            <li>走行できる車を売却するかどうか迷っている</li>
+            <li>複数の買取店の価格を比べてから決めたい</li>
+            <li>業者との電話のやり取りをなるべく減らしたい</li>
+          </ul>
+        </div>
+        <div class="fit-no">
+          <h3>向かないケース</h3>
+          <ul>
+            <li>動かない車・解体前提の車（廃車買取・解体の窓口が適します）</li>
+            <li>今日明日中など、急いで現金化したい</li>
+            <li>車検証などの書類が揃っていない・所有者欄がローン会社等のまま</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pre-check">
+        <h3>査定を依頼する前に確認すること</h3>
+        <ul>
+          <li>査定対象になるか（車種・年式）</li>
+          <li>走行距離・故障や事故歴の状態</li>
+          <li>車検証など書類の有無</li>
+          <li>ローン残債の有無（車検証の所有者欄）</li>
+          <li>引き渡し方法（出張・持込・レッカー）</li>
+          <li>キャンセル条件</li>
+          <li>手数料の有無</li>
+          <li>入金時期</li>
+        </ul>
+      </div>
+      <p class="conv-pre">通常どおり走行でき、中古車としての売却を検討する場合は、査定方法の一つとして以下の提携サービス（PR）を確認できます。</p>
+    </section>
     <!-- AD-SLOT: kaitori (offer-card管理: 診断結果がnormal-saleの場合のみ表示) -->
   <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+    <p class="conv-post">廃車（抹消登録）や重量税・自賠責の還付の手続きは運輸支局・軽自動車検査協会で、自動車税（種別割）は都道府県税事務所（軽自動車税は市区町村）で確認できます。下取りは次の車の購入先ディーラーでも相談できます。条件を変えて<a href="#sim">診断をやり直す</a>こともできます。</p>
     <div class="result-box" id="refundBox"></div>
     <div class="table-wrap article" id="compareWrap"></div>
     <div class="result-box" id="checklistBox"></div>
@@ -493,7 +538,7 @@
         ? (verdict === "売却検討" ? "normal-sale" : "scrap")
         : (cond === "broken" ? "broken-car" : "accident-car");
       HKG.diagnosisComplete("kuruma-haisha", rt);
-      HKG.render({ pageId: "kuruma-haisha", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "kuruma-haisha", resultType: rt, slotId: "result-primary", placementRole: "primary-conversion", moduleId: "car-sale-decision" });
     }
 
     // ---- 還付金の目安(永久抹消した場合) ----

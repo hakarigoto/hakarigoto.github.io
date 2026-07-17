@@ -204,8 +204,53 @@
 
   <div id="resultArea" hidden>
     <div class="result-box" id="resultBox"></div>
+    <section class="conversion-prep">
+      <h2>処分方法の比較</h2>
+      <div class="table-wrap">
+        <table class="method-compare">
+          <tr><th>方法</th><th>向いているケース</th><th>注意点</th></tr>
+          <tr><td>自治体回収</td><td>少量で、急ぎでない場合</td><td>収集日程が決まっており、指定場所への搬出は自分で行う必要があります</td></tr>
+          <tr><td>売却・リサイクルショップ</td><td>再販価値のある品がある場合</td><td>全品が売れるとは限らず、状態・年式によっては引き取り対象外になります</td></tr>
+          <tr><td>メーカー・家電量販店回収</td><td>家電リサイクル法の対象品目を処分する場合</td><td>対象品目とリサイクル料金・収集運搬料を事前に確認してください</td></tr>
+          <tr><td>不用品回収サービス</td><td>量が多い・搬出が困難・処分期限がある場合</td><td>料金と、一般廃棄物収集運搬の許可の有無・契約条件を確認してください</td></tr>
+          <tr><td>遺品整理サービス</td><td>遺品の仕分け・供養を含めて依頼したい場合</td><td>一般の不用品回収との作業範囲の違いを確認してください</td></tr>
+        </table>
+      </div>
+      <div class="fit-cases">
+        <div class="fit-yes">
+          <h3>民間回収サービスが向くケース</h3>
+          <ul>
+            <li>処分する量が多い</li>
+            <li>大型品などで搬出が困難</li>
+            <li>退去期限など日程の制約がある</li>
+          </ul>
+        </div>
+        <div class="fit-no">
+          <h3>向かないケース</h3>
+          <ul>
+            <li>少量の場合（自治体回収の方が費用を抑えられます）</li>
+            <li>売れる品が多い場合（先に売却・買取の検討を）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pre-check">
+        <h3>依頼前に確認すること</h3>
+        <ul>
+          <li>作業範囲（どこまでやってもらえるか）</li>
+          <li>搬出条件（階段・エレベーターの有無）</li>
+          <li>駐車場所の確保</li>
+          <li>追加料金が発生する条件</li>
+          <li>買取してもらえる品の有無</li>
+          <li>処分方法（一般廃棄物収集運搬の許可の有無）</li>
+          <li>キャンセル条件</li>
+          <li>見積書の内訳</li>
+        </ul>
+      </div>
+      <p class="conv-pre">量が多い・搬出が難しいなど診断結果が民間回収に該当する場合は、選択肢の一つとして以下の提携サービス（PR）を確認できます。</p>
+    </section>
     <!-- AD-SLOT: fuyouhin (offer-card管理) -->
   <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+    <p class="conv-post">自治体の粗大ごみ受付・家電リサイクルの正規ルートは市区町村の案内で確認できます。悪質業者への注意は国民生活センター（消費者ホットライン188）へ。</p>
     <div class="table-wrap article" id="resultTableWrap"></div>
     <div class="result-box" id="checklistBox"></div>
     <p class="note">※費用はすべて一般的な目安です。粗大ごみ手数料は自治体、収集運搬料は小売店・業者ごとに異なります。正確な金額は必ずお住まいの自治体HP・依頼先にご確認ください。家電リサイクル料金は2026年7月時点の公示料金（家電リサイクル券センター公表・税込）に基づきます。</p>
@@ -481,7 +526,7 @@
         : (cat === "kaden4" || cat === "pc") ? "manufacturer-recovery"
         : "municipal-disposal";
       HKG.diagnosisComplete("katazuke-shobun-shindan", rt);
-      HKG.render({ pageId: "katazuke-shobun-shindan", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "katazuke-shobun-shindan", resultType: rt, slotId: "result-primary", placementRole: "primary-conversion", moduleId: "junk-decision" });
       HKG.render({ pageId: "katazuke-shobun-shindan", resultType: rt, slotId: "article-end" });
     }
   }

@@ -189,8 +189,38 @@
         <p style="margin:8px 0 0;">その後の閉眼供養・撤去工事・納骨までの全体像は「<a href="#nagare">墓じまいの流れ</a>」をご覧ください。</p>
       </div>
     </div>
+    <section class="conversion-prep">
+      <h2>改葬先・供養方法の比較</h2>
+      <div class="table-wrap">
+        <table class="method-compare">
+          <tr><th>方法</th><th>向いているケース</th><th>注意点</th></tr>
+          <tr><td>永代供養墓</td><td>承継者がいない・管理を任せたい場合</td><td>個別安置か合祀かで費用の幅が大きく、一度合祀すると遺骨を個別に取り出せません</td></tr>
+          <tr><td>納骨堂</td><td>都市部など、通いやすい屋内の参拝場所を残したい場合</td><td>契約期間や、期間後に合祀へ移る規定の有無を確認してください</td></tr>
+          <tr><td>樹木葬</td><td>自然に近い形を希望し、費用を抑えたい場合</td><td>個別区画か合祀かなど形式に幅があり、参拝方法も施設ごとに異なります</td></tr>
+          <tr><td>海洋散骨</td><td>お墓を持たず、自然に還る形を希望する場合</td><td>手を合わせる場所が残らないため、親族の合意と実施方法（委託・同行）の確認が必要です</td></tr>
+          <tr><td>手元供養</td><td>費用を抑えて自宅で供養したい場合</td><td>将来の管理者の問題が残ります。墓地以外の場所への埋葬はできません</td></tr>
+        </table>
+      </div>
+      <h3>提携中サービスの役割の違い（PR）</h3>
+      <p>ミキワは墓じまい（墓石の撤去・改葬手続き）の代行サービスの資料請求で、改葬先のタイプを問わず利用できます。シーセレモニーは海洋散骨の実施サービスで、改葬先として散骨を選ぶ場合の選択肢です。両者は同じ内容のサービスではなく、役割が異なります。料金・対応地域は各公式サイトでご確認ください（情報確認日: 2026年7月18日）。</p>
+      <div class="pre-check">
+        <h3>依頼前に確認すること</h3>
+        <ul>
+          <li>改葬許可の手続き（どこまで代行してもらえるか）</li>
+          <li>墓石撤去の作業範囲</li>
+          <li>遺骨の移送方法</li>
+          <li>散骨の方法（委託・同行）</li>
+          <li>実施場所（散骨海域・出航場所）</li>
+          <li>証明書の発行の有無</li>
+          <li>追加費用が発生する条件</li>
+          <li>檀家・寺院との調整への対応</li>
+        </ul>
+      </div>
+      <p class="conv-pre">診断結果に応じて、以下の提携サービス（PR）を確認できます。墓じまいの手続き自体と、散骨の実施は役割が異なります。</p>
+    </section>
     <!-- AD-SLOT: hakajimai (offer-card管理) -->
   <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+    <p class="conv-post">改葬許可申請は現在のお墓がある市区町村へ。制度の確認は厚生労働省の案内や自治体窓口でできます。</p>
   </section>
 
   <div class="cta-box">
@@ -411,7 +441,7 @@
                           kaiyo: "sea-burial", ippan: "undecided", eitai: "perpetual-memorial" };
       var rt = RESULT_TYPE[document.getElementById("kaiso").value] || "undecided";
       HKG.diagnosisComplete("manner-hakajimai", rt);
-      HKG.render({ pageId: "manner-hakajimai", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "manner-hakajimai", resultType: rt, slotId: "result-primary", placementRole: "primary-conversion", moduleId: "hakajimai-decision" });
       HKG.render({ pageId: "manner-hakajimai", resultType: rt, slotId: "article-end" });
     }
   });

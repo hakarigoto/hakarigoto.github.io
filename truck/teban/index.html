@@ -167,8 +167,53 @@
   </div>
 
   <div class="result-box" id="resultBox" style="display:none" aria-live="polite"></div>
+  <section class="conversion-prep">
+    <h2>手放し方の比較</h2>
+    <div class="table-wrap">
+      <table class="method-compare">
+        <tr><th>選択肢</th><th>向いているケース</th><th>注意点</th></tr>
+        <tr><td>保有を続ける</td><td>稼働があり、維持費（税金・毎年車検・保険）に見合っている</td><td>維持費の負担が続く。遊休のまま保有すると保管場所・税負担に加え劣化も進む</td></tr>
+        <tr><td>下取り</td><td>次の車両・機械を購入する予定がある</td><td>購入額と一体になり、売却価格だけを切り出して比較しにくい</td></tr>
+        <tr><td>買取</td><td>稼働できる、または輸出・部品としての需要が見込める</td><td>査定条件・引き渡し条件・架装物や付属品の扱いを事前に確認</td></tr>
+        <tr><td>廃車・解体</td><td>不動で値が付かず、再利用の見込みがない</td><td>手続き・費用のほか、税や自賠責の還付、一時抹消という選択肢も確認</td></tr>
+      </table>
+    </div>
+    <div class="fit-cases">
+      <div class="fit-yes">
+        <h3>民間の査定サービスが向いているケース</h3>
+        <ul>
+          <li>ユンボなどの重機・建機や事業用車両の売却を検討している</li>
+          <li>遊休状態の機械・車両にどれくらいの価値があるか知りたい</li>
+          <li>専門業者の査定を受けたい</li>
+        </ul>
+      </div>
+      <div class="fit-no">
+        <h3>向かないケース</h3>
+        <ul>
+          <li>対象車両・対応地域に入っているか未確認（公式サイトでの確認が必要）</li>
+          <li>名義や書類（車検証・法人の登記関係書類など）が揃っていない</li>
+          <li>今日明日中など、急いで現金化したい</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pre-check">
+      <h3>査定を依頼する前に確認すること</h3>
+      <ul>
+        <li>査定対象になるか（車種タイプ・型式・年式）</li>
+        <li>走行距離・稼働時間、不動や故障の状態</li>
+        <li>車検証や購入時書類（重機は車体番号）の有無</li>
+        <li>ローン・リース残債や法人名義の状態</li>
+        <li>引き渡し方法（搬出・輸送の手配）</li>
+        <li>キャンセル条件</li>
+        <li>手数料の有無</li>
+        <li>入金時期</li>
+      </ul>
+    </div>
+    <p class="conv-pre">稼働できる重機・建機や事業用車両の売却を検討する場合は、査定方法の一つとして以下の提携サービス（PR）を確認できます。</p>
+  </section>
   <!-- AD-SLOT: truck-kaitori (offer-card管理) -->
   <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+  <p class="conv-post">名義変更・一時抹消・永久抹消などの手続きは運輸支局（軽トラックは軽自動車検査協会）で、自動車税（種別割）は都道府県税事務所で確認できます。買い替えの場合は購入先の販売店でも下取りを相談できます。条件を変えて<a href="#sim">診断をやり直す</a>こともできます。</p>
   <p class="note">※ 本診断は一般に報じられている中古トラック・重機市場の傾向に基づく目安であり、実際に値が付くかどうか・金額を保証するものではありません。査定額は車種・個体の状態・時期・業者によって大きく変わります。</p>
 </section>
 
@@ -399,7 +444,7 @@
     if (window.HKG) {
       var rt = rankLabel.indexOf("★☆☆") === 0 ? "keep" : "normal-sale";
       HKG.diagnosisComplete("truck-teban", rt);
-      HKG.render({ pageId: "truck-teban", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "truck-teban", resultType: rt, slotId: "result-primary", placementRole: "primary-conversion", moduleId: "truck-sale-decision" });
       HKG.render({ pageId: "truck-teban", resultType: rt, slotId: "article-end" });
     }
   }
