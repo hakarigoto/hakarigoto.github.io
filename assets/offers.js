@@ -284,7 +284,15 @@
     mount.innerHTML = html;
     mount.style.display = "";
 
+    /* impression重複防止(Sprint 6): 同一ページビュー内で同じ
+       offer×slot×resultType の組み合わせは1回だけ計測する。
+       診断をやり直して同じ結果が再描画されても増殖しない。
+       異なるresultTypeで別カードが出た場合は新規impressionとして扱う。 */
+    var seen = (window.__hkgImpSeen = window.__hkgImpSeen || {});
     for (var k = 0; k < matches.length; k++) {
+      var impKey = matches[k].offer.offerId + "|" + slotId + "|" + (resultType || "");
+      if (seen[impKey]) continue;
+      seen[impKey] = 1;
       track("affiliate_impression", {
         offer_id: matches[k].offer.offerId,
         page_id: pageId,

@@ -21,9 +21,17 @@
 
   /* ---------- Google アナリティクス(GA4) ----------
      測定IDを設定すると全ページで計測が有効になる。空なら完全無効。
-     ツールの入力値は一切送信しない(閲覧イベントのみ)。 */
+     ツールの入力値は一切送信しない(閲覧イベントのみ)。
+     Sprint 6:
+     - localhost / 127.* / file: ではGA4を読み込まない(開発アクセスを本番計測に混ぜない)
+     - 運営者ブラウザは localStorage.setItem("hkg_internal_traffic","true") を一度実行すると
+       全イベントに traffic_type:"internal" が付与され、GA4側のフィルタで除外できる。
+       解除は removeItem。個人を特定するIDは送信しない。 */
   var GA4_ID = "G-NENYSGH5PH";
-  if (GA4_ID) {
+  var IS_DEV = /^(localhost|127\.|0\.0\.0\.0)/.test(location.hostname) || location.protocol === "file:";
+  var IS_INTERNAL = false;
+  try { IS_INTERNAL = localStorage.getItem("hkg_internal_traffic") === "true"; } catch (e) { /* noop */ }
+  if (GA4_ID && !IS_DEV) {
     var gs = document.createElement("script");
     gs.async = true;
     gs.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
@@ -31,10 +39,11 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
     gtag("js", new Date());
+    if (IS_INTERNAL) gtag("set", { traffic_type: "internal" });
     gtag("config", GA4_ID, { anonymize_ip: true });
     /* 案件カード(offers.js)のイベントをGA4へ転送 */
     window.hkgSink = function (eventName, params) { gtag("event", eventName, params); };
-    /* sink定義前にキューへ積まれたイベントを送信 */
+    /* sink定義前にキューへ積まれたイベントを送信(1回のみ。送信後はクリアして二重送信を防ぐ) */
     var q = window.__hkgEvents || [];
     for (var qi = 0; qi < q.length; qi++) { gtag("event", q[qi].event, q[qi].params); }
   }
@@ -75,8 +84,27 @@
 
   var LABEL = "スポンサーリンク";
 
+  /* 静的スロットkey → 台帳上のofferId(GA4計測用)。
+     offer-card(offers.js)と同じ affiliate_impression / affiliate_click を送るが、
+     slot_id を "static-〜" にして区別する。未登録キーは "static:"+key で送る。 */
+  var SLOT_OFFER = {
+    "tenshoku": "gaiaTaishoku",
+    "hakajimai": "seaceremony",
+    "ihin": "ihin110",
+    "fuyouhin": "fireworks",
+    "kaitori": "ucarpack",
+    "bike-kaitori": "bikewan",
+    "truck-kaitori": "kenkikaitoriya",
+    "fx-kouza": "dmmfx"
+  };
+
+  function sendEvent(name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params);
+  }
+
   function render() {
     var slots = document.querySelectorAll(".ad-slot[data-ad]");
+    var pagePath = location.pathname;
     for (var i = 0; i < slots.length; i++) {
       var el = slots[i];
       var key = el.getAttribute("data-ad");
@@ -84,6 +112,23 @@
       if (!tag) { el.style.display = "none"; continue; }
       el.innerHTML = '<span class="ad-slot-label">' + LABEL + "</span>" + tag;
       el.style.display = "";
+      var offerId = SLOT_OFFER[key] || ("static:" + key);
+      var slotId = "static-" + key;
+      sendEvent("affiliate_impression", {
+        offer_id: offerId, page_id: pagePath, slot_id: slotId,
+        result_type: null, cta_variant: "static-text", card_position: "primary", offer_count: 1
+      });
+      var links = el.querySelectorAll("a");
+      for (var n = 0; n < links.length; n++) {
+        (function (a, oid, sid) {
+          a.addEventListener("click", function () {
+            sendEvent("affiliate_click", {
+              offer_id: oid, page_id: pagePath, slot_id: sid,
+              result_type: null, cta_variant: "static-text", card_position: "primary", offer_count: 1
+            });
+          });
+        })(links[n], offerId, slotId);
+      }
     }
   }
 

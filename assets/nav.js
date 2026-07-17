@@ -82,10 +82,16 @@
     var path = location.pathname;
     var dest = a.getAttribute("href") || "";
     if (a.hasAttribute("data-ga-cat")) {
+      /* navigation_type: どの導線からのクリックかを区別(Sprint 6) */
+      var navType = "category_crosslink";
+      if (a.closest(".site-nav")) navType = "global_nav";
+      else if (a.closest(".site-footer")) navType = "footer";
+      else if (a.closest(".entry-card")) navType = "home_problem_card";
       send("category_navigation_click", {
         source_page: path,
         category_id: a.getAttribute("data-ga-cat"),
-        destination_path: dest
+        destination_path: dest,
+        navigation_type: navType
       });
     } else if (a.classList.contains("next-action-card")) {
       send("next_action_click", {
