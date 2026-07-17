@@ -19,6 +19,26 @@
 (function () {
   "use strict";
 
+  /* ---------- Google アナリティクス(GA4) ----------
+     測定IDを設定すると全ページで計測が有効になる。空なら完全無効。
+     ツールの入力値は一切送信しない(閲覧イベントのみ)。 */
+  var GA4_ID = ""; /* 例: "G-XXXXXXXXXX" */
+  if (GA4_ID) {
+    var gs = document.createElement("script");
+    gs.async = true;
+    gs.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+    document.head.appendChild(gs);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", GA4_ID, { anonymize_ip: true });
+    /* 案件カード(offers.js)のイベントをGA4へ転送 */
+    window.hkgSink = function (eventName, params) { gtag("event", eventName, params); };
+    /* sink定義前にキューへ積まれたイベントを送信 */
+    var q = window.__hkgEvents || [];
+    for (var qi = 0; qi < q.length; qi++) { gtag("event", q[qi].event, q[qi].params); }
+  }
+
   /* スロットkey → 広告HTMLタグ。承認済み案件を貼る場所をコメントで明示。 */
   var ADS = {
     /* ▼ やめどきナビ(退職・失業保険) */
