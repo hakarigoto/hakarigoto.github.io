@@ -385,6 +385,8 @@ fieldset.form-block legend { font-weight: 700; font-size: 0.95rem; padding: 0 6p
       </a>
     </div>
   </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>動作確認日</dt><dd>2026年7月18日</dd></div><div><dt>結果の位置づけ</dt><dd>入力データはブラウザ内で処理され、サーバーには送信されません。</dd></div><div><dt>入力データの扱い</dt><dd>全処理ブラウザ内。入力内容はlocalStorage(キー rakutool_invoice_v1)に自動保存・次回復元。サーバー送信なし。PDF化はブラウザの印刷機能(window.print+印刷CSS)。共有PCでは「入力内容をクリア」を案内(confirm付きで全削除)</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> フォーム入力からインボイス制度(適格請求書)の記載要件を満たす請求書プレビューを生成し、税率別(10%/8%)の消費税と源泉徴収税額を自動計算。window.printでA4縦1枚に印刷/PDF保存。</li><li><b>使用する入力値:</b> 基本情報: 請求書番号・発行日(初期値=今日)・支払期限、請求先: 社名/氏名+敬称(御中/様)、発行者: 社名/氏名・住所・電話・メール・インボイス登録番号(任意)・振込先口座、明細行(追加/削除可): 品目・数量・単価(税抜)・税率(10%/8%)、源泉徴収チェックボックス、備考</li><li><b>使用する固定値:</b> 公的機関の公表値: 消費税率、消費税の端数処理、源泉徴収税額、インボイス登録番号形式 / 当サイトの仮の初期値(入力で変更できる場合は変更してください): 端数処理方式の選択、明細金額の計算</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/tools/invoice/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
 </main>
 
 <footer class="site-footer"><div class="container footer-grid">

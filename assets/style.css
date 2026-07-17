@@ -541,3 +541,22 @@ details.faq p { margin-top: 0; }
   padding: 2px 10px;
   background: var(--bg);
 }
+
+/* ===== Sprint 7: 信頼情報コンポーネント ===== */
+.operator-info{margin:12px 0}
+.operator-info div{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--line,#e3e8ef)}
+.operator-info dt{flex:0 0 110px;font-weight:600;color:#475569}
+.operator-info dd{margin:0}
+.content-trust{margin:40px 0 8px;padding:16px 18px;background:#f6f8fa;border:1px solid #e3e8ef;border-radius:10px;font-size:.88rem;color:#475569}
+.content-trust h2{font-size:1rem;margin:0 0 10px;color:#334155;border:none;padding:0}
+.content-trust dl{margin:0 0 10px}
+.content-trust dl div{display:flex;gap:10px;padding:3px 0}
+.content-trust dt{flex:0 0 7.5em;font-weight:600}
+.content-trust dd{margin:0}
+.content-trust details{margin:10px 0;border-top:1px dashed #d4dbe4;padding-top:10px}
+.content-trust summary{cursor:pointer;font-weight:600;color:#1e66b8}
+.content-trust details ul{margin:8px 0 0;padding-left:1.3em}
+.content-trust details li{margin:4px 0}
+.content-trust .trust-report{display:inline-block;margin-top:8px;font-size:.85rem;color:#64748b;text-decoration:underline}
+.content-trust .trust-note{margin:8px 0 0;font-size:.84rem;color:#64748b}
+@media (max-width:560px){.content-trust dl div{flex-direction:column;gap:2px}.content-trust dt{flex:none}}
