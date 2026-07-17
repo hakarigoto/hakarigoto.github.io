@@ -22,7 +22,7 @@
   /* ---------- Google アナリティクス(GA4) ----------
      測定IDを設定すると全ページで計測が有効になる。空なら完全無効。
      ツールの入力値は一切送信しない(閲覧イベントのみ)。 */
-  var GA4_ID = ""; /* 例: "G-XXXXXXXXXX" */
+  var GA4_ID = "G-NENYSGH5PH";
   if (GA4_ID) {
     var gs = document.createElement("script");
     gs.async = true;
