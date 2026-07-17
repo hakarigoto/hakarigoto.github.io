@@ -206,8 +206,8 @@
 
   <div id="resultArea" hidden>
     <div class="result-box" id="resultBox"></div>
-    <!-- AD-SLOT: kaitori -->
-  <div class="ad-slot" data-ad="kaitori"></div>
+    <!-- AD-SLOT: kaitori (offer-card管理: 診断結果がnormal-saleの場合のみ表示) -->
+  <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
     <div class="result-box" id="refundBox"></div>
     <div class="table-wrap article" id="compareWrap"></div>
     <div class="result-box" id="checklistBox"></div>
@@ -424,6 +424,17 @@
     $("resultBox").innerHTML = "<strong>診断結果：「" + verdict + "」</strong><br>" +
       reasons.map(function (r) { return "・" + r; }).join("<br>");
 
+    /* 診断結果 → resultType(案件カード出し分け・Sprint2)
+       売却検討=normal-sale / 高齢・過走行=scrap / 故障=broken-car / 事故=accident-car
+       ※scrap系は廃車専門案件の承認後に表示される(通常査定の強制表示はしない) */
+    if (window.HKG) {
+      var rt = (cond === "ok")
+        ? (verdict === "売却検討" ? "normal-sale" : "scrap")
+        : (cond === "broken" ? "broken-car" : "accident-car");
+      HKG.diagnosisComplete("kuruma-haisha", rt);
+      HKG.render({ pageId: "kuruma-haisha", resultType: rt, slotId: "result-primary" });
+    }
+
     // ---- 還付金の目安(永久抹消した場合) ----
     var lines = [];
     var total = 0;
@@ -513,6 +524,7 @@
   updateVisibility();
 })();
 </script>
+<script src="/assets/offers.js"></script>
 <script src="/assets/ads.js"></script>
 </body>
 </html>

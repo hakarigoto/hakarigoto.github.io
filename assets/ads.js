@@ -35,7 +35,7 @@
     /* ▼ かたづけ電卓(不用品・遺品整理) */
     "ihin":            `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+ACPE8Q+39GM+5MFLEA" rel="nofollow sponsored">遺品整理業者の無料一括見積もり【遺品整理110番】</a>`, /* A8 遺品整理110番 */
     "fuyouhin":        `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+AINQAI+4X26+NTJWY" rel="nofollow sponsored">不用品回収の無料見積もりを依頼する</a>`, /* A8 不用品回収FireWorks */
-    "digital-shukatsu":`<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+ACPE8Q+39GM+5MFLEA" rel="nofollow sponsored">遺品整理・生前整理の無料見積もりはこちら【遺品整理110番】</a>`, /* A8 遺品整理110番(代替) */
+    "digital-shukatsu": "", /* デジタクセル承認待ち(無条件の代替表示は廃止・Sprint1) */
 
     /* ▼ くるま・バイク・トラック電卓 */
     "kaitori":      `<a href="https://px.a8.net/svt/ejp?a8mat=4B82L2+A4YRDM+3O80+5YJRM" rel="nofollow sponsored">愛車が今いくらか無料でチェック(オークション型査定)</a>`, /* A8 ユーカーパック */

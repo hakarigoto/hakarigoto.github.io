@@ -146,8 +146,8 @@
   </div>
 
   <div class="result-box" id="resultBox" style="display:none" aria-live="polite"></div>
-  <!-- AD-SLOT: truck-kaitori -->
-  <div class="ad-slot" data-ad="truck-kaitori"></div>
+  <!-- AD-SLOT: truck-kaitori (offer-card管理) -->
+  <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
   <p class="note">※ 本診断は一般に報じられている中古トラック・重機市場の傾向に基づく目安であり、実際に値が付くかどうか・金額を保証するものではありません。査定額は車種・個体の状態・時期・業者によって大きく変わります。</p>
 </section>
 
@@ -214,8 +214,8 @@
 <p>持ち続けた場合のコストと比べたい方は、<a href="../iji-hi/">トラックの年間維持費計算</a>もあわせてどうぞ。</p>
 
 <p class="note">データ基準日:2026年7月時点。売却・名義変更の手続きは運輸支局の一般的な案内、中古トラック・重機の相場動向や輸出需要は買取業者・業界メディア等で一般に報じられている情報に基づく目安です。本ページは特定の査定額を保証するものではありません。実際の手続き・査定条件は運輸支局・保険会社・買取業者で必ずご確認ください。</p>
-<!-- AD-SLOT: truck-kaitori -->
-  <div class="ad-slot" data-ad="truck-kaitori"></div>
+<!-- AD-SLOT: truck-kaitori (offer-card管理) -->
+  <div class="offer-slot" data-slot="article-end" style="display:none"></div>
 
 </article>
 
@@ -336,6 +336,15 @@
     var box = $("resultBox");
     box.innerHTML = html;
     box.style.display = "block";
+
+    /* 診断結果 → resultType(案件カード出し分け・Sprint2)
+       売却推奨度 高・中=normal-sale / 低め=keep(保有継続) */
+    if (window.HKG) {
+      var rt = rankLabel.indexOf("★☆☆") === 0 ? "keep" : "normal-sale";
+      HKG.diagnosisComplete("truck-teban", rt);
+      HKG.render({ pageId: "truck-teban", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "truck-teban", resultType: rt, slotId: "article-end" });
+    }
   }
 
   $("judgeBtn").addEventListener("click", judge);
@@ -346,6 +355,7 @@
   });
 })();
 </script>
+<script src="/assets/offers.js"></script>
 <script src="/assets/ads.js"></script>
 </body>
 </html>

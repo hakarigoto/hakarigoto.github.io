@@ -340,3 +340,35 @@ details.faq p { margin-top: 0; }
 }
 .ad-slot img { max-width: 100%; height: auto; }
 @media print { .ad-slot, .pr-banner { display: none !important; } }
+
+/* 案件カード(Sprint2) */
+.offer-slot { margin: 24px 0; }
+.offer-card {
+  background: #fffdf8;
+  border: 1px solid #e8d9b8;
+  border-radius: 8px;
+  padding: 18px 18px 16px;
+  margin: 16px 0;
+  font-size: 0.95rem;
+}
+.offer-card-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  color: #9a8a66;
+  border: 1px solid #d8c69a;
+  border-radius: 3px;
+  padding: 0 6px;
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+.offer-card-title { margin: 0 0 6px; font-weight: 700; font-size: 1.05rem; line-height: 1.5; }
+.offer-card-summary { margin: 0 0 10px; color: var(--text); }
+.offer-card-h { margin: 0 0 2px; font-size: 0.82rem; font-weight: 700; color: var(--text-sub); }
+.offer-card-fit ul, .offer-card-warning ul { margin: 0 0 10px; padding-left: 20px; font-size: 0.88rem; }
+.offer-card-fit li, .offer-card-warning li { margin: 2px 0; }
+.offer-card-warning { background: #fdf3f0; border-radius: 6px; padding: 8px 12px 6px; margin-bottom: 10px; }
+.offer-card-warning .offer-card-h { color: #a04b35; }
+.offer-card-meta { margin: 0 0 12px; font-size: 0.8rem; color: var(--text-sub); }
+.offer-card .offer-card-cta { display: block; text-align: center; }
+.offer-card .cta-note { text-align: center; }
+@media print { .offer-slot, .offer-card { display: none !important; } }

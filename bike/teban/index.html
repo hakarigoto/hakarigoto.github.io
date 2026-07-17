@@ -183,8 +183,8 @@
   </div>
 
   <div class="result-box" id="resultBox" style="display:none" aria-live="polite"></div>
-  <!-- AD-SLOT: bike-kaitori -->
-  <div class="ad-slot" data-ad="bike-kaitori"></div>
+  <!-- AD-SLOT: bike-kaitori (offer-card管理) -->
+  <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
   <p class="note">※ 本診断は一般に報じられている中古バイク市場の傾向に基づく目安であり、実際に値が付くかどうか・金額を保証するものではありません。査定額は車種・個体の状態・時期・業者によって大きく変わります。</p>
 </section>
 
@@ -410,6 +410,18 @@
     var box = $("resultBox");
     box.innerHTML = html;
     box.style.display = "block";
+
+    /* 診断結果 → resultType(案件カード出し分け・Sprint2)
+       不動・事故=broken-bike / 査定価値低め=keep(保有継続) /
+       カスタム車=custom-bike / それ以外(通常車で売却推奨)=normal-sale */
+    if (window.HKG) {
+      var rt = (v.cond === "dead" || v.cond === "accident") ? "broken-bike"
+        : (rank === "low") ? "keep"
+        : (v.custom !== "stock") ? "custom-bike"
+        : "normal-sale";
+      HKG.diagnosisComplete("bike-teban", rt);
+      HKG.render({ pageId: "bike-teban", resultType: rt, slotId: "result-primary" });
+    }
   }
 
   $("judgeBtn").addEventListener("click", judge);
@@ -421,6 +433,7 @@
   });
 })();
 </script>
+<script src="/assets/offers.js"></script>
 <script src="/assets/ads.js"></script>
 </body>
 </html>

@@ -176,8 +176,8 @@
   </div>
 </section>
 
-<!-- AD-SLOT: ihin -->
-  <div class="ad-slot" data-ad="ihin"></div>
+<!-- AD-SLOT: ihin (offer-card管理) -->
+  <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
 
 <div class="cta-box">
   <p class="cta-box-title">品物ごとの正しい捨て方も30秒で診断</p>
@@ -294,8 +294,8 @@
 
 </article>
 
-<!-- AD-SLOT: ihin -->
-  <div class="ad-slot" data-ad="ihin"></div>
+<!-- AD-SLOT: ihin (offer-card管理) -->
+  <div class="offer-slot" data-slot="article-end" style="display:none"></div>
 
 <section class="related">
   <p class="related-title">あわせて使いたい計算ツール</p>
@@ -411,10 +411,20 @@
 
     document.getElementById("result-area").hidden = false;
     document.getElementById("result-area").scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+    /* 費用計算完了 → resultType(案件カード出し分け・Sprint2)
+       このページは遺品整理前提のため常に estate-cleanup */
+    if (window.HKG) {
+      var rt = "estate-cleanup";
+      HKG.diagnosisComplete("katazuke-ihin-hiyo", rt);
+      HKG.render({ pageId: "katazuke-ihin-hiyo", resultType: rt, slotId: "result-primary" });
+      HKG.render({ pageId: "katazuke-ihin-hiyo", resultType: rt, slotId: "article-end" });
+    }
   });
 })();
 </script>
 
+<script src="/assets/offers.js"></script>
 <script src="/assets/ads.js"></script>
 </body>
 </html>
