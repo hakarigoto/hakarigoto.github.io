@@ -372,3 +372,146 @@ details.faq p { margin-top: 0; }
 .offer-card .offer-card-cta { display: block; text-align: center; }
 .offer-card .cta-note { text-align: center; }
 @media print { .offer-slot, .offer-card { display: none !important; } }
+
+/* ===========================================================================
+   Sprint 4: 共通ナビゲーション・パンくず・回遊コンポーネント
+   =========================================================================== */
+
+/* ---------- グローバルヘッダー ---------- */
+.site-header .container { position: relative; }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+.nav-toggle span { display: block; height: 2px; background: var(--text); border-radius: 1px; }
+.site-nav a.is-current { color: var(--accent); }
+.nav-more { position: relative; display: inline-block; }
+.nav-more-btn {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+.nav-more-btn::after { content: " ▾"; font-size: 0.7em; }
+.nav-more-btn:hover { color: var(--accent); }
+.nav-more-panel {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 0;
+  min-width: 160px;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.nav-more.is-open .nav-more-panel,
+.nav-more:focus-within .nav-more-panel { display: block; }
+.nav-more-panel a { display: block; padding: 8px 16px; }
+
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 0;
+    padding: 4px 0 8px;
+    z-index: 100;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav > a { display: block; padding: 12px 20px; font-size: 1rem; }
+  .nav-more { display: block; }
+  .nav-more-btn { display: none; }
+  .nav-more-panel {
+    display: block;
+    position: static;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+    padding-top: 4px;
+  }
+  .nav-more-panel a { padding: 12px 20px; font-size: 1rem; }
+  body.nav-locked { overflow: hidden; }
+}
+
+/* ---------- パンくず ---------- */
+.breadcrumb ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.breadcrumb li { flex: none; }
+.breadcrumb li + li::before { content: "›"; margin: 0 6px; color: var(--text-sub); }
+
+/* ---------- フッター ---------- */
+.site-footer .container.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px 24px;
+  align-items: start;
+}
+.footer-col { display: flex; flex-direction: column; gap: 6px; }
+.footer-col a { margin-right: 0; font-size: 0.85rem; }
+.footer-title { font-size: 0.78rem; font-weight: 700; color: #8d99a6; letter-spacing: 0.05em; margin-bottom: 2px; }
+.footer-copy { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 12px; margin-top: 4px; font-size: 0.8rem; color: #c3cdd8; }
+
+/* ---------- 次に確認すること ---------- */
+.next-actions { margin: 36px 0 12px; }
+.next-actions h2 { font-size: 1.1rem; }
+.next-actions__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.next-action-card {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-decoration: none;
+  background: var(--panel);
+}
+.next-action-card:hover { border-color: var(--accent); background: var(--accent-weak); }
+.next-action-card strong { display: block; color: var(--accent); font-size: 0.95rem; margin-bottom: 4px; }
+.next-action-card span { display: block; color: var(--text-sub); font-size: 0.83rem; line-height: 1.5; }
+
+/* ---------- 関連ツール(記事末尾) ---------- */
+.related-tools { margin: 36px 0 12px; border-top: 1px solid var(--border); padding-top: 20px; }
+.related-tools h2 { font-size: 1.05rem; }
+.related-tools ul { list-style: none; margin: 0 0 12px; padding: 0; }
+.related-tools li { margin: 8px 0; padding-left: 1.2em; position: relative; font-size: 0.92rem; }
+.related-tools li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+.related-tools__back { font-size: 0.85rem; }
+
+@media print {
+  .nav-toggle, .next-actions, .related-tools { display: none !important; }
+}

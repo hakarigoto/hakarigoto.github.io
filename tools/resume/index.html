@@ -101,13 +101,34 @@ table.rz-t { width: 100%; border-collapse: collapse; table-layout: fixed; margin
 <meta property="og:title" content="履歴書作成ツール(無料・PDF保存対応)|ラクツール">
 <meta property="og:description" content="厚生労働省の様式例に準じた履歴書を無料で作成できるWebツール。フォームに入力するだけでリアルタイムプレビュー。証明写真の貼り付け・和暦変換・年齢自動計算に対応。データはブラウザ内にのみ保存され安心です。">
 <meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "便利ツール", "item": "https://hakarigoto.github.io/tools/"}, {"@type": "ListItem", "position": 3, "name": "履歴書作成ツール", "item": "https://hakarigoto.github.io/tools/resume/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
 </head>
 <body>
-<header class="site-header"><div class="container"><a class="site-logo" href="../">ラク<span>ツール</span></a><nav class="site-nav"><a href="../#tools">ツール一覧</a><a href="../../blog/">コラム</a><a href="../../about/">このサイトについて</a></nav></div></header>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools" class="is-current" aria-current="true">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
 <div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
 
 <main class="container">
-  <nav class="breadcrumb"><a href="../../">ホーム</a> › <a href="../">ラクツール</a> › 履歴書作成ツール</nav>
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/tools/">便利ツール</a></li><li aria-current="page">履歴書作成ツール</li></ol></nav>
 
   <div class="page-head">
     <h1>履歴書作成ツール(PDF保存対応)</h1>
@@ -278,7 +299,32 @@ table.rz-t { width: 100%; border-collapse: collapse; table-layout: fixed; margin
   </section>
 </main>
 
-<footer class="site-footer"><div class="container"><div>© 2026 ラクツール</div><div><a href="../../privacy/">プライバシーポリシー</a> <a href="../../about/">運営者情報</a></div></div></footer>
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
 
 <script type="application/ld+json">
 {
@@ -637,5 +683,6 @@ table.rz-t { width: 100%; border-collapse: collapse; table-layout: fixed; margin
 })();
 </script>
 <script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
 </body>
 </html>

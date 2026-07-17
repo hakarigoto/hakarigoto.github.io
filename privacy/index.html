@@ -15,20 +15,33 @@
 <meta property="og:title" content="プライバシーポリシー|はかりごと">
 <meta property="og:description" content="はかりごとのプライバシーポリシー。入力データの取り扱い、アクセス解析、広告配信についての方針を掲載しています。">
 <meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "プライバシーポリシー", "item": "https://hakarigoto.github.io/privacy/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
 </head>
 <body>
-<header class="site-header">
-  <div class="container">
-    <a class="site-logo" href="../">はかり<span>ごと</span></a>
-    <nav class="site-nav">
-      <a href="../#sites">サイト一覧</a>
-      <a href="../blog/">コラム</a>
-      <a href="../about/">このサイトについて</a>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
     </nav>
-  </div>
-</header>
+  </div></header>
 <div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
 <main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li aria-current="page">プライバシーポリシー</li></ol></nav>
   <div class="page-head">
     <h1>プライバシーポリシー</h1>
     <div class="meta-line"><span>更新日:<b>2026年7月16日</b></span><span>運営:<b>はかり</b></span></div>
@@ -47,23 +60,44 @@
       <tr><td>もしもアフィリエイト(株式会社もしも)</td><td>広告の表示・クリックに関する情報・Cookie等</td><td>アフィリエイト成果の計測</td></tr>
     </table></div>
     <p class="note">※各ツールへの入力内容(計算に使う金額・日付など)は上記のいずれにも送信されません。</p>
-    <h2>広告配信について</h2>
+    <h2 id="ads">広告配信について</h2>
     <p>当サイトでは、第三者配信の広告サービス(Google AdSense等)を利用する場合があります。広告配信事業者は、ユーザーの興味に応じた広告を表示するためにCookieを使用することがあります。パーソナライズ広告のCookieは<a href="https://adssettings.google.com/" rel="nofollow noopener" target="_blank">広告設定</a>で無効にできます。</p>
-    <h2>アフィリエイトプログラムについて</h2>
+    <h2 id="affiliate">アフィリエイトプログラムについて</h2>
     <p>当サイトは、アフィリエイトプログラムに参加する場合があります。リンク先の商品・サービスは、リンク先の販売店等が提供するものであり、当サイトが販売するものではありません。</p>
-    <h2>免責事項</h2>
+    <h2 id="menseki">免責事項</h2>
     <p>当サイトのツール・コンテンツは正確性の確保に努めていますが、その内容を保証するものではありません。当サイトの利用によって生じたいかなる損害についても、運営者は責任を負いかねます。作成した書類の内容は、ご自身で必ずご確認ください。</p>
     <h2>ポリシーの変更</h2>
     <p>本ポリシーの内容は、必要に応じて予告なく変更されることがあります。変更後のポリシーは本ページに掲載した時点で効力を生じます。</p>
     <p class="note">制定日: 2026年7月15日 / 最終改定: 2026年7月17日(アクセス解析・外部送信の項を具体化)</p>
   </article>
 </main>
-<footer class="site-footer">
-  <div class="container">
-    <div>© 2026 はかりごと</div>
-    <div><a href="./">プライバシーポリシー</a><a href="../about/">運営者情報</a></div>
-  </div>
-</footer>
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
 <script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
 </body>
 </html>

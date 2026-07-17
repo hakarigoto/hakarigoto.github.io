@@ -15,20 +15,33 @@
 <meta property="og:title" content="マナー電卓|香典・ご祝儀の相場や忌引き日数がすぐわかる無料ツール集">
 <meta property="og:description" content="香典やご祝儀はいくら包む?忌引きは何日?喪中はがきの文面は?——冠婚葬祭の「急いで知りたい」に即答する無料ツール集。登録不要、スマホからすぐ使えます。">
 <meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "冠婚葬祭", "item": "https://hakarigoto.github.io/manner/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
 </head>
 <body>
-<header class="site-header">
-  <div class="container">
-    <a class="site-logo" href="./">マナー<span>電卓</span></a>
-    <nav class="site-nav">
-      <a href="#tools">ツール</a>
-      <a href="#columns">コラム</a>
-      <a href="../about/">運営者情報</a>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon" class="is-current" aria-current="true">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
     </nav>
-  </div>
-</header>
+  </div></header>
 <div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
 <main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li aria-current="page">冠婚葬祭</li></ol></nav>
   <div class="page-head">
     <h1>冠婚葬祭の「いくら?何日?どう書く?」に即答</h1>
     <p class="lead">急な訃報や招待状で迷ったときに。香典・ご祝儀の相場、忌引きの日数、喪中はがきの文面を、登録不要・完全無料でその場で確認できます。</p>
@@ -78,12 +91,33 @@
     <p class="note">姉妹サイト: <a href="../">ラクツール</a> / <a href="../taishoku/">やめどきナビ</a> / <a href="../katazuke/">かたづけ電卓(不用品処分・遺品整理)</a> / <a href="../pet/">ペット電卓</a> / <a href="../tsumitate/">つみたて計算機</a></p>
   </article>
 </main>
-<footer class="site-footer">
-  <div class="container">
-    <div>© 2026 マナー電卓</div>
-    <div><a href="../privacy/">プライバシーポリシー</a><a href="../about/">運営者情報</a></div>
-  </div>
-</footer>
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
 <script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
 </body>
 </html>
