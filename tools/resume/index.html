@@ -408,7 +408,7 @@ table.rz-t { width: 100%; border-collapse: collapse; table-layout: fixed; margin
     if (d) {
       FIELD_IDS.forEach(function (id) { if (d[id] != null) $(id).value = d[id]; });
       $('useWareki').checked = !!d.wareki;
-      photoData = d.photo || '';
+      photoData = (typeof d.photo === 'string' && /^data:image\//.test(d.photo)) ? d.photo : '';
       ROW_IDS.forEach(function (id) {
         var arr = Array.isArray(d[id]) ? d[id] : [];
         if (arr.length === 0) { addRow(id); return; }

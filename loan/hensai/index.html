@@ -306,7 +306,7 @@
     var method = $("hoshiki").value;
 
     var P = man * 10000;
-    var n = years * 12 + months;
+    var n = Math.min(years * 12 + months, 600); // 最長50年にクランプ(Infinity/NaN防止)
 
     var resultMain = $("resultMain");
     var resultBody = $("resultBody");

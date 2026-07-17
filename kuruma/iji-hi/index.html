@@ -405,7 +405,7 @@
       "<tr><td>自賠責保険料</td><td>" + fmt(jibai2y / 2) + " 円</td><td>24ヶ月 " + fmt(jibai2y) + " 円の年割</td></tr>" +
       "<tr><td>車検基本料等</td><td>" + fmt(shakenBase / 2) + " 円</td><td>1回 " + fmt(shakenBase) + " 円の年割</td></tr>" +
       "<tr><td>任意保険</td><td>" + fmt(hoken) + " 円</td><td>入力値</td></tr>" +
-      "<tr><td>燃料費</td><td>" + fmt(fuelYear) + " 円</td><td>" + fmt(kyori) + " km ÷ " + nenpi + " km/L × " + fmt(tanka) + " 円</td></tr>" +
+      "<tr><td>燃料費</td><td>" + fmt(fuelYear) + " 円</td><td>" + (nenpi > 0 ? fmt(kyori) + " km ÷ " + nenpi + " km/L × " + fmt(tanka) + " 円" : "燃費が未入力のため0円") + "</td></tr>" +
       "<tr><td>駐車場代</td><td>" + fmt(parkYear) + " 円</td><td>月 " + fmt(parking) + " 円 × 12</td></tr>" +
       "</table></div>";
 
