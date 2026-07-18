@@ -61,7 +61,7 @@
       notRecommendedFor: ["対応車種・エリアの条件は公式サイトでの確認が必要です", "書類(名義)が揃っていない車両"],
       feeText: "出張査定は無料",
       areaText: "対応地域は公式サイトで確認",
-      resultTypes: ["normal-sale", "custom-bike"],
+      resultTypes: ["normal-sale"],
       eligiblePages: ["bike-teban"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
@@ -156,6 +156,52 @@
       areaText: "取引条件・キャンペーンは公式サイトで確認",
       resultTypes: ["ready-to-trade"],
       eligiblePages: ["fx-shokokin"],
+      lastCheckedAt: "2026-07-18", disclosure: "PR"
+    },
+
+
+    miraiSeiki: {
+      offerId: "miraiSeiki", name: "弥来精機(事故車・中古車買取)", asp: "a8",
+      category: "car-sale-damaged", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+A65ML6+5FU+60H7M",
+      headline: "事故車・故障車も査定対象の買取サービス",
+      summary: "事故車・故障車を含む中古車の全国買取査定。買い替えの相談や、買取ではなく修理になった場合の対応も扱っています。",
+      recommendedFor: ["事故や故障で通常の売却が難しい車を手放したい", "処分か修理か迷っている", "全国対応の査定を受けたい"],
+      notRecommendedFor: ["通常走行できる車の高値売却が目的の場合(オークション型査定の方が比較しやすいことがあります)", "対応条件・引き取り可否は公式サイトでの確認が必要です"],
+      feeText: "査定は無料",
+      areaText: "対応地域は公式サイトで確認",
+      resultTypes: ["accident-car", "broken-car"],
+      eligiblePages: ["kuruma-haisha"],
+      lastCheckedAt: "2026-07-18", disclosure: "PR"
+    },
+
+    bikeBoon: {
+      offerId: "bikeBoon", name: "バイクBOON", asp: "a8",
+      category: "bike-sale", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+AS6NYY+1T3W+601S1",
+      headline: "大型バイク・旧車の売却を検討している人向け",
+      summary: "大型バイクや旧車の買取を扱うサービス。カスタム車・年式の古い車両など、一般的な査定で価値が付きにくいバイクの査定を依頼できます。",
+      recommendedFor: ["大型バイク・旧車・カスタム車を売りたい", "専門的に評価してほしい車両がある"],
+      notRecommendedFor: ["対応車種・地域の条件は公式サイトでの確認が必要です", "書類(名義)が揃っていない車両"],
+      feeText: "査定は無料",
+      areaText: "対応地域は公式サイトで確認",
+      resultTypes: ["custom-bike"],
+      eligiblePages: ["bike-teban"],
+      lastCheckedAt: "2026-07-18", disclosure: "PR"
+    },
+
+    lifeReset: {
+      offerId: "lifeReset", name: "ライフリセット(遺品整理)", asp: "a8",
+      category: "estate-cleanup", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+AEHP22+36X8+1ZHAW1",
+      headline: "遺品整理の専門業者へ直接依頼したい人向け",
+      summary: "遺品整理の専門業者。紹介サービスを介さず、業者へ直接相談・見積依頼をしたい場合の選択肢です(遺品整理110番は複数業者の紹介・一括見積型で役割が異なります)。",
+      recommendedFor: ["業者と直接やり取りしたい", "専門業者に最初から相談したい"],
+      notRecommendedFor: ["複数業者の見積を比較したい場合(紹介型サービスの方が適します)", "対応地域・料金は公式サイトでの確認が必要です"],
+      feeText: "見積は無料",
+      areaText: "対応地域は公式サイトで確認",
+      resultTypes: ["estate-cleanup"],
+      eligiblePages: ["katazuke-ihin-hiyo"],
       lastCheckedAt: "2026-07-18", disclosure: "PR"
     },
 
