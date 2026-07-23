@@ -565,7 +565,7 @@ details.faq p { margin-top: 0; }
 .conversion-prep{margin:28px 0}
 .method-compare{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
 .method-compare th,.method-compare td{border:1px solid #e3e8ef;padding:8px 10px;text-align:left;vertical-align:top}
-.method-compare th{background:#f6f8fa;white-space:nowrap}
+.method-compare th{background:#f6f8fa;color:var(--text);white-space:nowrap}
 .table-wrap{overflow-x:auto}
 .fit-cases{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
 .fit-cases>div{border:1px solid #e3e8ef;border-radius:10px;padding:12px 14px}
