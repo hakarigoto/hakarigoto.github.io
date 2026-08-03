@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引越し手続き・住所変更チェックリスト|期限と管轄・オンライン可否つき|はかりごと</title>
+<meta name="description" content="転出入届・マイナンバー・免許・車庫証明・車検証・郵便転送・ライフラインなど引越しの手続きを時系列で整理。法律上の期限と推奨時期を区別し、管轄・必要書類・オンライン対応・自治体差を明記。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.dash-block { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.dash-block h3 { margin: 0 0 6px; font-size: 1rem; }
+.dash-block .field { margin: 6px 0; }
+.dash-block select, .dash-block input[type="number"] { font-size: 0.95rem; max-width: 100%; }
+.dash-note { font-size: 0.82rem; color: var(--text-sub); }
+.dash-total { border: 2px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
+.dash-total-label { font-size: 0.9rem; color: var(--text-sub); }
+.dash-total-value { font-size: 1.3rem; font-weight: 700; }
+.dash-breakdown { font-size: 0.9rem; margin-top: 8px; }
+.dash-breakdown td { padding: 3px 10px 3px 0; }
+.dash-uncounted { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+</style>
+<style>
+.phase-block { margin: 18px 0 6px; }
+.phase-title { font-weight: 700; font-size: 1rem; background: var(--accent-weak); color: var(--accent); padding: 6px 10px; border-radius: 6px; }
+.proc-item { border-bottom: 1px solid var(--border); padding: 10px 0; }
+.proc-head { display: flex; align-items: flex-start; gap: 8px; }
+.proc-head input { margin-top: 4px; flex-shrink: 0; }
+.proc-label { font-weight: 700; font-size: 0.96rem; }
+.badge { display: inline-block; font-size: 0.75rem; border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
+.badge-legal { background: #fbe9e6; color: #b4452f; }
+.badge-rec { background: var(--accent-weak); color: var(--accent); }
+.badge-org { background: #f1eee2; color: #8a6d1a; }
+.badge-region { background: #eef1f7; color: #3f4d8c; }
+.proc-detail { font-size: 0.87rem; color: var(--text-sub); margin: 4px 0 0 26px; }
+.proc-detail dt { font-weight: 700; display: inline; }
+.proc-detail dd { display: inline; margin: 0 10px 0 2px; }
+.proc-detail div { margin: 2px 0; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0; font-size: 0.92rem; }
+.filter-row label { display: flex; align-items: center; gap: 6px; font-weight: 400; }
+.progress-line { font-size: 1.1rem; font-weight: 700; }
+.progress-bar { height: 10px; background: var(--accent-weak); border-radius: 5px; overflow: hidden; margin: 8px 0 12px; }
+.progress-bar span { display: block; height: 100%; background: var(--accent); }
+.warn-box { border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-top: 14px; font-size: 0.92rem; background: var(--surface); }
+.warn-box strong { color: var(--accent); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "引越しの手続きで法律上の期限があるものはどれですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "住民基本台帳法に基づく転入届・転居届は引越した日から14日以内、国民健康保険の住所変更も14日以内が期限です。車検証の変更登録は住所変更から15日以内、マイナンバーカードの券面変更も転入届・転居届と合わせて行う必要があります。その他の多くの手続き(電気・ガス・水道・郵便転送・金融機関など)は法律上の期限ではなく、間に合わせるための推奨時期です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "オンラインでできる手続きはどれですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "郵便の転送届(e転居)や、電気・ガス・インターネットなどの民間サービスはWeb受付が一般的です。役所の手続きは、マイナンバーカードをお持ちの場合にマイナポータルから転出届を提出できる自治体がありますが、転入届は原則として来庁が必要です。オンライン対応は自治体・事業者ごとに異なり、全国一律ではありません。お住まいの自治体の案内で確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "車庫証明は必ず必要ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "必ずしも必要とは限りません。軽自動車では地域により「保管場所の届出」で足りる場合や、届出自体が不要な地域があります。また、法の適用がなく保管場所証明が不要となる地域(適用除外地域)もあります。必要かどうか、どの手続きになるかは、保管場所を管轄する警察署に確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "車の手続きは所有形態で変わりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "変わります。ローンやリースで車検証上の所有者が販売会社・信販会社等になっている場合、使用者の住所変更であっても所有者側の書類や手続きが必要になります。登録車と軽自動車でも窓口(運輸支局と軽自動車検査協会)や必要書類が異なります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "勤務先や学校への届出はいつまでですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "各組織の規程によります。提出期限・必要書類・通勤手当の取り扱いは勤務先や学校ごとに定められているため、社内規程や学校の案内で確認してください。転校が必要な場合は、自治体の教育委員会と学校の双方で手続きが必要になります。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/tetsuzuki/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/tetsuzuki/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="引越し手続き・住所変更チェックリスト">
+<meta property="og:description" content="転出入届・マイナンバー・免許・車庫証明・車検証・郵便転送・ライフラインなど引越しの手続きを時系列で整理。法律上の期限と推奨時期を区別し、管轄・必要書類・オンライン対応・自治体差を明記。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "引越し手続き・住所変更チェックリスト", "item": "https://hakarigoto.github.io/hikkoshi/tetsuzuki/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">引越し手続き・住所変更チェックリスト</li></ol></nav>
+
+  <div class="page-head">
+    <h1>引越し手続き・住所変更チェックリスト</h1>
+    <p class="lead">引越しに伴う手続きを時系列で並べ、それぞれの<strong>期限(法律上の期限か推奨時期か)・管轄・必要書類・オンライン対応</strong>を整理しました。あなたに関係する手続きだけを絞り込んで、進み具合を確認できます。チェック内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月3日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこのページのポイント</div>
+    <ul>
+      <li><span class="mk">転入届・転居届・国民健康保険は14日以内、車検証は15日以内</span>が法律上の期限</li>
+      <li>電気・ガス・郵便転送などは法律上の期限ではなく<span class="mk">間に合わせるための推奨時期</span></li>
+      <li>受付方法・オンライン対応・必要書類は<span class="mk">自治体や事業者ごとに異なり全国一律ではない</span></li>
+      <li>車の手続きは<span class="mk">車種(登録車/軽)と所有形態(ローン・リース)</span>で内容が変わる</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#list">手続きチェックリスト</a></li>
+      <li><a href="#day">引越し当日にすること</a></li>
+      <li><a href="#chui">手続きを進めるときの注意</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="list">
+    <h2>あなたに関係する手続きだけ表示する</h2>
+    <div class="filter-row">
+      <label><input type="checkbox" id="f-vehicle">車(自動車・バイク)を所有している</label>
+      <label><input type="checkbox" id="f-household">同居する家族がいる</label>
+      <label><input type="checkbox" id="f-samecity">同じ市区町村内での引越し</label>
+    </div>
+    <p style="font-size:0.87rem;color:var(--text-sub);">チェックを外しても手続きは非表示になるだけで、判断はご自身の状況に合わせて行ってください。該当するか分からない項目は表示したまま確認することをおすすめします。</p>
+
+    <div class="progress-line" id="progressLine"></div>
+    <div class="progress-bar"><span id="progressFill" style="width:0%"></span></div>
+
+    <div id="procList"></div>
+    <!-- AD-SLOT: hikkoshi (Phase 2は広告なし。トラブル・手続き系ページには恒久的に広告を掲載しない方針) -->
+  </section>
+
+  <article class="article">
+    <h2 id="day">引越し当日にすること</h2>
+    <ul>
+      <li>旧居の電気・ガス・水道のメーターを確認する(検針・精算に使うことがあります)</li>
+      <li>ガスの閉栓・開栓に立ち会いが必要な場合は在宅する</li>
+      <li>旧居の鍵を管理会社・貸主へ返却する(退去立会いで返す場合が一般的)</li>
+      <li>新居の設備(給湯・エアコン・水回り)の動作を確認する</li>
+      <li>近隣へのあいさつ(任意)</li>
+    </ul>
+
+    <h2 id="chui">手続きを進めるときの注意</h2>
+    <ul>
+      <li><strong>自治体による差があります。</strong>受付期間・必要書類・手数料・オンライン対応は市区町村ごとに異なります。「市区町村により異なる」と表示した手続きは、お住まいの自治体の案内で確認してください。</li>
+      <li><strong>オンライン対応は全国一律ではありません。</strong>マイナポータルから提出できる手続きは自治体の対応状況によります。転入届は原則として来庁が必要です。</li>
+      <li><strong>マイナンバーカードの手続きは複数あります。</strong>券面の住所書き換え、電子証明書の更新、家族分の手続きなどが関わり、手続きしないとカードの機能が使えなくなる場合があります。窓口で必要な手続きをまとめて確認してください。</li>
+      <li><strong>車庫証明が不要な場合があります。</strong>軽自動車では地域により届出で足りる場合や届出自体が不要な地域があり、法の適用がない地域(適用除外地域)もあります。保管場所を管轄する警察署に確認してください。</li>
+      <li><strong>車の手続きは所有形態で変わります。</strong>ローン・リースで所有者が販売会社等の場合は所有者側の書類が必要です。登録車と軽自動車で窓口も異なります。</li>
+      <li><strong>勤務先・学校の手続きは各組織の規程によります。</strong>期限・様式・通勤手当の扱いは組織ごとに定められています。</li>
+    </ul>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>引越しの手続きで法律上の期限があるものはどれですか?</summary>
+      <p>転入届・転居届と国民健康保険の住所変更は引越した日から14日以内、車検証の変更登録は15日以内です。多くの民間サービスの手続きは法律上の期限ではなく推奨時期です。</p>
+    </details>
+    <details class="faq">
+      <summary>オンラインでできる手続きはどれですか?</summary>
+      <p>郵便の転送届や電気・ガス・インターネットはWeb受付が一般的です。役所の手続きはマイナンバーカードで転出届を提出できる自治体がありますが、転入届は原則来庁です。対応は自治体・事業者ごとに異なります。</p>
+    </details>
+    <details class="faq">
+      <summary>車庫証明は必ず必要ですか?</summary>
+      <p>必ずしも必要とは限りません。軽自動車は地域により届出で足りる場合や不要な地域があり、適用除外地域もあります。管轄の警察署に確認してください。</p>
+    </details>
+    <details class="faq">
+      <summary>車の手続きは所有形態で変わりますか?</summary>
+      <p>変わります。ローン・リースで所有者が販売会社等の場合、所有者側の書類や手続きが必要です。登録車と軽自動車でも窓口・書類が異なります。</p>
+    </details>
+    <details class="faq">
+      <summary>勤務先や学校への届出はいつまでですか?</summary>
+      <p>各組織の規程によります。転校が必要な場合は教育委員会と学校の双方の手続きが必要です。</p>
+    </details>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+      <a class="next-action-card" href="/kuruma/iji-hi/" data-action-id="check-kuruma-ijihi">
+        <strong>車の年間維持費を計算する</strong>
+        <span>住所変更にあわせて、車にかかる年間コストを確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/mitsumori-check/" data-action-id="check-mitsumori">
+        <strong>見積もり前の条件を整理する</strong>
+        <span>引越し会社に依頼する前に、条件と契約項目を確認できます。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>手続きの一般的な整理です。受付期間・必要書類・手数料・オンライン対応は自治体や事業者により異なり、全国一律ではありません。実際の手続きは各窓口の案内で確認してください。</dd></div><div><dt>入力データの扱い</dt><dd>チェック内容・絞り込みの選択はブラウザ内で処理され、当サイトのサーバーへ送信されません。手続きの選択状況・車の所有・家族構成も外部に送信されません。</dd></div></dl><details><summary>作成方法・主な情報源を見る</summary><ul><li><b>対象:</b> 引越しに伴う21手続きを時系列(1か月〜2週間前/2週間前〜前日/当日/引越し後14日以内/引越し後できるだけ早く)に整理し、各手続きに管轄・期限・期限の種類・必要書類・オンライン対応・自治体差の有無を付す。</li><li><b>期限の区別:</b> 法律上の期限(legal)と、間に合わせるための推奨時期(recommended)、各組織の規程による期限(organization)を区別して表示する。</li><li><b>自治体差:</b> 受付方法・必要書類が市区町村により異なる手続きには「市区町村により異なる」を明示し、全国一律として断定しない。</li><li><b>含まれない項目:</b> 個別の自治体・事業者の窓口情報、手数料の具体額、個別事情に応じた手続きの要否判断</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.soumu.go.jp/main_sosiki/jichi_gyousei/c-gyousei/daityo/" rel="noopener" target="_blank">総務省「住民基本台帳等」</a>(確認日: 2026-08-03)</li><li><a href="https://www.digital.go.jp/policies/mynumber" rel="noopener" target="_blank">デジタル庁「マイナンバー制度・マイナンバーカード」</a>(確認日: 2026-08-03)</li><li><a href="https://www.npa.go.jp/bureau/traffic/menkyo/index.html" rel="noopener" target="_blank">警察庁「運転免許」</a>(確認日: 2026-08-03)</li><li><a href="https://www.keishicho.metro.tokyo.lg.jp/tetsuzuki/kotsu/hokan/syako_tetsuzuki/jidousha_syomei.html" rel="noopener" target="_blank">警視庁「保管場所証明申請手続」(車庫証明の手続き例)</a>(確認日: 2026-08-03)</li><li><a href="https://www.mlit.go.jp/jidosha/jidosha_tk2_000021.html" rel="noopener" target="_blank">国土交通省 自動車(登録手続き関連)</a>(確認日: 2026-08-03)</li><li><a href="https://www.post.japanpost.jp/service/tenkyo/" rel="noopener" target="_blank">日本郵便「転居・転送サービス」</a>(確認日: 2026-08-03)</li></ul><p style="font-size:0.85rem;">電気・ガス・水道・通信・金融機関等の手続きは、契約中および契約予定の各事業者の公式案内が一次情報になります。本ページでは民間事業者のまとめ記事・ブログを根拠として使用していません。</p></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/tetsuzuki/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var PROCEDURES = [{"procedureId": "tenshutsu", "label": "転出届(他の市区町村へ引越す場合)", "authority": "引越し前の市区町村役場", "deadline": "引越しのおおむね14日前から当日まで(自治体により受付期間が異なります)", "deadlineType": "recommended", "requiredDocuments": ["本人確認書類", "印鑑(自治体により不要)", "マイナンバーカード(お持ちの場合)"], "onlineAvailable": "partial", "onlineConditions": "マイナンバーカードをお持ちの場合、マイナポータルからの転出届の提出に対応している自治体があります。対応状況は自治体により異なります。", "regionDependent": true, "vehicleDependent": false, "householdDependent": false, "phase": "before", "sourceId": "soumu-juminkihon", "notes": "同じ市区町村内での引越しでは転出届は不要で、転居届のみになります。"}, {"procedureId": "tennyu", "label": "転入届(他の市区町村から引越してきた場合)", "authority": "新住所の市区町村役場", "deadline": "引越した日から14日以内", "deadlineType": "legal", "requiredDocuments": ["転出証明書(マイナンバーカードで手続きした場合は不要な場合あり)", "本人確認書類", "マイナンバーカード"], "onlineAvailable": "no", "onlineConditions": "来庁が必要です(マイナポータルで来庁予約に対応する自治体があります)。", "regionDependent": true, "vehicleDependent": false, "householdDependent": false, "phase": "after14", "sourceId": "soumu-juminkihon", "notes": "住民基本台帳法に基づく期限です。"}, {"procedureId": "tenkyo", "label": "転居届(同じ市区町村内で引越した場合)", "authority": "市区町村役場", "deadline": "引越した日から14日以内", "deadlineType": "legal", "requiredDocuments": ["本人確認書類", "マイナンバーカード"], "onlineAvailable": "no", "onlineConditions": "来庁が必要な自治体が一般的です。", "regionDependent": true, "vehicleDependent": false, "householdDependent": false, "phase": "after14", "sourceId": "soumu-juminkihon", "notes": "住民基本台帳法に基づく期限です。"}, {"procedureId": "mynumber", "label": "マイナンバーカードの住所変更(券面記載事項の変更)", "authority": "新住所の市区町村役場", "deadline": "転入届・転居届と同時、または引越し後14日以内", "deadlineType": "legal", "requiredDocuments": ["マイナンバーカード", "暗証番号"], "onlineAvailable": "no", "onlineConditions": "券面の書き換えは窓口での手続きが必要です。", "regionDependent": true, "vehicleDependent": false, "householdDependent": true, "phase": "after14", "sourceId": "digital-mynumber", "notes": "カードをお持ちの家族全員分が必要です。転入届から一定期間内に手続きしないとカードの機能が停止する場合があります。電子証明書の更新が必要になることもあります。"}, {"procedureId": "inkan", "label": "印鑑登録", "authority": "市区町村役場", "deadline": "必要になる前に(旧住所の登録は転出により失効)", "deadlineType": "recommended", "requiredDocuments": ["登録する印鑑", "本人確認書類"], "onlineAvailable": "no", "onlineConditions": "窓口での手続きが必要です。", "regionDependent": true, "vehicleDependent": false, "householdDependent": false, "phase": "early", "sourceId": "soumu-juminkihon", "notes": "他の市区町村へ転出すると旧住所での登録は効力を失うため、新住所で改めて登録します。登録の要件・手数料は自治体により異なります。"}, {"procedureId": "kokuho", "label": "国民健康保険の住所変更・加入", "authority": "市区町村役場", "deadline": "引越した日から14日以内", "deadlineType": "legal", "requiredDocuments": ["保険証または資格確認書", "本人確認書類", "マイナンバーがわかるもの"], "onlineAvailable": "partial", "onlineConditions": "一部の手続きをオンライン化している自治体があります。", "regionDependent": true, "vehicleDependent": false, "householdDependent": true, "phase": "after14", "sourceId": "soumu-juminkihon", "notes": "国民健康保険に加入している方が対象です。勤務先の健康保険に加入している場合は勤務先経由の手続きになります。"}, {"procedureId": "nenkin", "label": "国民年金の住所変更", "authority": "市区町村役場(第1号被保険者)", "deadline": "引越し後速やかに", "deadlineType": "recommended", "requiredDocuments": ["年金手帳または基礎年金番号通知書", "本人確認書類"], "onlineAvailable": "partial", "onlineConditions": "マイナンバーと基礎年金番号が結びついている場合、住所変更の届出が原則不要になることがあります。", "regionDependent": true, "vehicleDependent": false, "householdDependent": false, "phase": "early", "sourceId": "soumu-juminkihon", "notes": "厚生年金の加入者は勤務先経由の手続きになります。"}, {"procedureId": "jidouteate", "label": "児童手当など各種手当・医療費助成", "authority": "市区町村役場", "deadline": "転入届と同時、または引越し後15日以内が目安", "deadlineType": "recommended", "requiredDocuments": ["本人確認書類", "口座情報", "(自治体により)所得課税証明書"], "onlineAvailable": "partial", "onlineConditions": "マイナポータルから申請できる手続きがあります。対応状況は自治体により異なります。", "regionDependent": true, "vehicleDependent": false, "householdDependent": true, "phase": "after14", "sourceId": "digital-mynumber", "notes": "手当の名称・要件・提出期限は自治体と制度により異なります。遅れると支給されない月が生じることがあるため、転入届と同時の手続きが確実です。"}, {"procedureId": "menkyo", "label": "運転免許証の記載事項変更(住所変更)", "authority": "新住所を管轄する警察署・運転免許センター", "deadline": "住所が変わったら速やかに", "deadlineType": "recommended", "requiredDocuments": ["運転免許証", "新住所が確認できる書類(住民票の写し・マイナンバーカードなど)"], "onlineAvailable": "no", "onlineConditions": "窓口での手続きが必要です。", "regionDependent": true, "vehicleDependent": false, "householdDependent": false, "phase": "early", "sourceId": "npa-menkyo", "notes": "必要書類・受付窓口は都道府県警により異なります。更新はがきの送付先にも関わります。"}, {"procedureId": "shakoshomei", "label": "車庫証明(自動車保管場所証明)", "authority": "新しい保管場所を管轄する警察署", "deadline": "車検証の住所変更より前に取得(車検証変更は住所変更から15日以内が原則)", "deadlineType": "legal", "requiredDocuments": ["保管場所使用権原疎明書面または使用承諾証明書", "所在図・配置図", "申請書"], "onlineAvailable": "partial", "onlineConditions": "OSS(ワンストップサービス)等のオンライン申請に対応している地域があります。", "regionDependent": true, "vehicleDependent": true, "householdDependent": false, "phase": "early", "sourceId": "keishicho-shako", "notes": "軽自動車は地域により「保管場所の届出」で足りる場合や、届出自体が不要な地域があります。また、法の適用がなく証明が不要となる地域(適用除外地域)もあります。必要かどうかは保管場所を管轄する警察署に確認してください。"}, {"procedureId": "shakensho", "label": "車検証の住所変更(変更登録)", "authority": "新住所を管轄する運輸支局(軽自動車は軽自動車検査協会)", "deadline": "住所変更から15日以内", "deadlineType": "legal", "requiredDocuments": ["車検証", "住民票の写し等", "車庫証明(必要な地域・車種の場合)", "申請書・手数料納付書"], "onlineAvailable": "partial", "onlineConditions": "OSS(自動車保有関係手続のワンストップサービス)に対応する手続き・地域があります。", "regionDependent": true, "vehicleDependent": true, "householdDependent": false, "phase": "after14", "sourceId": "mlit-jidosha", "notes": "手続きは車種(登録車・軽自動車)と所有形態により異なります。ローン・リースで所有者が販売会社等になっている場合は、所有者側の手続きや書類が必要になります。ナンバープレートの管轄が変わる場合は車両の持ち込みが必要です。"}, {"procedureId": "yubin", "label": "郵便物の転送届(転居届)", "authority": "日本郵便", "deadline": "引越しの1週間前までが目安(受付後、開始まで数日かかります)", "deadlineType": "recommended", "requiredDocuments": ["本人確認書類", "旧住所が確認できるもの"], "onlineAvailable": "yes", "onlineConditions": "e転居によるオンライン提出、郵便窓口、ポスト投函のいずれかで手続きできます。", "regionDependent": false, "vehicleDependent": false, "householdDependent": true, "phase": "before", "sourceId": "japanpost-tenkyo", "notes": "届出日から1年間、旧住所あての郵便物が新住所へ転送されます。転送期間は延長の手続きができます。"}, {"procedureId": "denki", "label": "電気の使用停止・開始", "authority": "契約中の電力会社・新住所で契約する電力会社", "deadline": "引越しの1週間前まで(目安)", "deadlineType": "recommended", "requiredDocuments": ["お客さま番号(検針票・マイページで確認)", "住所・使用開始日"], "onlineAvailable": "yes", "onlineConditions": "多くの小売電気事業者がWebで受け付けています。対応は事業者により異なります。", "regionDependent": false, "vehicleDependent": false, "householdDependent": false, "phase": "before", "sourceId": "lifeline-official", "notes": "新居がオール電化・高圧一括契約の場合など、選べる契約が限られることがあります。契約中・契約予定の事業者の公式案内で確認してください。"}, {"procedureId": "gas", "label": "ガスの使用停止・開始(開栓の立ち会い)", "authority": "契約中のガス会社・新住所で契約するガス会社", "deadline": "引越しの1〜2週間前まで(開栓は立ち会い予約が必要)", "deadlineType": "recommended", "requiredDocuments": ["お客さま番号", "住所・使用開始日"], "onlineAvailable": "yes", "onlineConditions": "Web受付に対応する事業者が一般的ですが、開栓作業には原則立ち会いが必要です。", "regionDependent": false, "vehicleDependent": false, "householdDependent": false, "phase": "before", "sourceId": "lifeline-official", "notes": "繁忙期は開栓の予約が取りにくくなります。都市ガスとプロパンガスで手続き先・機器の扱いが異なります。"}, {"procedureId": "suido", "label": "水道の使用中止・開始", "authority": "各自治体の水道局等", "deadline": "引越しの数日前まで(目安)", "deadlineType": "recommended", "requiredDocuments": ["お客さま番号", "住所・使用開始日"], "onlineAvailable": "partial", "onlineConditions": "Web受付に対応する事業者と、電話のみの事業者があります。", "regionDependent": true, "vehicleDependent": false, "householdDependent": false, "phase": "before", "sourceId": "lifeline-official", "notes": "受付方法・立ち会いの要否は自治体(水道事業者)により異なります。"}, {"procedureId": "net", "label": "インターネット回線の移転・新規契約", "authority": "契約中の回線事業者・プロバイダ", "deadline": "引越しの1か月前まで(工事が必要な場合)", "deadlineType": "recommended", "requiredDocuments": ["契約者情報・お客さま番号"], "onlineAvailable": "yes", "onlineConditions": "Web受付に対応する事業者が一般的です。", "regionDependent": false, "vehicleDependent": false, "householdDependent": false, "phase": "early", "sourceId": "lifeline-official", "notes": "工事の予約は繁忙期に埋まりやすく、開通までに時間がかかることがあります。新居の設備(建物内の配線方式)により契約できる回線が変わります。"}, {"procedureId": "keitai", "label": "携帯電話の住所変更", "authority": "契約中の通信事業者", "deadline": "引越し後速やかに", "deadlineType": "recommended", "requiredDocuments": ["契約者情報", "本人確認書類"], "onlineAvailable": "yes", "onlineConditions": "マイページ・アプリで変更できる事業者が一般的です。", "regionDependent": false, "vehicleDependent": false, "householdDependent": false, "phase": "soon", "sourceId": "lifeline-official", "notes": "請求書の送付先や本人確認に影響します。"}, {"procedureId": "ginko", "label": "銀行・証券口座の住所変更", "authority": "各金融機関", "deadline": "引越し後速やかに", "deadlineType": "recommended", "requiredDocuments": ["本人確認書類", "(店頭の場合)通帳・届出印"], "onlineAvailable": "partial", "onlineConditions": "アプリ・Webで変更できる場合と、書面が必要な場合があります。", "regionDependent": false, "vehicleDependent": false, "householdDependent": false, "phase": "soon", "sourceId": "lifeline-official", "notes": "住所が古いままだと重要書類が届かず、取引が制限されることがあります。"}, {"procedureId": "card", "label": "クレジットカードの住所変更", "authority": "各カード会社", "deadline": "引越し後速やかに", "deadlineType": "recommended", "requiredDocuments": ["会員情報"], "onlineAvailable": "yes", "onlineConditions": "会員サイトで変更できるのが一般的です。", "regionDependent": false, "vehicleDependent": false, "householdDependent": false, "phase": "soon", "sourceId": "lifeline-official", "notes": "更新カードの送付先になります。"}, {"procedureId": "hoken", "label": "保険(生命・医療・火災・自動車)の住所変更", "authority": "各保険会社・代理店", "deadline": "引越し後速やかに(火災保険は新居の契約が必要)", "deadlineType": "recommended", "requiredDocuments": ["証券番号・契約者情報"], "onlineAvailable": "partial", "onlineConditions": "手続き方法は会社により異なります。", "regionDependent": false, "vehicleDependent": true, "householdDependent": true, "phase": "soon", "sourceId": "lifeline-official", "notes": "賃貸では新居の火災保険(借家人賠償責任を含むもの)への加入が契約条件になっていることが一般的です。自動車保険は使用の本拠地の変更が保険料に影響することがあります。"}, {"procedureId": "shokuba", "label": "勤務先・学校への届出(通勤・通学経路の変更を含む)", "authority": "勤務先・学校", "deadline": "各組織の規程による", "deadlineType": "organization", "requiredDocuments": ["各組織の指定様式"], "onlineAvailable": "partial", "onlineConditions": "社内システム等で提出できる場合があります。", "regionDependent": false, "vehicleDependent": false, "householdDependent": true, "phase": "early", "sourceId": null, "notes": "提出期限・必要書類・通勤手当の取り扱いは勤務先や学校の規程によります。転校が必要な場合は、自治体の教育委員会と学校の双方の手続きが必要です。"}];
+  var PHASES = {"early": "1か月〜2週間前", "before": "2週間前〜前日", "day": "引越し当日", "after14": "引越し後14日以内", "soon": "引越し後できるだけ早く"};
+  var PHASE_ORDER = ["early", "before", "after14", "soon"];
+  var DEADLINE_BADGE = {
+    legal: ['badge-legal', '法律上の期限'],
+    recommended: ['badge-rec', '推奨時期'],
+    organization: ['badge-org', '各組織の規程による']
+  };
+  var ONLINE_LABEL = { yes: "オンライン対応あり", partial: "一部オンライン対応(対応状況は窓口・事業者により異なります)", no: "窓口での手続きが必要" };
+
+  function visible(p) {
+    if (p.vehicleDependent && !document.getElementById("f-vehicle").checked) return false;
+    if (p.householdDependent && !document.getElementById("f-household").checked && (p.procedureId === "jidouteate")) return false;
+    var same = document.getElementById("f-samecity").checked;
+    if (same && (p.procedureId === "tenshutsu" || p.procedureId === "tennyu")) return false;
+    if (!same && p.procedureId === "tenkyo") return false;
+    return true;
+  }
+
+  var checkedIds = {};
+
+  function render() {
+    var host = document.getElementById("procList");
+    host.innerHTML = "";
+    var shown = 0, done = 0;
+    PHASE_ORDER.forEach(function (ph) {
+      var items = PROCEDURES.filter(function (p) { return p.phase === ph && visible(p); });
+      if (!items.length) return;
+      var block = document.createElement("div");
+      block.className = "phase-block";
+      var t = document.createElement("div");
+      t.className = "phase-title";
+      t.textContent = PHASES[ph];
+      block.appendChild(t);
+      items.forEach(function (p) {
+        shown++;
+        if (checkedIds[p.procedureId]) done++;
+        var item = document.createElement("div");
+        item.className = "proc-item";
+        var head = document.createElement("div");
+        head.className = "proc-head";
+        var cb = document.createElement("input");
+        cb.type = "checkbox"; cb.dataset.proc = p.procedureId; cb.checked = !!checkedIds[p.procedureId];
+        cb.addEventListener("change", function () {
+          checkedIds[p.procedureId] = cb.checked;
+          updateProgress();
+        });
+        var lab = document.createElement("label");
+        lab.className = "proc-label";
+        lab.textContent = p.label;
+        var b = DEADLINE_BADGE[p.deadlineType] || DEADLINE_BADGE.recommended;
+        var badge = document.createElement("span");
+        badge.className = "badge " + b[0];
+        badge.textContent = b[1];
+        lab.appendChild(badge);
+        if (p.regionDependent) {
+          var rb = document.createElement("span");
+          rb.className = "badge badge-region";
+          rb.textContent = "市区町村により異なる";
+          lab.appendChild(rb);
+        }
+        head.appendChild(cb); head.appendChild(lab);
+        item.appendChild(head);
+        var d = document.createElement("dl");
+        d.className = "proc-detail";
+        function row(k, v) {
+          var w = document.createElement("div");
+          var dt = document.createElement("dt"); dt.textContent = k + ":";
+          var dd = document.createElement("dd"); dd.textContent = v;
+          w.appendChild(dt); w.appendChild(dd); d.appendChild(w);
+        }
+        row("期限", p.deadline);
+        row("手続き先", p.authority);
+        row("持ち物", p.requiredDocuments.join("、"));
+        row("オンライン", ONLINE_LABEL[p.onlineAvailable] + (p.onlineConditions ? " — " + p.onlineConditions : ""));
+        if (p.notes) row("注意", p.notes);
+        item.appendChild(d);
+        block.appendChild(item);
+      });
+      host.appendChild(block);
+    });
+    window.__shown = shown;
+    updateProgress();
+  }
+
+  function updateProgress() {
+    var shown = 0, done = 0;
+    PROCEDURES.forEach(function (p) {
+      if (!visible(p)) return;
+      shown++;
+      if (checkedIds[p.procedureId]) done++;
+    });
+    var pct = shown ? Math.round(done / shown * 100) : 0;
+    document.getElementById("progressLine").textContent = "完了:" + done + " / " + shown + "件(" + pct + "%)";
+    document.getElementById("progressFill").style.width = pct + "%";
+  }
+
+  ["f-vehicle", "f-household", "f-samecity"].forEach(function (id) {
+    document.getElementById(id).addEventListener("change", render);
+  });
+  render();
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>

@@ -264,6 +264,10 @@
         <strong>退去費用の負担区分を診断する</strong>
         <span>旧居の傷・汚れがどこまで自己負担になるか、ガイドライン基準でわかります。</span>
       </a>
+      <a class="next-action-card" href="/hikkoshi/mitsumori-check/" data-action-id="check-mitsumori">
+        <strong>見積もりを取る前に条件を整理する</strong>
+        <span>依頼前に確認する14項目と、訪問・オンライン・一括見積もりの違いがわかります。</span>
+      </a>
       <a class="next-action-card" href="/katazuke/shobun-shindan/" data-action-id="check-shobun">
         <strong>大型家具・家電の処分方法を診断する</strong>
         <span>引越し前に荷物を減らして、トラックのサイズを1ランク下げられるか確認できます。</span>
@@ -338,7 +342,7 @@
       SEG_LABEL[hh] + " / " + DIST_LABEL[dist] + " / " + seasonText + " の水準です。";
 
     var ev = document.getElementById("resultEvidence");
-    if (cell.ev === "direct") {
+    if (cell.ev === "multi-source-direct") {
       ev.textContent = "確度:複数の調査(" + cell.n + "件)の公表平均値で確認できたレンジです。個別の見積もりの最安〜最高ではありません。";
     } else {
       ev.textContent = "確度:単一調査の平均に基づく参考値です。複数調査で確認できた区分とは確度が異なります。";
