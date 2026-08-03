@@ -252,6 +252,7 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     <div id="resultArea" class="result-box" aria-live="polite">
       <div class="stats" id="stats"></div>
       <p class="result-error" id="errMsg" hidden></p>
+      <p style="font-size:0.88rem;color:var(--text-sub);margin-top:6px;">この試算は入力した利回りが毎年一定で続いた場合の計算です。実際の価格変動(元本を下回る年があること)は再現していないため、この結果だけで「何年後にいくらになるか」を判断することはできません。</p>
       <div class="chart-wrap">
         <canvas id="chart" role="img" aria-label="資産推移グラフ"></canvas>
         <div class="chart-legend" id="legend">

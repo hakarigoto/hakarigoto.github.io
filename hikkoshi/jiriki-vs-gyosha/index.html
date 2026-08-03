@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自分で引越す?業者に頼む?5つの方法を費用と条件で比べる|はかりごと</title>
+<meta name="description" content="自力・全部依頼・大型品だけ部分依頼・日程や条件の調整・荷物を減らす、の5つの方法を費用と非金銭の条件(作業時間・人手・破損リスク・補償・階段・長距離など)で比較。未入力の費用は0円扱いにしません。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.dash-block { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.dash-block h3 { margin: 0 0 6px; font-size: 1rem; }
+.dash-block .field { margin: 6px 0; }
+.dash-block select, .dash-block input[type="number"] { font-size: 0.95rem; max-width: 100%; }
+.dash-note { font-size: 0.82rem; color: var(--text-sub); }
+.dash-total { border: 2px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
+.dash-total-label { font-size: 0.9rem; color: var(--text-sub); }
+.dash-total-value { font-size: 1.3rem; font-weight: 700; }
+.dash-breakdown { font-size: 0.9rem; margin-top: 8px; }
+.dash-breakdown td { padding: 3px 10px 3px 0; }
+.dash-uncounted { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+</style>
+<style>
+.in-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.in-row label { flex: 1 1 210px; font-size: 0.93rem; font-weight: 400; }
+.in-row input[type="number"] { width: 120px; }
+.in-row .unit { font-size: 0.9rem; color: var(--text-sub); }
+.in-group { margin: 14px 0 4px; }
+.in-group-title { font-weight: 700; font-size: 0.96rem; margin-bottom: 4px; padding-bottom: 4px; border-bottom: 2px solid var(--accent-weak); }
+.hint { font-size: 0.82rem; color: var(--text-sub); margin: 0 0 6px 0; }
+.method-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.method-card h3 { margin: 0 0 6px; font-size: 1rem; }
+.method-card .cost { font-weight: 700; font-size: 1.05rem; }
+.method-card .uncounted { font-size: 0.85rem; color: #b4452f; }
+.method-card .fit { font-size: 0.88rem; color: var(--accent); }
+.cmp-table { width: 100%; font-size: 0.9rem; }
+.cmp-table th, .cmp-table td { text-align: left; vertical-align: top; padding: 5px 6px; }
+.cmp-table th:first-child { width: 22%; }
+.ev-note { font-size: 0.85rem; color: var(--text-sub); }
+.warn-box { border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-top: 14px; font-size: 0.92rem; background: var(--surface); }
+.warn-box strong { color: var(--accent); }
+.example-box { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 12px 0; }
+.example-box h3 { margin: 0 0 6px; font-size: 1rem; }
+.example-box table { width: 100%; font-size: 0.92rem; }
+.example-box td:last-child { text-align: right; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "自分で引越すと本当に安くなりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "レンタカー代・燃料・高速料金・梱包資材・手伝ってくれた人へのお礼などを合計すると、想定より差が縮まることがあります。また金額以外に、作業時間、人手の確保、家具の分解と搬出、破損した場合の負担、けがのリスクといった条件も関わります。このページでは入力した金額の合計と、これらの非金銭の条件を並べて比較します。どの方法が安いかを断定するものではありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "大型家具だけ業者に頼むことはできますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "冷蔵庫・洗濯機・ベッド・食器棚などの大型品だけを運んでもらい、段ボールは自分で運ぶ方法があります。取り扱いや料金の設定は事業者ごとに異なるため、対応の可否と金額は見積もりで確認してください。大型品の搬出入は建物条件(階段・エレベーター・搬入経路)の影響が大きいため、部分依頼が現実的な選択肢になる場面があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "荷物を減らすと引越し費用は下がりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "料金は使うトラックのサイズと作業量で決まるため、大型家具・家電を事前に手放すと1ランク小さい車両で済み、金額が変わることがあります。ただし処分にも費用と手間がかかるため、処分費用を含めて比べる必要があります。処分方法と費用の目安は当サイトの不用品処分診断で確認できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "日程を変えると費用はどのくらい変わりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "引越し料金は需給で動くため、繁忙期(2〜4月)・月末・土日祝・午前中の枠は高くなりやすい傾向があります。国土交通省によると3月の引越件数は通常月の約2倍です。日程や時間帯を調整できる場合は、同じ条件でも金額が変わる余地があります。ただし入居日や退去日が動かせない場合もあるため、調整できる範囲で検討してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "荷物の破損はどう扱われますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "事業者に依頼した場合は、標準引越運送約款に基づき、事業者の責任による荷物の滅失・毀損について責任と申し出の期間が定められています(実際の適用は各社の約款によります)。自分で運んだ場合や友人に手伝ってもらった場合は、破損しても補償はなく、自己負担になります。高価な品や壊れやすい品がある場合は、この違いも判断材料になります。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/jiriki-vs-gyosha/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/jiriki-vs-gyosha/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="自力引越しvs業者 5方式の比較">
+<meta property="og:description" content="自力・全部依頼・大型品だけ部分依頼・日程や条件の調整・荷物を減らす、の5つの方法を費用と非金銭の条件(作業時間・人手・破損リスク・補償・階段・長距離など)で比較。未入力の費用は0円扱いにしません。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "自力引越しvs業者 5方式の比較", "item": "https://hakarigoto.github.io/hikkoshi/jiriki-vs-gyosha/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">自分で引越す?業者に頼む?</li></ol></nav>
+
+  <div class="page-head">
+    <h1>自分で引越す?業者に頼む?5つの方法を比べる</h1>
+    <p class="lead">「自力」か「業者」かの2択で考えると、部分依頼や日程調整といった選択肢が見えにくくなります。このページでは5つの方法を、入力した費用と、作業時間・人手・破損時の扱いなどの<strong>金額以外の条件</strong>の両面で並べます。どれが最安かを断定するものではありません。入力内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月4日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこのページのポイント</div>
+    <ul>
+      <li>選択肢は<span class="mk">自力・全部依頼・大型品だけ部分依頼・日程や条件の調整・荷物を減らす</span>の5つ</li>
+      <li>自力の費用は<span class="mk">レンタカー+燃料+高速+資材+お礼</span>まで入れて初めて比較できる</li>
+      <li>金額が近い場合は<span class="mk">作業時間・人手・破損時の負担</span>が判断材料になる</li>
+      <li>未入力の費用は<span class="mk">0円ではなく「未計算」</span>として扱います</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">5つの方法を比べる</a></li>
+      <li><a href="#hikaku">金額以外の条件で比べる</a></li>
+      <li><a href="#rei">具体例で見る比較</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
+    <h2>条件と分かっている金額を入力してください</h2>
+
+    <div class="in-group">
+      <div class="in-group-title">引越しの条件</div>
+      <div class="in-row">
+        <label for="volume">荷物量</label>
+        <select id="volume">
+          <option value="s-small">単身・荷物少なめ</option>
+          <option value="s-large" selected>単身・荷物多め</option>
+          <option value="f2">2人</option>
+          <option value="f34">3〜4人</option>
+          <option value="f5">5人以上</option>
+        </select>
+      </div>
+      <div class="in-row">
+        <label for="dist">移動距離</label>
+        <select id="dist">
+          <option value="d15" selected>〜15km</option>
+          <option value="d50">〜50km</option>
+          <option value="d200">〜200km</option>
+          <option value="dover200">200km超</option>
+        </select>
+      </div>
+      <div class="in-row">
+        <label for="oogata">運ぶのが難しい大型品(冷蔵庫・洗濯機・ベッド等)</label>
+        <select id="oogata">
+          <option value="none">ない</option>
+          <option value="few" selected>1〜2点ある</option>
+          <option value="many">3点以上ある</option>
+        </select>
+      </div>
+      <div class="in-row">
+        <label for="kaidan">階段作業・エレベーターなしの搬出入</label>
+        <select id="kaidan">
+          <option value="no" selected>ない(または未確認)</option>
+          <option value="yes">ある</option>
+        </select>
+      </div>
+      <div class="in-row">
+        <label for="care">小さな子ども・高齢者・ペットがいる</label>
+        <select id="care">
+          <option value="no" selected>いない</option>
+          <option value="yes">いる</option>
+        </select>
+      </div>
+      <div class="in-row">
+        <label for="nittei">日程・時間帯を調整できる余地</label>
+        <select id="nittei">
+          <option value="no" selected>ほとんどない</option>
+          <option value="some">多少ある</option>
+          <option value="yes">十分ある</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="in-group">
+      <div class="in-group-title">自力で運ぶ場合の費用(分かるものだけ)</div>
+      <p class="hint">空欄のままにすると<strong>0円ではなく「未計算」</strong>として扱い、合計に含めずに件数を表示します。</p>
+      <div class="in-row"><label for="rentacar">レンタカー料金</label><input type="number" id="rentacar" min="0" max="500000" placeholder="例: 12000"><span class="unit">円</span></div>
+      <div class="in-row"><label for="fuel">燃料代</label><input type="number" id="fuel" min="0" max="200000" placeholder="例: 4000"><span class="unit">円</span></div>
+      <div class="in-row"><label for="kosoku">高速道路料金(往復)</label><input type="number" id="kosoku" min="0" max="200000" placeholder="例: 3000"><span class="unit">円</span></div>
+      <div class="in-row"><label for="shizai">梱包資材(段ボール・テープ等)</label><input type="number" id="shizai" min="0" max="100000" placeholder="例: 5000"><span class="unit">円</span></div>
+      <div class="in-row"><label for="tetsudai">手伝ってくれる人数</label><input type="number" id="tetsudai" min="0" max="20" placeholder="例: 2"><span class="unit">人</span></div>
+      <div class="in-row"><label for="orei">お礼・食事代など(合計)</label><input type="number" id="orei" min="0" max="200000" placeholder="例: 10000"><span class="unit">円</span></div>
+      <div class="in-row"><label for="jikan">搬出・搬入に必要な時間の見込み</label><input type="number" id="jikan" min="0" max="72" placeholder="例: 8"><span class="unit">時間</span></div>
+    </div>
+
+    <div class="in-group">
+      <div class="in-group-title">業者の見積額(受け取っていれば)</div>
+      <div class="in-row"><label for="gyosha">業者に全部依頼した場合の見積額</label><input type="number" id="gyosha" min="0" max="3000000" placeholder="見積書の金額"><span class="unit">円</span></div>
+      <div class="in-row"><label for="bubun">大型品だけ部分依頼した場合の見積額</label><input type="number" id="bubun" min="0" max="3000000" placeholder="見積書の金額"><span class="unit">円</span></div>
+      <p class="hint">見積もりがまだの場合は空欄で構いません。全部依頼の欄が空欄のときは、参考として調査データの相場水準を表示します(実際の見積額ではありません)。</p>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">5つの方法を比べる</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div id="summaryLine" style="font-size:1.1rem;font-weight:700;margin-bottom:8px;"></div>
+      <div id="methods"></div>
+      <p class="ev-note" id="uncountedNote"></p>
+      <details id="cmpSection" style="margin-top:12px;">
+        <summary style="font-weight:700;cursor:pointer;">金額以外の条件でも比べる(作業時間・人手・破損リスク・補償など)</summary>
+        <div id="cmpBody" style="margin-top:8px;"></div>
+      </details>
+    </div>
+    <!-- AD-SLOT: hikkoshi (Phase 3は広告なし。比較セクションを開いた際の仮カードも置かない) -->
+  </section>
+
+  <article class="article">
+    <h2 id="hikaku">金額以外の条件で比べる</h2>
+    <div class="table-wrap">
+      <table class="cmp-table">
+        <tr><th>観点</th><th>自分で運ぶ</th><th>全部依頼</th><th>大型品だけ依頼</th><th>日程・条件を調整</th><th>荷物を減らす</th></tr>
+        <tr><th>作業時間</th><td>長い(準備・往復・搬出入すべて自分)</td><td>短い(立ち会い中心)</td><td>中(小物は自分)</td><td>変わらない</td><td>短くなる方向</td></tr>
+        <tr><th>人手</th><td>自分で確保する必要あり</td><td>不要</td><td>小物分のみ必要</td><td>変わらない</td><td>必要量が減る</td></tr>
+        <tr><th>車両</th><td>レンタカーの手配・運転が必要</td><td>不要</td><td>小物分の車が必要な場合あり</td><td>変わらない</td><td>小さい車両で済む可能性</td></tr>
+        <tr><th>梱包</th><td>すべて自分</td><td>依頼範囲による</td><td>小物は自分</td><td>変わらない</td><td>量が減る</td></tr>
+        <tr><th>破損リスク</th><td>自分の作業次第</td><td>専門の作業員が対応</td><td>大型品は業者が対応</td><td>変わらない</td><td>運ぶ物が減る分だけ低下</td></tr>
+        <tr><th>破損時の扱い</th><td>補償なし・自己負担</td><td>標準引越運送約款に基づく責任の定めあり(適用は各社の約款による)</td><td>依頼した品は約款の対象</td><td>方法により異なる</td><td>方法により異なる</td></tr>
+        <tr><th>階段・大型家具</th><td>負担が大きい・搬出できない場合あり</td><td>対応可(条件により追加料金)</td><td>この条件に向く</td><td>変わらない</td><td>大型品を手放せば解消</td></tr>
+        <tr><th>長距離</th><td>運転時間と高速代が増える</td><td>対応可</td><td>大型品のみ長距離を任せられる</td><td>変わらない</td><td>影響は限定的</td></tr>
+        <tr><th>子ども・高齢者・ペット</th><td>当日の付き添いが難しくなりやすい</td><td>付き添う時間を確保しやすい</td><td>中間</td><td>付き添いやすい日程を選べる</td><td>作業時間が短くなる</td></tr>
+        <tr><th>日程変更の余地</th><td>自分次第で変えやすい</td><td>予約状況による</td><td>予約状況による</td><td>これ自体が調整</td><td>影響は限定的</td></tr>
+      </table>
+    </div>
+    <p>「日程・条件を調整する」は、引越しを先延ばしにすることを勧めるものではありません。入居日・退去日が動かせない場合もあります。時間帯を変える、繁忙期のピーク日を外す、時間指定なしの便にするなど、<strong>調整できる範囲</strong>で検討するための選択肢です。</p>
+
+    <h2 id="rei">具体例で見る比較</h2>
+    <p>次の2つは<strong>説明のための例</strong>です。金額は例示用の仮定であり、入力欄には自動で反映されません。実際の金額は条件・時期・事業者によって変わります。</p>
+
+    <div class="example-box">
+      <h3>例1:単身・近距離(〜15km)・荷物少なめ</h3>
+      <table>
+        <tr><td>レンタカー(軽トラック6時間・仮定)</td><td>8,000円</td></tr>
+        <tr><td>燃料代</td><td>2,000円</td></tr>
+        <tr><td>梱包資材</td><td>3,000円</td></tr>
+        <tr><td>手伝い1人へのお礼・食事</td><td>5,000円</td></tr>
+        <tr><td><b>自力の合計(この仮定の場合)</b></td><td><b>18,000円</b></td></tr>
+        <tr><td>業者へ全部依頼(通常期の調査平均の目安)</td><td>約3.9万円</td></tr>
+      </table>
+      <p class="hint"><b>この例の仮定:</b>大型家具なし、エレベーターあり、平日、自分と手伝い1人で搬出入に約5時間。<b>含まれない費用:</b>高速道路料金、駐車料金、当日の飲食、破損した場合の買い替え費用。<b>金額差が小さい場合は、作業時間(半日〜1日)と破損時に補償がない点も判断材料になります。実際の契約・見積もりで変わります。</b></p>
+    </div>
+
+    <div class="example-box">
+      <h3>例2:家族・長距離(200km超)・大型家具あり</h3>
+      <table>
+        <tr><td>レンタカー(2tトラック1日・仮定)</td><td>25,000円</td></tr>
+        <tr><td>燃料代(往復)</td><td>12,000円</td></tr>
+        <tr><td>高速道路料金(往復)</td><td>14,000円</td></tr>
+        <tr><td>梱包資材</td><td>10,000円</td></tr>
+        <tr><td>手伝い2人へのお礼・食事</td><td>20,000円</td></tr>
+        <tr><td><b>自力の合計(この仮定の場合)</b></td><td><b>81,000円</b></td></tr>
+        <tr><td>業者へ全部依頼(通常期の調査平均の目安)</td><td>約15.1〜24.0万円</td></tr>
+        <tr><td>大型品だけ部分依頼(仮定)</td><td>8〜12万円</td></tr>
+      </table>
+      <p class="hint"><b>この例の仮定:</b>3〜4人世帯、冷蔵庫・洗濯機・ベッド・食器棚あり、2階からの搬出でエレベーターなし、繁忙期以外。<b>含まれない費用:</b>宿泊費、2日に分けた場合の追加のレンタカー代、けがや破損による費用。<b>この条件では金額差だけでなく、階段作業の負担、長距離運転の疲労、大型家具の破損リスク、当日に子どもやペットへ付き添えるかが判断に関わります。実際の契約・見積もりで変わります。</b></p>
+    </div>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>自分で引越すと本当に安くなりますか?</summary>
+      <p>レンタカー・燃料・高速・資材・お礼を合計すると差が縮まることがあります。金額以外に作業時間・人手・破損時の負担も関わるため、両面で比べてください。</p>
+    </details>
+    <details class="faq">
+      <summary>大型家具だけ業者に頼むことはできますか?</summary>
+      <p>大型品だけ運んでもらい小物は自分で運ぶ方法があります。対応可否と金額は事業者ごとに異なるため見積もりで確認してください。階段作業がある場合に現実的な選択肢になります。</p>
+    </details>
+    <details class="faq">
+      <summary>荷物を減らすと引越し費用は下がりますか?</summary>
+      <p>使うトラックのサイズと作業量で料金が決まるため、大型品を手放すと変わることがあります。ただし処分にも費用と手間がかかるため、処分費用を含めて比べてください。</p>
+    </details>
+    <details class="faq">
+      <summary>日程を変えると費用はどのくらい変わりますか?</summary>
+      <p>繁忙期(2〜4月)・月末・土日祝・午前は高くなりやすい傾向があります。国土交通省によると3月の引越件数は通常月の約2倍です。調整できる範囲で検討してください。</p>
+    </details>
+    <details class="faq">
+      <summary>荷物の破損はどう扱われますか?</summary>
+      <p>事業者に依頼した場合は標準引越運送約款に責任と申し出期間の定めがあります(適用は各社の約款による)。自分で運んだ場合は補償がなく自己負担です。</p>
+    </details>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/hikkoshi-hiyo/" data-action-id="check-souba">
+        <strong>引越し費用の相場水準を確認する</strong>
+        <span>世帯・距離・時期別の調査データで、業者に頼んだ場合の水準を確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/mitsumori-check/" data-action-id="check-mitsumori">
+        <strong>見積もりを取る前に条件を整理する</strong>
+        <span>同じ条件で各社を比べるために、依頼前に確認する14項目を整理できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月4日</dd></div><div><dt>結果の位置づけ</dt><dd>入力された金額の合計と、条件に応じて候補になりやすい方法を表示します。最安の方法やおすすめを断定するものではありません。未入力の費用は0円ではなく「未計算」として扱い、件数を表示します。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。荷物量・距離・見積額・自力費用・手伝い人数・選択結果も外部に送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 自力で運ぶ場合の入力額合計と、業者の見積額・部分依頼額を並べて表示する。あわせて荷物量・距離・大型品・階段作業・付き添いの必要性・日程調整の余地から、候補になりやすい方法を複数示す。</li><li><b>使用する入力値:</b> 荷物量、距離、大型品の有無、階段作業の有無、子ども・高齢者・ペットの有無、日程調整の余地、レンタカー・燃料・高速・資材・手伝い人数・お礼・所要時間、業者見積額、部分依頼額</li><li><b>相場のフォールバック:</b> 業者見積額が未入力の場合のみ、引越し費用相場データ(複数調査の公表平均値)の該当セルを<b>参考</b>として表示する。実際の見積額ではないため入力額とは区別して表示し、確度(複数調査で確認/単一調査の参考値)も併記する。</li><li><b>当サイトが金額を仮定する項目:</b> なし。自力費用はすべて利用者の入力値。本文の具体例2件のみ仮定値を用い、仮定条件・含まれない費用・実際は変わる旨を各例に明記している</li><li><b>計算に含まれない項目:</b> 未入力の費用、駐車料金、宿泊費、けがや破損による費用、不用品の処分費用、荷物を減らした場合の売却収入</li><li><b>結果が変わる主な要因:</b> 荷物量の実測、建物条件、時期と時間帯、事業者ごとの料金設定、手伝いを頼める人の有無</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.mlit.go.jp/jidosha/jidosha_tk4_000033.html" rel="noopener" target="_blank">国土交通省「標準引越運送約款等の改正について」</a>(確認日: 2026-08-04)</li><li><a href="https://www.mlit.go.jp/jidosha/jidosha_fr4_000022.html" rel="noopener" target="_blank">国土交通省「引越時期の分散に向けたお願い」</a>(確認日: 2026-08-04)</li><li><a href="https://www.kokusen.go.jp/soudan_topics/data/hikkoshi.html" rel="noopener" target="_blank">国民生活センター「引越サービス(各種相談の件数や傾向)」</a>(確認日: 2026-08-04)</li><li>相場水準の参考値: <a href="https://hikkoshi.suumo.jp/soba/" rel="noopener" target="_blank">リクルート「引越しに関する実態把握調査」</a>・<a href="https://www.homes.co.jp/hikkoshi/price/" rel="noopener" target="_blank">LIFULL引越し</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/jiriki-vs-gyosha/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script src="/assets/hikkoshi-souba.js"></script>
+<script>
+(function () {
+  "use strict";
+  var SELF_FIELDS = [
+    ["rentacar", "レンタカー料金"], ["fuel", "燃料代"], ["kosoku", "高速道路料金"],
+    ["shizai", "梱包資材"], ["orei", "お礼・食事代など"]
+  ];
+
+  function val(id) {
+    var el = document.getElementById(id);
+    if (!el || el.value === "") return null;
+    var v = parseFloat(el.value);
+    if (isNaN(v) || v < 0) v = 0;
+    var max = parseFloat(el.max) || 3000000;
+    if (v > max) v = max;
+    el.value = v;
+    return v;
+  }
+  function yen(n) { return n.toLocaleString("ja-JP") + "円"; }
+  function man(n) { return (Math.round(n / 1000) / 10) + "万円"; }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var vol = document.getElementById("volume").value;
+    var dist = document.getElementById("dist").value;
+    var oogata = document.getElementById("oogata").value;
+    var kaidan = document.getElementById("kaidan").value;
+    var care = document.getElementById("care").value;
+    var nittei = document.getElementById("nittei").value;
+
+    var selfTotal = 0, selfMissing = [];
+    SELF_FIELDS.forEach(function (f) {
+      var v = val(f[0]);
+      if (v === null) { selfMissing.push(f[1]); return; }
+      selfTotal += v;
+    });
+    var people = val("tetsudai");
+    var hours = val("jikan");
+    var gyosha = val("gyosha");
+    var bubun = val("bubun");
+
+    var host = document.getElementById("methods");
+    host.innerHTML = "";
+
+    function card(title, costHtml, fit, extra) {
+      var d = document.createElement("div");
+      d.className = "method-card";
+      d.innerHTML = "<h3>" + title + "</h3>" + costHtml +
+        (extra ? '<p class="uncounted">' + extra + "</p>" : "") +
+        '<p class="fit">' + fit + "</p>";
+      host.appendChild(d);
+    }
+
+    /* 1. 自分で運ぶ */
+    var selfCost = selfMissing.length === SELF_FIELDS.length
+      ? '<p class="cost">未計算</p>'
+      : '<p class="cost">入力額の合計:' + yen(selfTotal) + "</p>";
+    var selfExtra = selfMissing.length ? "未計算の項目 " + selfMissing.length + "件(" + selfMissing.join("、") + ")。0円ではありません。" : "";
+    var selfFit = "候補になりやすい条件:荷物が少ない/近距離/大型品がない/手伝ってくれる人がいる/作業に時間を割ける";
+    if (hours) selfFit += "。入力された所要時間の見込みは" + hours + "時間です";
+    if (people) selfFit += "(手伝い" + people + "人)";
+    card("1. 自分で運ぶ", selfCost, selfFit, selfExtra);
+
+    /* 2. 業者へ全部依頼(フォールバック) */
+    var gyoshaCost, gyoshaExtra = "";
+    if (gyosha !== null) {
+      gyoshaCost = '<p class="cost">見積額:' + yen(gyosha) + "</p>";
+    } else {
+      var data = window.HKG_HIKKOSHI_SOUBA;
+      var cell = data ? data["normal." + vol + "." + dist] : null;
+      if (cell) {
+        var range = cell.lo === cell.hi ? "約" + man(cell.lo) : man(cell.lo) + "〜" + man(cell.hi);
+        var evText = cell.ev === "multi-source-direct" ? "複数の調査で確認できたレンジ" : "単一調査の平均(参考値)";
+        gyoshaCost = '<p class="cost">参考:通常期の調査平均 ' + range + "</p>";
+        gyoshaExtra = "これは<b>実際の見積額ではありません</b>。複数調査の公表平均値にもとづく参考水準です(確度:" + evText + ")。見積書を受け取ったら、その金額を入力して比較してください。";
+      } else {
+        gyoshaCost = '<p class="cost">未計算</p>';
+        gyoshaExtra = "見積額が未入力です。0円ではありません。";
+      }
+    }
+    var gFit = "候補になりやすい条件:荷物が多い/長距離/大型品がある/階段作業がある/当日に付き添いが必要/作業時間を確保しにくい";
+    card("2. 引越し業者へ全部依頼", gyoshaCost, gFit, gyoshaExtra);
+
+    /* 3. 部分依頼 */
+    var bubunCost = bubun !== null ? '<p class="cost">見積額:' + yen(bubun) + "</p>" : '<p class="cost">未計算</p>';
+    var bubunExtra = bubun === null ? "部分依頼の見積額が未入力です。0円ではありません。対応可否と金額は事業者ごとに異なります。" : "";
+    card("3. 大型品だけ部分依頼(小物は自分で運ぶ)", bubunCost,
+      "候補になりやすい条件:大型品はあるが小物は自分で運べる/階段作業がある/自力の負担を減らしたいが全部は頼まない", bubunExtra);
+
+    /* 4. 日程・条件を調整する */
+    var nitteiText = nittei === "yes" ? "調整の余地が十分にあるため、時期・曜日・時間帯を変える効果を見込みやすい状態です。"
+      : nittei === "some" ? "多少の調整余地があるため、時間帯や時間指定なしの便を検討できます。"
+      : "調整の余地がほとんどないと入力されています。入居日・退去日が動かせない場合、この方法は選びにくくなります。";
+    card("4. 日程・条件を調整する", '<p class="cost">金額の増減は条件次第</p>',
+      "候補になりやすい条件:繁忙期(2〜4月)や月末・土日祝に予定している/時間指定を外せる/日程を数日ずらせる。" + nitteiText,
+      "先延ばしを勧めるものではありません。調整できる範囲での検討です。");
+
+    /* 5. 荷物を減らす */
+    card("5. 荷物を減らして規模を下げる", '<p class="cost">処分費用と、車両が小さくなる分の差額の兼ね合い</p>',
+      "候補になりやすい条件:使っていない大型家具・家電がある/トラックのサイズが1ランク変わりそう/処分の時間を取れる",
+      "処分にも費用と手間がかかります。処分方法と費用の目安は不用品処分診断で確認できます。");
+
+    /* サマリー(断定しない) */
+    var known = [];
+    if (selfMissing.length !== SELF_FIELDS.length) known.push(["自分で運ぶ", selfTotal]);
+    if (gyosha !== null) known.push(["業者へ全部依頼", gyosha]);
+    if (bubun !== null) known.push(["大型品だけ部分依頼", bubun]);
+    var summary = document.getElementById("summaryLine");
+    if (known.length >= 2) {
+      var sorted = known.slice().sort(function (a, b) { return a[1] - b[1]; });
+      var diff = sorted[sorted.length - 1][1] - sorted[0][1];
+      summary.textContent = "入力された金額の差は " + yen(diff) + " です(" + sorted[0][0] + " と " + sorted[sorted.length - 1][0] + " の比較)。金額だけで決めず、下の条件も確認してください。";
+    } else if (known.length === 1) {
+      summary.textContent = "比較できる金額が1つだけ入力されています。他の方法の金額が分かると差を確認できます。";
+    } else {
+      summary.textContent = "金額が未入力のため、条件から候補になりやすい方法のみ表示します。";
+    }
+
+    /* 未計算の注記 */
+    var uncounted = [];
+    if (selfMissing.length) uncounted.push("自力の費用" + selfMissing.length + "件");
+    if (gyosha === null) uncounted.push("業者の見積額");
+    if (bubun === null) uncounted.push("部分依頼の見積額");
+    document.getElementById("uncountedNote").textContent = uncounted.length
+      ? "未計算:" + uncounted.join("、") + "。これらは0円として扱っていません。見積もりを受け取ったら入力して比較し直してください。"
+      : "";
+
+    /* 条件比較(自発的に開く) */
+    var rows = [];
+    if (oogata !== "none") rows.push("大型品が" + (oogata === "many" ? "3点以上" : "1〜2点") + "あるため、搬出入の負担と破損時の扱いが判断に関わります。部分依頼が選択肢になります。");
+    if (kaidan === "yes") rows.push("階段作業・エレベーターなしの搬出入があるため、自力では時間と人手が大きく増えます。業者依頼では追加料金の対象になることがあります。");
+    if (care === "yes") rows.push("小さな子ども・高齢者・ペットがいるため、当日に付き添える時間を確保できるかが判断材料になります。");
+    if (dist === "d200" || dist === "dover200") rows.push("長距離のため、自力では運転時間・高速料金・疲労が増えます。2日に分ける場合の宿泊費も考慮が必要です。");
+    if (vol === "f34" || vol === "f5") rows.push("荷物量が多いため、車両サイズと往復回数が費用と時間の両方に影響します。");
+    if (!rows.length) rows.push("入力された条件では、金額以外の負担は比較的小さい範囲です。作業時間と手伝いの確保ができるかを確認してください。");
+    document.getElementById("cmpBody").innerHTML =
+      "<ul>" + rows.map(function (r) { return "<li>" + r + "</li>"; }).join("") + "</ul>" +
+      '<p class="ev-note">破損時の扱いは方法によって異なります。事業者に依頼した場合は標準引越運送約款に責任と申し出期間の定めがあります(適用は各社の約款によります)。自分で運んだ場合や手伝ってもらった場合は補償がなく自己負担になります。</p>';
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>
