@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>退去費用・原状回復の負担診断|どこまで払う?国交省ガイドライン基準でチェック|はかりごと</title>
+<meta name="description" content="賃貸退去時の傷・汚れを選ぶだけで、大家負担か入居者負担かを国土交通省ガイドラインの考え方に沿って診断。経年劣化・通常損耗のルール、6年住んだ場合の負担軽減、特約の有効条件まで解説。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.check-group { margin: 14px 0 4px; }
+.check-group-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+.check-list label {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-weight: 400; font-size: 0.95rem; margin: 6px 0; cursor: pointer;
+}
+.check-list input { margin-top: 3px; flex-shrink: 0; }
+.verdict-table td:first-child { width: 60%; }
+.v-lessor { color: #1e7f6b; font-weight: 700; }
+.v-tenant { color: #b4452f; font-weight: 700; }
+.v-depends { color: #8a6d1a; font-weight: 700; }
+.verdict-note { font-size: 0.85rem; color: var(--text-sub); display: block; margin-top: 2px; font-weight: 400; }
+.summary-line { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+.warn-box {
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  background: var(--surface);
+}
+.warn-box strong { color: var(--accent); }
+.sub-questions { margin: 4px 0 10px 26px; padding: 8px 12px; border-left: 3px solid var(--accent-weak); }
+.sub-q { margin: 6px 0; }
+.sub-q label { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+.sub-q select { font-size: 0.9rem; max-width: 100%; }
+.aging-badge { display: inline-block; font-size: 0.78rem; background: var(--accent-weak); color: var(--accent); border-radius: 4px; padding: 1px 6px; margin-top: 4px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "普通に住んでいてできた傷や汚れも退去時に請求されますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "普通に生活していて生じる損耗(通常損耗)や年月による劣化(経年変化)の回復費用は、原則として大家(貸主)の負担です。2020年施行の改正民法621条でも、通常損耗・経年変化は入居者の原状回復義務に含まれないことが明文化されました。入居者が負担するのは、故意・不注意や手入れ不足で生じさせた損傷の部分です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "6年住んだらクロスの張り替え費用は請求されないと聞きましたが本当ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "国土交通省ガイドラインでは、壁クロスの価値は6年で残存価値1円になるよう償却する考え方が示されています。入居者に落ち度がある損傷でも、6年以上住んだ場合のクロス張り替え費用の負担はごくわずかになります。ただし故意・重過失による損傷や、工事の最低施工単位などの事情で一定の負担が生じる場合はあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "契約書に「退去時クリーニング代は借主負担」と書いてあれば払うしかないのですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "特約自体は有効になり得ますが、判例上(1)特約の必要性と暴利的でない客観的合理性があること(2)入居者が通常の原状回復義務を超える負担を負うことを認識していること(3)入居者が明確に合意していること、の要件を満たす必要があります。金額が相場に比べて過大な場合や、内容が具体的に示されていなかった場合は、消費者契約法により無効と判断されることもあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "敷金はいつまでに返してもらえますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "改正民法622条の2により、賃貸借が終了して物件の返還を受けたとき、貸主は敷金から未払賃料や入居者負担の原状回復費を差し引いた残額を返還する義務があります。返還時期は契約で「退去後1か月以内」などと定められていることが多く、精算内訳に納得できない場合は明細の提示を求めることができます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "高額な退去費用を請求されて納得できない場合はどうすればいいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "まず見積もりの内訳(単価・数量・負担割合)の提示を求め、国土交通省ガイドラインの考え方と照らして交渉します。それでも解決しない場合は、消費生活センター(電話188)、自治体の宅建指導窓口、少額訴訟(60万円以下)などの手段があります。退去立会い時にその場でサインを求められても、納得できない金額なら保留して構いません。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/taikyo-hiyo/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/taikyo-hiyo/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="退去費用・原状回復の負担診断|どこまで払う?国交省ガイドライン基準でチェック">
+<meta property="og:description" content="賃貸退去時の傷・汚れを選ぶだけで、大家負担か入居者負担かをガイドラインの考え方に沿って診断。6年住んだ場合の負担軽減、特約の有効条件まで解説。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "退去費用・原状回復診断", "item": "https://hakarigoto.github.io/hikkoshi/taikyo-hiyo/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">退去費用・原状回復診断</li></ol></nav>
+
+  <div class="page-head">
+    <h1>退去費用・原状回復の負担診断</h1>
+    <p class="lead">部屋の傷・汚れの状況と発生の経緯を選ぶと、貸主負担となる可能性が高いか・借主負担となる可能性があるかの一般的な整理を、国土交通省「原状回復をめぐるトラブルとガイドライン」の考え方に沿って表示します。法的な確定判定ではなく、実際の負担は契約内容・損傷の程度など個別事情によります。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月3日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+    <ul>
+      <li>普通に暮らしてできた損耗・経年変化の回復費用は<span class="mk">原則、大家負担</span>(改正民法で明文化)</li>
+      <li>入居者が払うのは<span class="mk">故意・不注意・手入れ不足による損傷</span>の部分だけ</li>
+      <li>借主負担になる場合も、<span class="mk">クロス等の対象部材は経過年数で負担額が下がり得る</span>(部分補修・鍵など考慮されない項目もある)</li>
+      <li>「クリーニング代は借主負担」等の特約は<span class="mk">合理性・認識・明確な合意</span>がないと無効になり得る</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#shindan">負担の目安を診断する</a></li>
+      <li><a href="#gensoku">原状回復の大原則</a></li>
+      <li><a href="#keika">経過年数で入居者負担は減る</a></li>
+      <li><a href="#tokuyaku">特約(クリーニング代など)の有効条件</a></li>
+      <li><a href="#seisan">敷金精算の流れと交渉のしかた</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="shindan">
+    <h2>当てはまる状況にチェック</h2>
+
+    <p style="font-size:0.9rem;color:var(--text-sub);">当てはまる損耗にチェックすると、発生の状況を確認する質問が表示されます。同じ損耗でも、原因・程度・手入れの状況・契約内容によって整理が変わるためです。</p>
+
+    <div class="check-group">
+      <div class="check-group-title">壁・クロス</div>
+      <div class="check-list" id="grp-wall"></div>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">床・畳</div>
+      <div class="check-list" id="grp-floor"></div>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">水回り・設備・その他</div>
+      <div class="check-list" id="grp-etc"></div>
+    </div>
+
+    <div class="field" style="margin-top:14px;">
+      <label for="years">入居していた年数(任意・経過年数の説明に使います)</label>
+      <select id="years">
+        <option value="u3" selected>3年未満</option>
+        <option value="u6">3〜6年</option>
+        <option value="o6">6年以上</option>
+      </select>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="shindanBtn">負担の整理を表示する</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="summary-line" id="summaryLine"></div>
+      <p id="contractFlag" style="font-weight:700;color:var(--accent);margin-top:6px;" hidden></p>
+      <div class="table-wrap">
+        <table class="verdict-table" id="verdictTable">
+          <tr><th>チェックした項目</th><th>一般的な整理</th><th>考え方・注意</th></tr>
+        </table>
+      </div>
+      <p class="result-note" id="keikaNote" style="font-size:0.9rem;color:var(--text-sub);margin-top:8px;"></p>
+    </div>
+    <div class="warn-box" style="margin-top:14px;">
+      <strong>ご注意:</strong>この診断は国土交通省「原状回復をめぐるトラブルとガイドライン」に基づく<strong>一般的な整理であり、法的な確定判定ではありません</strong>。実際の負担は契約内容・特約の有効性・損傷の程度・経過年数などの個別事情により異なります。「借主負担となる可能性がある」と表示された場合も、確定した請求額を意味しません。納得できない請求は、お住まいの<strong>消費生活センター(電話188)</strong>や自治体の相談窓口に相談できます。
+    </div>
+    <!-- AD-SLOT: hikkoshi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+  </section>
+
+  <article class="article">
+    <h2 id="gensoku">原状回復の大原則:「元通り」に戻す義務ではない</h2>
+    <p>「原状回復」という言葉から、部屋を入居時の状態に完全に戻す義務があると誤解されがちですが、そうではありません。国土交通省ガイドラインは原状回復を<strong>「賃借人の故意・過失、善管注意義務違反、その他通常の使用を超えるような使用による損耗・毀損を復旧すること」</strong>と定義しています。</p>
+    <p>つまり負担の分かれ目は次のとおりです。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>損耗の種類</th><th>例</th><th>負担</th></tr>
+        <tr><td>経年変化・通常損耗</td><td>日焼け、家具の設置跡、画鋲の穴、設備の自然故障</td><td><strong>大家(貸主)</strong></td></tr>
+        <tr><td>故意・過失・手入れ不足</td><td>タバコのヤニ、こぼしたシミの放置、結露放置のカビ、ペットの傷</td><td><strong>入居者(借主)</strong></td></tr>
+      </table>
+    </div>
+    <p>この考え方は2020年4月施行の改正民法621条で明文化され、通常損耗と経年変化は入居者の原状回復義務に<strong>含まれない</strong>ことが法律上も明確になっています。</p>
+
+    <h2 id="keika">経過年数で入居者負担は減る</h2>
+    <p>入居者に落ち度がある損傷でも、設備や内装には寿命があるため、<strong>新品時の価値全額を負担する必要はありません</strong>。ガイドラインでは壁クロスやカーペット、クッションフロアなどは<strong>6年で残存価値1円</strong>となる償却の考え方が示されています。</p>
+    <p>たとえば入居3年でクロスに落ち度のある汚れをつけた場合、負担の目安は張り替え費用の約50%。6年以上住んでいれば、負担はほぼゼロに近づきます(故意・重過失の場合や最低施工単位の事情を除く)。フローリングの部分補修や建具・柱など、経過年数を考慮しない部位もあります。</p>
+
+    <h2 id="tokuyaku">特約(クリーニング代など)の有効条件</h2>
+    <p>「退去時のハウスクリーニング代は借主負担」といった特約は、通常損耗の負担を入居者に移すものなので、無条件には有効になりません。判例の積み重ねから、次の3つをすべて満たす必要があるとされています。</p>
+    <ul>
+      <li>特約の必要性があり、<strong>暴利的でない客観的・合理的理由</strong>が存在すること</li>
+      <li>入居者が特約によって<strong>通常の原状回復義務を超える負担を負うことを認識</strong>していること</li>
+      <li>入居者が特約による義務負担の意思表示を<strong>明確にしている</strong>こと</li>
+    </ul>
+    <p>金額が具体的に示されていない、相場に比べて著しく高額、といった場合には消費者契約法10条により無効と判断された裁判例もあります。契約書の特約欄は退去前に必ず読み返しましょう。</p>
+
+    <h2 id="seisan">敷金精算の流れと交渉のしかた</h2>
+    <p>退去時の精算は通常、<strong>退去立会い→見積もり提示→敷金から差し引き→残額返還</strong>の流れで進みます。納得できない請求があった場合の対応手順は次のとおりです。</p>
+    <ol>
+      <li><strong>内訳の明細を求める</strong>:単価×数量、負担割合、経過年数の考慮有無を確認</li>
+      <li><strong>ガイドラインと照合する</strong>:通常損耗分が入居者負担になっていないか、償却が反映されているか</li>
+      <li><strong>書面・メールで交渉する</strong>:口頭よりも記録が残る形で。立会い時にその場でのサインを急かされても保留してよい</li>
+      <li><strong>外部窓口を使う</strong>:消費生活センター(電話188)、自治体の宅建指導窓口、少額訴訟(60万円以下)</li>
+    </ol>
+    <p>入居時に部屋の写真を撮っておくと、退去時に「入居前からあった傷」を証明でき、もっとも効果的なトラブル予防になります。</p>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>普通に住んでいてできた傷や汚れも請求されますか?</summary>
+      <p>通常損耗・経年変化の回復費用は原則として大家負担です。改正民法621条でも入居者の原状回復義務に含まれないことが明文化されています。</p>
+    </details>
+    <details class="faq">
+      <summary>6年住んだらクロスの張り替え費用は請求されないと聞きましたが本当ですか?</summary>
+      <p>ガイドラインではクロスは6年で残存価値1円まで償却する考え方が示されており、6年以上入居した場合の負担はごくわずかになります。ただし故意・重過失の場合などは別途の負担が生じ得ます。</p>
+    </details>
+    <details class="faq">
+      <summary>契約書にクリーニング特約があれば必ず払うのですか?</summary>
+      <p>合理性・認識・明確な合意の3要件を満たさない特約は無効になり得ます。金額の明示がない・過大といった場合は消費者契約法で争える余地があります。</p>
+    </details>
+    <details class="faq">
+      <summary>敷金はいつ返ってきますか?</summary>
+      <p>物件返還後、未払賃料や借主負担分を差し引いた残額が返還されます。時期は契約の定め(退去後1か月以内など)によることが多いです。</p>
+    </details>
+    <details class="faq">
+      <summary>高額請求に納得できないときは?</summary>
+      <p>内訳明細を求め、ガイドラインと照合して交渉を。解決しなければ消費生活センター(188)や少額訴訟という手段があります。</p>
+    </details>
+
+    <!-- AD-SLOT: hikkoshi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/katazuke/shobun-shindan/" data-action-id="check-shobun">
+        <strong>不用品の処分方法を診断する</strong>
+        <span>退去前に出る大型家具・家電の処分方法と費用の目安を確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/hikkoshi-hiyo/" data-action-id="check-hikkoshi-hiyo">
+        <strong>引越し本体の費用相場を確認する</strong>
+        <span>世帯・距離・時期から、調査データに基づく引越し費用の水準がわかります。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>国土交通省ガイドラインに基づく一般的な整理であり、法的な確定判定ではありません。「借主負担となる可能性がある」と表示された場合も確定した請求額を意味せず、実際の負担は契約内容・特約の有効性・損傷の程度・経過年数など個別事情により異なります。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。計測されるのはページ閲覧と結果の抽象分類(5種類)のみで、選択した損耗・回答内容は送信されません。</dd></div></dl><details><summary>診断方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> チェックした損耗ごとに、発生時期・原因・程度・手入れ状況・特約の確認状況の分岐質問に答える形式で、「貸主負担となる可能性が高い/借主負担となる可能性がある/契約書・特約の確認が必要/入力だけでは整理できない」の4分類の一般的整理を表示する。項目名だけでは分類せず、断定表示は行わない。</li><li><b>使用する入力値:</b> 損耗16項目のチェックと項目ごとの分岐質問への回答、入居年数(任意・経過年数の説明にのみ使用)</li><li><b>判定の根拠:</b> 国土交通省「原状回復をめぐるトラブルとガイドライン」(再改訂版)の別表1(損耗・毀損の事例区分: A=通常の住まい方でも発生するもの/B=住まい方・使い方によって生じたもの/A(+B)=手入れ不足等で発生・拡大したもの)および別表2(経過年数等の考慮)。全16項目をガイドライン本文と照合済み</li><li><b>経過年数の扱い:</b> クロス・カーペット等の対象部材にのみ適用(6年で残存価値1円の考え方)。鍵の紛失・フローリング部分補修・清掃で対応する汚れには適用しない。経過年数は負担額の算定に関する考え方であり、修繕義務の有無とは区別して表示</li><li><b>計算に含まれない項目:</b> 具体的な金額の算定(単価・施工面積)、特約の有効性の判定、故意・重過失の程度判定、最低施工単位</li><li><b>結果が変わる主な要因:</b> 損傷の程度と範囲、特約の有無と有効性、経過年数、契約の個別事情、地域の商慣習</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk3_000020.html" rel="noopener" target="_blank">国土交通省「原状回復をめぐるトラブルとガイドライン」(再改訂版)</a>(確認日: 2026-08-03)</li><li><a href="https://elaws.e-gov.go.jp/document?lawid=129AC0000000089" rel="noopener" target="_blank">民法621条・622条の2(e-Gov法令検索)</a>(確認日: 2026-08-03)</li><li><a href="https://www.kokusen.go.jp/soudan_topics/data/chintai.html" rel="noopener" target="_blank">国民生活センター「賃貸住宅の原状回復トラブル」</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/taikyo-hiyo/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* 計測(外部送信はads.jsがhkgSinkを定義した場合のみ。入力値・選択内容は送らない) */
+  function track(eventName, params) {
+    var q = (window.__hkgEvents = window.__hkgEvents || []);
+    q.push({ t: Date.now(), event: eventName, params: params });
+    if (q.length > 200) q.shift();
+    if (typeof window.hkgSink === "function") {
+      try { window.hkgSink(eventName, params); } catch (e) { /* noop */ }
+    }
+  }
+
+  /* 分類: lessor=貸主負担となる可能性が高い / tenant=借主負担となる可能性がある
+           contract=契約書・特約の確認が必要 / insufficient=入力だけでは整理できない
+     aging: considered=経過年数で負担額が変わり得る / not=経過年数は考慮されない
+            depends=対象部材・補修範囲による / null=負担が生じない整理のため対象外 */
+  var Q_TIMING = { id: "timing", label: "この損耗はいつからありますか?", opts: [
+    ["after", "入居後にできた"],
+    ["before-doc", "入居時からあった(写真・記録がある)"],
+    ["before-nodoc", "入居時からあった(記録はない)"]
+  ]};
+
+  var ITEMS = [
+    { id: "sunburn", grp: "wall", label: "日焼け・家具や家電の跡による変色(冷蔵庫裏の黒ずみ等)", qs: [],
+      logic: function () { return R("lessor", "通常損耗・経年変化(ガイドライン区分A)にあたり、貸主負担となる可能性が高い整理です。", null); } },
+    { id: "pinhole", grp: "wall", label: "画鋲・ピンの穴(ポスターやカレンダーを掛けた程度)", qs: [],
+      logic: function () { return R("lessor", "下地ボードの張替えが不要な程度の画鋲・ピンの穴は通常の使用の範囲(区分A)とされています。", null); } },
+    { id: "nailhole", grp: "wall", label: "壁の釘・ネジの穴", qs: [
+        { id: "depth", label: "穴の程度は?", opts: [["shallow", "画鋲程度の浅い穴"], ["deep", "下地ボードの張替えが必要な深い穴・広い穴"], ["unknown", "わからない"]] }],
+      logic: function (a) {
+        if (a.depth === "shallow") return R("lessor", "画鋲程度の穴は通常の使用の範囲(区分A)とされています。", null);
+        if (a.depth === "deep") return R("tenant", "下地ボードの張替えが必要な程度の釘・ネジ穴は、通常の使用を超える(区分B)とされることが多い整理です。", "considered");
+        return R("insufficient", "穴の深さ・範囲がわからない場合、整理できません。下地ボードに達しているかを確認してください。", null);
+      } },
+    { id: "tabako", grp: "wall", label: "タバコのヤニ汚れ・臭い", qs: [
+        { id: "smoke", label: "室内での喫煙はありましたか?", opts: [["yes", "室内で喫煙していた"], ["no", "室内では喫煙していない"], ["unknown", "わからない"]] },
+        { id: "range", label: "ヤニ・臭いの範囲は?", opts: [["part", "壁の一部など限られた範囲"], ["room", "居室全体に変色・臭いがある"]] },
+        { id: "tokuyaku", label: "禁煙特約の確認状況は?", opts: [["checked-yes", "禁煙特約あり(契約書で確認済み)"], ["checked-no", "特約なし(契約書で確認済み)"], ["unchecked", "契約書を確認していない"]] }],
+      logic: function (a) {
+        if (a.smoke === "no") return R("insufficient", "喫煙していないのにヤニ様の汚れがある場合、原因(前入居者・調理等)の確認が必要です。", null);
+        if (a.smoke === "unknown") return R("insufficient", "喫煙の有無・原因がわからない場合、整理できません。", null);
+        var note = "喫煙によるクロス等の変色・臭いは、通常の使用による汚損を超える(区分B)と判断されることが多い整理です。ガイドラインでは、居室全体に及ぶ場合にのみ全体のクリーニング・張替費用を借主負担とすることが妥当とされており、" + (a.range === "room" ? "居室全体に及んでいる場合は全体分" : "一部にとどまる場合は該当範囲") + "が対象です。実際の補修範囲・負担額は個別確認が必要です。";
+        if (a.tokuyaku === "unchecked") note += " 禁煙特約の有無も契約書で確認してください(禁止物件では用法違反と評価され得ます)。";
+        return R("tenant", note, "considered");
+      } },
+    { id: "kabi", grp: "wall", label: "結露によるカビ・シミ", qs: [
+        { id: "care", label: "結露への対応は?", opts: [["cared", "貸主へ連絡し、拭き取り等の手入れをしていた"], ["neglect", "特に対処していなかった"], ["unknown", "わからない"]] }],
+      logic: function (a) {
+        if (a.care === "cared") return R("lessor", "結露は建物の構造上の問題であることが多く、通知・手入れをしていた場合は貸主側の整理となる可能性が高いです。", null);
+        if (a.care === "neglect") return R("tenant", "結露を放置して拡大したカビ・シミは、手入れを怠ったことによる部分(区分A(+B))として借主負担となる可能性があります。対象は拡大した部分です。", "considered");
+        return R("insufficient", "結露への対応状況がわからない場合、整理できません。", null);
+      } },
+    { id: "rakugaki", grp: "wall", label: "子どもの落書き", qs: [
+        { id: "extent", label: "範囲は?", opts: [["part", "一部(清掃・部分補修で済みそう)"], ["wide", "広範囲(張替えが必要そう)"]] }],
+      logic: function (a) {
+        return R("tenant", "落書きは故意による毀損(区分B)として借主負担となる可能性があります。負担額は" + (a.extent === "wide" ? "張替えが必要な範囲" : "清掃・部分補修の範囲") + "によります。", "considered");
+      } },
+    { id: "hekomi", grp: "floor", label: "家具の設置によるへこみ・設置跡", qs: [],
+      logic: function () { return R("lessor", "家具の設置は通常の使用による損耗(区分A)とされています。", null); } },
+    { id: "caster", grp: "floor", label: "キャスターや物の引きずりによる床の傷", qs: [
+        { id: "cause", label: "傷ができた状況は?", opts: [["normal", "通常の椅子・家具の使用でついた"], ["careless", "保護せずに重い物を引きずる等でついた"], ["unknown", "わからない"]] },
+        { id: "degree", label: "傷の程度は?", opts: [["light", "表面のごく軽い擦り跡"], ["partial", "部分補修が必要な傷"], ["replace", "床材の交換が必要な深い傷"]] }],
+      logic: function (a) {
+        if (a.cause === "unknown") return R("insufficient", "原因がわからない場合、整理できません。いつ・どのようにできた傷かを確認してください。", null);
+        if (a.cause === "normal" && a.degree === "light") return R("lessor", "通常の使用の範囲の軽微な跡は、通常損耗側の整理となる可能性があります。", null);
+        var note = "不注意による床の傷(区分B)は借主負担となる可能性があります。" + (a.degree === "replace" ? "床材の交換が必要な場合、フローリング全体の張替えでは建物の耐用年数を考慮した負担割合になります。" : "部分補修で対応できる可能性があります。経過年数を考慮するかは、対象部材と補修範囲によって異なります。");
+        return R("tenant", note, "depends");
+      } },
+    { id: "kobore", grp: "floor", label: "飲み物などをこぼしたことによるシミ・カビ", qs: [
+        { id: "care", label: "こぼした後の対応は?", opts: [["wiped", "すぐ拭き取った(跡が残ってしまった)"], ["neglect", "しばらく放置してシミ・カビになった"], ["unknown", "わからない"]] }],
+      logic: function (a) {
+        if (a.care === "wiped") return R("lessor", "飲み物等をこぼすこと自体は通常の生活の範囲とされ、すぐ手入れをしていた場合は通常損耗側の整理となる可能性があります。", null);
+        if (a.care === "neglect") return R("tenant", "こぼした後の手入れ不足で生じたシミ・カビ(区分A(+B))は借主負担となる可能性があります。", "considered");
+        return R("insufficient", "こぼした後の対応がわからない場合、整理できません。", null);
+      } },
+    { id: "tatamiyake", grp: "floor", label: "畳・フローリングの日焼け(自然な変色)", qs: [],
+      logic: function () { return R("lessor", "日照による変色は経年変化(区分A)とされています。", null); } },
+    { id: "kitchen", grp: "etc", label: "台所・コンロまわりの油汚れ", qs: [
+        { id: "care", label: "使用後の手入れは?", opts: [["cared", "定期的に手入れしていた(通常の汚れ)"], ["neglect", "手入れを怠って蓄積した"], ["unknown", "わからない"]] }],
+      logic: function (a) {
+        if (a.care === "cared") return R("lessor", "通常の使用の範囲の油汚れは貸主側の整理となる可能性があります。", null);
+        if (a.care === "neglect") return R("tenant", "手入れを怠って蓄積した油汚れ・ススは善管注意義務違反(区分A(+B))とされることが多く、負担は清掃費相当です。", "not");
+        return R("insufficient", "手入れの状況がわからない場合、整理できません。", null);
+      } },
+    { id: "mizuaka", grp: "etc", label: "風呂・トイレ・洗面台の水垢・カビ", qs: [
+        { id: "care", label: "日常の掃除は?", opts: [["cared", "定期的に掃除していた(通常の汚れ)"], ["neglect", "掃除を怠って蓄積した"], ["unknown", "わからない"]] }],
+      logic: function (a) {
+        if (a.care === "cared") return R("lessor", "通常の使用の範囲の水垢・カビは貸主側の整理となる可能性があります。", null);
+        if (a.care === "neglect") return R("tenant", "掃除を怠って蓄積した水垢・カビは善管注意義務違反(区分A(+B))とされることが多く、負担は清掃費相当です。", "not");
+        return R("insufficient", "掃除の状況がわからない場合、整理できません。", null);
+      } },
+    { id: "setsubi", grp: "etc", label: "設備の故障(給湯器・エアコンなど)", qs: [
+        { id: "cause", label: "故障の原因は?", opts: [["life", "普通に使っていて寿命・自然に故障した"], ["misuse", "誤った使い方・手入れ不足で壊れた"], ["unknown", "わからない"]] }],
+      logic: function (a) {
+        if (a.cause === "life") return R("lessor", "機器の寿命による故障は経年劣化(区分A)とされ、借主に責任はないと考えられています。", null);
+        if (a.cause === "misuse") return R("tenant", "不適切な手入れ・用法違反による毀損(区分B)は借主負担となる可能性があります。設備の耐用年数による負担割合の考慮があり得ます。", "depends");
+        return R("insufficient", "故障の原因がわからない場合、整理できません。", null);
+      } },
+    { id: "key", grp: "etc", label: "鍵の交換を求められている", qs: [
+        { id: "reason", label: "交換の理由は?", opts: [["lost", "鍵を紛失・破損してしまった"], ["turnover", "紛失・破損はない(入居者交代のための交換)"]] }],
+      logic: function (a) {
+        if (a.reason === "lost") return R("tenant", "鍵の紛失・破損による交換は借主負担とされることが多く、ガイドライン上、経過年数は考慮されません(交換費用相当分)。", "not");
+        return R("lessor", "破損・紛失のない入居者交代に伴う鍵交換は、物件管理上の問題として貸主負担とすることが妥当とされています。", null);
+      } },
+    { id: "pet", grp: "etc", label: "ペットによる柱・クロスの傷、臭い", qs: [
+        { id: "contract", label: "契約内容は?", opts: [["ok-checked", "ペット可(特約の内容も確認済み)"], ["ok-unchecked", "ペット可(特約は未確認)"], ["ng", "ペット不可の契約"], ["unknown", "契約内容がわからない"]] },
+        { id: "degree", label: "損傷の程度は?", opts: [["slight", "軽微で清掃で対応できそう"], ["clear", "柱・クロスに明確な傷や臭いがある"]] }],
+      logic: function (a) {
+        if (a.contract === "ok-unchecked" || a.contract === "unknown") {
+          return R("contract", "ペットによる傷・臭い自体は、通常の使用を超える損耗(区分B)として借主負担とされることが多い整理ですが、ペット飼育の特約には修繕範囲・費用の定めが置かれていることが多く、契約書・特約の確認が必要です。", "considered");
+        }
+        var note = a.degree === "clear"
+          ? "ペットによる柱・クロスの明確な傷や臭いは、借主負担とされることが多い整理です(区分B)。"
+          : "軽微な場合、負担は清掃費相当となる可能性があります(区分B)。";
+        if (a.contract === "ng") note += " ペット不可の契約での飼育は用法違反と評価され得ますが、違約の成否や責任の範囲はこの診断では判定できず、個別の契約・事情によります。";
+        return R("tenant", note, "considered");
+      } },
+    { id: "cleaning", grp: "etc", label: "退去時のハウスクリーニング代を請求されている", qs: [
+        { id: "seiso", label: "日常の清掃は?", opts: [["yes", "掃き掃除・拭き掃除・水回りなど通常の清掃をしていた"], ["no", "していなかった"]] },
+        { id: "tokuyaku", label: "クリーニング特約の確認状況は?", opts: [["none", "特約の記載なし(契約書で確認済み)"], ["checked", "記載あり・内容確認済み(金額や範囲が明確で説明を受けた)"], ["unchecked", "記載あり・内容は未確認"], ["nodoc", "契約書を確認していない"]] }],
+      logic: function (a) {
+        if (a.seiso === "no") return R("tenant", "通常の清掃を怠った場合、その清掃費相当は借主負担となる可能性があります。全体のクリーニング費用のうち手入れ不足による部分が対象です。", "not");
+        if (a.tokuyaku === "none") return R("lessor", "通常の清掃をしていた場合、退去時の専門業者による全体クリーニングは次の入居者確保のためのものとして貸主負担が妥当とされています(区分A)。", null);
+        return R("contract", "特約の記載がある(または未確認の)場合、契約書の確認が必要です。特約は記載があるだけでは確定せず、合理性・認識・明確な合意の要件を満たすかは個別判断となります。金額・範囲の明確さと契約時の説明の有無を確認してください。", null);
+      } }
+  ];
+
+  function R(cls, note, aging) { return { cls: cls, note: note, aging: aging }; }
+
+  var CLS_LABEL = {
+    lessor: "貸主負担となる可能性が高い",
+    tenant: "借主負担となる可能性がある",
+    contract: "契約書・特約の確認が必要",
+    insufficient: "入力だけでは整理できない"
+  };
+  var AGING_LABEL = {
+    considered: "経過年数で負担額が変わり得る項目",
+    not: "経過年数は考慮されない項目",
+    depends: "経過年数の扱いは部材・補修範囲による項目"
+  };
+
+  /* ---------- UI生成 ---------- */
+  var byId = {};
+  ITEMS.forEach(function (item) {
+    byId[item.id] = item;
+    var wrap = document.createElement("div");
+    var lab = document.createElement("label");
+    var cb = document.createElement("input");
+    cb.type = "checkbox"; cb.dataset.item = item.id;
+    lab.appendChild(cb); lab.appendChild(document.createTextNode(item.label));
+    wrap.appendChild(lab);
+    var panel = document.createElement("div");
+    panel.className = "sub-questions"; panel.hidden = true; panel.dataset.panel = item.id;
+    var qs = [Q_TIMING].concat(item.qs);
+    qs.forEach(function (q) {
+      var f = document.createElement("div"); f.className = "sub-q";
+      var l = document.createElement("label"); l.textContent = q.label;
+      var sel = document.createElement("select"); sel.dataset.q = q.id;
+      q.opts.forEach(function (o) {
+        var op = document.createElement("option"); op.value = o[0]; op.textContent = o[1];
+        sel.appendChild(op);
+      });
+      f.appendChild(l); f.appendChild(sel); panel.appendChild(f);
+    });
+    wrap.appendChild(panel);
+    cb.addEventListener("change", function () { panel.hidden = !cb.checked; });
+    document.getElementById("grp-" + item.grp).appendChild(wrap);
+  });
+
+  /* ---------- 診断 ---------- */
+  document.getElementById("shindanBtn").addEventListener("click", function () {
+    var rows = [];
+    var counts = { lessor: 0, tenant: 0, contract: 0, insufficient: 0 };
+    document.querySelectorAll("input[data-item]:checked").forEach(function (cb) {
+      var item = byId[cb.dataset.item];
+      var panel = document.querySelector('[data-panel="' + item.id + '"]');
+      var ans = {};
+      panel.querySelectorAll("select[data-q]").forEach(function (sel) { ans[sel.dataset.q] = sel.value; });
+      var res;
+      if (ans.timing === "before-doc") {
+        res = R("lessor", "入居時から存在した損傷は原状回復の対象外です。退去立会いで入居時の写真・記録を提示してください。", null);
+      } else if (ans.timing === "before-nodoc") {
+        res = R("insufficient", "入居時からあった場合は原状回復の対象外ですが、記録がないと立証が難しいことがあります。入居時の状況を示せる資料(メール・チェックリスト等)がないか確認してください。", null);
+      } else {
+        res = item.logic(ans);
+      }
+      counts[res.cls]++;
+      rows.push({ label: item.label, res: res });
+    });
+
+    var total = rows.length;
+    var summary = document.getElementById("summaryLine");
+    var table = document.getElementById("verdictTable");
+    var flag = document.getElementById("contractFlag");
+    table.innerHTML = "<tr><th>チェックした項目</th><th>一般的な整理</th><th>考え方・注意</th></tr>";
+
+    if (total === 0) {
+      summary.textContent = "項目が選択されていません。当てはまる損耗にチェックしてください。";
+      flag.hidden = true;
+      document.getElementById("keikaNote").textContent = "";
+      document.getElementById("result").hidden = false;
+      return;
+    }
+
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      var agingText = r.res.aging ? "<br><span class=\"aging-badge\">" + AGING_LABEL[r.res.aging] + "</span>" : "";
+      tr.innerHTML = "<td>" + r.label + "</td><td><b>" + CLS_LABEL[r.res.cls] + "</b></td><td>" + r.res.note + agingText + "</td>";
+      table.appendChild(tr);
+    });
+
+    /* resultType決定(選択0件は上でreturn済み)
+       1. 全項目がcontract → contract-review-needed
+       2. insufficientが過半 → insufficient-information
+       3. tenantが60%以上 → mostly-tenant-likely
+       4. lessorが60%以上 → mostly-lessor-likely
+       5. それ以外 → mixed
+       contractは全体を上書きせず別フラグ表示 */
+    var rt;
+    if (counts.contract === total) rt = "contract-review-needed";
+    else if (counts.insufficient > total / 2) rt = "insufficient-information";
+    else if (counts.tenant >= total * 0.6) rt = "mostly-tenant-likely";
+    else if (counts.lessor >= total * 0.6) rt = "mostly-lessor-likely";
+    else rt = "mixed";
+
+    var RT_TEXT = {
+      "contract-review-needed": "チェックした項目はいずれも、契約書・特約の確認が必要な整理です。",
+      "insufficient-information": "入力内容だけでは整理できない項目が多くあります。発生の原因・時期や入居時の記録を確認してから再度お試しください。",
+      "mostly-tenant-likely": "チェックした項目の多く(" + counts.tenant + "/" + total + ")は、借主負担となる可能性がある整理です。ただし確定した請求額を意味するものではありません。",
+      "mostly-lessor-likely": "チェックした項目の多く(" + counts.lessor + "/" + total + ")は、貸主負担となる可能性が高い整理です。",
+      "mixed": "貸主側(" + counts.lessor + ")・借主側(" + counts.tenant + ")の整理が混在しています。項目ごとの内訳を確認してください。"
+    };
+    summary.textContent = RT_TEXT[rt];
+
+    var contractReviewRequired = counts.contract > 0 && rt !== "contract-review-needed";
+    if (contractReviewRequired) {
+      flag.textContent = "契約書・特約の確認が必要な項目が " + counts.contract + " 件あります。退去精算の前に契約書の該当条項を確認してください。";
+      flag.hidden = false;
+    } else {
+      flag.hidden = true;
+    }
+
+    var years = document.getElementById("years").value;
+    var hasAging = rows.some(function (r) { return r.res.aging === "considered"; });
+    var keika = document.getElementById("keikaNote");
+    if (hasAging) {
+      var yText = years === "o6" ? "6年以上入居している場合、クロス等の対象部材は残存価値がごくわずかになり、負担割合が大きく下がる可能性があります(故意・重過失の場合等を除く)。"
+        : years === "u6" ? "入居3〜6年の場合、クロス等の対象部材は経過年数に応じて負担割合が下がる可能性があります。"
+        : "入居年数が短い場合、経過年数による減額は小さくなります。";
+      keika.textContent = "経過年数について:" + yText + " 経過年数は負担額の算定に関する考え方であり、長期入居でも故意・過失による修繕義務自体がなくなるわけではありません。また、この考え方はクロス・カーペット等の対象部材にのみ適用され、フローリングの部分補修や鍵などには適用されません。";
+    } else {
+      keika.textContent = "";
+    }
+
+    document.getElementById("result").hidden = false;
+    track("diagnosis_complete", { page_id: "hikkoshi-taikyo-hiyo", result_type: rt });
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>
