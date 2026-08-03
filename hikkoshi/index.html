@@ -69,6 +69,9 @@
       <li><strong>引越し代がいくらか知りたい</strong> — 世帯・距離・時期ごとの調査データに基づく水準は <a href="/hikkoshi/hikkoshi-hiyo/">引越し費用相場シミュレーター</a> でわかります。</li>
       <li><strong>退去費用の請求が不安・高すぎる気がする</strong> — 傷・汚れごとの負担の一般的な整理は <a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復の負担診断</a> で確認できます。</li>
       <li><strong>不用品を処分してから引越したい</strong> — 大型家具・家電の処分方法と費用の目安は <a href="/katazuke/shobun-shindan/">不用品処分診断</a>(片づけカテゴリ)で確認できます。</li>
+      <li><strong>見積もりを取る前に条件を整理したい</strong> — 依頼前に確認する14項目と見積もり方式の違いは <a href="/hikkoshi/mitsumori-check/">引越し見積もり前チェックリスト</a> で確認できます。</li>
+      <li><strong>住所変更の手続きが分からない</strong> — 転出入届・免許・車庫証明・ライフラインなどの期限と管轄は <a href="/hikkoshi/tetsuzuki/">引越し手続き・住所変更チェックリスト</a> で確認できます。</li>
+      <li><strong>退去の立会いが不安</strong> — 当日の記録と書類の確認は <a href="/hikkoshi/tachiai/">退去立会いチェックリスト</a> で準備できます。</li>
     </ul>
   </div>
 
@@ -84,8 +87,23 @@
       <p>傷・汚れの状況と発生の経緯を選ぶと、国交省ガイドラインに基づく負担の一般的な整理を表示します。経過年数・特約の考え方も解説。所要時間の目安は2分です。</p>
       <p>負担の整理を無料で確認する</p>
     </a>
+    <a class="card" href="/hikkoshi/mitsumori-check/">
+      <h3>引越し見積もり前チェックリスト</h3>
+      <p>依頼前に整理しておく条件を14項目で確認。訪問・オンライン・電話・一括見積もりの違いと、見積書で確認する項目もまとめています。所要時間の目安は2分です。</p>
+      <p>準備状況を無料で確認する</p>
+    </a>
+    <a class="card" href="/hikkoshi/tetsuzuki/">
+      <h3>引越し手続き・住所変更チェックリスト</h3>
+      <p>転出入届・マイナンバー・免許・車庫証明・郵便転送など21手続きを時系列で整理。法律上の期限と推奨時期を区別して表示します。所要時間の目安は3分です。</p>
+      <p>手続きを無料で確認する</p>
+    </a>
+    <a class="card" href="/hikkoshi/tachiai/">
+      <h3>退去立会いチェックリスト</h3>
+      <p>立会い前・当日・立会い後にすることを24項目で整理。写真の記録、見積書・精算書の確認、署名を求められたときの考え方も解説します。所要時間の目安は2分です。</p>
+      <p>当日の準備を無料で確認する</p>
+    </a>
   </div>
-  <p style="font-size:0.9rem;color:var(--text-sub);">賃貸初期費用・家具家電予算・見積もり前チェックなどのツールも順次追加予定です。</p>
+  <p style="font-size:0.9rem;color:var(--text-sub);">賃貸初期費用・家具家電予算などのツールも順次追加予定です。</p>
 
   <section class="tool-panel" id="dashboard">
     <h2>引越し費用まるごと概算ダッシュボード</h2>
@@ -257,7 +275,7 @@
       if (!cell) { uncounted.push(BLOCK_LABEL[key]); return; }
       lower += cell.lo; upper += cell.hi; counted++;
       hasPreset = true; presetUsed = true;
-      var evText = cell.ev === "direct" ? "複数調査のレンジ" : "単一調査の参考値";
+      var evText = cell.ev === "multi-source-direct" ? "複数調査のレンジ" : "単一調査の参考値";
       rows.push([BLOCK_LABEL[key], cell.lo === cell.hi ? "約" + man(cell.lo) : man(cell.lo) + "〜" + man(cell.hi), "プリセット(" + evText + "・通常期)"]);
     });
 

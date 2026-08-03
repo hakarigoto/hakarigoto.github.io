@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>退去立会いチェックリスト|当日の流れ・写真の記録・書類の確認|はかりごと</title>
+<meta name="description" content="賃貸の退去立会いで確認することを、立会い前・立会い中・立会い後の3段階で整理。写真の記録、見積書・精算書の確認、署名を求められたときの考え方を、国土交通省ガイドラインと公的情報に基づいて解説。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.dash-block { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.dash-block h3 { margin: 0 0 6px; font-size: 1rem; }
+.dash-block .field { margin: 6px 0; }
+.dash-block select, .dash-block input[type="number"] { font-size: 0.95rem; max-width: 100%; }
+.dash-note { font-size: 0.82rem; color: var(--text-sub); }
+.dash-total { border: 2px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
+.dash-total-label { font-size: 0.9rem; color: var(--text-sub); }
+.dash-total-value { font-size: 1.3rem; font-weight: 700; }
+.dash-breakdown { font-size: 0.9rem; margin-top: 8px; }
+.dash-breakdown td { padding: 3px 10px 3px 0; }
+.dash-uncounted { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+</style>
+<style>
+.chk-group { margin: 16px 0 4px; }
+.chk-group-title { font-weight: 700; font-size: 0.98rem; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 2px solid var(--accent-weak); }
+.chk-list label { display: flex; align-items: flex-start; gap: 8px; font-weight: 400; font-size: 0.95rem; margin: 7px 0; cursor: pointer; }
+.chk-list input { margin-top: 3px; flex-shrink: 0; }
+.chk-hint { font-size: 0.83rem; color: var(--text-sub); margin: 0 0 6px 26px; }
+.progress-line { font-size: 1.1rem; font-weight: 700; }
+.progress-bar { height: 10px; background: var(--accent-weak); border-radius: 5px; overflow: hidden; margin: 8px 0 12px; }
+.progress-bar span { display: block; height: 100%; background: var(--accent); }
+.sign-table td, .sign-table th { vertical-align: top; font-size: 0.92rem; }
+.warn-box { border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-top: 14px; font-size: 0.92rem; background: var(--surface); }
+.warn-box strong { color: var(--accent); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "退去立会いで書類にサインを求められたらどうすればよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "求められた書類が何であるかを先に確認してください。立会いの事実や指摘箇所を記録するだけの確認書と、費用負担への合意を含む文書とでは意味が異なります。また、金額が記載されていない文書や、後日見積もりとなる旨が書かれた文書もあります。内容を理解できない場合や、金額・負担範囲に疑問がある場合は、その場で署名せずに持ち帰って確認したい、あるいは説明してほしいと伝える選択肢があります。個別の契約における署名の義務や、署名した文書の有効性については、契約内容や状況によって判断が異なるため、このページでは判断できません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "立会いのときに写真は撮ってよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "指摘された箇所を記録として撮っておくと、後日届く見積書・精算書と照合できます。全体が分かる写真と、傷や汚れが分かる近景の両方があると状況が伝わりやすくなります。撮影の可否について気になる場合は、立会いの担当者に一言伝えてから撮ると進めやすいでしょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "立会いの場で金額は決まりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "その場で確定しないことが一般的です。立会いで状況を確認し、後日に見積書・精算書が示される流れが多く見られます。立会いの時点では、見積書と精算書がいつ出るのかを確認しておくと、その後の見通しが立ちます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入居時からあった傷はどう伝えればよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "入居時に撮った写真や、入居時のチェックシートなど、時期が分かる資料を示すのが確実です。資料がない場合でも、入居時のやり取りが残るメールなど、状況を示せるものがないか確認してみてください。国土交通省のガイドラインでも、入居時・退去時の物件の状況を当事者双方が確認することの重要性が示されています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "請求額に納得できないときはどうすればよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "まず内訳(単価・数量・負担割合・経過年数の考慮の有無)の提示を求め、契約書・特約と照らして確認します。負担区分の一般的な考え方は当サイトの退去費用・原状回復の負担診断でも整理できます。解決しない場合は、お住まいの消費生活センター(消費者ホットライン188)や自治体の相談窓口に相談できます。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/tachiai/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/tachiai/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="退去立会いチェックリスト">
+<meta property="og:description" content="賃貸の退去立会いで確認することを、立会い前・立会い中・立会い後の3段階で整理。写真の記録、見積書・精算書の確認、署名を求められたときの考え方を、国土交通省ガイドラインと公的情報に基づいて解説。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "退去立会いチェックリスト", "item": "https://hakarigoto.github.io/hikkoshi/tachiai/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">退去立会いチェックリスト</li></ol></nav>
+
+  <div class="page-head">
+    <h1>退去立会いチェックリスト</h1>
+    <p class="lead">退去立会いは、部屋の状況を貸主・管理会社と一緒に確認する場です。当日にできる準備と記録を整理しておくと、後日届く見積書・精算書と照らし合わせやすくなります。負担区分の一般的な整理は<a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復の負担診断</a>で確認できます。チェック内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月3日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこのページのポイント</div>
+    <ul>
+      <li>立会いの目的は<span class="mk">部屋の状況を双方で確認し、記録に残すこと</span></li>
+      <li>金額は<span class="mk">その場で確定しないことが一般的</span>。見積書・精算書がいつ出るかを確認しておく</li>
+      <li>指摘箇所は<span class="mk">全体と近景の写真</span>で記録すると、後日の照合がしやすい</li>
+      <li>署名を求められたら<span class="mk">その書類が何を意味するのか</span>を先に確認する</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#check">立会いチェックリスト</a></li>
+      <li><a href="#sign">署名を求められたときの考え方</a></li>
+      <li><a href="#soudan">請求に疑問があるときの相談先</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="check">
+    <h2>できているものにチェック</h2>
+
+    <div class="chk-group">
+      <div class="chk-group-title">立会い前の準備</div>
+      <div class="chk-list" id="grp-before"></div>
+    </div>
+    <div class="chk-group">
+      <div class="chk-group-title">立会い中に確認・記録すること</div>
+      <div class="chk-list" id="grp-during"></div>
+    </div>
+    <div class="chk-group">
+      <div class="chk-group-title">立会い後に確認すること</div>
+      <div class="chk-list" id="grp-after"></div>
+    </div>
+
+    <div class="progress-line" id="progressLine">完了:0 / 24件(0%)</div>
+    <div class="progress-bar"><span id="progressFill" style="width:0%"></span></div>
+    <!-- AD-SLOT: hikkoshi (トラブル文脈のため広告は恒久的に掲載しない) -->
+  </section>
+
+  <article class="article">
+    <h2 id="sign">署名を求められたときの考え方</h2>
+    <p>立会いの場では書類への署名を求められることがあります。求められた書類が何を意味するのかによって、確認すべきことが変わります。</p>
+    <div class="table-wrap">
+      <table class="sign-table">
+        <tr><th>書類の性質</th><th>確認したいこと</th></tr>
+        <tr><td>立会いの実施や指摘箇所を記録するだけの確認書</td><td>記載された指摘箇所が、実際に確認した内容と一致しているか。認識が違う箇所があれば、その旨を書き添えられるか確認します。</td></tr>
+        <tr><td>費用負担への合意を含む文書</td><td>負担することになる範囲と根拠。金額の算定方法。契約書・特約のどの条項に基づくのか。</td></tr>
+        <tr><td>金額が記載されていない文書</td><td>後日いくらになるのか、上限があるのか、どの時点で金額が確定するのか。</td></tr>
+        <tr><td>後日見積もりとなる旨が書かれた文書</td><td>見積書と精算書が出る時期。内容に納得できない場合にどう申し出るか。</td></tr>
+      </table>
+    </div>
+    <p><strong>内容を理解できない場合や、金額・負担範囲に疑問がある場合は、その場で署名せずに持ち帰って確認したい、あるいは説明してほしいと伝える選択肢があります。</strong>一方で、署名の要否や、署名した文書がどのような効力を持つかは、契約内容や個別の事情によって判断が分かれます。このページでは個別の契約における署名義務や有効性を判断することはできません。判断に迷う場合は、下記の相談窓口を利用できます。</p>
+
+    <h2 id="soudan">請求に疑問があるときの相談先</h2>
+    <ul>
+      <li><strong>貸主・管理会社</strong>:まず内訳(単価・数量・負担割合・経過年数の考慮の有無)の提示を求めます。記録が残る手段でのやり取りが確認しやすくなります。</li>
+      <li><strong>消費生活センター(消費者ホットライン188)</strong>:お住まいの地域の相談窓口につながります。国民生活センターは賃貸住宅の原状回復に関する相談の傾向を公表しています。</li>
+      <li><strong>自治体の住宅・宅建の相談窓口</strong>:自治体によって窓口や実施内容が異なります。</li>
+    </ul>
+    <p>負担区分の一般的な整理は<a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復の負担診断</a>で確認できます(法的な確定判定ではありません)。</p>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>退去立会いで書類にサインを求められたらどうすればよいですか?</summary>
+      <p>その書類が「事実確認だけの確認書」「費用負担への合意を含む文書」「金額未記載の文書」「後日見積もりとなる文書」のどれなのかを先に確認します。理解できない場合や疑問がある場合は、持ち帰りや説明を求める選択肢があります。個別の署名義務や文書の有効性はこのページでは判断できません。</p>
+    </details>
+    <details class="faq">
+      <summary>立会いのときに写真は撮ってよいですか?</summary>
+      <p>指摘箇所を記録しておくと後日の見積書・精算書と照合できます。全体と近景の両方があると状況が伝わりやすくなります。気になる場合は担当者に一言伝えてから撮ると進めやすいでしょう。</p>
+    </details>
+    <details class="faq">
+      <summary>立会いの場で金額は決まりますか?</summary>
+      <p>その場で確定しないことが一般的です。見積書・精算書がいつ出るかを確認しておくと見通しが立ちます。</p>
+    </details>
+    <details class="faq">
+      <summary>入居時からあった傷はどう伝えればよいですか?</summary>
+      <p>入居時の写真やチェックシートなど時期が分かる資料を示すのが確実です。国土交通省のガイドラインでも、入居時・退去時に双方で状況を確認することの重要性が示されています。</p>
+    </details>
+    <details class="faq">
+      <summary>請求額に納得できないときはどうすればよいですか?</summary>
+      <p>内訳の提示を求め、契約書・特約と照らして確認します。解決しない場合は消費生活センター(188)や自治体の相談窓口に相談できます。</p>
+    </details>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/taikyo-hiyo/" data-action-id="check-taikyo">
+        <strong>原状回復の負担区分を整理する</strong>
+        <span>傷・汚れごとに、貸主・借主どちらの負担となる可能性が高いかの一般的な整理を確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+      <a class="next-action-card" href="/katazuke/shobun-shindan/" data-action-id="check-shobun">
+        <strong>残置物・不用品の処分方法を確認する</strong>
+        <span>退去前に処分が必要なものの方法と費用の目安を確認できます。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>退去立会い当日の事実確認と記録を支援するチェックリストです。法的な判断を行うページではなく、署名の義務・文書の有効性・請求の当否を判定するものではありません。</dd></div><div><dt>入力データの扱い</dt><dd>チェック内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。完了件数も外部に送信されません。</dd></div></dl><details><summary>作成方法・主な情報源を見る</summary><ul><li><b>対象:</b> 立会い前(9項目)・立会い中(8項目)・立会い後(7項目)の確認事項と、署名を求められた場合に確認したい観点の整理。</li><li><b>方針:</b> 「その場で絶対に署名しない」といった一律の表現は用いず、書類の性質(事実確認/費用負担の合意/金額未記載/後日見積もり)を区別して、確認する観点と選べる行動を示す。</li><li><b>含まれない項目:</b> 個別契約における署名義務の有無、文書の法的有効性、請求額の当否、金額の算定</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk3_000020.html" rel="noopener" target="_blank">国土交通省「原状回復をめぐるトラブルとガイドライン」(再改訂版)</a>(確認日: 2026-08-03)</li><li><a href="https://www.kokusen.go.jp/soudan_topics/data/chintai.html" rel="noopener" target="_blank">国民生活センター「賃貸住宅の原状回復トラブル」</a>(確認日: 2026-08-03)</li><li><a href="https://elaws.e-gov.go.jp/document?lawid=129AC0000000089" rel="noopener" target="_blank">民法621条・622条の2(e-Gov法令検索)</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/tachiai/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var GROUPS = {
+    before: [["契約書と特約の該当箇所を確認した", "原状回復・ハウスクリーニング・鍵交換に関する条項があるかを見ておきます"], ["入居時の写真・チェックシートを用意した", "入居時から存在した傷・汚れを示す資料は、当日その場で示せると確認が早く進みます"], ["入居中の修繕履歴を整理した", "貸主・管理会社に連絡した内容や対応の記録があれば日付とともにまとめます"], ["鍵の本数を数え、返却分を揃えた", "スペアキーを作った場合はその分も含めます"], ["設備の説明書・付属品を揃えた", "エアコンのリモコン、給湯器の説明書、駐輪場の札など"], ["部屋の清掃を済ませた", "通常の清掃(ゴミの撤去・掃き掃除・拭き掃除・水回りの汚れの除去)の範囲です"], ["電気・ガス・水道のメーターの数値を控えた", "精算の確認に使えます"], ["残置物がないか確認した", "置いていくものがある場合は、事前に貸主・管理会社の了解を得ているか確認します"], ["自分で補修してよいかを事前に確認した", "自己判断の補修がかえって問題になることがあるため、貸主・管理会社に確認しておくと安全です"]],
+    during: [["指摘された箇所をすべて写真に撮った", "全体と近景の両方を撮ると状況が伝わりやすくなります"], ["指摘の理由を確認した", "なぜ借主負担と判断されるのか、その場で説明を求めて構いません"], ["修繕の範囲を確認した", "部分補修か、面単位か、部屋全体か。範囲によって金額が変わります"], ["入居時からあった損傷を伝えた", "用意した写真・チェックシートを示します"], ["通常損耗との区別について確認した", "日焼け・家具の設置跡などの通常損耗・経年変化の扱いを確認します"], ["特約の適用について確認した", "特約を根拠に請求される項目があれば、契約書のどの条項かを確認します"], ["見積書がいつ出るか確認した", "その場で金額が出ない場合が一般的です"], ["精算書がいつ出るか確認した", "敷金の精算内容が示される時期を確認します"]],
+    after: [["見積書を受け取り、内訳を確認した", "単価・数量・負担割合・経過年数の考慮の有無を見ます"], ["精算書と敷金の返還額を確認した", "控除項目が契約や説明と合っているかを確認します"], ["当日撮影した写真と照合した", "指摘箇所と請求項目が対応しているかを確認します"], ["契約書・特約と照合した", "特約を根拠とする請求は、契約書の条項と内容を確認します"], ["敷金の返還時期を確認した", "契約で定められた時期(退去後1か月以内など)を確認します"], ["追加請求がないか確認した", "後日の追加請求の有無と、その根拠を確認します"], ["問い合わせの記録を残した", "電話だけでなくメール等の記録が残る手段だと、後から内容を確認できます"]]
+  };
+  var total = 0;
+  Object.keys(GROUPS).forEach(function (g) {
+    GROUPS[g].forEach(function (row, i) {
+      total++;
+      var wrap = document.createElement("div");
+      var lab = document.createElement("label");
+      var cb = document.createElement("input");
+      cb.type = "checkbox"; cb.dataset.chk = g + "-" + i;
+      lab.appendChild(cb); lab.appendChild(document.createTextNode(row[0]));
+      wrap.appendChild(lab);
+      var hint = document.createElement("p");
+      hint.className = "chk-hint"; hint.textContent = row[1];
+      wrap.appendChild(hint);
+      cb.addEventListener("change", update);
+      document.getElementById("grp-" + g).appendChild(wrap);
+    });
+  });
+
+  function update() {
+    var done = document.querySelectorAll("input[data-chk]:checked").length;
+    var pct = Math.round(done / total * 100);
+    document.getElementById("progressLine").textContent = "完了:" + done + " / " + total + "件(" + pct + "%)";
+    document.getElementById("progressFill").style.width = pct + "%";
+  }
+  update();
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>

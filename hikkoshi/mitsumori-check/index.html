@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引越し見積もり前チェックリスト|条件整理と見積書の比較準備|はかりごと</title>
+<meta name="description" content="見積もり依頼の前に確認すべき条件を14項目のチェックリストで整理。訪問・オンライン・電話・一括見積もりの違い、見積書で確認する項目、追加料金になりやすい条件を公的情報に基づいて解説。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.dash-block { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.dash-block h3 { margin: 0 0 6px; font-size: 1rem; }
+.dash-block .field { margin: 6px 0; }
+.dash-block select, .dash-block input[type="number"] { font-size: 0.95rem; max-width: 100%; }
+.dash-note { font-size: 0.82rem; color: var(--text-sub); }
+.dash-total { border: 2px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
+.dash-total-label { font-size: 0.9rem; color: var(--text-sub); }
+.dash-total-value { font-size: 1.3rem; font-weight: 700; }
+.dash-breakdown { font-size: 0.9rem; margin-top: 8px; }
+.dash-breakdown td { padding: 3px 10px 3px 0; }
+.dash-uncounted { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+</style>
+<style>
+.chk-group { margin: 16px 0 4px; }
+.chk-group-title { font-weight: 700; font-size: 0.98rem; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 2px solid var(--accent-weak); }
+.chk-list label { display: flex; align-items: flex-start; gap: 8px; font-weight: 400; font-size: 0.95rem; margin: 7px 0; cursor: pointer; }
+.chk-list input { margin-top: 3px; flex-shrink: 0; }
+.chk-hint { font-size: 0.83rem; color: var(--text-sub); margin: 0 0 6px 26px; }
+.progress-line { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+.progress-bar { height: 10px; background: var(--accent-weak); border-radius: 5px; overflow: hidden; margin: 8px 0 12px; }
+.progress-bar span { display: block; height: 100%; background: var(--accent); }
+.method-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.method-card h3 { margin: 0 0 4px; font-size: 1rem; }
+.method-card .m-fit { font-size: 0.88rem; color: var(--accent); font-weight: 700; }
+.warn-box { border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-top: 14px; font-size: 0.92rem; background: var(--surface); }
+.warn-box strong { color: var(--accent); }
+.todo-list li { margin: 4px 0; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "引越しの見積もりはどの方式で頼むのがよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "荷物量や搬出入の条件が正確に伝わるかで選びます。荷物が多い・特殊な家具がある・搬入経路が複雑な場合は、実際に見てもらう訪問見積もりが行き違いを防ぎやすい方式です。荷物が少なく条件が単純なら、オンライン(ビデオ)や電話・フォームでの見積もりでも足ります。国民生活センターは、オンラインや電話の見積もりでは利用者が荷物量や搬入経路を正しく申告する必要があり、申告が不十分だと当日に荷物が積みきれない等のトラブルが起きうると注意を促しています。どれか一つが常に正解ということはありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一括見積もりを使うと何が起きますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "入力した条件が複数の引越し会社へ同時に共有され、各社から電話やメールで連絡が来る仕組みです。相見積もりを取りやすい一方、連絡が集中することがあります。申し込む前に、連絡手段を選べるか、依頼する社数を絞れるか、入力した情報がどの会社へ共有されるかを、サービスの説明ページで確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "見積書ではどこを確認すればよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "作業内容(梱包・搬出入・設置の範囲)、料金の内訳、追加料金が発生する条件、キャンセル・延期の料金、支払時期と方法、見積もりの有効期限、補償の範囲を確認します。国民生活センターは、見積書は契約内容を示す大切なものであり、気になる点は事業者に説明を求めるよう案内しています。標準引越運送約款では、見積もりの際に内金や手付金を請求しないこととされています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "キャンセルや延期をすると料金はかかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "標準引越運送約款では、解約・延期の申し出の時期に応じた手数料の上限が定められています(前々日・前日・当日で率が異なります)。実際の適用は各社が定める約款によるため、契約前に自社の規定を確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "当日に追加料金が発生するのはどんなときですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "申告より荷物が多い、エレベーターが使えない、トラックを建物の近くに停められない、吊り上げ作業が必要、エアコンの脱着や不用品処分を当日に依頼した、といった場合です。これらは事前に伝えておけば見積もりに含められるため、チェックリストで先に整理しておくのが有効です。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/mitsumori-check/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/mitsumori-check/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="引越し見積もり前チェックリスト">
+<meta property="og:description" content="見積もり依頼の前に確認すべき条件を14項目のチェックリストで整理。訪問・オンライン・電話・一括見積もりの違い、見積書で確認する項目、追加料金になりやすい条件を公的情報に基づいて解説。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "引越し見積もり前チェックリスト", "item": "https://hakarigoto.github.io/hikkoshi/mitsumori-check/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">引越し見積もり前チェックリスト</li></ol></nav>
+
+  <div class="page-head">
+    <h1>引越し見積もり前チェックリスト</h1>
+    <p class="lead">見積もりを依頼する前に条件を整理しておくと、会社ごとの金額を同じ土俵で比べられ、当日の追加料金や行き違いも減らせます。14項目のチェックで準備状況を確認し、あなたの条件に向く見積もり方式と、依頼時に伝える情報の一覧を表示します。入力内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月3日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこのページのポイント</div>
+    <ul>
+      <li>見積もりの差は<span class="mk">「同じ条件で比べているか」</span>で決まる。先に条件を固定するのが近道</li>
+      <li>当日の追加料金は<span class="mk">荷物量・搬入経路・駐車位置・オプション</span>の伝え漏れから生まれやすい</li>
+      <li>見積書で確認するのは<span class="mk">作業範囲・追加条件・キャンセル料・支払時期・有効期限・補償</span></li>
+      <li>方式(訪問/オンライン/電話・フォーム/一括)は<span class="mk">条件の複雑さと連絡の受けやすさ</span>で選ぶ</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#check">見積もり前チェックリスト</a></li>
+      <li><a href="#houshiki">見積もり方式4種の違い</a></li>
+      <li><a href="#mitsumorisho">見積書で確認する項目</a></li>
+      <li><a href="#tsuika">追加料金になりやすい条件</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="check">
+    <h2>当てはまるものにチェック</h2>
+    <p style="font-size:0.9rem;color:var(--text-sub);">「確認できている」ものにチェックしてください。未確認の項目は、依頼前に整理しておくと見積もりの精度が上がります。</p>
+
+    <div class="chk-group">
+      <div class="chk-group-title">荷物と搬出入の条件</div>
+      <div class="chk-list" id="grp-nimotsu"></div>
+    </div>
+    <div class="chk-group">
+      <div class="chk-group-title">日程と作業範囲</div>
+      <div class="chk-list" id="grp-nittei"></div>
+    </div>
+    <div class="chk-group">
+      <div class="chk-group-title">契約条件(見積書で確認)</div>
+      <div class="chk-list" id="grp-keiyaku"></div>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="checkBtn">準備状況を確認する</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="progress-line" id="progressLine"></div>
+      <div class="progress-bar"><span id="progressFill" style="width:0%"></span></div>
+      <div id="mikakunin"></div>
+      <div id="houshikiFit"></div>
+      <div id="tsutaeru"></div>
+    </div>
+    <!-- AD-SLOT: hikkoshi (Phase 2は広告なし。配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない) -->
+  </section>
+
+  <article class="article">
+    <h2 id="houshiki">見積もり方式4種の違い</h2>
+    <p>どの方式にも向き・不向きがあり、常に正解の方式があるわけではありません。荷物量と搬入経路が正確に伝わるかどうかが判断の軸になります。</p>
+
+    <div class="method-card">
+      <h3>訪問見積もり</h3>
+      <p>担当者が実際に部屋を見て荷物量・搬出経路を確認します。条件の取り違えが起きにくく、当日の追加が発生しにくいのが特徴です。日程調整と立ち会いの時間が必要になります。</p>
+      <p class="m-fit">向く条件:荷物が多い/大型・特殊な家具がある/搬入経路が複雑/正確な金額で比較したい</p>
+    </div>
+    <div class="method-card">
+      <h3>オンライン(ビデオ)見積もり</h3>
+      <p>スマートフォンのカメラで部屋を映しながら見積もりを受けます。訪問なしで実物を見てもらえる中間的な方式です。映していない場所の荷物は反映されないため、収納の中まで見せる必要があります。</p>
+      <p class="m-fit">向く条件:立ち会いの時間が取りにくい/荷物は中程度/対面を避けたい</p>
+    </div>
+    <div class="method-card">
+      <h3>電話・フォーム見積もり</h3>
+      <p>荷物リストと条件を自分で申告して概算を出してもらう方式です。手軽ですが、申告内容が実際と違うと当日に金額が変わることがあります。国民生活センターも、申告が不十分だと当日に荷物が積みきれない等のトラブルが起こりうると注意を促しています。</p>
+      <p class="m-fit">向く条件:単身で荷物が少ない/条件が単純/日程に余裕がある</p>
+    </div>
+    <div class="method-card">
+      <h3>一括見積もりサービス</h3>
+      <p>入力した条件が複数の引越し会社へ同時に共有され、各社から連絡が来ます。相見積もりを取りやすい反面、連絡が集中することがあります。<strong>申し込む前に、連絡手段を選べるか、依頼社数を絞れるか、入力した情報がどの会社へ共有されるかを、サービスの説明ページで必ず確認してください。</strong>これは広告の有無にかかわらず、仕組み上そうなるためです。</p>
+      <p class="m-fit">向く条件:複数社を比べたい/連絡を受けられる時間帯がある/条件を一度で伝えたい</p>
+    </div>
+
+    <h2 id="mitsumorisho">見積書で確認する項目</h2>
+    <p>国民生活センターは、見積書は契約内容を示す大切なものであり、気になる点は事業者に説明を求めるよう案内しています。次の項目が書かれているかを確認してください。</p>
+    <ul>
+      <li><strong>作業範囲</strong>:梱包・開梱をどこまで行うか、大型家具の分解・設置、家電の設置</li>
+      <li><strong>料金の内訳</strong>:基本運賃・実費・オプションの区別</li>
+      <li><strong>追加料金の条件</strong>:どんな場合にいくら増えるか</li>
+      <li><strong>キャンセル・延期の料金</strong>:標準引越運送約款では申し出の時期に応じた手数料の上限が定められています(前々日・前日・当日で率が異なる)。実際の適用は各社の約款によります</li>
+      <li><strong>支払いの時期と方法</strong>:前払いか完了後か、現金かカードか。標準引越運送約款では、見積もりの際に内金や手付金を請求しないこととされています</li>
+      <li><strong>見積もりの有効期限</strong>:いつまでその金額か</li>
+      <li><strong>補償の範囲</strong>:破損・紛失があった場合の取り扱いと申し出の期限</li>
+    </ul>
+
+    <h2 id="tsuika">追加料金になりやすい条件</h2>
+    <ul>
+      <li>申告より荷物が多い(押し入れ・物置・ベランダの荷物を数え忘れる例が典型)</li>
+      <li>エレベーターが使えない・階段作業になる</li>
+      <li>トラックを建物の近くに停められず、長い距離を運ぶ必要がある</li>
+      <li>窓やベランダからの吊り上げ・吊り下ろしが必要</li>
+      <li>エアコンの取り外し・取り付け、洗濯機の設置などのオプションを当日に依頼</li>
+      <li>不用品の処分を当日に依頼(先に<a href="/katazuke/shobun-shindan/">処分方法を診断</a>しておくと荷物も減らせます)</li>
+    </ul>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>引越しの見積もりはどの方式で頼むのがよいですか?</summary>
+      <p>荷物量と搬入経路が正確に伝わるかで選びます。条件が複雑なら訪問、単純なら電話・フォームでも足ります。どれか一つが常に正解ということはありません。</p>
+    </details>
+    <details class="faq">
+      <summary>一括見積もりを使うと何が起きますか?</summary>
+      <p>条件が複数社へ同時に共有され、各社から連絡が来ます。連絡手段を選べるか、依頼社数を絞れるか、情報の共有先はどこかを、申し込み前に確認してください。</p>
+    </details>
+    <details class="faq">
+      <summary>見積書ではどこを確認すればよいですか?</summary>
+      <p>作業範囲・内訳・追加条件・キャンセル料・支払時期・有効期限・補償です。標準引越運送約款では見積もり時の内金・手付金の請求はしないこととされています。</p>
+    </details>
+    <details class="faq">
+      <summary>キャンセルや延期をすると料金はかかりますか?</summary>
+      <p>標準引越運送約款で申し出の時期に応じた手数料の上限が定められています。実際の適用は各社の約款によるため契約前に確認してください。</p>
+    </details>
+    <details class="faq">
+      <summary>当日に追加料金が発生するのはどんなときですか?</summary>
+      <p>荷物量の申告漏れ、エレベーター不可、駐車位置が遠い、吊り作業、当日のオプション依頼などです。事前に伝えれば見積もりに含められます。</p>
+    </details>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/hikkoshi-hiyo/" data-action-id="check-souba">
+        <strong>引越し費用の相場水準を確認する</strong>
+        <span>世帯・距離・時期別の調査データを見てから見積もりを取ると、金額の妥当性を判断しやすくなります。</span>
+      </a>
+      <a class="next-action-card" href="/katazuke/shobun-shindan/" data-action-id="check-shobun">
+        <strong>不用品の処分方法を診断する</strong>
+        <span>先に荷物を減らすと、トラックのサイズが1ランク下がることもあります。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>チェックリストの準備状況と、条件に向く見積もり方式の候補を表示します。方式を断定するものではなく、複数の候補から利用者が選ぶことを前提としています。</dd></div><div><dt>入力データの扱い</dt><dd>チェック内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。チェックした項目・完了度も外部に送信されません。</dd></div></dl><details><summary>作成方法・主な情報源を見る</summary><ul><li><b>対象:</b> 見積もり依頼前に整理しておく条件14項目のチェックと、見積もり方式4種(訪問/オンライン/電話・フォーム/一括)の事実ベースの比較。</li><li><b>方式候補の出し方:</b> 荷物量・搬入経路の複雑さ・連絡の受けやすさに関するチェック結果から該当しうる方式を複数表示する。単一の方式を推奨する判定は行わない。</li><li><b>金額について:</b> 本ページでは金額の計算・提示を行わない(相場は引越し費用相場シミュレーターを参照)。</li><li><b>含まれない項目:</b> 個別の事業者の料金・サービス内容、契約の有効性判断、各社約款の個別規定</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.mlit.go.jp/jidosha/jidosha_tk4_000033.html" rel="noopener" target="_blank">国土交通省「標準引越運送約款等の改正について」</a>(確認日: 2026-08-03)</li><li><a href="https://www.kokusen.go.jp/soudan_topics/data/hikkoshi.html" rel="noopener" target="_blank">国民生活センター「引越サービス(各種相談の件数や傾向)」</a>(確認日: 2026-08-03)</li><li><a href="https://www.kokusen.go.jp/news/data/n-20260204_1.html" rel="noopener" target="_blank">国民生活センター「引越トラブルにご注意」</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/mitsumori-check/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var ITEMS = [
+    { id: "nimotsu-ryo", grp: "nimotsu", label: "荷物の量をおおまかに把握している(押し入れ・物置・ベランダも含む)", hint: "段ボール換算の箱数、または部屋ごとの荷物の多さ", tag: "volume" },
+    { id: "oogata", grp: "nimotsu", label: "大型家具・家電のサイズと数を確認した", hint: "冷蔵庫・洗濯機・ベッド・食器棚・ピアノ・金庫など", tag: "volume" },
+    { id: "keiro", grp: "nimotsu", label: "搬出・搬入の経路を確認した(廊下幅・玄関・曲がり角)", hint: "大型家具が通らない場合は吊り作業になることがあります", tag: "complex" },
+    { id: "elevator", grp: "nimotsu", label: "旧居・新居のエレベーターの有無と使用可否を確認した", hint: "使用に管理会社の予約が要る建物もあります", tag: "complex" },
+    { id: "parking", grp: "nimotsu", label: "トラックを停められる場所を確認した", hint: "建物前に停められない場合は横持ち(手運び)費用が出ることがあります", tag: "complex" },
+    { id: "nittei", grp: "nittei", label: "引越し日の候補を複数用意した", hint: "日程に幅があると安い枠を選びやすくなります", tag: "flex" },
+    { id: "konpou", grp: "nittei", label: "梱包をどこまで自分で行うか決めた", hint: "全部おまかせ・食器のみ依頼・すべて自分で、など", tag: "scope" },
+    { id: "fuyouhin", grp: "nittei", label: "不用品をどうするか決めた", hint: "先に処分すると荷物が減り、当日の追加依頼も避けられます", tag: "scope" },
+    { id: "hoken", grp: "keiyaku", label: "破損・紛失時の補償の範囲を確認する項目として控えた", hint: "申し出の期限がある場合があります", tag: "contract" },
+    { id: "tsuika", grp: "keiyaku", label: "追加料金が発生する条件を確認する項目として控えた", hint: "荷物増・階段作業・吊り作業・当日オプションなど", tag: "contract" },
+    { id: "cancel", grp: "keiyaku", label: "キャンセル・延期の料金規定を確認する項目として控えた", hint: "標準引越運送約款に時期別の上限があり、実際の適用は各社の約款によります", tag: "contract" },
+    { id: "shiharai", grp: "keiyaku", label: "支払いの時期と方法を確認する項目として控えた", hint: "前払いか完了後か、現金かカードか", tag: "contract" },
+    { id: "yuukou", grp: "keiyaku", label: "見積もりの有効期限を確認する項目として控えた", hint: "期限を過ぎると金額が変わることがあります", tag: "contract" },
+    { id: "renraku", grp: "keiyaku", label: "電話・メール連絡をどの時間帯で受けられるか決めた", hint: "一括見積もりでは複数社から連絡が来ます", tag: "contact" }
+  ];
+
+  var byId = {};
+  ITEMS.forEach(function (it) {
+    byId[it.id] = it;
+    var wrap = document.createElement("div");
+    var lab = document.createElement("label");
+    var cb = document.createElement("input");
+    cb.type = "checkbox"; cb.dataset.item = it.id;
+    lab.appendChild(cb); lab.appendChild(document.createTextNode(it.label));
+    wrap.appendChild(lab);
+    var hint = document.createElement("p");
+    hint.className = "chk-hint"; hint.textContent = it.hint;
+    wrap.appendChild(hint);
+    document.getElementById("grp-" + it.grp).appendChild(wrap);
+  });
+
+  document.getElementById("checkBtn").addEventListener("click", function () {
+    var checked = {};
+    document.querySelectorAll("input[data-item]:checked").forEach(function (cb) { checked[cb.dataset.item] = true; });
+    var done = Object.keys(checked).length;
+    var total = ITEMS.length;
+    var pct = Math.round(done / total * 100);
+
+    document.getElementById("progressLine").textContent = "準備できている項目:" + done + " / " + total + "(" + pct + "%)";
+    document.getElementById("progressFill").style.width = pct + "%";
+
+    var undone = ITEMS.filter(function (it) { return !checked[it.id]; });
+    var mk = document.getElementById("mikakunin");
+    if (undone.length === 0) {
+      mk.innerHTML = "<p><strong>未確認の項目はありません。</strong>この状態なら、複数社に同じ条件を伝えて金額を比べられます。</p>";
+    } else {
+      mk.innerHTML = "<p><strong>まだ確認していない項目(" + undone.length + "件)</strong></p><ul class=\"todo-list\">" +
+        undone.map(function (it) { return "<li>" + it.label + "</li>"; }).join("") + "</ul>";
+    }
+
+    /* 方式候補: 断定せず複数表示 */
+    var complexKnown = ["keiro", "elevator", "parking"].every(function (k) { return checked[k]; });
+    var volumeKnown = ["nimotsu-ryo", "oogata"].every(function (k) { return checked[k]; });
+    var contactReady = !!checked["renraku"];
+    var cands = [];
+    cands.push({ name: "訪問見積もり", why: "実際に見てもらうため条件の取り違えが起きにくく、当日の追加も出にくい方式です。" + (complexKnown && volumeKnown ? "条件を把握できている場合でも、最終確認として有効です。" : "荷物量や搬入経路がまだ確認できていない場合は、特に検討する価値があります。") });
+    cands.push({ name: "オンライン(ビデオ)見積もり", why: "立ち会いの時間が取りにくい場合の中間的な選択肢です。収納の中まで映す必要があります。" });
+    if (volumeKnown && complexKnown) {
+      cands.push({ name: "電話・フォーム見積もり", why: "荷物量と搬入条件を把握できているため、申告のズレが起きにくい状態です。" });
+    }
+    if (contactReady) {
+      cands.push({ name: "一括見積もりサービス", why: "連絡を受けられる時間帯を決めているため活用しやすい状態です。申し込み前に、連絡手段を選べるか・依頼社数を絞れるか・入力情報の共有先を確認してください。" });
+    }
+    document.getElementById("houshikiFit").innerHTML =
+      "<p style=\"margin-top:14px;\"><strong>あなたの条件で検討できる方式(" + cands.length + "候補)</strong></p><ul>" +
+      cands.map(function (c) { return "<li><b>" + c.name + "</b>:" + c.why + "</li>"; }).join("") +
+      "</ul><p style=\"font-size:0.88rem;color:var(--text-sub);\">どれか一つに絞る必要はありません。条件の複雑さ・立ち会いの可否・連絡の受けやすさで選んでください。</p>";
+
+    document.getElementById("tsutaeru").innerHTML =
+      "<div class=\"warn-box\"><strong>依頼時に伝える情報:</strong>旧居・新居の住所と建物条件(階数・エレベーターの有無・前面道路と駐車可否)/荷物の量(段ボール換算・大型家具家電の品目とサイズ)/引越し希望日と時間帯の候補/梱包をどこまで依頼するか/エアコン脱着・不用品処分などのオプション希望/連絡可能な時間帯と手段。この6点を各社に同じ内容で伝えると、金額を同じ条件で比較できます。</div>";
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>
