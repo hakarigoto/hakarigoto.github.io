@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>車を手放すと年いくら浮く?維持費vsカーシェア・タクシー損益分岐シミュレーター｜くるま電卓</title>
+<meta name="description" content="年間走行距離と維持費を入れるだけで、車を持ち続ける場合とカーシェア・タクシーに切り替えた場合の年間コストを比較。手放した方が安くなる損益分岐の走行距離も自動計算します。登録不要・無料。">
+<link rel="canonical" href="https://hakarigoto.github.io/kuruma/tebanashi-shindan/">
+<meta property="og:site_name" content="くるま電卓">
+<meta property="og:type" content="website">
+<meta property="og:title" content="車を手放すと年いくら浮く?維持費vsカーシェア・タクシー損益分岐シミュレーター｜くるま電卓">
+<meta property="og:description" content="年間走行距離と維持費から、車を持ち続ける/カーシェア/タクシーの年間コストを比較。損益分岐の走行距離も自動計算。">
+<meta property="og:url" content="https://hakarigoto.github.io/kuruma/tebanashi-shindan/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23b3382f%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>く</text></svg>">
+<style>:root{--accent:#b3382f;--accent-hover:#962e27;--accent-weak:#f9e9e7;}</style>
+<style>
+.compare-table td:first-child { font-weight: 700; }
+.compare-table tr.is-best td { background: var(--accent-weak); }
+.best-badge {
+  display: inline-block; margin-left: 6px; padding: 1px 8px;
+  font-size: 0.75rem; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 700;
+}
+.result-main { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+.result-sub { font-size: 0.92rem; color: var(--text-sub); }
+.breakeven-box {
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.95rem;
+  background: var(--surface);
+}
+.breakeven-box strong { color: var(--accent); }
+.field-note { font-size: 0.82rem; color: var(--text-sub); margin-top: 2px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "年間何km以下なら車を手放した方が得ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "維持費の内訳によりますが、駐車場代を含む固定費が年40万円前後の都市部では、年間走行距離がおおむね3,000〜5,000km以下だとカーシェアやタクシー併用の方が安くなるケースが多いです。損益分岐点は固定費と代替手段の単価で決まるため、本ツールでご自身の条件に合わせて計算してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "カーシェアの料金はどのくらいかかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "大手カーシェアの標準的なクラスで15分220円(1時間あたり約880円)前後、月額基本料が880〜1,100円程度が目安です。6時間を超える利用では距離料金が加算されるプランが一般的です。短時間・高頻度の利用ならカーシェア、長時間の利用ならレンタカーが向いています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "タクシー換算の単価はどのくらいで見ればいいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "地域により異なりますが、初乗りと距離加算を平均すると1kmあたり350〜450円程度が目安です。本ツールでは初期値400円/kmで計算し、変更もできます。実際には車がないと出かける回数自体が減るため、タクシー換算額は上振れに見積もった保守的な比較になります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "手放すと維持費以外に何が変わりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "金額面では売却額が一時収入になる一方、いつでも乗れる自由・災害時の移動手段・大きな買い物の運搬などの利便性を失います。金額比較で手放しが有利でも、通院・送迎など代替しにくい用途がある場合は総合的に判断しましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "動かない車・古い車でも売れますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "走行距離が多い車や不動車でも、パーツ・素材価値で値段が付くことがあります。廃車専門の買取業者では引き取り・手続き代行まで無料で行う場合が多いので、廃車にする前に一度査定を取るのがおすすめです。"
+      }
+    }
+  ]
+}
+</script>
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "乗り物", "item": "https://hakarigoto.github.io/norimono/"}, {"@type": "ListItem", "position": 3, "name": "車", "item": "https://hakarigoto.github.io/kuruma/"}, {"@type": "ListItem", "position": 4, "name": "手放し損益分岐シミュレーター", "item": "https://hakarigoto.github.io/kuruma/tebanashi-shindan/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono" class="is-current" aria-current="true">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/norimono/">乗り物</a></li><li><a href="/kuruma/">車</a></li><li aria-current="page">手放し損益分岐シミュレーター</li></ol></nav>
+
+<div class="page-head">
+  <h1>車の維持費 vs 手放し 損益分岐シミュレーター</h1>
+  <p class="lead">年間走行距離と維持費を入れるだけで、車を持ち続ける場合と、手放してカーシェア・タクシーに切り替えた場合の年間コストを比較します。「年間何km以下なら手放した方が安いか」の損益分岐点も自動計算。金額は目安であり、入力した内容はサーバーに送信されず、お使いのブラウザ内だけで計算されます。</p>
+  <div class="meta-line"><span>更新日:<b>2026年7月31日</b></span><span>執筆:<b>はかり</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+  <ul>
+    <li>車のコストは<span class="mk">乗らなくてもかかる固定費</span>(税金・保険・車検・駐車場)が大半を占める</li>
+    <li>都市部の目安では<span class="mk">年間3,000〜5,000km以下</span>ならカーシェア・タクシー併用が安くなりやすい</li>
+    <li>比較のポイントは<span class="mk">「1kmあたりいくらで走っているか」</span>。走行距離が少ないほど1km単価は跳ね上がる</li>
+    <li>金額で手放し有利でも、送迎・通院など<span class="mk">代替しにくい用途</span>があるかどうかは別途考慮を</li>
+  </ul>
+</div>
+
+<nav class="toc">
+  <p class="toc-title">目次</p>
+  <ol>
+    <li><a href="#sim">損益分岐シミュレーション</a></li>
+    <li><a href="#kotei">維持費の大半は「固定費」</a></li>
+    <li><a href="#daitai">代替手段ごとの向き不向き</a></li>
+    <li><a href="#tebanashi">手放すと決めたら:高く手放す順番</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<section class="tool-panel" id="sim">
+  <h2>条件を入力してください</h2>
+
+  <div class="field">
+    <label for="fixedCost">年間の固定維持費(税金・保険・車検・メンテの合計、駐車場代を除く)</label>
+    <input type="number" id="fixedCost" value="250000" min="0" step="10000"> 円
+    <p class="field-note">目安: 軽自動車 20〜30万円 / コンパクトカー 25〜35万円 / ミニバン・大型 30〜45万円。<a href="/kuruma/iji-hi/">維持費まるごと計算機</a>で正確に出せます。</p>
+  </div>
+  <div class="field">
+    <label for="parking">駐車場代(月額)</label>
+    <input type="number" id="parking" value="10000" min="0" step="1000"> 円
+  </div>
+  <div class="field">
+    <label for="km">年間走行距離</label>
+    <input type="number" id="km" value="5000" min="0" step="500"> km
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="nenpi">燃費</label>
+      <input type="number" id="nenpi" value="15" min="1" step="0.5"> km/L
+    </div>
+    <div class="field">
+      <label for="gas">ガソリン価格</label>
+      <input type="number" id="gas" value="170" min="50" step="1"> 円/L
+    </div>
+  </div>
+
+  <h2 style="margin-top:18px;">手放した場合の使い方(概算でOK)</h2>
+  <div class="field-row">
+    <div class="field">
+      <label for="trips">カーシェアを使う回数(週あたり)</label>
+      <input type="number" id="trips" value="1" min="0" step="0.5"> 回
+    </div>
+    <div class="field">
+      <label for="hours">1回あたりの利用時間</label>
+      <input type="number" id="hours" value="3" min="0.5" step="0.5"> 時間
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="carshareRate">カーシェア時間料金</label>
+      <input type="number" id="carshareRate" value="880" min="0" step="10"> 円/時間
+      <p class="field-note">大手の標準クラスで15分220円(=880円/h)前後</p>
+    </div>
+    <div class="field">
+      <label for="carshareBase">カーシェア月額基本料</label>
+      <input type="number" id="carshareBase" value="880" min="0" step="10"> 円/月
+    </div>
+  </div>
+  <div class="field">
+    <label for="taxiRate">タクシー換算単価</label>
+    <input type="number" id="taxiRate" value="400" min="100" step="10"> 円/km
+    <p class="field-note">初乗り+距離加算の平均目安。地域により350〜450円/km程度</p>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn" id="calcBtn">年間コストを比較する</button>
+  </div>
+
+  <div class="result-box" id="result" hidden>
+    <div class="result-main" id="resultMain"></div>
+    <div class="table-wrap">
+      <table class="compare-table" id="compareTable">
+        <tr><th>選択肢</th><th>年間コスト</th><th>月あたり</th></tr>
+      </table>
+    </div>
+    <p class="result-sub" id="kmCostLine"></p>
+    <div class="breakeven-box" id="breakevenBox"></div>
+  </div>
+  <!-- AD-SLOT: kuruma-tebanashi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+</section>
+
+<div class="cta-box">
+  <p class="cta-box-title">いまの維持費を正確に知りたい方へ</p>
+  <p>排気量・年式から税金の重課判定込みで、年間維持費を詳しく計算できます。</p>
+  <a class="cta-btn" href="/kuruma/iji-hi/">維持費まるごと計算機を使う</a>
+  <span class="cta-note">登録不要・入力データは送信されません</span>
+</div>
+
+<article class="article">
+  <h2 id="kotei">維持費の大半は「固定費」</h2>
+  <p>車のコストで見落とされがちなのは、<strong>乗っても乗らなくてもかかる固定費の大きさ</strong>です。自動車税・重量税・自賠責・任意保険・車検・駐車場代は、走行距離がゼロでも発生します。都市部で駐車場を借りている場合、固定費だけで年間35万〜50万円に達することも珍しくありません。</p>
+  <p>そのため「あまり乗らない人」ほど1kmあたりの単価は跳ね上がります。年間3,000kmしか乗らない人の固定費が40万円なら、ガソリン代を除いても<strong>1kmあたり約133円</strong>。タクシー単価(約400円/km)の3分の1に見えますが、カーシェアの時間課金と組み合わせると逆転するケースが出てきます。上のシミュレーターで自分の実際の数字を入れて確かめてみてください。</p>
+
+  <h2 id="daitai">代替手段ごとの向き不向き</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>手段</th><th>向いている使い方</th><th>費用の目安</th></tr>
+      <tr><td>カーシェア</td><td>近所の買い物・送迎など短時間×高頻度</td><td>15分220円前後+月額基本料</td></tr>
+      <tr><td>レンタカー</td><td>旅行・帰省など半日〜数日の利用</td><td>1日6,000〜10,000円程度</td></tr>
+      <tr><td>タクシー</td><td>雨の日・夜間・荷物が多い時のピンポイント利用</td><td>約350〜450円/km</td></tr>
+      <tr><td>公共交通+自転車</td><td>通勤・通学など定型の移動</td><td>定期券・自転車維持費のみ</td></tr>
+    </table>
+  </div>
+  <p>実際に手放した人の多くは、単一の手段ではなく<strong>「普段は公共交通+必要な時だけカーシェア・タクシー」の組み合わせ</strong>に落ち着きます。シミュレーターのカーシェア利用回数は、この「必要な時」の頻度をイメージして入力するのがコツです。</p>
+
+  <h2 id="tebanashi">手放すと決めたら:高く手放す順番</h2>
+  <p>損益分岐の計算で「手放し有利」と出たら、次は<strong>できるだけ高く手放す</strong>ことを考えます。順番はシンプルです。</p>
+  <ol>
+    <li><strong>まず査定を取る</strong>:年式が古くても、走行距離が多くても、パーツ・素材価値で値段が付くことがあります。</li>
+    <li><strong>廃車と決めつけない</strong>:「動かないから廃車」と自分で判断する前に、廃車専門の買取業者に確認を。引き取り・抹消手続きまで無料の業者が多くあります。</li>
+    <li><strong>手続きの時期に注意</strong>:自動車税は4月1日時点の所有者に課税されます。手放すなら3月までに抹消・名義変更を済ませると翌年度分がかかりません。</li>
+  </ol>
+  <p>当サイトの<a href="/kuruma/haisha/">廃車・買取の診断ツール</a>では、車の状態からおすすめの手放し方を診断できます。</p>
+
+  <h2 id="faq">よくある質問</h2>
+  <details class="faq">
+    <summary>年間何km以下なら車を手放した方が得ですか?</summary>
+    <p>固定費が年40万円前後の都市部では、年間3,000〜5,000km以下だとカーシェア・タクシー併用の方が安くなるケースが多いです。損益分岐点は固定費と代替単価次第なので、本ツールで自分の条件で計算してください。</p>
+  </details>
+  <details class="faq">
+    <summary>カーシェアの料金はどのくらいかかりますか?</summary>
+    <p>標準クラスで15分220円(約880円/h)前後、月額基本料880〜1,100円程度が目安です。6時間超は距離料金が加算されるプランが一般的です。</p>
+  </details>
+  <details class="faq">
+    <summary>タクシー換算の単価はどのくらいで見ればいいですか?</summary>
+    <p>初乗りと距離加算を平均して1kmあたり350〜450円程度が目安です。本ツールは初期値400円/kmで、変更できます。</p>
+  </details>
+  <details class="faq">
+    <summary>手放すと維持費以外に何が変わりますか?</summary>
+    <p>売却額が一時収入になる一方、いつでも乗れる自由や災害時の移動手段を失います。金額比較で有利でも、代替しにくい用途があるかは別途考慮しましょう。</p>
+  </details>
+  <details class="faq">
+    <summary>動かない車・古い車でも売れますか?</summary>
+    <p>パーツ・素材価値で値段が付くことがあります。廃車にする前に廃車専門買取業者の査定を取るのがおすすめです。</p>
+  </details>
+
+  <!-- AD-SLOT: kuruma-tebanashi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+</article>
+
+<section class="next-actions" aria-labelledby="next-actions-title">
+  <h2 id="next-actions-title">次に確認すること</h2>
+  <div class="next-actions__grid">
+    <a class="next-action-card" href="/kuruma/haisha/" data-action-id="check-haisha">
+      <strong>手放し方を診断する</strong>
+      <span>車の状態(動く・動かない・事故車)から、損をしない手放し方がわかります。</span>
+    </a>
+    <a class="next-action-card" href="/kuruma/iji-hi/" data-action-id="check-iji-hi">
+      <strong>維持費を正確に計算する</strong>
+      <span>排気量・年式から税金の重課判定込みで年間維持費を計算できます。</span>
+    </a>
+    <a class="next-action-card" href="/norimono/" data-action-id="check-norimono">
+      <strong>バイク・自転車の計算ツールを見る</strong>
+      <span>車以外の乗り物の維持費・手放しどきのツールを一覧できます。</span>
+    </a>
+  </div>
+</section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>入力条件に基づく概算比較です。カーシェア・タクシーの実際の料金体系や利用実態により結果は変わります。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 車を保有し続ける場合の年間コスト(固定費+駐車場+燃料)と、手放した場合のカーシェア年額(時間料金×利用頻度+基本料)・タクシー換算年額(走行距離×単価)を比較し、最安の選択肢と、保有とタクシーの損益分岐となる年間走行距離を算出する。</li><li><b>使用する入力値:</b> 年間固定維持費、駐車場代(月額)、年間走行距離、燃費、ガソリン価格、カーシェア利用回数(週)・1回あたり時間・時間料金・月額基本料、タクシー換算単価</li><li><b>使用する固定値(初期値・すべて入力で変更可):</b> 固定維持費25万円、駐車場1万円/月、カーシェア880円/h+基本料880円/月、タクシー400円/km、ガソリン170円/L</li><li><b>計算に含まれない項目:</b> 車の売却額(一時収入)、ローン残債、カーシェアの距離料金・ナイトパック等の割引、レンタカー併用、移動回数自体の減少</li><li><b>結果が変わる主な要因:</b> 地域のタクシー運賃・駐車場相場、カーシェアの拠点の近さ、利用パターン(短時間高頻度か長時間低頻度か)</li></ul><p><b>主な情報源</b></p><ul><li>大手カーシェア各社・タクシー運賃の公表料金(確認日: 2026-07-31)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/kuruma/tebanashi-shindan/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  function yen(n) { return Math.round(n).toLocaleString() + "円"; }
+
+  // min属性に依存せず、計算直前にJS側で下限・上限・NaN・空文字を処理する。
+  // 範囲外の値は入力欄にも反映して、表示と計算の食い違いを防ぐ。
+  function num(id, min, max, def) {
+    var el = document.getElementById(id);
+    var v = parseFloat(el.value);
+    if (isNaN(v)) v = def;
+    if (v < min) v = min;
+    if (v > max) v = max;
+    el.value = v;
+    return v;
+  }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var fixed = num("fixedCost", 0, 10000000, 250000);
+    var parking = num("parking", 0, 1000000, 10000) * 12;
+    var km = num("km", 0, 300000, 5000);
+    var nenpi = num("nenpi", 1, 60, 15);
+    var gas = num("gas", 50, 1000, 170);
+    var trips = num("trips", 0, 100, 1);
+    var hours = num("hours", 0, 24, 3);
+    var csRate = num("carshareRate", 0, 100000, 880);
+    var csBase = num("carshareBase", 0, 100000, 880) * 12;
+    var taxiRate = num("taxiRate", 50, 10000, 400);
+
+    var fuelPerKm = nenpi > 0 ? gas / nenpi : 0;
+    var own = fixed + parking + km * fuelPerKm;
+    var carshare = csBase + trips * 52 * hours * csRate;
+    var taxi = km * taxiRate;
+
+    var options = [
+      { key: "own", label: "車を持ち続ける", annual: own },
+      { key: "carshare", label: "手放してカーシェア中心", annual: carshare },
+      { key: "taxi", label: "手放してタクシー中心", annual: taxi }
+    ];
+    var best = options[0];
+    options.forEach(function (o) { if (o.annual < best.annual) best = o; });
+
+    var table = document.getElementById("compareTable");
+    while (table.rows.length > 1) table.deleteRow(1);
+    options.forEach(function (o) {
+      var tr = table.insertRow(-1);
+      if (o === best) tr.className = "is-best";
+      var c1 = tr.insertCell(-1);
+      c1.textContent = o.label;
+      if (o === best) {
+        var b = document.createElement("span");
+        b.className = "best-badge";
+        b.textContent = "最安";
+        c1.appendChild(b);
+      }
+      tr.insertCell(-1).textContent = "年 " + yen(o.annual);
+      tr.insertCell(-1).textContent = "月 " + yen(o.annual / 12);
+    });
+
+    var diffText;
+    if (best.key === "own") {
+      var second = options.filter(function (o) { return o !== best; })
+        .sort(function (a, b) { return a.annual - b.annual; })[0];
+      diffText = "この条件では車を持ち続ける方が年 " + yen(second.annual - own) + " 安い計算です。";
+    } else {
+      diffText = "この条件では手放すと年 " + yen(own - best.annual) + " 浮く計算です(" + best.label + "の場合)。";
+    }
+    document.getElementById("resultMain").textContent = diffText;
+
+    var kmCost = km > 0 ? own / km : 0;
+    document.getElementById("kmCostLine").textContent =
+      km > 0
+        ? "いまの車の1kmあたりコスト:約" + Math.round(kmCost).toLocaleString() + "円/km(固定費込み)"
+        : "";
+
+    // 損益分岐(保有 vs タクシー): fixed+parking+km*fuel = km*taxi
+    var be = document.getElementById("breakevenBox");
+    if (taxiRate > fuelPerKm) {
+      var beKm = (fixed + parking) / (taxiRate - fuelPerKm);
+      be.innerHTML = "<strong>損益分岐の目安:</strong>年間走行距離が <strong>約" +
+        Math.round(beKm).toLocaleString() +
+        "km未満</strong> なら、この条件では手放してタクシー利用の方が安くなる計算です(現在の入力: 年" +
+        km.toLocaleString() + "km)。カーシェアとの分岐は利用時間のパターンに依存するため、上の表で比較してください。";
+    } else {
+      be.innerHTML = "<strong>損益分岐の目安:</strong>タクシー単価が燃料単価を下回る設定のため、距離ベースの分岐は計算できません。";
+    }
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>

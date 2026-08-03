@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>年忌法要計算機|命日から一周忌〜五十回忌の日付がすぐわかる|マナー電卓</title>
+<meta name="description" content="故人の命日を入力するだけで、初七日・四十九日・百箇日から一周忌・三回忌・七回忌〜五十回忌までの法要日を自動計算。次に迎える法要のハイライト表示つき。数え方の仕組みや弔い上げの考え方も解説。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#3f4d8c;--accent-hover:#333f73;--accent-weak:#e9ebf5;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%233f4d8c%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>マ</text></svg>">
+<style>
+.result-note { font-size: 0.9rem; color: var(--text-sub); margin-top: 8px; }
+.houyou-table td.is-past { color: var(--text-sub); }
+.houyou-table tr.is-next td { background: var(--accent-weak); font-weight: 700; }
+.houyou-table .next-badge {
+  display: inline-block; margin-left: 6px; padding: 1px 8px;
+  font-size: 0.75rem; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 700;
+}
+.warn-box {
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  background: var(--surface);
+}
+.warn-box strong { color: var(--accent); }
+.section-label {
+  margin: 18px 0 6px; font-size: 1rem; font-weight: 700;
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "三回忌はなぜ亡くなってから2年後なのですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "年忌法要は亡くなった年を1年目と数える「数え方」を用いるためです。亡くなった日が1回目の忌日にあたり、満1年後の一周忌が2回目、満2年後が3回目の忌日となるため「三回忌」と呼ばれます。三回忌以降は「回忌数から1を引いた年数」を命日に足すと法要の年がわかります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "法要は命日当日に行わなければいけませんか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "命日当日に行うのが本来の形ですが、参列者が集まりやすい土日に行うのが現代では一般的です。その場合は命日より後に延ばすのではなく、命日より前の週末に前倒しするのが慣例とされています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "年忌法要は何回忌まで続けるものですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般的には三十三回忌、地域や宗派によっては五十回忌をもって「弔い上げ」とし、以後の年忌法要を終了することが多いです。弔い上げの時期に決まりはなく、遺族の事情に合わせて早める家庭も増えています。菩提寺がある場合は住職と相談して決めるのが安心です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "宗派や地域によって法要の数え方は変わりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "年忌の数え方(命日の満n年後)は宗派による大きな違いはありませんが、実施する回忌は異なることがあります。二十三回忌・二十七回忌の代わりに二十五回忌を行う宗派・地域や、浄土真宗のように追善供養ではなく仏徳讃嘆の場と位置づける宗派もあります。また関西の一部では忌日法要を前日(逮夜)に営む慣習があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "四十九日が3か月にまたがるのは良くないと聞きましたが本当ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「四十九日が3月(みつき)にまたがると身につく(みにつく)=不幸が身につく」という語呂合わせに由来する俗説で、仏教上の根拠はありません。気にする必要はありませんが、地域や親族の慣習として三十五日で忌明けとする場合もあります。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/manner/nenki/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/manner/nenki/">
+<meta property="og:site_name" content="マナー電卓">
+<meta property="og:title" content="年忌法要計算機|命日から一周忌〜五十回忌の日付がすぐわかる|マナー電卓">
+<meta property="og:description" content="故人の命日を入力するだけで、初七日・四十九日から一周忌・三回忌〜五十回忌までの法要日を自動計算。次に迎える法要のハイライト表示つき。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "冠婚葬祭", "item": "https://hakarigoto.github.io/manner/"}, {"@type": "ListItem", "position": 3, "name": "年忌法要計算機", "item": "https://hakarigoto.github.io/manner/nenki/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon" class="is-current" aria-current="true">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/manner/">冠婚葬祭</a></li><li aria-current="page">年忌法要計算機</li></ol></nav>
+
+  <div class="page-head">
+    <h1>年忌法要計算機</h1>
+    <p class="lead">故人の命日を入力するだけで、初七日・四十九日などの忌日法要と、一周忌から五十回忌までの年忌法要の日付を一覧表示します。次に迎える法要もひと目でわかります。</p>
+    <div class="meta-line"><span>更新日:<b>2026年7月31日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+    <ul>
+      <li>一周忌は<span class="mk">命日の満1年後</span>、三回忌以降は<span class="mk">「回忌数−1」年後</span>(三回忌=満2年後)</li>
+      <li>法要の日程は命日当日が基本だが、実際は<span class="mk">命日より前の土日に前倒し</span>するのが一般的</li>
+      <li>弔い上げ(年忌の終了)は<span class="mk">三十三回忌または五十回忌</span>とすることが多い</li>
+      <li>二十五回忌を行う宗派・地域など違いがあるため、菩提寺がある場合は住職に確認を</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#calc">法要日を計算する</a></li>
+      <li><a href="#kazoekata">年忌法要の数え方の仕組み</a></li>
+      <li><a href="#kinichi">忌日法要(初七日〜四十九日)の数え方</a></li>
+      <li><a href="#maedaoshi">日程は「前倒し」が基本</a></li>
+      <li><a href="#tomuraiage">弔い上げはいつまで?</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="calc">
+    <h2>命日を入力</h2>
+    <div class="field">
+      <label for="meinichi">命日(亡くなった日)</label>
+      <input type="date" id="meinichi">
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">法要日を一覧表示する</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="section-label">忌日法要(七日ごとの法要)</div>
+      <div class="table-wrap">
+        <table class="houyou-table" id="kinichiTable">
+          <tr><th>法要</th><th>日付</th><th>曜日</th></tr>
+        </table>
+      </div>
+      <div class="section-label">年忌法要(年単位の法要)</div>
+      <div class="table-wrap">
+        <table class="houyou-table" id="nenkiTable">
+          <tr><th>法要</th><th>日付(命日ベース)</th><th>曜日</th></tr>
+        </table>
+      </div>
+      <p class="result-note" id="nextNote"></p>
+      <div class="warn-box">
+        <strong>ご注意:</strong>表示される日付は命日を基準にした計算上の日付です。実際の法要は<strong>参列者が集まりやすい直前の土日などに前倒し</strong>して営むのが一般的です。実施する回忌や数え方の慣習は<strong>宗派・地域・寺院によって異なる</strong>ため、菩提寺がある場合は住職にご確認ください。
+      </div>
+    </div>
+    <!-- AD-SLOT: sogi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+  </section>
+
+  <div class="cta-box">
+    <p class="cta-box-title">法要に持参する香典・お供えの金額も30秒でチェック</p>
+    <p>故人との関係と年代から、法要に包む金額の目安と表書きを確認できます。</p>
+    <a class="cta-btn" href="../koden/">香典金額チェッカーを使う</a>
+    <span class="cta-note">登録不要・入力データは送信されません</span>
+  </div>
+
+  <article class="article">
+    <h2 id="kazoekata">年忌法要の数え方の仕組み</h2>
+    <p>年忌法要の「回忌」は、亡くなった日を1回目の忌日と数えるのが仕組みの根本です。つまり満1年後の命日は2回目の忌日ですが、この日だけは慣例として<strong>一周忌</strong>と呼びます。満2年後の命日が3回目の忌日となるため<strong>三回忌</strong>、以降は<strong>「回忌数−1」年後</strong>が法要の年になります。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>法要名</th><th>時期</th></tr>
+        <tr><td>一周忌</td><td>命日の満1年後</td></tr>
+        <tr><td>三回忌</td><td>満2年後</td></tr>
+        <tr><td>七回忌</td><td>満6年後</td></tr>
+        <tr><td>十三回忌</td><td>満12年後</td></tr>
+        <tr><td>十七回忌</td><td>満16年後</td></tr>
+        <tr><td>二十三回忌</td><td>満22年後</td></tr>
+        <tr><td>二十七回忌</td><td>満26年後</td></tr>
+        <tr><td>三十三回忌</td><td>満32年後</td></tr>
+        <tr><td>三十七回忌</td><td>満36年後</td></tr>
+        <tr><td>五十回忌</td><td>満49年後</td></tr>
+      </table>
+    </div>
+    <p>宗派・地域によっては二十三回忌と二十七回忌をまとめて<strong>二十五回忌</strong>(満24年後)を営む場合があります。上の計算機では一般的な回忌構成で表示しています。</p>
+
+    <h2 id="kinichi">忌日法要(初七日〜四十九日)の数え方</h2>
+    <p>亡くなってから四十九日までは7日ごとに忌日法要があります。<strong>命日を1日目として数える</strong>ため、初七日は命日の6日後、四十九日(七七日)は48日後です。現代では葬儀当日に初七日を済ませる「繰り上げ初七日」も広く行われています。</p>
+    <p>関西の一部地域では、法要を忌日の前日の晩(<strong>逮夜</strong>)に営む慣習があり、その場合は表示日より1日早くなります。</p>
+
+    <h2 id="maedaoshi">日程は「前倒し」が基本</h2>
+    <p>法要を命日当日に営むのが本来の形ですが、平日にあたる場合は参列者の都合を考えて土日に移すのが現代の一般的な運用です。このとき<strong>命日より後に延ばすのではなく、前の週末に前倒しする</strong>のが慣例とされています。会場や僧侶の手配は1〜2か月前から始めると余裕をもって準備できます。</p>
+
+    <h2 id="tomuraiage">弔い上げはいつまで?</h2>
+    <p>年忌法要を終了することを<strong>弔い上げ(とむらいあげ)</strong>といいます。三十三回忌をもって弔い上げとするのが広く見られる形で、五十回忌まで営む地域・宗派もあります。近年は親族の高齢化などを理由に、十七回忌や二十三回忌など早い段階で弔い上げとする家庭も増えています。決まった正解はないため、家族と菩提寺で相談して決めるのが良いでしょう。</p>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>三回忌はなぜ亡くなってから2年後なのですか?</summary>
+      <p>亡くなった日を1回目の忌日と数えるためです。満1年後が2回目(一周忌)、満2年後が3回目の忌日となるため三回忌と呼ばれます。</p>
+    </details>
+    <details class="faq">
+      <summary>法要は命日当日に行わなければいけませんか?</summary>
+      <p>当日が本来の形ですが、参列者が集まりやすい土日に行うのが一般的です。その場合は命日より前の週末に前倒しするのが慣例です。</p>
+    </details>
+    <details class="faq">
+      <summary>年忌法要は何回忌まで続けるものですか?</summary>
+      <p>三十三回忌、または五十回忌をもって弔い上げとすることが多いですが、決まりはありません。遺族の事情に合わせて早める家庭も増えています。</p>
+    </details>
+    <details class="faq">
+      <summary>宗派や地域によって数え方は変わりますか?</summary>
+      <p>年忌の数え方自体はほぼ共通ですが、実施する回忌(二十五回忌の有無など)や忌日法要を前日に営む逮夜の慣習など、運用に違いがあります。菩提寺に確認するのが確実です。</p>
+    </details>
+    <details class="faq">
+      <summary>四十九日が3か月にまたがるのは良くないと聞きましたが本当ですか?</summary>
+      <p>語呂合わせに由来する俗説で、仏教上の根拠はありません。ただし地域の慣習として三十五日で忌明けとする場合もあります。</p>
+    </details>
+
+    <!-- AD-SLOT: sogi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/manner/koden/" data-action-id="check-koden-amount">
+        <strong>法要に包む金額の目安を確認する</strong>
+        <span>故人との関係と年代から、香典・お供えの金額の目安と表書きがわかります。</span>
+      </a>
+      <a class="next-action-card" href="/manner/sogi-hiyo/" data-action-id="check-sogi-hiyo">
+        <strong>葬儀・法要の費用相場を確認する</strong>
+        <span>形式別の葬儀費用の内訳と、費用を抑えるポイントを確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/manner/hakajimai/" data-action-id="check-hakajimai">
+        <strong>お墓の今後を考える</strong>
+        <span>墓じまい・永代供養・散骨など、お墓の選択肢と費用の目安を診断できます。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>入力条件に基づく計算上の日付です。実施する回忌や数え方の慣習は宗派・地域・寺院により異なります。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 命日から忌日法要(初七日〜四十九日・百箇日)および年忌法要(一周忌〜五十回忌)の日付を算出し、本日以降で最初に迎える法要を表示する。</li><li><b>使用する入力値:</b> 命日(年月日)</li><li><b>使用する固定値:</b> 忌日法要は命日を1日目として7日ごと(初七日=+6日〜七七日=+48日、百箇日=+99日)。年忌法要は一周忌=満1年後、n回忌(n≥3)=満(n−1)年後。一般的な回忌構成(三・七・十三・十七・二十三・二十七・三十三・三十七・五十)。</li><li><b>計算に含まれない項目:</b> 二十五回忌などの宗派・地域別の回忌構成、逮夜(前日)基準の日程、繰り上げ初七日、うるう年2月29日が命日の場合の寺院ごとの取り扱い(本計算機は平年では2月28日として計算)</li><li><b>結果が変わる主な要因:</b> 宗派・地域・寺院の慣習、実際の法要日は直前の土日に前倒しするのが一般的であること</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.zengokyo.or.jp/" rel="noopener" target="_blank">一般社団法人全日本冠婚葬祭互助協会</a>(確認日: 2026-07-31)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/manner/nenki/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  var WEEK = ["日", "月", "火", "水", "木", "金", "土"];
+
+  var KINICHI = [
+    { label: "初七日(しょなのか)", add: 6 },
+    { label: "二七日(ふたなのか)", add: 13 },
+    { label: "三七日(みなのか)", add: 20 },
+    { label: "四七日(よなのか)", add: 27 },
+    { label: "五七日(三十五日)", add: 34 },
+    { label: "六七日(むなのか)", add: 41 },
+    { label: "七七日(四十九日)", add: 48 },
+    { label: "百箇日(ひゃっかにち)", add: 99 }
+  ];
+
+  var NENKI = [
+    { label: "一周忌", years: 1 },
+    { label: "三回忌", years: 2 },
+    { label: "七回忌", years: 6 },
+    { label: "十三回忌", years: 12 },
+    { label: "十七回忌", years: 16 },
+    { label: "二十三回忌", years: 22 },
+    { label: "二十七回忌", years: 26 },
+    { label: "三十三回忌", years: 32 },
+    { label: "三十七回忌", years: 36 },
+    { label: "五十回忌", years: 49 }
+  ];
+
+  function addDays(date, n) {
+    var d = new Date(date.getTime());
+    d.setDate(d.getDate() + n);
+    return d;
+  }
+
+  function addYears(date, n) {
+    var y = date.getFullYear() + n;
+    var m = date.getMonth();
+    var day = date.getDate();
+    var d = new Date(y, m, day);
+    // 2/29が存在しない年は2/28へ丸める
+    if (d.getMonth() !== m) d = new Date(y, m + 1, 0);
+    return d;
+  }
+
+  function fmt(d) {
+    return d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+  }
+
+  function today0() {
+    var t = new Date();
+    return new Date(t.getFullYear(), t.getMonth(), t.getDate());
+  }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var v = document.getElementById("meinichi").value;
+    if (!v) { alert("命日を入力してください"); return; }
+    var parts = v.split("-");
+    var base = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    var now = today0();
+
+    var rows = [];
+    KINICHI.forEach(function (k) {
+      rows.push({ label: k.label, date: addDays(base, k.add), table: "kinichi" });
+    });
+    NENKI.forEach(function (n) {
+      rows.push({ label: n.label, date: addYears(base, n.years), table: "nenki" });
+    });
+
+    // 本日以降で最初の法要を探す
+    var nextRow = null;
+    rows.forEach(function (r) {
+      if (r.date >= now && (nextRow === null || r.date < nextRow.date)) nextRow = r;
+    });
+
+    function render(tableId, list) {
+      var table = document.getElementById(tableId);
+      while (table.rows.length > 1) table.deleteRow(1);
+      list.forEach(function (r) {
+        var tr = table.insertRow(-1);
+        if (nextRow && r === nextRow) tr.className = "is-next";
+        var c1 = tr.insertCell(-1);
+        c1.textContent = r.label;
+        if (nextRow && r === nextRow) {
+          var b = document.createElement("span");
+          b.className = "next-badge";
+          b.textContent = "次はこれ";
+          c1.appendChild(b);
+        }
+        var c2 = tr.insertCell(-1);
+        c2.textContent = fmt(r.date);
+        var c3 = tr.insertCell(-1);
+        c3.textContent = WEEK[r.date.getDay()];
+        if (r.date < now) { c2.className = "is-past"; c3.className = "is-past"; c1.className = "is-past"; }
+      });
+    }
+
+    render("kinichiTable", rows.filter(function (r) { return r.table === "kinichi"; }));
+    render("nenkiTable", rows.filter(function (r) { return r.table === "nenki"; }));
+
+    var note = document.getElementById("nextNote");
+    if (nextRow) {
+      var diff = Math.round((nextRow.date - now) / 86400000);
+      note.textContent = "次に迎える法要は「" + nextRow.label + "」(" + fmt(nextRow.date) + "・" +
+        WEEK[nextRow.date.getDay()] + "曜日)です。" +
+        (diff === 0 ? "本日です。" : "あと" + diff + "日です。実際の法要は直前の土日に前倒しするのが一般的です。");
+    } else {
+      note.textContent = "五十回忌までの法要はすべて過ぎています(弔い上げ済みの時期です)。";
+    }
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>
