@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引越し費用相場シミュレーター|人数×距離×時期でいくら?|はかりごと</title>
+<meta name="description" content="世帯人数・移動距離・時期(通常期/繁忙期)を選ぶだけで、引越し費用の相場帯をその場で表示。3〜4月の繁忙期はどれだけ高い?安くするコツは?相見積もりの注意点まで解説。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.result-main { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+.result-sub { font-size: 0.92rem; color: var(--text-sub); }
+.season-note {
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  background: var(--surface);
+}
+.season-note strong { color: var(--accent); }
+.souba-table td, .souba-table th { text-align: center; }
+.souba-table td:first-child { text-align: left; font-weight: 700; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "引越しの繁忙期はいつですか?どれくらい高くなりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "進学・就職・転勤が集中する2月〜4月(特に3月下旬〜4月上旬)が繁忙期です。国土交通省によると3月の引越件数は通常月の約2倍に達します。複数の調査データでは、同じ条件でも通常期より1割〜5割程度高い平均額が示されており、ピーク日はさらに高くなることがあります。日程を5月以降や平日にずらせるだけで数万円変わるケースが珍しくありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "引越し費用を安くするコツはありますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "効果が大きい順に、(1)繁忙期・月末・土日祝・大安を避ける (2)複数社から相見積もりを取る (3)時間指定なしのフリー便を使う (4)不用品を先に処分して荷物量を減らす、が定番です。荷物が少なければ単身パックや宅配便の組み合わせも検討できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一括見積もりサイトを使うと電話がたくさん来ると聞きました。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "申し込み直後に複数社から電話が集中することがあります。連絡手段をメール限定にできるサービスを選ぶ、電話に出られる時間帯に申し込む、依頼する社数を絞る、といった対策が有効です。相見積もり自体は値下げ交渉の最有力材料になるため、負担の少ない形で活用しましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "見積もり金額はどこで差がつきますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "引越し料金は「基本運賃(距離・時間)+実費(人件費・梱包資材)+オプション(エアコン工事など)」で構成され、基本運賃は国土交通省に届け出た運賃表がベースです。差がつくのは主にトラックの空き状況を反映した割引と、オプションの価格設定です。同じ日でも会社によって数万円差が出ることがあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "引越し費用以外にどんな初期費用がかかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "賃貸の場合、敷金・礼金・仲介手数料・前家賃・火災保険などで家賃の4〜6か月分が目安です。加えて家具・家電の購入費、旧居の退去費用(原状回復の入居者負担分)も見込んでおくと安心です。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/hikkoshi-hiyo/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/hikkoshi-hiyo/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="引越し費用相場シミュレーター|人数×距離×時期でいくら?">
+<meta property="og:description" content="世帯人数・移動距離・時期を選ぶだけで引越し費用の相場帯を表示。繁忙期の上がり幅、安くするコツ、相見積もりの注意点まで解説。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "引越し費用相場シミュレーター", "item": "https://hakarigoto.github.io/hikkoshi/hikkoshi-hiyo/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">引越し費用相場シミュレーター</li></ol></nav>
+
+  <div class="page-head">
+    <h1>引越し費用相場シミュレーター</h1>
+    <p class="lead">世帯人数・移動距離・時期を選ぶだけで、引越し費用の相場帯の目安を表示します。実際の金額はトラックの空き状況や荷物量で大きく変わるため、相場を把握したうえで複数社の見積もりを比べるのが節約の近道です。入力した内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月3日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこの記事のポイント</div>
+    <ul>
+      <li>通常期の調査平均は<span class="mk">単身(荷物少)約3.9万円〜・2人約6.6万円〜・3〜4人約8.2万円〜</span>(近距離の場合。距離で大きく変動)</li>
+      <li>繁忙期(2〜4月)は<span class="mk">同じ条件でも1割〜5割程度高い水準</span>。3月は引越件数が通常月の約2倍(国土交通省)</li>
+      <li>安くする定番は<span class="mk">時期ずらし・相見積もり・フリー便・荷物減らし</span>の4つ</li>
+      <li>料金の内訳は基本運賃+実費+オプション。<span class="mk">同じ日でも会社間で数万円差</span>が出る</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">相場をシミュレーションする</a></li>
+      <li><a href="#soubahyo">人数×距離の相場早見表</a></li>
+      <li><a href="#hanbouki">繁忙期はなぜ・どれだけ高い?</a></li>
+      <li><a href="#yasuku">費用を安くする4つの方法</a></li>
+      <li><a href="#minogashi">見落としがちな引越し前後の出費</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
+    <h2>条件を選んでください</h2>
+    <div class="field">
+      <label for="household">世帯人数・荷物量</label>
+      <select id="household">
+        <option value="s-small">単身・荷物少なめ(家具家電が少ない)</option>
+        <option value="s-large" selected>単身・荷物多め(家具家電一式)</option>
+        <option value="f2">2人</option>
+        <option value="f34">3〜4人</option>
+        <option value="f5">5人以上</option>
+      </select>
+      <p class="field-note" style="font-size:0.85rem;color:var(--text-sub);margin-top:4px;">世帯人数から目安の区分を選び、荷物が多い/少ない場合は区分を調整してください。金額はこの区分だけで決まります。</p>
+    </div>
+    <div class="field">
+      <label for="distance">移動距離</label>
+      <select id="distance">
+        <option value="d15" selected>〜15km(同一市区町村内の目安)</option>
+        <option value="d50">〜50km(同一都道府県内の目安)</option>
+        <option value="d200">〜200km(同一地方内の目安)</option>
+        <option value="dover200">200km超(地方をまたぐ長距離)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="season">時期</label>
+      <select id="season">
+        <option value="normal" selected>通常期(5月〜1月)</option>
+        <option value="busy">繁忙期(2月〜4月)</option>
+      </select>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">相場を表示する</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="result-main" id="resultMain"></div>
+      <p class="result-sub" id="resultSub"></p>
+      <p class="result-evidence" id="resultEvidence" style="font-size:0.85rem;color:var(--text-sub);margin-top:4px;"></p>
+      <div class="season-note" id="seasonNote"></div>
+    </div>
+    <!-- AD-SLOT: hikkoshi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+  </section>
+
+  <div class="cta-box">
+    <p class="cta-box-title">退去費用も先にチェックしませんか?</p>
+    <p>旧居の敷金がいくら戻るか、原状回復の負担区分を国交省ガイドライン基準で診断できます。</p>
+    <a class="cta-btn" href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復診断を使う</a>
+    <span class="cta-note">登録不要・入力データは送信されません</span>
+  </div>
+
+  <article class="article">
+    <h2 id="soubahyo">人数×距離の相場早見表</h2>
+    <p>各セルの金額は、複数の調査(リクルート実態把握調査・LIFULL引越し利用者集計)が公表する<strong>平均値の幅</strong>です。個別の見積もりの最安〜最高ではありません。※印は単一調査の平均(参考値)で、複数調査で確認できた値とは確度が異なります。</p>
+    <h3>通常期(5月〜1月)</h3>
+    <div class="table-wrap">
+      <table class="souba-table">
+        <tr><th>世帯・荷物量</th><th>〜15km</th><th>〜50km</th><th>〜200km</th><th>200km超</th></tr>
+        <tr><td>単身(荷物少)</td><td>約3.9万円※</td><td>約4.2万円※</td><td>約5.1万円※</td><td>約6.0〜7.3万円※</td></tr>
+        <tr><td>単身(荷物多)</td><td>約5.1万円※</td><td>約5.3万円※</td><td>約6.9万円※</td><td>約8.8〜10.5万円※</td></tr>
+        <tr><td>2人</td><td>6.6〜6.9万円</td><td>6.5〜7.6万円</td><td>7.4〜9.2万円</td><td>11.9〜17.2万円</td></tr>
+        <tr><td>3〜4人</td><td>8.2〜10.4万円</td><td>8.6〜12.4万円</td><td>8.7〜14.4万円</td><td>15.1〜24.0万円</td></tr>
+        <tr><td>5人以上</td><td>9.3〜14.5万円</td><td>9.2〜16.0万円</td><td>約19.7万円※</td><td>17.3〜34.5万円</td></tr>
+      </table>
+    </div>
+    <h3>繁忙期(2月〜4月)</h3>
+    <div class="table-wrap">
+      <table class="souba-table">
+        <tr><th>世帯・荷物量</th><th>〜15km</th><th>〜50km</th><th>〜200km</th><th>200km超</th></tr>
+        <tr><td>単身(荷物少)</td><td>約4.6万円※</td><td>約5.1万円※</td><td>約6.1万円※</td><td>約7.1〜8.2万円※</td></tr>
+        <tr><td>単身(荷物多)</td><td>約6.3万円※</td><td>約6.9万円※</td><td>約9.0万円※</td><td>約11.2〜13.3万円※</td></tr>
+        <tr><td>2人</td><td>7.5〜8.4万円</td><td>7.4〜9.6万円</td><td>13.0〜16.3万円</td><td>15.0〜23.2万円</td></tr>
+        <tr><td>3〜4人</td><td>8.4〜12.8万円</td><td>11.4〜15.4万円</td><td>13.5〜19.3万円</td><td>21.2〜33.3万円</td></tr>
+        <tr><td>5人以上</td><td>11.0〜15.6万円</td><td>19.3〜21.1万円</td><td>約25.2万円※</td><td>32.8〜41.4万円※</td></tr>
+      </table>
+    </div>
+    <p>無印のセルは複数の調査で確認できたレンジ、※印は単一調査の平均(参考値)です。金額はいずれも標準的なプラン(荷造りは自分・搬出搬入はお任せ)を想定した水準で、荷物量の実測・建物条件(エレベーターの有無など)・オプションで変わります。5人以上の区分は調査間の差が大きいため、レンジが特に広くなっています。</p>
+
+    <h2 id="hanbouki">繁忙期はなぜ・どれだけ高い?</h2>
+    <p>進学・就職・転勤の異動時期が2月〜4月(特に3月末〜4月頭)に集中するため、この期間はトラックと作業員の需要が供給を大きく上回ります。国土交通省によると、<strong>3月の引越件数は通常月の約2倍</strong>に達します(これは件数の統計で、料金が2倍になるという意味ではありません)。</p>
+    <p>料金への影響は、上の早見表の通常期と繁忙期を比べるとわかります。調査データでは、同じ条件でも<strong>おおむね1割〜5割程度高い平均額</strong>が示されており、需要が集中するピーク日(3月下旬〜4月上旬の土日など)はさらに高くなることがあります。</p>
+    <p>逆に言えば、日程を5月以降にずらす、平日にする、時間指定をしない(フリー便)だけで数万円下がる余地があります。入社日・入学日が動かせない場合も、荷物を先に送って本人だけ後から移動するなどの工夫で繁忙期のピーク日を避けられることがあります。</p>
+
+    <h2 id="yasuku">費用を安くする4つの方法</h2>
+    <ol>
+      <li><strong>時期・曜日をずらす</strong>:繁忙期・月末・土日祝・大安は高い。効果最大。</li>
+      <li><strong>相見積もりを取る</strong>:2〜3社を比べるだけで値引き交渉の材料になる。訪問見積もり時に「他社は◯円だった」と伝えるのが定石。</li>
+      <li><strong>フリー便・混載便を使う</strong>:時間指定を手放すと安くなる。当日の開始時間が読めない点は許容が必要。</li>
+      <li><strong>荷物を減らす</strong>:料金はトラックのサイズで決まる。大型家具・家電を事前に処分すれば1ランク小さい車両で済むことも。処分方法は<a href="/katazuke/shobun-shindan/">不用品処分診断</a>で確認できます。</li>
+    </ol>
+
+    <h2 id="minogashi">見落としがちな引越し前後の出費</h2>
+    <ul>
+      <li><strong>旧居の退去費用</strong>:原状回復の入居者負担分。<a href="/hikkoshi/taikyo-hiyo/">負担区分の診断はこちら</a>。</li>
+      <li><strong>新居の初期費用</strong>:敷金・礼金・仲介手数料・前家賃・火災保険で家賃4〜6か月分が目安。</li>
+      <li><strong>家具・家電の買い替え</strong>:カーテン(サイズが変わりやすい)・照明・洗濯機置き場のサイズ確認を忘れずに。</li>
+      <li><strong>各種手続きの実費</strong>:住民票関係、車庫証明の変更、NHK・ネット回線の移転工事費など。</li>
+    </ul>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>引越しの繁忙期はいつですか?どれくらい高くなりますか?</summary>
+      <p>2月〜4月(特に3月下旬〜4月上旬)です。国土交通省によると3月の引越件数は通常月の約2倍。調査データでは同じ条件でも通常期より1割〜5割程度高い平均額が示されており、ピーク日はさらに高くなることがあります。</p>
+    </details>
+    <details class="faq">
+      <summary>引越し費用を安くするコツはありますか?</summary>
+      <p>時期ずらし・相見積もり・フリー便・荷物減らしの4つが定番です。荷物が少なければ単身パックも検討を。</p>
+    </details>
+    <details class="faq">
+      <summary>一括見積もりサイトを使うと電話がたくさん来ると聞きました。</summary>
+      <p>直後に電話が集中することがあります。メール連絡限定にできるサービスを選ぶ、依頼社数を絞るなどの対策が有効です。</p>
+    </details>
+    <details class="faq">
+      <summary>見積もり金額はどこで差がつきますか?</summary>
+      <p>基本運賃は届出運賃がベースで、差がつくのはトラックの空き状況を反映した割引とオプション価格です。同じ日でも会社間で数万円差が出ます。</p>
+    </details>
+    <details class="faq">
+      <summary>引越し費用以外にどんな初期費用がかかりますか?</summary>
+      <p>賃貸なら敷金・礼金等で家賃4〜6か月分、家具家電の購入費、旧居の退去費用も見込んでおきましょう。</p>
+    </details>
+
+    <!-- AD-SLOT: hikkoshi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/taikyo-hiyo/" data-action-id="check-taikyo">
+        <strong>退去費用の負担区分を診断する</strong>
+        <span>旧居の傷・汚れがどこまで自己負担になるか、ガイドライン基準でわかります。</span>
+      </a>
+      <a class="next-action-card" href="/katazuke/shobun-shindan/" data-action-id="check-shobun">
+        <strong>大型家具・家電の処分方法を診断する</strong>
+        <span>引越し前に荷物を減らして、トラックのサイズを1ランク下げられるか確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>複数の調査が公表する平均値の幅を「相場レンジ」として表示しています。個別の見積もり金額の分布(最安〜最高)ではなく、実際の金額は荷物量・建物条件・トラックの空き状況・オプションにより大きく変わります。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 世帯・荷物量(5区分)×移動距離(4区分)×時期(通常期5〜1月/繁忙期2〜4月)の40セルについて、複数調査の公表平均値の最小〜最大をレンジとして表示する。</li><li><b>使用する入力値:</b> 世帯・荷物量の区分(単一軸。世帯人数は区分選択の案内のみで、金額計算には区分だけを使用)、移動距離、時期</li><li><b>レンジの意味:</b> 各調査の公表「平均値」の幅。調査ごとにデータの定義(見積もり額か成約額か等)が異なるため平均せず、幅として示す。複数調査で確認できたセルと、単一調査のみの参考値セル(※印)を区別して表示</li><li><b>繁忙期の扱い:</b> 係数ではなく、各調査が公表する繁忙期(2〜4月)の平均値をそのまま使用。国土交通省の「3月の引越件数は通常月の約2倍」は混雑の根拠であり、料金倍率の根拠には使用していない</li><li><b>計算に含まれない項目:</b> オプション(エアコン脱着・ピアノ・不用品処分等)、建物条件(階数・エレベーター無し等)による加算、車両指定、荷造りお任せプラン</li><li><b>結果が変わる主な要因:</b> トラック・作業員の需給(日付・時間帯)、荷物量の実測、会社ごとの割引方針</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://hikkoshi.suumo.jp/soba/" rel="noopener" target="_blank">リクルート「引越しに関する実態把握調査」(SUUMO引越し 料金相場)</a>(確認日: 2026-08-03)</li><li><a href="https://www.homes.co.jp/hikkoshi/price/" rel="noopener" target="_blank">LIFULL引越し「引越し費用の料金相場」(利用者アンケート集計)</a>(確認日: 2026-08-03)</li><li><a href="https://hikkoshi.kakaku.com/" rel="noopener" target="_blank">価格.com引越し(ユーザーレポートによる月別平均。水準の照合に使用)</a>(確認日: 2026-08-03)</li><li><a href="https://www.mlit.go.jp/jidosha/jidosha_fr4_000022.html" rel="noopener" target="_blank">国土交通省「引越時期の分散に向けたお願い」</a>(確認日: 2026-08-03)</li><li><a href="https://www.mlit.go.jp/jidosha/jidosha_tk4_000033.html" rel="noopener" target="_blank">国土交通省「標準引越運送約款等の改正について」</a>(確認日: 2026-08-03)</li></ul><p style="font-size:0.85rem;">各調査の金額は当該サービスの利用者データに基づく平均値であり、市場全体の確定相場ではありません。</p></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/hikkoshi-hiyo/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script src="/assets/hikkoshi-souba.js"></script>
+<script>
+(function () {
+  var SEG_LABEL = { "s-small": "単身・荷物少なめ", "s-large": "単身・荷物多め", "f2": "2人", "f34": "3〜4人", "f5": "5人以上" };
+  var DIST_LABEL = { d15: "〜15km", d50: "〜50km", d200: "〜200km", dover200: "200km超" };
+
+  function man(n) {
+    var s = (Math.round(n / 1000) / 10).toString();
+    return s + "万円";
+  }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var data = window.HKG_HIKKOSHI_SOUBA;
+    if (!data) return;
+    var hh = document.getElementById("household").value;
+    var dist = document.getElementById("distance").value;
+    var season = document.getElementById("season").value;
+    var cell = data[season + "." + hh + "." + dist];
+    if (!cell) return;
+
+    var seasonText = season === "busy" ? "繁忙期(2月〜4月)" : "通常期(5月〜1月)";
+    var main;
+    if (cell.lo === cell.hi) {
+      main = "調査平均の目安:約" + man(cell.lo);
+    } else {
+      main = "調査平均のレンジ:" + man(cell.lo) + " 〜 " + man(cell.hi);
+    }
+    document.getElementById("resultMain").textContent = main;
+    document.getElementById("resultSub").textContent =
+      SEG_LABEL[hh] + " / " + DIST_LABEL[dist] + " / " + seasonText + " の水準です。";
+
+    var ev = document.getElementById("resultEvidence");
+    if (cell.ev === "direct") {
+      ev.textContent = "確度:複数の調査(" + cell.n + "件)の公表平均値で確認できたレンジです。個別の見積もりの最安〜最高ではありません。";
+    } else {
+      ev.textContent = "確度:単一調査の平均に基づく参考値です。複数調査で確認できた区分とは確度が異なります。";
+    }
+
+    var note = document.getElementById("seasonNote");
+    if (season === "busy") {
+      var normalCell = data["normal." + hh + "." + dist];
+      var normalText = normalCell ? (normalCell.lo === normalCell.hi ? "約" + man(normalCell.lo) : man(normalCell.lo) + "〜" + man(normalCell.hi)) : "";
+      note.innerHTML = "<strong>繁忙期のヒント:</strong>需要が集中するピーク日(3月下旬〜4月上旬の土日など)はこの水準を超えることもあります。日程を<strong>5月以降にずらす・平日にする・フリー便にする</strong>と、通常期の水準(" +
+        normalText + ")に近づけられる可能性があります。";
+    } else {
+      note.innerHTML = "<strong>節約のヒント:</strong>相場より安く抑える定番は<strong>相見積もり(2〜3社)・フリー便・荷物減らし</strong>の3つです。月末・土日祝・大安は同じ通常期でも高くなりがちです。";
+    }
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>

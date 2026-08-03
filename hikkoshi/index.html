@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引越し・新生活のお金の計算・診断ツール|はかりごと</title>
+<meta name="description" content="引越し費用の相場、退去費用・原状回復の負担整理など、引越しと新生活のお金を無料で計算・診断。退去から新居までの総額をまとめて概算できるダッシュボードつき。登録不要。">
+<link rel="stylesheet" href="../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.dash-block { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.dash-block h3 { margin: 0 0 6px; font-size: 1rem; }
+.dash-block .field { margin: 6px 0; }
+.dash-block select, .dash-block input[type="number"] { font-size: 0.95rem; max-width: 100%; }
+.dash-note { font-size: 0.82rem; color: var(--text-sub); }
+.dash-total { border: 2px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
+.dash-total-label { font-size: 0.9rem; color: var(--text-sub); }
+.dash-total-value { font-size: 1.3rem; font-weight: 700; }
+.dash-breakdown { font-size: 0.9rem; margin-top: 8px; }
+.dash-breakdown td { padding: 3px 10px 3px 0; }
+.dash-uncounted { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+</style>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="引越し・新生活のお金の計算・診断ツール">
+<meta property="og:description" content="引越し費用の相場、退去費用・原状回復の負担整理など、引越しと新生活のお金を無料で計算・診断できます。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li aria-current="page">住まい・引越し</li></ol></nav>
+
+  <div class="page-head">
+    <h1>引越し・新生活のお金の計算・診断ツール</h1>
+    <p class="lead">引越しには、旧居の退去費用・引越し本体・新居の初期費用・家具家電の購入と、性質の違うお金が一度にかかります。ここでは費用の全体像を地図のように整理し、それぞれを無料の計算・診断ツールで確認できます。入力した内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月3日</b></span><span>運営:<b>はかり</b></span></div>
+  </div>
+
+  <h2 id="komarigoto" style="margin-top:24px;">困りごとから選ぶ</h2>
+  <div class="article" style="margin-top:0;">
+    <ul>
+      <li><strong>引越し代がいくらか知りたい</strong> — 世帯・距離・時期ごとの調査データに基づく水準は <a href="/hikkoshi/hikkoshi-hiyo/">引越し費用相場シミュレーター</a> でわかります。</li>
+      <li><strong>退去費用の請求が不安・高すぎる気がする</strong> — 傷・汚れごとの負担の一般的な整理は <a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復の負担診断</a> で確認できます。</li>
+      <li><strong>不用品を処分してから引越したい</strong> — 大型家具・家電の処分方法と費用の目安は <a href="/katazuke/shobun-shindan/">不用品処分診断</a>(片づけカテゴリ)で確認できます。</li>
+    </ul>
+  </div>
+
+  <h2 id="tools" style="margin-top:24px;">ツール</h2>
+  <div class="card-grid">
+    <a class="card" href="/hikkoshi/hikkoshi-hiyo/">
+      <h3>引越し費用相場シミュレーター</h3>
+      <p>世帯・荷物量と距離、時期(通常期/繁忙期)を選ぶと、複数の調査データに基づく費用水準を表示します。繁忙期の傾向や安くするコツも解説。所要時間の目安は30秒です。</p>
+      <p>相場を無料でチェックする</p>
+    </a>
+    <a class="card" href="/hikkoshi/taikyo-hiyo/">
+      <h3>退去費用・原状回復の負担診断</h3>
+      <p>傷・汚れの状況と発生の経緯を選ぶと、国交省ガイドラインに基づく負担の一般的な整理を表示します。経過年数・特約の考え方も解説。所要時間の目安は2分です。</p>
+      <p>負担の整理を無料で確認する</p>
+    </a>
+  </div>
+  <p style="font-size:0.9rem;color:var(--text-sub);">賃貸初期費用・家具家電予算・見積もり前チェックなどのツールも順次追加予定です。</p>
+
+  <section class="tool-panel" id="dashboard">
+    <h2>引越し費用まるごと概算ダッシュボード</h2>
+    <p style="font-size:0.9rem;color:var(--text-sub);">4つの費用ブロックを合算して全体の規模感をつかむための簡易ツールです。<strong>正確な金額は各ツール・実際の見積もりで確認してください。</strong>分からないブロックは「まだ分からない」のままで構いません(合計から除外されます)。</p>
+
+    <div class="dash-block" data-block="taikyo">
+      <h3>1. 旧居の退去費用(敷金精算)</h3>
+      <div class="field">
+        <select data-mode>
+          <option value="skip" selected>まだ分からない</option>
+          <option value="input">金額を入力する(見積書・精算書の提示額など)</option>
+        </select>
+      </div>
+      <div class="field" data-input-wrap hidden><input type="number" data-amount min="0" max="10000000" placeholder="例: 50000">円</div>
+      <p class="dash-note">負担の内訳が気になる場合は<a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復診断</a>へ。</p>
+    </div>
+
+    <div class="dash-block" data-block="honban">
+      <h3>2. 引越し本体の費用</h3>
+      <div class="field">
+        <select data-mode>
+          <option value="skip">まだ分からない</option>
+          <option value="preset" selected>相場プリセットを使う(通常期)</option>
+          <option value="input">金額を入力する(見積額など)</option>
+        </select>
+      </div>
+      <div class="field" data-preset-wrap>
+        <select data-seg>
+          <option value="s-small">単身・荷物少なめ</option>
+          <option value="s-large" selected>単身・荷物多め</option>
+          <option value="f2">2人</option>
+          <option value="f34">3〜4人</option>
+          <option value="f5">5人以上</option>
+        </select>
+        <select data-dist>
+          <option value="d15" selected>〜15km</option>
+          <option value="d50">〜50km</option>
+          <option value="d200">〜200km</option>
+          <option value="dover200">200km超</option>
+        </select>
+      </div>
+      <div class="field" data-input-wrap hidden><input type="number" data-amount min="0" max="10000000" placeholder="例: 60000">円</div>
+      <p class="dash-note">プリセットの出典: リクルート「引越しに関する実態把握調査」・LIFULL引越し利用者集計の公表平均値(確認日: 2026-08-03)。詳細は<a href="/hikkoshi/hikkoshi-hiyo/">相場シミュレーター</a>へ。</p>
+    </div>
+
+    <div class="dash-block" data-block="shoki">
+      <h3>3. 新居の賃貸初期費用</h3>
+      <div class="field">
+        <select data-mode>
+          <option value="skip" selected>まだ分からない</option>
+          <option value="input">金額を入力する(不動産会社の見積額など)</option>
+        </select>
+      </div>
+      <div class="field" data-input-wrap hidden><input type="number" data-amount min="0" max="10000000" placeholder="例: 300000">円</div>
+      <p class="dash-note">敷金・礼金・仲介手数料などの合計。一般に家賃の4〜6か月分程度かかるとされます(専用計算機は準備中)。</p>
+    </div>
+
+    <div class="dash-block" data-block="kagu">
+      <h3>4. 家具・家電の購入費</h3>
+      <div class="field">
+        <select data-mode>
+          <option value="skip" selected>まだ分からない</option>
+          <option value="input">金額を入力する(予算・購入予定額)</option>
+        </select>
+      </div>
+      <div class="field" data-input-wrap hidden><input type="number" data-amount min="0" max="10000000" placeholder="例: 100000">円</div>
+      <p class="dash-note">新規に揃える場合の予算。中古・レンタル・譲渡・持ち込みでも大きく変わります(専用計算機は準備中)。</p>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="dashBtn">合計を概算する</button>
+    </div>
+
+    <div class="dash-total" id="dashTotal" hidden>
+      <div class="dash-total-label" id="dashTotalLabel"></div>
+      <div class="dash-total-value" id="dashTotalValue"></div>
+      <table class="dash-breakdown" id="dashBreakdown"></table>
+      <p class="dash-uncounted" id="dashUncounted"></p>
+      <p class="dash-note" id="dashSource"></p>
+    </div>
+  </section>
+
+  <article class="article">
+    <h2>ご利用にあたっての注意</h2>
+    <p>このページのツールは、引越しと新生活にかかるお金を整理するための無料ツールです。相場データは複数の調査の公表平均値に基づく水準であり、個別の見積もり金額を保証するものではありません。退去費用の診断は国土交通省ガイドラインに基づく一般的な整理であり、法的な確定判定ではありません。正確な金額は引越し会社の見積もり・貸主/管理会社の精算書・不動産会社の重要事項説明で必ずご確認ください。</p>
+  </article>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>ダッシュボードの合計は入力値とプリセットの単純合算による概算です。未計算のブロックがある場合、実際の総額はこれより大きくなります。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 退去費用・引越し本体・賃貸初期費用・家具家電の4ブロックの合算。入力値は点推定として下限・上限の両方へ同額加算し、プリセットはレンジ(下限・上限)として加算する。すべて入力値の場合は「入力額合計」、プリセットを含む場合は「概算レンジ」と表示する。</li><li><b>使用する入力値:</b> 各ブロックの金額(任意)、引越し本体プリセットの世帯・荷物量区分と距離</li><li><b>プリセットの根拠:</b> 引越し本体のみ。複数調査(リクルート実態把握調査・LIFULL引越し利用者集計)の公表平均値で複数ソース確認できたレンジ(通常期)を使用。単一調査のみの区分は参考値として同様に表示。他ブロックは根拠が確定するまでプリセットを置かない</li><li><b>計算に含まれない項目:</b> 未計算(「まだ分からない」)のブロック、繁忙期の引越し費用差、オプション費用、礼金交渉等による変動</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://hikkoshi.suumo.jp/soba/" rel="noopener" target="_blank">リクルート「引越しに関する実態把握調査」(SUUMO引越し 料金相場)</a>(確認日: 2026-08-03)</li><li><a href="https://www.homes.co.jp/hikkoshi/price/" rel="noopener" target="_blank">LIFULL引越し「引越し費用の料金相場」</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script src="/assets/hikkoshi-souba.js"></script>
+<script>
+(function () {
+  "use strict";
+  var BLOCK_LABEL = { taikyo: "退去費用", honban: "引越し本体", shoki: "賃貸初期費用", kagu: "家具・家電" };
+
+  function num(el) {
+    var v = parseFloat(el.value);
+    if (isNaN(v) || v < 0) v = 0;
+    var max = parseFloat(el.max) || 10000000;
+    if (v > max) v = max;
+    el.value = v === 0 && el.value === "" ? "" : v;
+    return v;
+  }
+  function man(n) { return (Math.round(n / 1000) / 10) + "万円"; }
+
+  document.querySelectorAll(".dash-block").forEach(function (b) {
+    var mode = b.querySelector("[data-mode]");
+    var inputWrap = b.querySelector("[data-input-wrap]");
+    var presetWrap = b.querySelector("[data-preset-wrap]");
+    function sync() {
+      if (inputWrap) inputWrap.hidden = mode.value !== "input";
+      if (presetWrap) presetWrap.hidden = mode.value !== "preset";
+    }
+    mode.addEventListener("change", sync);
+    sync();
+  });
+
+  document.getElementById("dashBtn").addEventListener("click", function () {
+    var lower = 0, upper = 0, counted = 0, uncounted = [];
+    var hasPreset = false, presetUsed = false;
+    var rows = [];
+
+    document.querySelectorAll(".dash-block").forEach(function (b) {
+      var key = b.dataset.block;
+      var mode = b.querySelector("[data-mode]").value;
+      if (mode === "skip") { uncounted.push(BLOCK_LABEL[key]); return; }
+      if (mode === "input") {
+        var v = num(b.querySelector("[data-amount]"));
+        if (v === 0) { uncounted.push(BLOCK_LABEL[key]); return; }
+        lower += v; upper += v; counted++;
+        rows.push([BLOCK_LABEL[key], man(v), "入力額"]);
+        return;
+      }
+      /* preset(引越し本体のみ) */
+      var data = window.HKG_HIKKOSHI_SOUBA;
+      if (!data) { uncounted.push(BLOCK_LABEL[key]); return; }
+      var seg = b.querySelector("[data-seg]").value;
+      var dist = b.querySelector("[data-dist]").value;
+      var cell = data["normal." + seg + "." + dist];
+      if (!cell) { uncounted.push(BLOCK_LABEL[key]); return; }
+      lower += cell.lo; upper += cell.hi; counted++;
+      hasPreset = true; presetUsed = true;
+      var evText = cell.ev === "direct" ? "複数調査のレンジ" : "単一調査の参考値";
+      rows.push([BLOCK_LABEL[key], cell.lo === cell.hi ? "約" + man(cell.lo) : man(cell.lo) + "〜" + man(cell.hi), "プリセット(" + evText + "・通常期)"]);
+    });
+
+    var total = document.getElementById("dashTotal");
+    var label = document.getElementById("dashTotalLabel");
+    var value = document.getElementById("dashTotalValue");
+    var bd = document.getElementById("dashBreakdown");
+    var un = document.getElementById("dashUncounted");
+    var src = document.getElementById("dashSource");
+
+    if (counted === 0) {
+      label.textContent = "";
+      value.textContent = "計算できるブロックがありません。金額を入力するかプリセットを選んでください。";
+      bd.innerHTML = ""; un.textContent = ""; src.textContent = "";
+      total.hidden = false;
+      return;
+    }
+
+    if (hasPreset) {
+      label.textContent = "概算レンジ(" + counted + "ブロックの合算)";
+      value.textContent = lower === upper ? "約" + man(lower) : man(lower) + " 〜 " + man(upper);
+    } else {
+      label.textContent = "入力額合計(" + counted + "ブロックの合算)";
+      value.textContent = man(lower);
+    }
+
+    bd.innerHTML = "";
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + r[0] + "</td><td><b>" + r[1] + "</b></td><td style=\"color:var(--text-sub);\">" + r[2] + "</td>";
+      bd.appendChild(tr);
+    });
+
+    un.textContent = uncounted.length
+      ? "未計算: " + uncounted.length + "ブロック(" + uncounted.join("・") + ")。実際の総額はこの概算より大きくなります。"
+      : "";
+    src.textContent = presetUsed
+      ? "プリセット出典: リクルート「引越しに関する実態把握調査」・LIFULL引越し利用者集計の公表平均値(確認日: 2026-08-03)"
+      : "";
+    total.hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>
