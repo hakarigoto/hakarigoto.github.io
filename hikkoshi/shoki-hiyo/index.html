@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>賃貸初期費用シミュレーター|見積書の金額を入れて合計と家賃何か月分かを確認|はかりごと</title>
+<meta name="description" content="敷金・礼金・仲介手数料・保証料・火災保険・鍵交換・前家賃などを入力して、賃貸契約の初期費用の合計と家賃何か月分に相当するかを確認。確定額と仮の初期値を区別し、要確認項目も整理します。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>引</text></svg>">
+<style>
+.dash-block { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.dash-block h3 { margin: 0 0 6px; font-size: 1rem; }
+.dash-block .field { margin: 6px 0; }
+.dash-block select, .dash-block input[type="number"] { font-size: 0.95rem; max-width: 100%; }
+.dash-note { font-size: 0.82rem; color: var(--text-sub); }
+.dash-total { border: 2px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
+.dash-total-label { font-size: 0.9rem; color: var(--text-sub); }
+.dash-total-value { font-size: 1.3rem; font-weight: 700; }
+.dash-breakdown { font-size: 0.9rem; margin-top: 8px; }
+.dash-breakdown td { padding: 3px 10px 3px 0; }
+.dash-uncounted { font-size: 0.9rem; color: var(--text-sub); margin-top: 6px; }
+</style>
+<style>
+.fee-group { margin: 14px 0 4px; }
+.fee-group-title { font-weight: 700; font-size: 0.96rem; margin-bottom: 4px; padding-bottom: 4px; border-bottom: 2px solid var(--accent-weak); }
+.fee-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.fee-row label { flex: 1 1 200px; font-size: 0.93rem; font-weight: 400; }
+.fee-row input { width: 120px; }
+.fee-row .unit { font-size: 0.9rem; color: var(--text-sub); }
+.fee-note { font-size: 0.82rem; color: var(--text-sub); margin: 0 0 6px 0; }
+.assump { display: inline-block; font-size: 0.75rem; background: #f1eee2; color: #8a6d1a; border-radius: 4px; padding: 1px 6px; margin-left: 4px; }
+.result-main { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+.result-sub { font-size: 0.95rem; color: var(--text-sub); }
+.bd-table td { padding: 3px 10px 3px 0; font-size: 0.93rem; }
+.bd-table td:last-child { text-align: right; font-weight: 700; }
+.bd-head { font-weight: 700; color: var(--accent); padding-top: 8px; }
+.warn-box { border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-top: 14px; font-size: 0.92rem; background: var(--surface); }
+.warn-box strong { color: var(--accent); }
+.example-box { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 12px 0; }
+.example-box h3 { margin: 0 0 6px; font-size: 1rem; }
+.example-box table { width: 100%; font-size: 0.92rem; }
+.example-box td:last-child { text-align: right; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "賃貸の初期費用は家賃の何か月分かかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "物件と契約条件によって大きく変わるため、一律の月数はありません。敷金・礼金の月数、仲介手数料の有無と額、保証会社の利用料、火災保険、鍵交換費用、前家賃と日割り家賃の扱いがそれぞれ独立して決まります。敷金・礼金なしの物件でも、保証料や鍵交換などで結果的に一定額になることがあります。このページでは、契約書や見積書に提示された金額を入力して、あなたの条件での合計と家賃何か月分に相当するかを確認できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "仲介手数料はいくらが正しいのですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "宅地建物取引業法により、貸主・借主双方から受け取れる報酬の合計には上限があり、居住用建物では原則として当事者の一方から受け取れるのは家賃の0.55か月分(税込)まで、承諾がある場合は1.1か月分(税込)までとされています。実際にいくら請求されるかは物件・仲介会社によって異なるため、このページでは金額を固定せず、提示された額を入力する方式にしています。金額に疑問がある場合は、仲介会社に根拠の説明を求めることができます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "敷金・礼金なしなら初期費用は安く済みますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "契約時の支払いは抑えられますが、総額が必ず安くなるとは限りません。保証会社の利用料、鍵交換費用、消毒・室内クリーニング費用などが別途設定されていることがあり、退去時の原状回復費用を敷金で相殺できない分、退去時に請求される場合もあります。契約時の金額と、退去時に発生しうる費用の両方で比べることをおすすめします。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "消毒費用や室内クリーニング費用は断れますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "任意のオプションとして案内されている場合と、契約条件に組み込まれている場合があります。まず見積書・契約書で必須か任意かを確認し、任意であれば必要性と金額の根拠を仲介会社に確認してください。判断に迷う場合や説明に納得できない場合は、お住まいの地域の消費生活センター(消費者ホットライン188)に相談できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "初期費用が足りない場合はどうすればよいですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "このページは金額を整理するためのもので、資金調達を案内するものではありません。まずは契約時期を調整する、条件の異なる物件と比較する、任意項目の要否を確認するなど、支払う金額そのものを見直せる余地がないか確認してください。すでにある返済を含めた毎月の支出全体を把握したい場合は、当サイトのローン返済シミュレーターで現在の返済額と総額を確認できます。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/shoki-hiyo/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/shoki-hiyo/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="賃貸初期費用シミュレーター">
+<meta property="og:description" content="敷金・礼金・仲介手数料・保証料・火災保険・鍵交換・前家賃などを入力して、賃貸契約の初期費用の合計と家賃何か月分に相当するかを確認。確定額と仮の初期値を区別し、要確認項目も整理します。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "賃貸初期費用シミュレーター", "item": "https://hakarigoto.github.io/hikkoshi/shoki-hiyo/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">賃貸初期費用シミュレーター</li></ol></nav>
+
+  <div class="page-head">
+    <h1>賃貸初期費用シミュレーター</h1>
+    <p class="lead">見積書や契約書に書かれた金額を入力すると、初期費用の合計と家賃何か月分に相当するかを表示します。仲介手数料・保証料・火災保険・鍵交換などは物件や会社ごとに設定が異なるため、<strong>このページでは金額を決め打ちにせず、提示された額を入れて確認する方式</strong>にしています。入力内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月4日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこのページのポイント</div>
+    <ul>
+      <li>初期費用は<span class="mk">契約時に払うもの・保険や保証・入居前後に払うもの</span>に分けて見ると整理しやすい</li>
+      <li>敷金礼金なしでも<span class="mk">保証料・鍵交換・消毒などで一定額になる</span>ことがある</li>
+      <li>仲介手数料は<span class="mk">宅建業法に報酬の上限がある</span>(居住用は原則0.55か月分、承諾があれば1.1か月分・税込)</li>
+      <li>任意項目か必須かは<span class="mk">見積書・契約書で確認</span>。疑問があれば根拠の説明を求められる</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">初期費用を計算する</a></li>
+      <li><a href="#rei">具体例で見る初期費用</a></li>
+      <li><a href="#kakunin">見積書で確認する項目</a></li>
+      <li><a href="#soudan">金額に疑問があるときの確認先</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
+    <h2>見積書・契約書の金額を入力してください</h2>
+    <p class="fee-note">分からない項目は空欄のままで構いません(合計には加算されず、「未入力」として表示します)。<span class="assump">仮の初期値</span>が付いた項目は当サイトが置いた変更前提の値で、確定額ではありません。</p>
+
+    <div class="fee-group">
+      <div class="fee-group-title">家賃と月額費用</div>
+      <div class="fee-row"><label for="yachin">家賃(月額)</label><input type="number" id="yachin" min="0" max="3000000" placeholder="例: 80000"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="kanri">管理費・共益費(月額)</label><input type="number" id="kanri" min="0" max="500000" placeholder="例: 5000"><span class="unit">円</span></div>
+    </div>
+
+    <div class="fee-group">
+      <div class="fee-group-title">契約時に支払うもの</div>
+      <div class="fee-row"><label for="shikikin">敷金(保証金)</label><input type="number" id="shikikin" min="0" max="5000000" placeholder="金額または0"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="reikin">礼金</label><input type="number" id="reikin" min="0" max="5000000" placeholder="金額または0"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="chukai">仲介手数料</label><input type="number" id="chukai" min="0" max="5000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <p class="fee-note">仲介手数料は宅建業法により受け取れる報酬に上限があります(居住用建物は原則として一方から家賃の0.55か月分・税込、承諾がある場合は1.1か月分・税込まで)。提示額が上限を超えていないかの目安も表示します。</p>
+    </div>
+
+    <div class="fee-group">
+      <div class="fee-group-title">保険・保証</div>
+      <div class="fee-row"><label for="hosho">保証会社の利用料(初回)</label><input type="number" id="hosho" min="0" max="2000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="kasai">火災保険料(契約期間分)</label><input type="number" id="kasai" min="0" max="500000" placeholder="提示された額"><span class="unit">円</span></div>
+    </div>
+
+    <div class="fee-group">
+      <div class="fee-group-title">入居前後に発生するもの</div>
+      <div class="fee-row"><label for="kagi">鍵交換費用</label><input type="number" id="kagi" min="0" max="500000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="maeyachin">前家賃(翌月分など)</label><input type="number" id="maeyachin" min="0" max="3000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="hiwari">日割り家賃(入居月分)</label><input type="number" id="hiwari" min="0" max="3000000" placeholder="提示された額"><span class="unit">円</span></div>
+    </div>
+
+    <div class="fee-group">
+      <div class="fee-group-title">任意・要確認の項目</div>
+      <div class="fee-row"><label for="sonota1">消毒・室内クリーニング等</label><input type="number" id="sonota1" min="0" max="1000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="sonota2">その他の提示済み費用(安心サポート等)</label><input type="number" id="sonota2" min="0" max="1000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <p class="fee-note">これらは必須の場合と任意オプションの場合があります。見積書・契約書でどちらかを確認してください。</p>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">初期費用を計算する</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="result-main" id="resultMain"></div>
+      <p class="result-sub" id="resultSub"></p>
+      <table class="bd-table" id="breakdown"></table>
+      <p class="result-sub" id="miNyuryoku" style="margin-top:8px;"></p>
+      <p class="result-sub" id="chukaiNote" style="margin-top:8px;"></p>
+    </div>
+    <!-- AD-SLOT: hikkoshi (Phase 3は広告なし。公開DOMに空スロットを置かない) -->
+  </section>
+
+  <article class="article">
+    <h2 id="rei">具体例で見る初期費用</h2>
+    <p>次の2つは<strong>説明のための例</strong>です。金額は例示用の仮定であり、入力欄には自動で反映されません。実際の金額は物件・契約条件・仲介会社によって変わります。</p>
+
+    <div class="example-box">
+      <h3>例1:家賃8万円・敷金1か月・礼金1か月の物件</h3>
+      <table>
+        <tr><td>敷金(1か月)</td><td>80,000円</td></tr>
+        <tr><td>礼金(1か月)</td><td>80,000円</td></tr>
+        <tr><td>仲介手数料(0.55か月・税込と仮定)</td><td>44,000円</td></tr>
+        <tr><td>保証会社利用料(家賃の50%と仮定)</td><td>40,000円</td></tr>
+        <tr><td>火災保険料(2年契約と仮定)</td><td>20,000円</td></tr>
+        <tr><td>鍵交換費用</td><td>16,500円</td></tr>
+        <tr><td>前家賃(翌月分)</td><td>80,000円</td></tr>
+        <tr><td>日割り家賃(15日入居と仮定)</td><td>40,000円</td></tr>
+        <tr><td><b>合計</b></td><td><b>400,500円(家賃の約5.0か月分)</b></td></tr>
+      </table>
+      <p class="fee-note"><b>この例の仮定:</b>仲介手数料は上限の一方0.55か月分、保証料は家賃の50%、火災保険は2年契約、入居は月の中旬。<b>含まれない費用:</b>管理費・共益費の前払い分、引越し費用、家具家電の購入費、駐車場代。<b>実際の契約・見積もりでは各項目の有無と金額が変わります。</b></p>
+    </div>
+
+    <div class="example-box">
+      <h3>例2:敷金・礼金なしだが保証料・鍵交換などがある物件(家賃8万円)</h3>
+      <table>
+        <tr><td>敷金</td><td>0円</td></tr>
+        <tr><td>礼金</td><td>0円</td></tr>
+        <tr><td>仲介手数料(1.1か月・税込と仮定)</td><td>88,000円</td></tr>
+        <tr><td>保証会社利用料(家賃の100%と仮定)</td><td>80,000円</td></tr>
+        <tr><td>火災保険料(2年契約と仮定)</td><td>20,000円</td></tr>
+        <tr><td>鍵交換費用</td><td>22,000円</td></tr>
+        <tr><td>消毒・室内クリーニング等</td><td>22,000円</td></tr>
+        <tr><td>前家賃(翌月分)</td><td>80,000円</td></tr>
+        <tr><td><b>合計</b></td><td><b>312,000円(家賃の約3.9か月分)</b></td></tr>
+      </table>
+      <p class="fee-note"><b>この例の仮定:</b>仲介手数料は承諾がある場合の上限1.1か月分、保証料は家賃の100%、消毒等は任意オプションを付けた場合。<b>含まれない費用:</b>退去時の原状回復費用(敷金がないため相殺できず、退去時に請求される場合があります)、更新料、引越し費用。<b>実際の契約・見積もりでは各項目の有無と金額が変わります。</b></p>
+      <p class="fee-note">2つの例のように、敷金・礼金なしでも契約時の総額が大きく下がるとは限りません。契約時の金額と、退去時に発生しうる費用の両方で比べてください。退去時の負担区分は<a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復の負担診断</a>で整理できます。</p>
+    </div>
+
+    <h2 id="kakunin">見積書で確認する項目</h2>
+    <ul>
+      <li><strong>各項目が必須か任意か</strong>:消毒・室内クリーニング・安心サポート等は任意オプションの場合があります</li>
+      <li><strong>仲介手数料の額と根拠</strong>:宅建業法の上限内か。承諾を求められた場合はその意味を確認</li>
+      <li><strong>保証会社の利用料</strong>:初回の額と、更新時に別途かかるか</li>
+      <li><strong>火災保険</strong>:指定の保険に加入する必要があるか、自分で選べるか。補償内容と契約年数</li>
+      <li><strong>前家賃と日割り家賃</strong>:どの月の分をいつ払うのか。入居日によって変わります</li>
+      <li><strong>敷金の精算方法</strong>:退去時に何が差し引かれるのか。特約の有無</li>
+      <li><strong>管理費・共益費</strong>:初期費用に含まれるのか、翌月からの支払いか</li>
+    </ul>
+
+    <h2 id="soudan">金額に疑問があるときの確認先</h2>
+    <ul>
+      <li><strong>仲介会社・貸主</strong>:項目ごとの内訳と、必須か任意かの説明を求めることができます</li>
+      <li><strong>消費生活センター(消費者ホットライン188)</strong>:契約前後のトラブルについて相談できます</li>
+      <li><strong>都道府県の宅地建物取引業の担当窓口</strong>:宅建業者の営業に関する相談を受け付けています</li>
+    </ul>
+    <p>契約を急かされていると感じる場合も、金額と条件を確認する時間を求めて構いません。</p>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>賃貸の初期費用は家賃の何か月分かかりますか?</summary>
+      <p>物件と契約条件によって変わるため一律の月数はありません。敷金・礼金なしでも保証料や鍵交換などで一定額になることがあります。提示された金額を入力して、あなたの条件での合計を確認してください。</p>
+    </details>
+    <details class="faq">
+      <summary>仲介手数料はいくらが正しいのですか?</summary>
+      <p>宅建業法により報酬に上限があり、居住用建物は原則として一方から家賃の0.55か月分(税込)、承諾がある場合は1.1か月分(税込)までとされています。実額は物件・会社により異なります。</p>
+    </details>
+    <details class="faq">
+      <summary>敷金・礼金なしなら初期費用は安く済みますか?</summary>
+      <p>契約時の支払いは抑えられますが総額が安いとは限りません。保証料・鍵交換・消毒等が別途あり、退去時の原状回復費を敷金で相殺できない分、退去時に請求されることもあります。</p>
+    </details>
+    <details class="faq">
+      <summary>消毒費用や室内クリーニング費用は断れますか?</summary>
+      <p>任意オプションの場合と契約条件に含まれる場合があります。見積書・契約書で必須か任意かを確認し、任意なら必要性と根拠を確認してください。納得できない場合は消費生活センター(188)に相談できます。</p>
+    </details>
+    <details class="faq">
+      <summary>初期費用が足りない場合はどうすればよいですか?</summary>
+      <p>このページは金額を整理するためのもので、資金調達を案内するものではありません。契約時期の調整、条件の異なる物件との比較、任意項目の要否確認など、支払う金額自体を見直せないか確認してください。</p>
+    </details>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/tetsuzuki/" data-action-id="check-tetsuzuki">
+        <strong>引越し後の手続きを確認する</strong>
+        <span>転入届・ライフライン・住所変更など、契約後にすることを時系列で確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/loan/hensai/" data-action-id="check-monthly-payment">
+        <strong>既存の返済を含めて毎月の支出を確認する</strong>
+        <span>いま抱えている返済の月額と総額を計算し、住居費とあわせた支出を把握できます。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月4日</dd></div><div><dt>結果の位置づけ</dt><dd>利用者が入力した金額の合計です。当サイトが金額を推計するものではありません。未入力の項目は合計に含まれず「未入力」として表示します。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。家賃・敷金・礼金などの金額も外部に送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 入力された各費用を「契約時に支払うもの」「保険・保証」「入居前後に発生するもの」「任意・要確認」に分類して合計し、家賃(管理費を除く)の何か月分に相当するかを表示する。</li><li><b>使用する入力値:</b> 家賃、管理費・共益費、敷金、礼金、仲介手数料、保証会社利用料、火災保険料、鍵交換費用、前家賃、日割り家賃、消毒等、その他の提示済み費用</li><li><b>当サイトが金額を仮定する項目:</b> なし。すべて利用者の入力値を使用する。本文の具体例2件のみ仮定値を用いており、仮定条件・含まれない費用・実際は変わる旨を各例に明記している</li><li><b>参考として表示する上限:</b> 仲介手数料について、宅地建物取引業法に基づく報酬の上限(居住用建物は原則として一方から家賃の0.55か月分・税込、依頼者の承諾がある場合は1.1か月分・税込)との比較を注記する。上限の解釈は取引形態により異なるため、判定ではなく確認の目安として表示する</li><li><b>計算に含まれない項目:</b> 更新料、駐車場・駐輪場代、引越し費用、家具家電の購入費、退去時の原状回復費用、入居後の月額費用</li><li><b>結果が変わる主な要因:</b> 物件・仲介会社ごとの費用設定、入居日(日割り)、任意オプションの選択、保証会社の審査結果、火災保険の契約年数</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://elaws.e-gov.go.jp/document?lawid=327AC1000000176" rel="noopener" target="_blank">宅地建物取引業法(e-Gov法令検索)</a>(確認日: 2026-08-04)</li><li><a href="https://www.mlit.go.jp/totikensangyo/const/1_6_bt_000198.html" rel="noopener" target="_blank">国土交通省 宅地建物取引業法関連(報酬額の告示等)</a>(確認日: 2026-08-04)</li><li><a href="https://www.kokusen.go.jp/soudan_topics/data/chintai.html" rel="noopener" target="_blank">国民生活センター「賃貸住宅の原状回復トラブル」</a>(確認日: 2026-08-04)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/shoki-hiyo/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var FIELDS = [
+    { id: "shikikin", label: "敷金(保証金)", grp: "契約時に支払うもの" },
+    { id: "reikin", label: "礼金", grp: "契約時に支払うもの" },
+    { id: "chukai", label: "仲介手数料", grp: "契約時に支払うもの" },
+    { id: "hosho", label: "保証会社の利用料", grp: "保険・保証" },
+    { id: "kasai", label: "火災保険料", grp: "保険・保証" },
+    { id: "kagi", label: "鍵交換費用", grp: "入居前後に発生するもの" },
+    { id: "maeyachin", label: "前家賃", grp: "入居前後に発生するもの" },
+    { id: "hiwari", label: "日割り家賃", grp: "入居前後に発生するもの" },
+    { id: "sonota1", label: "消毒・室内クリーニング等", grp: "任意・要確認の項目" },
+    { id: "sonota2", label: "その他の提示済み費用", grp: "任意・要確認の項目" }
+  ];
+
+  function val(id) {
+    var el = document.getElementById(id);
+    if (el.value === "") return null;
+    var v = parseFloat(el.value);
+    if (isNaN(v) || v < 0) v = 0;
+    var max = parseFloat(el.max) || 5000000;
+    if (v > max) v = max;
+    el.value = v;
+    return v;
+  }
+  function yen(n) { return n.toLocaleString("ja-JP") + "円"; }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var yachin = val("yachin");
+    var total = 0;
+    var groups = {};
+    var missing = [];
+
+    FIELDS.forEach(function (f) {
+      var v = val(f.id);
+      if (v === null) { missing.push(f.label); return; }
+      total += v;
+      (groups[f.grp] = groups[f.grp] || []).push([f.label, v]);
+    });
+
+    var main = document.getElementById("resultMain");
+    var sub = document.getElementById("resultSub");
+    var bd = document.getElementById("breakdown");
+    var mi = document.getElementById("miNyuryoku");
+    var cn = document.getElementById("chukaiNote");
+
+    if (total === 0 && missing.length === FIELDS.length) {
+      main.textContent = "金額が入力されていません";
+      sub.textContent = "見積書・契約書に記載された金額を入力してください。分かる項目だけでも合計を確認できます。";
+      bd.innerHTML = ""; mi.textContent = ""; cn.textContent = "";
+      document.getElementById("result").hidden = false;
+      return;
+    }
+
+    main.textContent = "入力額の合計:" + yen(total);
+    if (yachin && yachin > 0) {
+      sub.textContent = "家賃(" + yen(yachin) + ")の約" + (Math.round(total / yachin * 10) / 10) + "か月分に相当します。管理費・共益費は月数の計算に含めていません。";
+    } else {
+      sub.textContent = "家賃を入力すると、家賃の何か月分に相当するかも表示します。";
+    }
+
+    bd.innerHTML = "";
+    ["契約時に支払うもの", "保険・保証", "入居前後に発生するもの", "任意・要確認の項目"].forEach(function (g) {
+      if (!groups[g]) return;
+      var head = document.createElement("tr");
+      head.innerHTML = '<td class="bd-head" colspan="2">' + g + "</td>";
+      bd.appendChild(head);
+      groups[g].forEach(function (row) {
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td"); td1.textContent = row[0];
+        var td2 = document.createElement("td"); td2.textContent = yen(row[1]);
+        tr.appendChild(td1); tr.appendChild(td2);
+        bd.appendChild(tr);
+      });
+    });
+
+    mi.textContent = missing.length
+      ? "未入力の項目(" + missing.length + "件):" + missing.join("、") + "。これらは合計に含まれていません。0円と確定しているわけではないため、見積書で確認してください。"
+      : "";
+
+    var chukai = val("chukai");
+    if (yachin && yachin > 0 && chukai !== null) {
+      var lo = Math.round(yachin * 0.55), hi = Math.round(yachin * 1.1);
+      if (chukai > hi) {
+        cn.textContent = "仲介手数料の目安:宅建業法上、居住用建物で一方から受け取れる報酬は依頼者の承諾がある場合でも家賃の1.1か月分(税込。この条件では約" + yen(hi) + ")までとされています。提示額がこれを上回る場合、内訳に別の名目の費用が含まれている可能性があります。内訳の説明を求めてください。";
+      } else if (chukai > lo) {
+        cn.textContent = "仲介手数料の目安:原則の0.55か月分(この条件では約" + yen(lo) + ")を超えています。依頼者の承諾がある場合は1.1か月分(約" + yen(hi) + ")までとされているため、承諾の有無と根拠を確認してください。";
+      } else {
+        cn.textContent = "仲介手数料の目安:宅建業法上の原則である0.55か月分(この条件では約" + yen(lo) + ")の範囲内です。";
+      }
+    } else {
+      cn.textContent = "";
+    }
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>
