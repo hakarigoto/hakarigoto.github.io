@@ -580,3 +580,4 @@ details.faq p { margin-top: 0; }
 .conv-pre{margin:14px 0 6px;color:#475569}
 .conv-post{margin:10px 0 0;font-size:.9rem;color:#64748b}
 @media (max-width:600px){.fit-cases{grid-template-columns:1fr}.pre-check ul{columns:1}}
+ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important}
