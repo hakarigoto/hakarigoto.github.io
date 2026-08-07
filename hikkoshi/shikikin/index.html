@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-adsense-account" content="ca-pub-4380365195411967">
+<title>敷金精算の内容整理ツール|敷金から何が差し引かれているかを確認|はかりごと</title>
+<meta name="description" content="退去時に提示された敷金精算の内容を整理するツール。敷金の預入額と、未払い賃料・原状回復費用・クリーニング代などの提示額を入力すると、控除の内訳と提示内容どおりの場合の返還予定額を表示します。控除の妥当性は判定しません。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>敷</text></svg>">
+<style>
+.fee-group { margin: 14px 0 4px; }
+.fee-group-title { font-weight: 700; font-size: 0.96rem; margin-bottom: 4px; padding-bottom: 4px; border-bottom: 2px solid var(--accent-weak); }
+.fee-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.fee-row label { flex: 1 1 200px; font-size: 0.93rem; font-weight: 400; }
+.fee-row input { width: 120px; }
+.fee-row .unit { font-size: 0.9rem; color: var(--text-sub); }
+.fee-note { font-size: 0.82rem; color: var(--text-sub); margin: 0 0 6px 0; }
+.result-main { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+.result-sub { font-size: 0.95rem; color: var(--text-sub); }
+.bd-table td { padding: 3px 10px 3px 0; font-size: 0.93rem; }
+.bd-table td:last-child { text-align: right; font-weight: 700; }
+.bd-head { font-weight: 700; color: var(--accent); padding-top: 8px; }
+.warn-box { border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-top: 14px; font-size: 0.92rem; background: var(--surface); }
+.warn-box strong { color: var(--accent); }
+.example-box { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 12px 0; }
+.example-box h3 { margin: 0 0 6px; font-size: 1rem; }
+.example-box table { width: 100%; font-size: 0.92rem; }
+.example-box td:last-child { text-align: right; }
+.next-check { border: 1px dashed var(--border); border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 0.92rem; }
+.next-check ul { margin: 6px 0 0 18px; padding: 0; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "敷金はいつ返ってきますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "民法では、敷金は賃貸借が終了して物件を明け渡した後に、未払いの賃料などを差し引いた残額を返還すると定められています(民法622条の2)。実際の振込時期は契約内容や管理会社の精算手続きによって異なるため、精算書やガイドライン上の目安と合わせて、いつ・どの口座に振り込まれるかを退去時に確認しておくと安心です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "敷金からはどんな費用が差し引かれますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "代表的なものは、未払いの賃料・共益費、借主の故意・過失による損傷の原状回復費用、有効な特約にもとづく費用(定額クリーニング代など)です。一方、通常の使用による損耗や経年変化の回復費用は、国土交通省の原状回復ガイドラインでは原則として貸主負担と整理されています。どの項目が借主負担にあたるかは契約・特約・損傷の状況によって変わります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "控除額が敷金より多く、追加請求されました。払わないといけませんか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "このページでは請求の正当性を判定できません。まず精算書の内訳(項目・単価・数量・面積・経過年数の扱い)の提示を求め、国土交通省の原状回復ガイドラインの考え方と照らし合わせてください。当サイトの退去費用・原状回復の負担診断で負担区分の一般的な整理を確認できます。納得できない場合は、支払う前に消費生活センター(消費者ホットライン188)などの公的相談先に相談できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "原状回復費用がまだ提示されていません。返還額は分かりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "確定できません。原状回復費用は敷金精算の主要な控除項目のため、提示前に返還額を見積もることはこのページでは行いません。退去立会い後に精算書(見積書)と内訳の提示を受けてから、このページで整理してください。提示までの期間の目安や振込予定日も合わせて確認しておくことをおすすめします。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "クリーニング代は必ず払うものですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "契約に有効な特約があるかどうかで扱いが変わります。ガイドラインでは通常のクリーニングは貸主負担が原則とされつつ、金額や内容が明確で借主が了解した特約は有効とされる場合があります。特約の有効性はこのページでは判定しません。契約書の記載を確認し、疑問がある場合は消費生活センター(188)に相談できます。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/shikikin/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/shikikin/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="敷金精算の内容整理ツール">
+<meta property="og:description" content="退去時に提示された敷金精算の内容を整理。敷金の預入額と提示された控除額を入力すると、控除の内訳と提示内容どおりの場合の返還予定額を表示します。控除の妥当性は判定しません。登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "敷金精算の内容整理ツール", "item": "https://hakarigoto.github.io/hikkoshi/shikikin/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">敷金精算の内容整理ツール</li></ol></nav>
+
+  <div class="page-head">
+    <h1>敷金精算の内容整理ツール</h1>
+    <p class="lead">退去時に貸主・管理会社から提示された精算内容を整理し、<strong>敷金から何が差し引かれているのか</strong>を確認するためのページです。金額はすべて精算書・見積書に提示された額を入力してください。<strong>当サイトが費用を推定したり、控除の妥当性を判定したりすることはありません</strong>。入力内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月8日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこのページのポイント</div>
+    <ul>
+      <li>敷金の精算は<span class="mk">「預けた額」から「未払い分と借主負担分」を引き算する</span>のが基本の形</li>
+      <li>通常の使用による損耗・経年変化の回復費用は<span class="mk">国交省ガイドラインでは原則として貸主負担</span></li>
+      <li>このページは<span class="mk">提示された金額の整理</span>であり、<span class="mk">控除の妥当性を判定するものではない</span></li>
+      <li>原状回復費用が未提示のうちは<span class="mk">返還額は確定できない</span>。内訳の提示を求めてよい</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">精算内容を整理する</a></li>
+      <li><a href="#rei">具体例で見る敷金精算</a></li>
+      <li><a href="#kakunin">精算書で確認する項目</a></li>
+      <li><a href="#soudan">内容に疑問があるときの相談先</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
+    <h2>精算書・見積書の金額を入力してください</h2>
+    <p class="fee-note">分からない項目・まだ提示されていない項目は空欄のままで構いません(合計には加算されず、「未確定」として表示します)。<strong>同じ費用を複数の欄に重複して入力しないでください</strong>(例:特約のクリーニング代を「特約に明記された控除額」と「クリーニング等の提示額」の両方に入れない)。</p>
+
+    <div class="fee-group">
+      <div class="fee-group-title">預けている敷金</div>
+      <div class="fee-row"><label for="shikikin">敷金・保証金の預入額</label><input type="number" id="shikikin" min="0" max="10000000" placeholder="例: 100000"><span class="unit">円</span></div>
+      <p class="fee-note">契約時に預けた額です。賃貸借契約書の「敷金」欄で確認できます。「償却」「敷引き」の定めがある場合は、その額を「契約書・特約に明記された控除額」に入力してください。</p>
+    </div>
+
+    <div class="fee-group">
+      <div class="fee-group-title">提示された控除額</div>
+      <div class="fee-row"><label for="minou">未払いの賃料・共益費等</label><input type="number" id="minou" min="0" max="10000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="tokuyaku">契約書・特約に明記された控除額(定額クリーニング・償却など)</label><input type="number" id="tokuyaku" min="0" max="10000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="genjo">提示された原状回復費用(借主負担とされた額)</label><input type="number" id="genjo" min="0" max="10000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="cleaning">クリーニング等の提示額(特約に含まれないもの)</label><input type="number" id="cleaning" min="0" max="10000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <div class="fee-row"><label for="sonota">その他の提示済み控除額</label><input type="number" id="sonota" min="0" max="10000000" placeholder="提示された額"><span class="unit">円</span></div>
+      <p class="fee-note">いずれも<strong>精算書・見積書に実際に提示された額</strong>を入力してください。提示されていない費用をこのページが推定することはありません。</p>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">精算内容を整理する</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="result-main" id="resultMain"></div>
+      <p class="result-sub" id="resultSub"></p>
+      <table class="bd-table" id="breakdown"></table>
+      <p class="result-sub" id="miKakutei" style="margin-top:8px;"></p>
+      <div class="next-check" id="nextCheck" hidden>
+        <strong>次に確認するもの</strong>
+        <ul id="nextCheckList"></ul>
+      </div>
+      <div class="warn-box">
+        <strong>この結果の位置づけ</strong>:この計算は提示された金額の整理であり、各控除の妥当性を判定するものではありません。実際の負担は契約・特約の内容や損傷の状況によって異なります。通常損耗・経年変化の扱いなど負担区分の一般的な考え方は<a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復の負担診断</a>で確認できます。
+      </div>
+    </div>
+    <!-- AD-SLOT: hikkoshi (P5は広告なし恒久。公開DOMに空スロットを置かない) -->
+  </section>
+
+  <article class="article">
+    <h2 id="rei">具体例で見る敷金精算</h2>
+    <p>次の2つは<strong>説明のための例</strong>です。金額は例示用の仮定であり、入力欄には自動で反映されません。実際の精算内容は契約・特約・損傷の状況によって変わります。</p>
+
+    <div class="example-box">
+      <h3>例1:敷金10万円・控除の提示が3万円だったケース</h3>
+      <table>
+        <tr><td>敷金の預入額</td><td>100,000円</td></tr>
+        <tr><td>特約に明記された定額クリーニング代(税込と仮定)</td><td>22,000円</td></tr>
+        <tr><td>提示された原状回復費用(壁紙の一部補修と仮定)</td><td>8,000円</td></tr>
+        <tr><td><b>控除合計</b></td><td><b>30,000円</b></td></tr>
+        <tr><td><b>提示内容どおりの場合の返還予定額</b></td><td><b>70,000円</b></td></tr>
+      </table>
+      <p class="fee-note"><b>この例の仮定:</b>未払い賃料なし、クリーニング特約は契約書に金額入りで明記、壁紙補修は借主の過失によるもの。<b>確認しておきたい点:</b>壁紙補修の単価・面積の根拠と、経過年数(耐用年数)が考慮されているか。<b>実際の精算では各項目の有無と金額が変わります。</b></p>
+    </div>
+
+    <div class="example-box">
+      <h3>例2:控除の提示額が敷金を超えたケース(敷金8万円)</h3>
+      <table>
+        <tr><td>敷金の預入額</td><td>80,000円</td></tr>
+        <tr><td>特約に明記された定額クリーニング代(税込と仮定)</td><td>22,000円</td></tr>
+        <tr><td>提示された原状回復費用(フローリング補修等と仮定)</td><td>103,000円</td></tr>
+        <tr><td><b>控除合計</b></td><td><b>125,000円</b></td></tr>
+        <tr><td><b>整理結果</b></td><td><b>敷金を超えて45,000円の追加請求となる計算</b></td></tr>
+      </table>
+      <p class="fee-note"><b>この例の仮定:</b>未払い賃料なし。<b>この整理は提示額の引き算であり、追加請求の正当性を確定するものではありません。</b>控除が敷金を超えた場合ほど、内訳(単価・数量・面積・経過年数の扱い)の確認が重要になります。通常損耗・経年変化にあたる部分が含まれていないか、<a href="/hikkoshi/taikyo-hiyo/">負担診断</a>の整理と照らし合わせ、納得できない場合は支払う前に<a href="#soudan">公的相談先</a>に相談できます。</p>
+    </div>
+
+    <h2 id="kakunin">精算書で確認する項目</h2>
+    <ul>
+      <li><strong>内訳の明細があるか</strong>:「原状回復費用一式」のような一括表示ではなく、項目・単価・数量(面積)の明細を求められます</li>
+      <li><strong>経過年数(耐用年数)の扱い</strong>:壁紙や設備などは、ガイドラインでは経過年数に応じて借主負担が減る考え方が示されています(すべての項目に一律適用されるわけではありません)</li>
+      <li><strong>特約の記載</strong>:定額クリーニング代・償却(敷引き)などが契約書に金額入りで明記されているか</li>
+      <li><strong>通常損耗・経年変化が含まれていないか</strong>:日照による変色、家具の設置跡などは原則として貸主負担とされています</li>
+      <li><strong>未払い分の計算</strong>:日割り家賃や共益費の精算が正しいか</li>
+      <li><strong>返還の時期と方法</strong>:いつ・どの口座に振り込まれるか</li>
+    </ul>
+
+    <h2 id="soudan">内容に疑問があるときの相談先</h2>
+    <ul>
+      <li><strong>貸主・管理会社</strong>:内訳の明細と、各控除の根拠(契約条項・ガイドライン上の整理)の説明を求めることができます</li>
+      <li><strong>消費生活センター(消費者ホットライン188)</strong>:敷金・原状回復のトラブルは相談件数の多い分野で、支払い前でも相談できます</li>
+      <li><strong>法テラス・自治体の無料法律相談</strong>:金額が大きい場合や交渉が難航する場合の選択肢です</li>
+    </ul>
+    <p>精算書へのサインや支払いを急かされていると感じる場合も、内容を確認する時間を求めて構いません。当日の立会いでの注意点は<a href="/hikkoshi/tachiai/">退去立会いチェックリスト</a>にまとめています。</p>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>敷金はいつ返ってきますか?</summary>
+      <p>民法では、賃貸借が終了して物件を明け渡した後に、未払い賃料などを差し引いた残額を返還すると定められています(民法622条の2)。実際の振込時期は契約や管理会社の手続きによって異なるため、退去時に時期と振込先を確認しておくと安心です。</p>
+    </details>
+    <details class="faq">
+      <summary>敷金からはどんな費用が差し引かれますか?</summary>
+      <p>未払いの賃料・共益費、借主の故意・過失による損傷の原状回復費用、有効な特約にもとづく費用(定額クリーニング代など)が代表的です。通常の使用による損耗・経年変化の回復費用は、ガイドラインでは原則として貸主負担と整理されています。</p>
+    </details>
+    <details class="faq">
+      <summary>控除額が敷金より多く、追加請求されました。払わないといけませんか?</summary>
+      <p>このページでは請求の正当性を判定できません。内訳の明細を求め、ガイドラインの考え方と照らし合わせてください。納得できない場合は、支払う前に消費生活センター(188)などに相談できます。</p>
+    </details>
+    <details class="faq">
+      <summary>原状回復費用がまだ提示されていません。返還額は分かりますか?</summary>
+      <p>確定できません。精算書(見積書)と内訳の提示を受けてから、このページで整理してください。このページが提示前の費用を推定することはありません。</p>
+    </details>
+    <details class="faq">
+      <summary>クリーニング代は必ず払うものですか?</summary>
+      <p>契約に有効な特約があるかどうかで扱いが変わります。特約の有効性はこのページでは判定しません。契約書の記載を確認し、疑問があれば消費生活センター(188)に相談できます。</p>
+    </details>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/taikyo-hiyo/" data-action-id="check-taikyo-hiyo">
+        <strong>控除項目の負担区分を確認する</strong>
+        <span>壁紙・床・設備など16項目について、貸主負担・借主負担・特約次第の一般的な整理を確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/tachiai/" data-action-id="check-tachiai">
+        <strong>退去立会いの注意点を確認する</strong>
+        <span>これから立会いの方へ。サインの前に確認すること・写真記録・書類の受け取り方をまとめています。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月8日</dd></div><div><dt>結果の位置づけ</dt><dd>利用者が入力した提示額の整理(引き算)です。当サイトが費用を推定したり、控除の妥当性・追加請求の正当性を判定したりするものではありません。未入力の項目は合計に含まれず「未確定」として表示します。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。敷金や控除の金額も外部に送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 敷金の預入額から、提示された控除額(未払い賃料等・特約に明記された控除・原状回復費用・クリーニング等・その他)の合計を差し引き、提示内容どおりの場合の返還予定額を表示する。控除合計が敷金を上回る場合は、不足分を「敷金を超えて◯円の追加請求となる計算」として表示し、その正当性は判定しない。</li><li><b>使用する入力値:</b> 敷金・保証金の預入額、未払いの賃料・共益費等、契約書・特約に明記された控除額、提示された原状回復費用、クリーニング等の提示額、その他の提示済み控除額</li><li><b>当サイトが金額を仮定する項目:</b> なし。すべて利用者の入力値を使用する。本文の具体例2件のみ仮定値を用いており、仮定条件・実際は変わる旨を各例に明記している</li><li><b>負担区分の判定について:</b> どの費用が借主負担にあたるかの判定は本ページでは行わず、<a href="/hikkoshi/taikyo-hiyo/">退去費用・原状回復の負担診断</a>に委ねる(重複実装をしない設計)。</li><li><b>計算に含まれない項目:</b> 未入力(未提示)の費用、敷金以外で精算される費用、引越し費用、新居の初期費用</li><li><b>結果が変わる主な要因:</b> 契約・特約の内容、損傷の状況と範囲、経過年数(耐用年数)の扱い、貸主・管理会社との協議の結果</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk3_000020.html" rel="noopener" target="_blank">国土交通省「原状回復をめぐるトラブルとガイドライン(再改訂版)」</a>(確認日: 2026-08-03)</li><li><a href="https://elaws.e-gov.go.jp/document?lawid=129AC0000000089" rel="noopener" target="_blank">民法621条(原状回復義務)・622条の2(敷金)(e-Gov法令検索)</a>(確認日: 2026-08-03)</li><li><a href="https://www.kokusen.go.jp/soudan_topics/data/chintai.html" rel="noopener" target="_blank">国民生活センター「賃貸住宅の原状回復トラブル」</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/shikikin/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var FIELDS = [
+    { id: "minou", label: "未払いの賃料・共益費等" },
+    { id: "tokuyaku", label: "契約書・特約に明記された控除額" },
+    { id: "genjo", label: "提示された原状回復費用" },
+    { id: "cleaning", label: "クリーニング等の提示額" },
+    { id: "sonota", label: "その他の提示済み控除額" }
+  ];
+
+  function val(id) {
+    var el = document.getElementById(id);
+    if (el.value === "") return null;
+    var v = parseFloat(el.value);
+    if (isNaN(v) || v < 0) v = 0;
+    var max = parseFloat(el.max) || 10000000;
+    if (v > max) v = max;
+    el.value = v;
+    return v;
+  }
+  function yen(n) { return n.toLocaleString("ja-JP") + "円"; }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var shikikin = val("shikikin");
+    var total = 0;
+    var rows = [];
+    var missing = [];
+
+    FIELDS.forEach(function (f) {
+      var v = val(f.id);
+      if (v === null) { missing.push(f.label); return; }
+      total += v;
+      rows.push([f.label, v]);
+    });
+
+    var main = document.getElementById("resultMain");
+    var sub = document.getElementById("resultSub");
+    var bd = document.getElementById("breakdown");
+    var mk = document.getElementById("miKakutei");
+    var nc = document.getElementById("nextCheck");
+    var ncl = document.getElementById("nextCheckList");
+
+    if (shikikin === null) {
+      main.textContent = "敷金の預入額を入力してください";
+      sub.textContent = "契約時に預けた敷金・保証金の額は、賃貸借契約書の「敷金」欄で確認できます。";
+      bd.innerHTML = ""; mk.textContent = ""; nc.hidden = true;
+      document.getElementById("result").hidden = false;
+      return;
+    }
+
+    bd.innerHTML = "";
+    var head = document.createElement("tr");
+    head.innerHTML = '<td class="bd-head" colspan="2">整理の内訳</td>';
+    bd.appendChild(head);
+    var tr0 = document.createElement("tr");
+    tr0.innerHTML = "<td>敷金の預入額</td><td>" + yen(shikikin) + "</td>";
+    bd.appendChild(tr0);
+    rows.forEach(function (row) {
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td"); td1.textContent = "控除:" + row[0];
+      var td2 = document.createElement("td"); td2.textContent = "−" + yen(row[1]);
+      tr.appendChild(td1); tr.appendChild(td2);
+      bd.appendChild(tr);
+    });
+    var trT = document.createElement("tr");
+    trT.innerHTML = "<td><b>控除合計</b></td><td><b>−" + yen(total) + "</b></td>";
+    bd.appendChild(trT);
+
+    if (total <= shikikin) {
+      main.textContent = "提示内容どおりの場合の返還予定額:" + yen(shikikin - total);
+      sub.textContent = "敷金" + yen(shikikin) + "から、提示された控除の合計" + yen(total) + "を差し引いた計算です。未確定の項目があれば、この額は変わります。";
+    } else {
+      main.textContent = "敷金を超えて" + yen(total - shikikin) + "の追加請求となる計算です";
+      sub.textContent = "提示された控除の合計(" + yen(total) + ")が敷金(" + yen(shikikin) + ")を上回っています。この整理は提示額の引き算であり、追加請求の正当性を確定するものではありません。内訳の明細を確認し、納得できない場合は支払う前に相談できます。";
+    }
+
+    mk.textContent = missing.length
+      ? "未確定の項目(" + missing.length + "件):" + missing.join("、") + "。これらは合計に含まれていません。0円と確定しているわけではないため、精算書・見積書で確認してください。"
+      : "";
+
+    ncl.innerHTML = "";
+    var checks = [];
+    if (missing.indexOf("提示された原状回復費用") !== -1) {
+      checks.push("原状回復費用の見積書・内訳がまだ提示されていません。提示前は返還額を確定できないため、明細(項目・単価・数量)と提示時期を確認してください");
+    }
+    checks.push("控除の内訳が「一式」表示になっていないか(明細を求められます)");
+    checks.push("壁紙・設備などの控除に経過年数(耐用年数)が考慮されているか");
+    checks.push("通常の使用による損耗・経年変化の分が含まれていないか(負担診断で整理できます)");
+    checks.push("返還の時期と振込先");
+    checks.forEach(function (c) {
+      var li = document.createElement("li");
+      li.textContent = c;
+      ncl.appendChild(li);
+    });
+    nc.hidden = false;
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>

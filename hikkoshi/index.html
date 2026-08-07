@@ -61,7 +61,7 @@
   <div class="page-head">
     <h1>引越し・新生活のお金の計算・診断ツール</h1>
     <p class="lead">引越しには、旧居の退去費用・引越し本体・新居の初期費用・家具家電の購入と、性質の違うお金が一度にかかります。ここでは費用の全体像を地図のように整理し、それぞれを無料の計算・診断ツールで確認できます。入力した内容はサーバーに送信されません。</p>
-    <div class="meta-line"><span>更新日:<b>2026年8月3日</b></span><span>運営:<b>はかり</b></span></div>
+    <div class="meta-line"><span>更新日:<b>2026年8月8日</b></span><span>運営:<b>はかり</b></span></div>
   </div>
 
   <h2 id="komarigoto" style="margin-top:24px;">困りごとから選ぶ</h2>
@@ -115,8 +115,17 @@
       <p>立会い前・当日・立会い後にすることを24項目で整理。写真の記録、見積書・精算書の確認、署名を求められたときの考え方も解説します。所要時間の目安は2分です。</p>
       <p>当日の準備を無料で確認する</p>
     </a>
+    <a class="card" href="/hikkoshi/shikikin/">
+      <h3>敷金精算の内容整理ツール</h3>
+      <p>退去時に提示された精算内容を入力して、敷金から何が差し引かれているかと返還予定額の計算を整理。控除の妥当性は判定せず、確認すべき点を示します。所要時間の目安は2分です。</p>
+      <p>精算内容を無料で整理する</p>
+    </a>
+    <a class="card" href="/hikkoshi/kagu-kaden/">
+      <h3>新生活の家具・家電予算計算機</h3>
+      <p>13品目を「いつ必要か」「どの価格帯か」で仕分けて初期予算の概算レンジを整理。中古・レンタル・持込みも選択肢に含めます。所要時間の目安は3分です。</p>
+      <p>家具家電の予算を無料で整理する</p>
+    </a>
   </div>
-  <p style="font-size:0.9rem;color:var(--text-sub);">敷金返還の整理・家具家電予算などのツールも順次追加予定です。</p>
 
   <section class="tool-panel" id="dashboard">
     <h2>引越し費用まるごと概算ダッシュボード</h2>
@@ -171,7 +180,7 @@
         </select>
       </div>
       <div class="field" data-input-wrap hidden><input type="number" data-amount min="0" max="10000000" placeholder="例: 300000">円</div>
-      <p class="dash-note">敷金・礼金・仲介手数料などの合計。一般に家賃の4〜6か月分程度かかるとされます(専用計算機は準備中)。</p>
+      <p class="dash-note">敷金・礼金・仲介手数料などの合計。<a href="/hikkoshi/shoki-hiyo/">賃貸初期費用シミュレーター</a>で見積書の金額から計算できます。</p>
     </div>
 
     <div class="dash-block" data-block="kagu">
@@ -183,7 +192,7 @@
         </select>
       </div>
       <div class="field" data-input-wrap hidden><input type="number" data-amount min="0" max="10000000" placeholder="例: 100000">円</div>
-      <p class="dash-note">新規に揃える場合の予算。中古・レンタル・譲渡・持ち込みでも大きく変わります(専用計算機は準備中)。</p>
+      <p class="dash-note">新規に揃える場合の予算。<a href="/hikkoshi/kagu-kaden/">家具・家電予算計算機</a>で品目ごとに整理できます。中古・レンタル・譲渡・持ち込みでも大きく変わります。</p>
     </div>
 
     <div class="btn-row">
@@ -204,7 +213,7 @@
     <p>このページのツールは、引越しと新生活にかかるお金を整理するための無料ツールです。相場データは複数の調査の公表平均値に基づく水準であり、個別の見積もり金額を保証するものではありません。退去費用の診断は国土交通省ガイドラインに基づく一般的な整理であり、法的な確定判定ではありません。正確な金額は引越し会社の見積もり・貸主/管理会社の精算書・不動産会社の重要事項説明で必ずご確認ください。</p>
   </article>
 
-<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月3日</dd></div><div><dt>結果の位置づけ</dt><dd>ダッシュボードの合計は入力値とプリセットの単純合算による概算です。未計算のブロックがある場合、実際の総額はこれより大きくなります。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 退去費用・引越し本体・賃貸初期費用・家具家電の4ブロックの合算。入力値は点推定として下限・上限の両方へ同額加算し、プリセットはレンジ(下限・上限)として加算する。すべて入力値の場合は「入力額合計」、プリセットを含む場合は「概算レンジ」と表示する。</li><li><b>使用する入力値:</b> 各ブロックの金額(任意)、引越し本体プリセットの世帯・荷物量区分と距離</li><li><b>プリセットの根拠:</b> 引越し本体のみ。複数調査(リクルート実態把握調査・LIFULL引越し利用者集計)の公表平均値で複数ソース確認できたレンジ(通常期)を使用。単一調査のみの区分は参考値として同様に表示。他ブロックは根拠が確定するまでプリセットを置かない</li><li><b>計算に含まれない項目:</b> 未計算(「まだ分からない」)のブロック、繁忙期の引越し費用差、オプション費用、礼金交渉等による変動</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://hikkoshi.suumo.jp/soba/" rel="noopener" target="_blank">リクルート「引越しに関する実態把握調査」(SUUMO引越し 料金相場)</a>(確認日: 2026-08-03)</li><li><a href="https://www.homes.co.jp/hikkoshi/price/" rel="noopener" target="_blank">LIFULL引越し「引越し費用の料金相場」</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月8日</dd></div><div><dt>結果の位置づけ</dt><dd>ダッシュボードの合計は入力値とプリセットの単純合算による概算です。未計算のブロックがある場合、実際の総額はこれより大きくなります。</dd></div><div><dt>入力データの扱い</dt><dd>入力内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 退去費用・引越し本体・賃貸初期費用・家具家電の4ブロックの合算。入力値は点推定として下限・上限の両方へ同額加算し、プリセットはレンジ(下限・上限)として加算する。すべて入力値の場合は「入力額合計」、プリセットを含む場合は「概算レンジ」と表示する。</li><li><b>使用する入力値:</b> 各ブロックの金額(任意)、引越し本体プリセットの世帯・荷物量区分と距離</li><li><b>プリセットの根拠:</b> 引越し本体のみ。複数調査(リクルート実態把握調査・LIFULL引越し利用者集計)の公表平均値で複数ソース確認できたレンジ(通常期)を使用。単一調査のみの区分は参考値として同様に表示。他ブロックは根拠が確定するまでプリセットを置かない</li><li><b>計算に含まれない項目:</b> 未計算(「まだ分からない」)のブロック、繁忙期の引越し費用差、オプション費用、礼金交渉等による変動</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://hikkoshi.suumo.jp/soba/" rel="noopener" target="_blank">リクルート「引越しに関する実態把握調査」(SUUMO引越し 料金相場)</a>(確認日: 2026-08-03)</li><li><a href="https://www.homes.co.jp/hikkoshi/price/" rel="noopener" target="_blank">LIFULL引越し「引越し費用の料金相場」</a>(確認日: 2026-08-03)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
 </main>
 
 <footer class="site-footer"><div class="container footer-grid">

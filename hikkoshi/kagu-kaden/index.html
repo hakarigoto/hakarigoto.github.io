@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-adsense-account" content="ca-pub-4380365195411967">
+<title>新生活の家具・家電予算計算機|必要な時期と価格帯から初期予算を整理|はかりごと</title>
+<meta name="description" content="新生活で購入する可能性のある家具・家電13品目を「入居初日に必要」「後から購入」「中古・レンタル・持込み」などに仕分けて、初期予算の概算レンジを整理する計算機。価格帯は複数小売の掲載価格から作成した例で、商品広告はありません。登録不要・無料。">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#1e7f6b;--accent-hover:#186555;--accent-weak:#e6f3f0;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%231e7f6b%22/><text x=%2250%22 y=%2274%22 font-size=%2264%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>家</text></svg>">
+<style>
+.item-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.item-table th, .item-table td { padding: 8px 6px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.item-table th { background: var(--accent-weak); font-size: 0.85rem; }
+.item-name { font-weight: 700; }
+.item-range { font-size: 0.8rem; color: var(--text-sub); white-space: nowrap; }
+.item-table select { font-size: 0.88rem; max-width: 100%; }
+.table-scroll { overflow-x: auto; }
+.fee-note { font-size: 0.82rem; color: var(--text-sub); margin: 6px 0; }
+.result-main { font-size: 1.35rem; font-weight: 700; margin-bottom: 4px; }
+.result-sub { font-size: 0.95rem; color: var(--text-sub); }
+.bd-table td { padding: 4px 10px 4px 0; font-size: 0.93rem; }
+.bd-table td:last-child { text-align: right; font-weight: 700; white-space: nowrap; }
+.bd-head { font-weight: 700; color: var(--accent); padding-top: 10px; }
+.cut-box { border: 1px dashed var(--border); border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 0.92rem; }
+.cut-box ul { margin: 6px 0 0 18px; padding: 0; }
+.warn-box { border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-top: 14px; font-size: 0.92rem; background: var(--surface); }
+.warn-box strong { color: var(--accent); }
+.example-box { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 12px 0; }
+.example-box h3 { margin: 0 0 6px; font-size: 1rem; }
+.example-box table { width: 100%; font-size: 0.92rem; }
+.example-box td:last-child { text-align: right; white-space: nowrap; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "新生活の家具・家電には全部でいくらかかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "何をどのグレードで揃えるかによって大きく変わるため、一律の金額はありません。単身で最低限の家電だけを低価格帯で揃える場合と、家具・家電を一通り標準的な価格帯で新規購入する場合とでは、数倍の差が出ます。このページでは品目ごとに「いつ必要か」「どの価格帯にするか」を選んで、自分の条件での概算レンジを整理できます。表示する価格帯は複数の小売サイトの掲載価格から作成した例であり、相場の確定値ではありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入居初日に最低限必要なものは何ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "生活スタイルによりますが、初日から使うことが多いのは寝具(布団またはベッド)、カーテン、照明です。カーテンと照明は防犯・生活の面で初日にあると安心ですが、照明は物件に備え付けられている場合もあるため、内見時に確認しておくと無駄がありません。冷蔵庫・洗濯機・電子レンジは初日に間に合わなくても数日は代替手段でしのげる場合があり、配送日程の都合で数日以内に分類する人も多い品目です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "「低価格帯」と「標準価格帯」はどう違うのですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "このページの価格帯は品質の評価ではなく、購入価格帯の例です。低価格帯はジェネリックブランドや小売のプライベートブランド、小容量・単機能モデルが中心の帯、標準価格帯は大手メーカーの現行モデルが中心の帯として、複数の小売サイトの掲載価格から作成しています。どちらを選ぶかは用途と予算次第で、低価格帯の製品で十分な場合も多くあります。特売価格やポイント還元は含めていません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新品で買う以外に費用を抑える方法はありますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "中古(リサイクルショップ・フリマ)、家電レンタル・サブスク、家族や知人からの譲渡、実家からの持込みなどがあります。短期間の単身赴任ならレンタル、長く使うなら購入など、住む期間によって向き不向きが変わります。このページでは中古・レンタル等を選んだ品目は新品予算に含めず、削減できる項目として表示します(中古・レンタルの実際の費用は状態や期間によって大きく異なるため、当サイトでは推定しません)。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "エアコンやガスコンロは含まれていませんか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "含めていません。エアコンは賃貸物件では備え付けのことが多く、購入する場合も本体価格に加えて設置工事費がかかり、部屋の広さや配管条件で総額が大きく変わるためです。ガスコンロも物件のガス種(都市ガス・プロパン)や設置可否によって選択肢が変わります。これらは物件の設備を内見時に確認したうえで、必要な場合に個別に見積もることをおすすめします。"
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/hikkoshi/kagu-kaden/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/hikkoshi/kagu-kaden/">
+<meta property="og:site_name" content="はかりごと">
+<meta property="og:title" content="新生活の家具・家電予算計算機">
+<meta property="og:description" content="家具・家電13品目を「いつ必要か」「どの価格帯か」で仕分けて、新生活の初期予算の概算レンジを整理。中古・レンタル・持込みも選択肢に含めます。商品広告なし・登録不要・無料。">
+<meta name="twitter:card" content="summary">
+  <!-- hkg:breadcrumb-ld -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://hakarigoto.github.io/"}, {"@type": "ListItem", "position": 2, "name": "住まい・引越し", "item": "https://hakarigoto.github.io/hikkoshi/"}, {"@type": "ListItem", "position": 3, "name": "新生活の家具・家電予算計算機", "item": "https://hakarigoto.github.io/hikkoshi/kagu-kaden/"}]}</script>
+  <!-- /hkg:breadcrumb-ld -->
+</head>
+<body>
+<header class="site-header"><div class="container">
+    <a class="site-logo" href="/">はかり<span>ごと</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="global-nav" aria-label="サイト内カテゴリー">
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <div class="nav-more">
+        <button type="button" class="nav-more-btn" aria-expanded="false">その他</button>
+        <div class="nav-more-panel">
+          <a href="/pet/" data-ga-cat="pet">ペット</a>
+          <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+          <a href="/about/">サイトについて</a>
+        </div>
+      </div>
+    </nav>
+  </div></header>
+<div class="pr-banner">当サイトはアフィリエイト広告(PR)を含みます</div>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><ol><li><a href="/">ホーム</a></li><li><a href="/hikkoshi/">住まい・引越し</a></li><li aria-current="page">新生活の家具・家電予算計算機</li></ol></nav>
+
+  <div class="page-head">
+    <h1>新生活の家具・家電予算計算機</h1>
+    <p class="lead">新生活で購入する可能性のある家具・家電13品目を、<strong>「いつ必要か」「どの価格帯にするか」</strong>で仕分けて、初期予算の概算レンジを整理するページです。すでに持っているもの・中古やレンタルで済ませるもの・買わないものも選択肢に含めています。<strong>特定の商品をすすめるページではなく、商品広告はありません</strong>。入力内容はサーバーに送信されません。</p>
+    <div class="meta-line"><span>更新日:<b>2026年8月8日</b></span><span>執筆:<b>はかり</b></span></div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-box-title">30秒でわかるこのページのポイント</div>
+    <ul>
+      <li>全部を入居初日に揃える必要はない。<span class="mk">初日・数日以内・後から</span>の3段階に分けると予算が組みやすい</li>
+      <li>価格帯は<span class="mk">品質の評価ではなく購入価格帯の例</span>。低価格帯で十分な品目も多い</li>
+      <li><span class="mk">中古・レンタル・譲渡・持込み</span>も選択肢。選んだ品目は新品予算から外して整理する</li>
+      <li>照明・エアコン等は<span class="mk">物件に備え付けの場合がある</span>。内見時の確認で無駄な購入を防げる</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sim">予算を整理する</a></li>
+      <li><a href="#rei">具体例で見る家具・家電予算</a></li>
+      <li><a href="#kakunin">購入前に確認すること</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <section class="tool-panel" id="sim">
+    <h2>品目ごとに入手方針と価格帯を選んでください</h2>
+    <p class="fee-note">価格帯のレンジは、複数の小売サイト(ヨドバシ.com・Amazon.co.jp)の2026年8月時点の掲載価格から当サイトが作成した<strong>例</strong>です。特売価格・ポイント還元は含めていません。実際の価格は店舗・時期・モデルによって変わります。<strong>「低価格帯」「標準価格帯」は品質の評価ではありません</strong>。</p>
+
+    <div class="table-scroll">
+    <table class="item-table" id="itemTable">
+      <thead>
+        <tr><th>品目</th><th>価格帯の例(新品)</th><th>入手方針</th><th>価格帯</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    </div>
+    <p class="fee-note">エアコン・ガスコンロ・給湯器などは物件に備え付けの場合が多く、購入時も設置工事費で総額が大きく変わるため、この計算機の対象外です。送料・設置費・古い家電のリサイクル料も含まれていません。</p>
+
+    <div class="btn-row">
+      <button type="button" class="btn" id="calcBtn">予算レンジを計算する</button>
+    </div>
+
+    <div class="result-box" id="result" hidden>
+      <div class="result-main" id="resultMain"></div>
+      <p class="result-sub" id="resultSub"></p>
+      <table class="bd-table" id="breakdown"></table>
+      <div class="cut-box" id="cutBox" hidden>
+        <strong>購入しない・持込み・中古・レンタル等で新品予算から外した項目</strong>
+        <ul id="cutList"></ul>
+      </div>
+      <p class="result-sub" id="unselected" style="margin-top:8px;"></p>
+      <div class="warn-box">
+        <strong>この結果の位置づけ</strong>:表示するのは、選択した品目の価格帯レンジ(新品・複数小売の掲載価格から作成した例)の単純合算です。実際の購入額は選ぶ商品・店舗・時期によって変わり、送料・設置費等は含まれていません。中古・レンタル・譲渡の費用は状態や期間で大きく異なるため推定していません。
+      </div>
+    </div>
+    <!-- AD-SLOT: hikkoshi (P9は初期版広告なし。商品アフィリエイトの受け皿にしない。公開DOMに空スロットを置かない) -->
+  </section>
+
+  <article class="article">
+    <h2 id="rei">具体例で見る家具・家電予算</h2>
+    <p>次の2つは<strong>説明のための例</strong>です。選択は入力欄に自動で反映されません。金額はこのページの価格帯レンジをそのまま合算したものです。</p>
+
+    <div class="example-box">
+      <h3>例1:単身・最低限から始めるケース(低価格帯中心)</h3>
+      <table>
+        <tr><td>冷蔵庫(低価格帯)</td><td>22,000〜37,000円</td></tr>
+        <tr><td>洗濯機(低価格帯)</td><td>22,000〜34,000円</td></tr>
+        <tr><td>電子レンジ(低価格帯)</td><td>8,000〜14,000円</td></tr>
+        <tr><td>布団セット(低価格帯)</td><td>5,000〜8,000円</td></tr>
+        <tr><td>カーテン1窓分(低価格帯)</td><td>2,000〜5,000円</td></tr>
+        <tr><td>シーリングライト(低価格帯)</td><td>1,700〜5,500円</td></tr>
+        <tr><td>電気ケトル(低価格帯)</td><td>1,500〜4,000円</td></tr>
+        <tr><td><b>合計の概算レンジ</b></td><td><b>約6.2万〜10.8万円</b></td></tr>
+      </table>
+      <p class="fee-note"><b>この例の考え方:</b>ベッドは布団で代替、テレビ・掃除機・テーブル・チェストは「後から」または「購入しない」、炊飯器は当面レンジ調理で代替する想定。照明が備え付けの物件ならさらに下がります。<b>実際に選ぶ商品・窓の数・部屋の広さで金額は変わります。</b></p>
+    </div>
+
+    <div class="example-box">
+      <h3>例2:家具・家電を一通り新規購入するケース(標準価格帯・13品目)</h3>
+      <table>
+        <tr><td>家電8品目(冷蔵庫・洗濯機・レンジ・炊飯器・掃除機・ケトル・テレビ・照明)</td><td>約17.9万〜31.6万円</td></tr>
+        <tr><td>家具・寝具5品目(ベッド・布団・カーテン・テーブル・チェスト)</td><td>約4.6万〜9.9万円</td></tr>
+        <tr><td><b>合計の概算レンジ</b></td><td><b>約21万〜41.5万円</b></td></tr>
+      </table>
+      <p class="fee-note"><b>この例の考え方:</b>13品目すべてを標準価格帯の新品で揃えた場合の単純合算です。実際には「持っているものを使う」「一部を低価格帯にする」「後から買い足す」ことで大きく圧縮できます。<b>この金額は購入計画の出発点であり、必要額の確定値ではありません。</b></p>
+    </div>
+
+    <h2 id="kakunin">購入前に確認すること</h2>
+    <ul>
+      <li><strong>物件の備え付け設備</strong>:照明・エアコン・コンロ・カーテンレールの有無。内見時に確認すると無駄な購入を防げます</li>
+      <li><strong>設置スペースと搬入経路</strong>:冷蔵庫・洗濯機は設置場所の寸法(防水パンのサイズ含む)と、玄関・廊下・階段を通るかの確認が必要です</li>
+      <li><strong>窓のサイズと数</strong>:カーテンは窓ごとに必要です。既製サイズで合うか、丈と幅を測ってから購入してください</li>
+      <li><strong>配送日程</strong>:引越しシーズンは大型家電の配送・設置が混み合います。入居日に間に合わせたい場合は早めの手配が必要です</li>
+      <li><strong>古い家電の処分</strong>:買い替えの場合、冷蔵庫・洗濯機・テレビ等は家電リサイクル法の対象で処分費用がかかります。処分の段取りは<a href="/katazuke/shobun-shindan/">不用品処分診断</a>で整理できます</li>
+    </ul>
+
+    <h2 id="faq">よくある質問</h2>
+    <details class="faq">
+      <summary>新生活の家具・家電には全部でいくらかかりますか?</summary>
+      <p>何をどの価格帯で揃えるかで大きく変わるため一律の金額はありません。最低限を低価格帯で揃える場合と一通り標準価格帯で揃える場合では数倍の差が出ます。このページで自分の条件のレンジを整理してください。</p>
+    </details>
+    <details class="faq">
+      <summary>入居初日に最低限必要なものは何ですか?</summary>
+      <p>寝具・カーテン・照明が代表的です。照明は備え付けの物件もあるため内見時に確認を。冷蔵庫・洗濯機などは配送日程の都合で数日以内に届く前提で計画する人も多い品目です。</p>
+    </details>
+    <details class="faq">
+      <summary>「低価格帯」と「標準価格帯」はどう違うのですか?</summary>
+      <p>品質の評価ではなく購入価格帯の例です。低価格帯はジェネリックブランド・PB・小容量モデル中心、標準価格帯は大手メーカーの現行モデル中心の帯として複数小売の掲載価格から作成しています。</p>
+    </details>
+    <details class="faq">
+      <summary>新品で買う以外に費用を抑える方法はありますか?</summary>
+      <p>中古・レンタル・サブスク・譲渡・実家からの持込みなどがあります。住む期間によって向き不向きが変わります。中古・レンタルの実際の費用は状態や期間で大きく異なるため、このページでは推定せず、新品予算から外す形で整理します。</p>
+    </details>
+    <details class="faq">
+      <summary>エアコンやガスコンロは含まれていませんか?</summary>
+      <p>含めていません。備え付けの場合が多いことと、設置工事費で総額が大きく変わるためです。物件の設備を確認したうえで個別に見積もることをおすすめします。</p>
+    </details>
+  </article>
+
+  <section class="next-actions" aria-labelledby="next-actions-title">
+    <h2 id="next-actions-title">次に確認すること</h2>
+    <div class="next-actions__grid">
+      <a class="next-action-card" href="/hikkoshi/" data-action-id="back-hikkoshi-hub">
+        <strong>引越し費用の全体像をつかむ</strong>
+        <span>退去・引越し本体・初期費用・家具家電をまとめて概算できるハブへ戻ります。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/shoki-hiyo/" data-action-id="check-shoki-hiyo">
+        <strong>賃貸の初期費用を計算する</strong>
+        <span>敷金・礼金・仲介手数料など、契約時に払う費用の合計と家賃何か月分かを確認できます。</span>
+      </a>
+      <a class="next-action-card" href="/hikkoshi/hikkoshi-hiyo/" data-action-id="check-hikkoshi-hiyo">
+        <strong>引越し本体の費用相場を確認する</strong>
+        <span>世帯人数・距離・時期から、引越し料金の相場レンジを確認できます。</span>
+      </a>
+    </div>
+  </section>
+
+<!-- hkg:trust --><section class="content-trust"><h2>このページの情報について</h2><dl><div><dt>最終確認日</dt><dd>2026年8月8日</dd></div><div><dt>結果の位置づけ</dt><dd>選択した品目の価格帯レンジ(新品)の単純合算による概算です。価格帯は複数小売の掲載価格から当サイトが作成した例であり、市場全体の確定相場ではありません。購入額を保証するものではなく、品質の評価でもありません。</dd></div><div><dt>入力データの扱い</dt><dd>選択内容はブラウザ内で処理され、当サイトのサーバーへ送信されません。</dd></div></dl><details><summary>計算方法・主な情報源を見る</summary><ul><li><b>計算・判定の対象:</b> 家具・家電13品目について、利用者が選んだ入手方針(すでに持っている/入居初日に必要/数日以内に必要/後から購入できる/中古を検討/レンタルを検討/譲渡・持込み予定/購入しない)と価格帯(低価格帯/標準価格帯)をもとに、新品購入予定の品目のレンジを時期別に合算する。</li><li><b>価格帯データの作成方法:</b> 2つの小売サイト(ヨドバシ.com・Amazon.co.jp)の2026年8月8日時点の検索結果に掲載された通常販売価格(税込)から、品目ごとに低価格帯(ジェネリックブランド・PB・小容量/単機能モデル中心)と標準価格帯(大手メーカーの現行モデル中心)のレンジを作成した。特売価格・ポイント還元は含めない。単一の通販サイトの価格をそのまま相場として使用しない方針で、原則2サイトで確認できた帯を採用している(炊飯器の低価格帯のみ1サイトでの確認)。</li><li><b>当サイトが金額を仮定する項目:</b> 各品目の価格帯レンジ(上記の方法で作成した例)。利用者の選択によってどのレンジを合算するかが決まる。</li><li><b>計算に含まれない項目:</b> 中古・レンタル・譲渡の取得費用(推定しない)、送料・設置費・家電リサイクル料、エアコン・ガスコンロ等の物件備え付け・要工事品、消耗品・日用品</li><li><b>結果が変わる主な要因:</b> 選ぶ商品・モデル、店舗・時期による価格差、セール・ポイント還元、部屋の広さ・窓の数、物件の備え付け設備</li><li><b>更新周期:</b> 毎年2月(価格帯データの再確認)</li></ul><p><b>主な情報源</b></p><ul><li><a href="https://www.yodobashi.com/" rel="noopener" target="_blank">ヨドバシ.com 商品検索(各品目の掲載価格)</a>(確認日: 2026-08-08)</li><li><a href="https://www.amazon.co.jp/" rel="noopener" target="_blank">Amazon.co.jp 商品検索(各品目の掲載価格)</a>(確認日: 2026-08-08)</li></ul></details><a class="trust-report" rel="noopener" target="_blank" href="https://github.com/hakarigoto/hakarigoto.github.io/issues/new?title=%5B%E8%AA%A4%E3%82%8A%E5%A0%B1%E5%91%8A%5D%20/hikkoshi/kagu-kaden/">このページの誤りを報告する</a></section><!-- /hkg:trust -->
+</main>
+
+<footer class="site-footer"><div class="container footer-grid">
+    <nav class="footer-col" aria-label="カテゴリー">
+      <div class="footer-title">カテゴリー</div>
+      <a href="/taishoku/" data-ga-cat="shigoto">仕事・退職</a>
+      <a href="/norimono/" data-ga-cat="norimono">乗り物</a>
+      <a href="/katazuke/" data-ga-cat="katazuke">片づけ・終活</a>
+      <a href="/manner/" data-ga-cat="kankon">冠婚葬祭</a>
+      <a href="/okane/" data-ga-cat="okane">お金</a>
+      <a href="/pet/" data-ga-cat="pet">ペット</a>
+      <a href="/hikkoshi/" data-ga-cat="sumai">住まい・引越し</a>
+      <a href="/tools/" data-ga-cat="tools">便利ツール</a>
+    </nav>
+    <nav class="footer-col" aria-label="運営情報">
+      <div class="footer-title">運営情報</div>
+      <a href="/about/">サイトについて</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/privacy/#ads">広告掲載方針</a>
+      <a href="/privacy/#menseki">免責事項</a>
+      <a href="/about/#contact">お問い合わせ</a>
+    </nav>
+    <nav class="footer-col" aria-label="その他">
+      <div class="footer-title">その他</div>
+      <a href="/sitemap.xml">サイトマップ</a>
+      <a href="/about/#updates">更新情報</a>
+    </nav>
+    <div class="footer-copy">© 2026 はかりごと</div>
+  </div></footer>
+
+<script>
+(function () {
+  "use strict";
+  // 価格帯データ: 複数小売(ヨドバシ.com・Amazon.co.jp)の2026-08-08時点の掲載価格から作成した例。
+  // 台帳: hakarigoto-ops/data/kagu-kaden-prices.json(sourceIds/checkedAt/evidenceLevel/notes付き)
+  var ITEMS = [
+    { id: "fridge", label: "冷蔵庫(2ドア・〜180L目安)", cat: "家電", low: [22000, 37000], std: [45000, 60000] },
+    { id: "washer", label: "洗濯機(縦型・5〜7kg)", cat: "家電", low: [22000, 34000], std: [37000, 60000] },
+    { id: "microwave", label: "電子レンジ(単機能)", cat: "家電", low: [8000, 14000], std: [14000, 29000] },
+    { id: "ricecooker", label: "炊飯器(3合)", cat: "家電", low: [4500, 8000], std: [10000, 30000] },
+    { id: "vacuum", label: "掃除機(コードレススティック)", cat: "家電", low: [5000, 16000], std: [17000, 45000] },
+    { id: "kettle", label: "電気ケトル", cat: "家電", low: [1500, 4000], std: [4400, 11000] },
+    { id: "tv", label: "テレビ(24〜32型)", cat: "家電", low: [20000, 31000], std: [32000, 66000] },
+    { id: "light", label: "シーリングライト(〜6畳)", cat: "家電", low: [1700, 5500], std: [5500, 15000] },
+    { id: "bed", label: "ベッド(シングル・マットレス付き)", cat: "家具・寝具", low: [9000, 20000], std: [20000, 45000] },
+    { id: "futon", label: "布団セット(シングル)", cat: "家具・寝具", low: [5000, 8000], std: [8000, 14000] },
+    { id: "curtain", label: "カーテン(1窓分)", cat: "家具・寝具", low: [2000, 5000], std: [5000, 10000] },
+    { id: "table", label: "ローテーブル", cat: "家具・寝具", low: [2000, 4500], std: [5000, 10000] },
+    { id: "chest", label: "収納チェスト(3〜4段)", cat: "家具・寝具", low: [3000, 7000], std: [8000, 20000] }
+  ];
+  var PLANS = [
+    ["", "選んでください"],
+    ["have", "すでに持っている"],
+    ["day1", "入居初日に必要"],
+    ["days", "数日以内に必要"],
+    ["later", "後から購入できる"],
+    ["used", "中古を検討"],
+    ["rental", "レンタルを検討"],
+    ["bring", "譲渡・持込み予定"],
+    ["skip", "購入しない"]
+  ];
+  var CUT_LABEL = { have: "すでに持っている", used: "中古を検討", rental: "レンタルを検討", bring: "譲渡・持込み予定", skip: "購入しない" };
+
+  function man(n) { return n.toLocaleString("ja-JP") + "円"; }
+  function range(lo, hi) { return man(lo) + "〜" + man(hi); }
+
+  var tbody = document.querySelector("#itemTable tbody");
+  ITEMS.forEach(function (it) {
+    var tr = document.createElement("tr");
+    var planOpts = PLANS.map(function (p) { return '<option value="' + p[0] + '">' + p[1] + "</option>"; }).join("");
+    tr.innerHTML =
+      '<td><span class="item-name">' + it.label + '</span><br><span class="item-range">' + it.cat + "</span></td>" +
+      '<td class="item-range">低: ' + range(it.low[0], it.low[1]) + "<br>標準: " + range(it.std[0], it.std[1]) + "</td>" +
+      '<td><select id="plan-' + it.id + '" aria-label="' + it.label + 'の入手方針">' + planOpts + "</select></td>" +
+      '<td><select id="tier-' + it.id + '" aria-label="' + it.label + 'の価格帯"><option value="std">標準価格帯</option><option value="low">低価格帯</option></select></td>';
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var groups = { day1: [0, 0, []], days: [0, 0, []], later: [0, 0, []] };
+    var cuts = [];
+    var unselected = [];
+
+    ITEMS.forEach(function (it) {
+      var plan = document.getElementById("plan-" + it.id).value;
+      var tier = document.getElementById("tier-" + it.id).value;
+      var r = tier === "low" ? it.low : it.std;
+      if (plan === "") { unselected.push(it.label); return; }
+      if (groups[plan]) {
+        groups[plan][0] += r[0];
+        groups[plan][1] += r[1];
+        groups[plan][2].push(it.label + "(" + (tier === "low" ? "低" : "標準") + ")");
+      } else {
+        cuts.push(it.label + ":" + CUT_LABEL[plan]);
+      }
+    });
+
+    var totalLo = groups.day1[0] + groups.days[0] + groups.later[0];
+    var totalHi = groups.day1[1] + groups.days[1] + groups.later[1];
+
+    var main = document.getElementById("resultMain");
+    var sub = document.getElementById("resultSub");
+    var bd = document.getElementById("breakdown");
+    var cutBox = document.getElementById("cutBox");
+    var cutList = document.getElementById("cutList");
+    var un = document.getElementById("unselected");
+
+    if (totalLo === 0 && cuts.length === 0) {
+      main.textContent = "品目が選択されていません";
+      sub.textContent = "各品目の入手方針を選ぶと、時期別の予算レンジを表示します。";
+      bd.innerHTML = ""; cutBox.hidden = true; un.textContent = "";
+      document.getElementById("result").hidden = false;
+      return;
+    }
+
+    main.textContent = totalLo > 0 ? "新品購入の合計概算レンジ:" + range(totalLo, totalHi) : "新品で購入する品目はありません";
+    sub.textContent = totalLo > 0 ? "選択した価格帯レンジの単純合算です。実際の購入額は選ぶ商品・店舗・時期で変わります。" : "";
+
+    bd.innerHTML = "";
+    [["day1", "入居初日に必要な予算"], ["days", "数日以内に必要な予算"], ["later", "後から追加できる予算"]].forEach(function (g) {
+      var key = g[0], label = g[1];
+      if (groups[key][2].length === 0) return;
+      var head = document.createElement("tr");
+      head.innerHTML = '<td class="bd-head">' + label + '</td><td class="bd-head">' + range(groups[key][0], groups[key][1]) + "</td>";
+      bd.appendChild(head);
+      var tr = document.createElement("tr");
+      var td = document.createElement("td"); td.colSpan = 2;
+      td.style.fontSize = "0.85rem"; td.style.color = "var(--text-sub)";
+      td.textContent = groups[key][2].join("、");
+      tr.appendChild(td);
+      bd.appendChild(tr);
+    });
+
+    if (cuts.length) {
+      cutList.innerHTML = "";
+      cuts.forEach(function (c) {
+        var li = document.createElement("li");
+        li.textContent = c;
+        cutList.appendChild(li);
+      });
+      var note = document.createElement("li");
+      note.textContent = "中古・レンタル・譲渡の実際の費用は状態や期間で大きく異なるため、このページでは金額を推定していません。";
+      note.style.color = "var(--text-sub)";
+      cutList.appendChild(note);
+      cutBox.hidden = false;
+    } else {
+      cutBox.hidden = true;
+    }
+
+    un.textContent = unselected.length
+      ? "未選択の品目(" + unselected.length + "件):" + unselected.join("、") + "。これらは合計に含まれていません。"
+      : "";
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/ads.js"></script>
+<script src="/assets/nav.js" defer></script>
+</body>
+</html>
