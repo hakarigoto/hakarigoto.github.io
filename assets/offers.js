@@ -175,6 +175,21 @@
       lastCheckedAt: "2026-07-18", disclosure: "PR"
     },
 
+    haisharu: {
+      offerId: "haisharu", name: "ハイシャル(廃車買取)", asp: "a8",
+      category: "car-disposal", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+A5K6ZE+5L7M+5YJRM",
+      headline: "廃車前提の車を、引き取り・手続きごと任せたい人向け",
+      summary: "廃車買取の専門サービス。動かない車や解体前提の車も0円以上での買取をうたっており、レッカーでの引き取りや廃車の書類手続きの代行まで含めて依頼できます(弥来精機は事故車・故障車を車として査定する買取型で役割が異なります)。",
+      recommendedFor: ["動かない車・解体前提の車を手放したい", "レッカー手配や廃車の書類手続きまで任せたい", "廃車費用をかけずに処分したい"],
+      notRecommendedFor: ["通常走行できる車の売却(オークション型査定や買取店の方が価格を比較しやすいことがあります)", "自分で運輸支局へ行き抹消登録する場合は本文の手続き解説を参照してください"],
+      feeText: "査定・引き取り・書類手続きは無料(公式サイト記載)",
+      areaText: "全国対応。ただし沖縄本島以外などの離島は対象外の場合あり(公式サイトで確認)",
+      resultTypes: ["scrap", "broken-car", "accident-car"],
+      eligiblePages: ["kuruma-haisha"],
+      lastCheckedAt: "2026-08-16", disclosure: "PR"
+    },
+
     bikeBoon: {
       offerId: "bikeBoon", name: "バイクBOON", asp: "a8",
       category: "bike-sale", status: "active", approvalStatus: "approved",
