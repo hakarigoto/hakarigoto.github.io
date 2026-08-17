@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is Owning a Car Worth It? Car vs. Rideshare Break-Even Calculator</title>
+<meta name="description" content="Enter your annual mileage and costs to compare what you actually spend to own a car against using rideshare or transit instead. Shows the break-even mileage where giving up the car saves money. Free, no sign-up, nothing leaves your browser.">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#b3382f;--accent-hover:#962e27;--accent-weak:#f9e9e7;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23b3382f%22/><text x=%2250%22 y=%2270%22 font-size=%2258%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>$</text></svg>">
+<style>
+.simple-header { border-bottom: 1px solid var(--border); padding: 14px 0; }
+.simple-header .brand { font-weight: 800; font-size: 1.05rem; color: var(--text); text-decoration: none; }
+.simple-header .lang { float: right; font-size: 0.85rem; }
+.compare-table td:first-child { font-weight: 700; }
+.compare-table tr.is-best td { background: var(--accent-weak); }
+.best-badge { display:inline-block; margin-left:6px; padding:1px 8px; font-size:0.75rem; border-radius:10px; background:var(--accent); color:#fff; font-weight:700; }
+.result-main { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+.result-sub { font-size: 0.92rem; color: var(--text-sub); }
+.breakeven-box { border:1px solid var(--accent); border-radius:6px; padding:12px 16px; margin-top:14px; font-size:0.95rem; background:var(--surface); }
+.breakeven-box strong { color: var(--accent); }
+.field-note { font-size: 0.82rem; color: var(--text-sub); margin-top: 2px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "At how many miles per year does giving up a car stop making sense?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your fixed costs, not just on gas. If insurance, registration, maintenance, depreciation and parking add up to roughly $6,000 a year and rideshare runs about $2 per mile, the break-even sits near 3,000 miles a year. Below that, rideshare tends to be cheaper; above it, owning usually wins. Run your own numbers above, because parking and insurance vary enormously by city."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What costs should I count as fixed costs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anything you pay whether or not you drive: insurance premiums, registration and inspection fees, routine maintenance, tires, and depreciation on the vehicle. Loan or lease payments count too if you are still paying them. Parking is entered separately here because it varies so much by city."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator include car payments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if you include them in the fixed cost field. If you still owe money on a loan, selling the car may not clear the balance, so check your payoff amount before deciding. This calculator compares running costs and does not model loan payoff or resale value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is rideshare realistic without a car in a suburb?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cost is only half the question. Rideshare coverage, wait times and surge pricing differ sharply between dense cities and suburbs, and some trips such as hauling groceries for a large household, medical appointments or shift work at odd hours are hard to replace. Treat the dollar figure as one input, not the decision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if there is no public transit where I live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Then the realistic comparison is owning versus rideshare only. Choose No on the transit question and the calculator drops the transit option. In transit-poor areas, carpooling or employer vanpools are also worth checking, though this calculator does not model them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I do not have a driver's license?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Then the comparison is not owning versus rideshare, it is which combination of rideshare, transit and rides from family costs least. Set the ownership column aside and compare the alternatives against each other using the numbers above."
+      }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/en/car-vs-rideshare/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/en/car-vs-rideshare/">
+<meta property="og:title" content="Is Owning a Car Worth It? Car vs. Rideshare Break-Even Calculator">
+<meta property="og:description" content="Compare the real annual cost of owning a car against rideshare and transit, and find the mileage where giving up the car saves money.">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+
+<header class="simple-header"><div class="container">
+  <a class="brand" href="/en/">Hakarigoto Tools</a>
+  <span class="lang"><a href="/en/">All tools</a></span>
+</div></header>
+<div class="pr-banner">Some pages on this site contain affiliate links — if you apply or buy through one, we may receive compensation. <a href="/en/disclosure/" style="color:inherit;">Details</a></div>
+
+<main class="container">
+
+<div class="page-head">
+  <h1>Car vs. Rideshare: Break-Even Calculator</h1>
+  <p class="lead">Owning a car costs money every month whether you drive it or not. Enter your mileage and costs below to see what you actually spend per year, what rideshare or transit would cost instead, and the mileage at which the two swap places. Everything runs in your browser — no sign-up, and nothing you type is sent to a server.</p>
+  <div class="meta-line"><span>Updated: <b>August 2026</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">The short version</div>
+  <ul>
+    <li>Most of what a car costs is <span class="mk">fixed</span> — insurance, registration, maintenance, depreciation, parking — and none of it goes away when you drive less</li>
+    <li>The fewer miles you drive, the more <span class="mk">each mile actually costs you</span></li>
+    <li>Rideshare wins on price only at low mileage; the exact break-even depends on your parking and insurance</li>
+    <li>Price is one input. Coverage, wait times and trips you can't replace matter just as much</li>
+  </ul>
+</div>
+
+<section class="tool-panel" id="calc">
+  <h2>Your numbers</h2>
+
+  <div class="field">
+    <label for="fixedCost">Annual fixed costs (insurance, registration, maintenance, depreciation — not parking)</label>
+    $ <input type="number" id="fixedCost" value="6000" min="0" step="100">
+    <p class="field-note">If you are still making loan or lease payments, include them here. Costs vary widely by state, vehicle and driving record. Not sure what your car really costs? <a href="/en/cost-per-mile/">Estimate it with the cost-per-mile calculator</a>.</p>
+  </div>
+  <div class="field">
+    <label for="parking">Parking (per month)</label>
+    $ <input type="number" id="parking" value="150" min="0" step="10">
+    <p class="field-note">Enter 0 if you park free at home and at work.</p>
+  </div>
+  <div class="field">
+    <label for="miles">Miles driven per year</label>
+    <input type="number" id="miles" value="6000" min="0" step="500"> miles
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="mpg">Fuel economy</label>
+      <input type="number" id="mpg" value="25" min="1" step="1"> MPG
+    </div>
+    <div class="field">
+      <label for="gas">Gas price</label>
+      $ <input type="number" id="gas" value="3.30" min="0.5" step="0.05"> / gallon
+    </div>
+  </div>
+
+  <h2 style="margin-top:18px;">If you gave up the car</h2>
+  <div class="field">
+    <label for="rideRate">Rideshare cost</label>
+    $ <input type="number" id="rideRate" value="2.00" min="0.25" step="0.10"> / mile
+    <p class="field-note">All-in per-mile cost including base fare and tip is often $1.75–$2.50 in most metros.</p>
+  </div>
+  <div class="field">
+    <label for="transitAccess">Is there usable public transit where you live?</label>
+    <select id="transitAccess">
+      <option value="none">No — no real bus or rail option here</option>
+      <option value="limited" selected>Limited — some buses or infrequent rail</option>
+      <option value="good">Good — I could commute on it</option>
+    </select>
+    <p class="field-note">Transit access varies enormously across the US. If there is no workable service where you live, the comparison below drops the transit option entirely.</p>
+  </div>
+  <div id="transitFields">
+    <div class="field-row">
+      <div class="field">
+        <label for="transit">Transit pass (per month)</label>
+        $ <input type="number" id="transit" value="80" min="0" step="5">
+      </div>
+      <div class="field">
+        <label for="transitShare">Share of your miles transit could cover</label>
+        <input type="number" id="transitShare" value="30" min="0" max="100" step="5"> %
+        <p class="field-note">Commuting is usually the easiest to shift to transit; errands and late nights are not.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn" id="calcBtn">Compare annual cost</button>
+  </div>
+
+  <div class="result-box" id="result" hidden>
+    <div class="result-main" id="resultMain"></div>
+    <div class="table-wrap">
+      <table class="compare-table" id="compareTable">
+        <tr><th>Option</th><th>Per year</th><th>Per month</th></tr>
+      </table>
+    </div>
+    <p class="result-sub" id="perMileLine"></p>
+    <div class="breakeven-box" id="breakevenBox"></div>
+  </div>
+</section>
+
+<article class="article">
+  <h2 id="fixed">Why low mileage is expensive</h2>
+  <p>The costs that dominate car ownership do not care how much you drive. Insurance renews, registration comes due, the vehicle depreciates sitting in a driveway, and a parking space costs the same in a month you barely leave the house. Fuel — the cost most people think of first — is often the smallest line.</p>
+  <p>That is why the per-mile figure above matters more than the total. Someone paying $6,000 a year in fixed costs and driving 3,000 miles is spending about <strong>$2 a mile</strong> before they buy a drop of gas. At 15,000 miles a year, the same car costs about 40 cents a mile. Same vehicle, same bills, completely different value.</p>
+
+  <h2 id="alternatives">What actually replaces a car</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Option</th><th>Works well for</th><th>Typical cost</th></tr>
+      <tr><td>Rideshare</td><td>Short, unplanned trips; nights out; bad weather</td><td>$1.75–$2.50 per mile all-in</td></tr>
+      <tr><td>Transit</td><td>Commuting on fixed routes</td><td>$60–$130 per month for a pass</td></tr>
+      <tr><td>Car rental</td><td>Weekend trips, moving furniture, visiting family</td><td>$50–$90 per day</td></tr>
+      <tr><td>Carshare</td><td>Errands measured in hours, not days</td><td>Hourly plus mileage</td></tr>
+    </table>
+  </div>
+  <p>Almost nobody replaces a car with one thing. The realistic pattern is transit for the commute, rideshare for the gaps, and a rental for the trips that need a trunk. The calculator models that mix in the third row.</p>
+  <p>One honest caveat: <strong>that mix only exists where transit exists.</strong> Outside a handful of metros — New York, Chicago, Boston, DC, San Francisco and a few others — bus and rail coverage in the US ranges from thin to nonexistent, especially in suburbs and smaller cities. If that is your situation, answer “No” to the transit question above and the calculator will compare only the options actually available to you.</p>
+
+  <h2 id="beyond">What the dollars don't tell you</h2>
+  <ul>
+    <li><strong>Coverage.</strong> Rideshare availability and wait times drop off fast outside dense areas. Check the app at the hours you actually travel, not at noon on a weekday.</li>
+    <li><strong>Surge pricing.</strong> The per-mile rate you enter above is an average. Storms, rush hour and event nights are when you most need a ride and when it costs the most.</li>
+    <li><strong>Trips you can't shift.</strong> A large grocery run, a child's car seat, medical appointments, a shift that ends after transit stops — these decide the question more often than the arithmetic does.</li>
+    <li><strong>Selling the car.</strong> If you owe more than the vehicle is worth, selling does not free you from the loan. Check your payoff amount first.</li>
+  </ul>
+
+  <h2 id="faq">Common questions</h2>
+  <details class="faq">
+    <summary>At how many miles per year does giving up a car stop making sense?</summary>
+    <p>With roughly $6,000 in annual fixed costs and rideshare around $2 per mile, the break-even lands near 3,000 miles a year. Your parking and insurance can move that number a long way in either direction, so use your own figures above.</p>
+  </details>
+  <details class="faq">
+    <summary>What counts as a fixed cost?</summary>
+    <p>Anything you pay whether or not you drive: insurance, registration, inspection, routine maintenance, tires, depreciation, and loan or lease payments if you still have them.</p>
+  </details>
+  <details class="faq">
+    <summary>Does this include car payments?</summary>
+    <p>Only if you enter them in the fixed cost field. This tool compares running costs; it does not model loan payoff or resale value.</p>
+  </details>
+  <details class="faq">
+    <summary>Is going car-free realistic in a suburb?</summary>
+    <p>Cost is only half the question. Check rideshare wait times where you live at the hours you travel, and be honest about the trips that would be hard to replace.</p>
+  </details>
+  <details class="faq">
+    <summary>What if there's no public transit where I live?</summary>
+    <p>Then the realistic comparison is owning versus rideshare only — choose “No” on the transit question and the tool drops the transit row. In transit-poor areas, also look at carpooling or employer vanpools, which this calculator does not model.</p>
+  </details>
+  <details class="faq">
+    <summary>What if I don't have a driver's license?</summary>
+    <p>Then compare the alternatives against each other rather than against ownership. Set the ownership row aside and look at which mix of transit, rideshare and rentals costs least.</p>
+  </details>
+</article>
+
+<section class="content-trust">
+  <h2>About this page</h2>
+  <dl>
+    <div><dt>Last reviewed</dt><dd>August 2026</dd></div>
+    <div><dt>What the result is</dt><dd>An estimate based on the figures you enter. Actual costs vary by state, vehicle, driving record, and local rideshare and parking markets.</dd></div>
+    <div><dt>Your data</dt><dd>All calculation happens in your browser. Nothing you enter is sent to a server or stored. We use Google Analytics for anonymous page-view statistics only — see the <a href="/en/privacy/">privacy policy</a>.</dd></div>
+  </dl>
+  <details>
+    <summary>How the calculation works</summary>
+    <ul>
+      <li><b>Ownership:</b> annual fixed costs + (monthly parking × 12) + (miles ÷ MPG × gas price)</li>
+      <li><b>Rideshare only:</b> miles × rideshare rate per mile</li>
+      <li><b>Transit + rideshare:</b> (transit pass × 12) + (miles not covered by transit × rideshare rate). Shown only if you say usable transit exists where you live.</li>
+      <li><b>Break-even mileage:</b> the annual mileage at which ownership and rideshare-only cost the same, solved as fixed costs ÷ (rideshare rate − fuel cost per mile)</li>
+      <li><b>Not included:</b> vehicle resale value, loan payoff, surge pricing, car rentals, tolls, tickets, and the value of your time</li>
+      <li><b>Default values</b> are editable starting points, not recommendations. Replace them with your own figures.</li>
+    </ul>
+  </details>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container">
+  <div class="footer-copy">© 2026 Hakarigoto Tools — free calculators, no sign-up, your inputs never leave your browser.</div>
+  <div style="margin-top:6px;font-size:0.85rem;"><a href="/en/">All tools</a> · <a href="/en/privacy/">Privacy</a> · <a href="/en/disclosure/">Affiliate disclosure</a></div>
+</div></footer>
+<script src="/assets/ads.js"></script>
+
+<script>
+(function () {
+  function usd(n) {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+  // Clamp at calculation time: do not rely on the min/max attributes alone.
+  function num(id, min, max, def) {
+    var el = document.getElementById(id);
+    var v = parseFloat(el.value);
+    if (isNaN(v)) v = def;
+    if (v < min) v = min;
+    if (v > max) v = max;
+    el.value = v;
+    return v;
+  }
+
+  var accessEl = document.getElementById("transitAccess");
+  function syncTransitFields() {
+    var v = accessEl.value;
+    document.getElementById("transitFields").style.display = v === "none" ? "none" : "";
+    if (v === "none") document.getElementById("transitShare").value = 0;
+    if (v === "limited" && +document.getElementById("transitShare").value === 0) document.getElementById("transitShare").value = 30;
+    if (v === "good" && +document.getElementById("transitShare").value <= 30) document.getElementById("transitShare").value = 60;
+  }
+  accessEl.addEventListener("change", syncTransitFields);
+  syncTransitFields();
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var fixed = num("fixedCost", 0, 200000, 6000);
+    var parking = num("parking", 0, 5000, 150) * 12;
+    var miles = num("miles", 0, 200000, 6000);
+    var mpg = num("mpg", 1, 150, 25);
+    var gas = num("gas", 0.5, 20, 3.30);
+    var rideRate = num("rideRate", 0.25, 50, 2.00);
+    var access = document.getElementById("transitAccess").value;
+    var transit = num("transit", 0, 2000, 80) * 12;
+    var share = num("transitShare", 0, 100, 30) / 100;
+
+    var fuelPerMile = gas / mpg;
+    var own = fixed + parking + miles * fuelPerMile;
+    var rideOnly = miles * rideRate;
+    var mixed = transit + (miles * (1 - share)) * rideRate;
+
+    var options = [
+      { key: "own", label: "Keep the car", annual: own },
+      { key: "ride", label: "Rideshare only", annual: rideOnly }
+    ];
+    if (access !== "none") {
+      options.push({ key: "mix", label: "Transit + rideshare", annual: mixed });
+    }
+    var best = options[0];
+    options.forEach(function (o) { if (o.annual < best.annual) best = o; });
+
+    var table = document.getElementById("compareTable");
+    while (table.rows.length > 1) table.deleteRow(1);
+    options.forEach(function (o) {
+      var tr = table.insertRow(-1);
+      if (o === best) tr.className = "is-best";
+      var c1 = tr.insertCell(-1);
+      c1.textContent = o.label;
+      if (o === best) {
+        var b = document.createElement("span");
+        b.className = "best-badge";
+        b.textContent = "Cheapest";
+        c1.appendChild(b);
+      }
+      tr.insertCell(-1).textContent = usd(o.annual) + " / yr";
+      tr.insertCell(-1).textContent = usd(o.annual / 12) + " / mo";
+    });
+
+    var main = document.getElementById("resultMain");
+    if (best.key === "own") {
+      var second = options.filter(function (o) { return o !== best; })
+        .sort(function (a, b) { return a.annual - b.annual; })[0];
+      main.textContent = "Keeping the car is cheaper by " + usd(second.annual - own) + " a year at this mileage.";
+    } else {
+      main.textContent = "Going car-free would save about " + usd(own - best.annual) +
+        " a year (" + best.label.toLowerCase() + ").";
+    }
+
+    document.getElementById("perMileLine").textContent = miles > 0
+      ? "Your car currently costs about $" + (own / miles).toFixed(2) + " per mile, fixed costs included."
+      : "";
+
+    var be = document.getElementById("breakevenBox");
+    if (rideRate > fuelPerMile) {
+      var beMiles = (fixed + parking) / (rideRate - fuelPerMile);
+      be.innerHTML = "<strong>Break-even:</strong> below roughly <strong>" +
+        Math.round(beMiles).toLocaleString("en-US") +
+        " miles a year</strong>, rideshare-only costs less than owning at these numbers. You entered " +
+        miles.toLocaleString("en-US") + " miles." +
+        (access !== "none"
+          ? " The transit mix depends on how much of your driving transit can absorb — compare it in the table above."
+          : " With no usable transit in your area, the realistic comparison is the two rows above.");
+    } else {
+      be.innerHTML = "<strong>Break-even:</strong> your rideshare rate is at or below your fuel cost per mile, so there is no mileage-based crossover at these numbers.";
+    }
+
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

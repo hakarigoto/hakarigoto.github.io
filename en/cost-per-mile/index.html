@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Does Your Car Really Cost Per Mile? | Cost-Per-Mile Calculator</title>
+<meta name="description" content="Add up what your car actually costs — insurance, registration, maintenance, depreciation, parking and gas — and see your true cost per mile and per month. Free, no sign-up, nothing you type leaves your browser.">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>:root{--accent:#b3382f;--accent-hover:#962e27;--accent-weak:#f9e9e7;}</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23b3382f%22/><text x=%2250%22 y=%2270%22 font-size=%2258%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>$</text></svg>">
+<style>
+.simple-header { border-bottom: 1px solid var(--border); padding: 14px 0; }
+.simple-header .brand { font-weight: 800; font-size: 1.05rem; color: var(--text); text-decoration: none; }
+.simple-header .lang { float: right; font-size: 0.85rem; }
+.result-main { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+.result-sub { font-size: 0.92rem; color: var(--text-sub); }
+.split-box { border:1px solid var(--border); border-radius:6px; padding:12px 16px; margin-top:14px; font-size:0.95rem; background:var(--surface); }
+.split-box strong { color: var(--accent); }
+.field-note { font-size: 0.82rem; color: var(--text-sub); margin-top: 2px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I estimate depreciation without a formula?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A simple approach: take what you could sell the car for today, subtract what you expect it to be worth in three years, and divide by three. Listings for your model and year on any major used-car site give you both numbers. It is an estimate, but it is far better than leaving depreciation out." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include my loan payment?",
+      "acceptedAnswer": { "@type": "Answer", "text": "If you are still paying off the car, include the payments — they are money the car costs you every month. Just be careful not to double-count: the loan pays for the car's value, which overlaps with depreciation. Either count payments and skip depreciation, or count depreciation and skip the principal part of your payments." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my cost per mile so high?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Usually because you drive less than you think. Fixed costs — insurance, registration, depreciation, parking — stay the same no matter how little you drive, so at low mileage every mile carries a large share of them. That is exactly the situation where comparing against rideshare is worth doing." }
+    },
+    {
+      "@type": "Question",
+      "name": "What costs does this calculator leave out?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tolls, parking tickets, car washes, accessories, and the value of your time. It also does not model loan interest separately — include it in your fixed costs if you want it counted." }
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://hakarigoto.github.io/en/cost-per-mile/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hakarigoto.github.io/en/cost-per-mile/">
+<meta property="og:title" content="What Does Your Car Really Cost Per Mile?">
+<meta property="og:description" content="Add up insurance, registration, maintenance, depreciation, parking and gas, and see your true cost per mile and per month.">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+
+<header class="simple-header"><div class="container">
+  <a class="brand" href="/en/">Hakarigoto Tools</a>
+  <span class="lang"><a href="/en/">All tools</a></span>
+</div></header>
+<div class="pr-banner">Some pages on this site contain affiliate links — if you apply or buy through one, we may receive compensation. <a href="/en/disclosure/" style="color:inherit;">Details</a></div>
+
+<main class="container">
+
+<div class="page-head">
+  <h1>What Does Your Car Really Cost Per Mile?</h1>
+  <p class="lead">Gas is the cost everyone remembers, and it is usually the smallest one. Insurance, registration, maintenance, depreciation and parking quietly add up whether you drive or not. Enter your numbers below to see your true annual cost, your cost per mile, and how much of it is fixed. Everything runs in your browser — no sign-up, and nothing you type is sent to a server.</p>
+  <div class="meta-line"><span>Updated: <b>August 2026</b></span></div>
+</div>
+
+<div class="point-box">
+  <div class="point-box-title">The short version</div>
+  <ul>
+    <li>Your real cost per mile is <span class="mk">total annual cost ÷ miles driven</span> — not the price of gas</li>
+    <li>Fixed costs don't shrink when you drive less, so <span class="mk">low mileage means expensive miles</span></li>
+    <li>Depreciation is usually the biggest number people forget — estimate it from used-car listings for your model</li>
+    <li>Once you know your number, <a href="/en/car-vs-rideshare/">compare it against rideshare and transit</a></li>
+  </ul>
+</div>
+
+<section class="tool-panel" id="calc">
+  <h2>Your numbers</h2>
+
+  <div class="field">
+    <label for="insurance">Insurance (per year)</label>
+    $ <input type="number" id="insurance" value="1800" min="0" step="50">
+    <p class="field-note">Your actual premium — check your policy or last renewal notice.</p>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="registration">Registration, inspection, taxes (per year)</label>
+      $ <input type="number" id="registration" value="200" min="0" step="10">
+    </div>
+    <div class="field">
+      <label for="maintenance">Maintenance and tires (per year)</label>
+      $ <input type="number" id="maintenance" value="900" min="0" step="50">
+    </div>
+  </div>
+  <div class="field">
+    <label for="depreciation">Depreciation or loan payments (per year)</label>
+    $ <input type="number" id="depreciation" value="2000" min="0" step="100">
+    <p class="field-note">Simple estimate: (what your car would sell for today − its likely value in 3 years) ÷ 3. If you are still making payments, you can enter those instead — see the FAQ about double-counting.</p>
+  </div>
+  <div class="field">
+    <label for="parking">Parking (per month)</label>
+    $ <input type="number" id="parking" value="100" min="0" step="10">
+    <p class="field-note">Enter 0 if you park free at home and at work.</p>
+  </div>
+  <div class="field">
+    <label for="miles">Miles driven per year</label>
+    <input type="number" id="miles" value="8000" min="1" step="500"> miles
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="mpg">Fuel economy</label>
+      <input type="number" id="mpg" value="25" min="1" step="1"> MPG
+    </div>
+    <div class="field">
+      <label for="gas">Gas price</label>
+      $ <input type="number" id="gas" value="3.30" min="0.5" step="0.05"> / gallon
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn" id="calcBtn">Calculate my cost per mile</button>
+  </div>
+
+  <div class="result-box" id="result" hidden>
+    <div class="result-main" id="resultMain"></div>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="split-box" id="splitBox"></div>
+  </div>
+</section>
+
+<article class="article">
+  <h2 id="why">Why the per-mile number matters</h2>
+  <p>Two drivers can own the identical car with identical bills and have completely different costs per mile. The one driving 15,000 miles a year spreads the fixed costs thin; the one driving 3,000 miles pays the same bills for a car that mostly sits. The per-mile figure is what tells you whether your car is earning its keep — and it is the number you need for any honest comparison with <a href="/en/car-vs-rideshare/">rideshare or transit</a>.</p>
+
+  <h2 id="depreciation">The cost everyone forgets</h2>
+  <p>Depreciation never shows up on a bill, which is why it gets left out of most mental math. But it is real money: the difference between what your car was worth when you got it and what it will be worth when you let it go. For many cars it is the single largest ownership cost. You do not need a formula — used-car listings for your model and year, now and for three-year-older examples, give you a perfectly usable estimate.</p>
+
+  <h2 id="faq">Common questions</h2>
+  <details class="faq">
+    <summary>How do I estimate depreciation without a formula?</summary>
+    <p>Take what you could sell the car for today, subtract what you expect it to be worth in three years, and divide by three. Listings for your model and year on any major used-car site give you both numbers. It is an estimate, but far better than leaving depreciation out.</p>
+  </details>
+  <details class="faq">
+    <summary>Should I include my loan payment?</summary>
+    <p>If you are still paying off the car, include the payments — they are money the car costs you every month. Just avoid double-counting: the loan pays for the car's value, which overlaps with depreciation. Either count payments and skip depreciation, or count depreciation and skip the principal part of your payments.</p>
+  </details>
+  <details class="faq">
+    <summary>Why is my cost per mile so high?</summary>
+    <p>Usually because you drive less than you think. Fixed costs stay the same no matter how little you drive, so at low mileage every mile carries a large share of them. That is exactly the situation where <a href="/en/car-vs-rideshare/">comparing against rideshare</a> is worth doing.</p>
+  </details>
+  <details class="faq">
+    <summary>What costs does this calculator leave out?</summary>
+    <p>Tolls, parking tickets, car washes, accessories, and the value of your time. It also does not model loan interest separately — include it in your fixed costs if you want it counted.</p>
+  </details>
+</article>
+
+<section class="content-trust">
+  <h2>About this page</h2>
+  <dl>
+    <div><dt>Last reviewed</dt><dd>August 2026</dd></div>
+    <div><dt>What the result is</dt><dd>An estimate based on the figures you enter. Actual costs vary by state, vehicle, driving record and local prices.</dd></div>
+    <div><dt>Your data</dt><dd>All calculation happens in your browser. Nothing you enter is sent to a server or stored. We use Google Analytics for anonymous page-view statistics only — see the <a href="/en/privacy/">privacy policy</a>.</dd></div>
+  </dl>
+  <details>
+    <summary>How the calculation works</summary>
+    <ul>
+      <li><b>Total annual cost:</b> insurance + registration + maintenance + depreciation (or payments) + (monthly parking × 12) + (miles ÷ MPG × gas price)</li>
+      <li><b>Cost per mile:</b> total annual cost ÷ miles per year</li>
+      <li><b>Fixed share:</b> everything except fuel, shown so you can see how much of your cost does not change with driving</li>
+      <li><b>Not included:</b> tolls, tickets, washes, accessories, loan interest as a separate line, and the value of your time</li>
+      <li><b>Default values</b> are editable starting points, not recommendations. Replace them with your own figures.</li>
+    </ul>
+  </details>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="container">
+  <div class="footer-copy">© 2026 Hakarigoto Tools — free calculators, no sign-up, your inputs never leave your browser.</div>
+  <div style="margin-top:6px;font-size:0.85rem;"><a href="/en/">All tools</a> · <a href="/en/privacy/">Privacy</a> · <a href="/en/disclosure/">Affiliate disclosure</a></div>
+</div></footer>
+<script src="/assets/ads.js"></script>
+
+<script>
+(function () {
+  function usd(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function num(id, min, max, def) {
+    var el = document.getElementById(id);
+    var v = parseFloat(el.value);
+    if (isNaN(v)) v = def;
+    if (v < min) v = min;
+    if (v > max) v = max;
+    el.value = v;
+    return v;
+  }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var insurance = num("insurance", 0, 100000, 1800);
+    var registration = num("registration", 0, 20000, 200);
+    var maintenance = num("maintenance", 0, 50000, 900);
+    var depreciation = num("depreciation", 0, 100000, 2000);
+    var parking = num("parking", 0, 5000, 100) * 12;
+    var miles = num("miles", 1, 200000, 8000);
+    var mpg = num("mpg", 1, 150, 25);
+    var gas = num("gas", 0.5, 20, 3.30);
+
+    var fuel = miles / mpg * gas;
+    var fixed = insurance + registration + maintenance + depreciation + parking;
+    var total = fixed + fuel;
+    var perMile = total / miles;
+    var fixedShare = total > 0 ? Math.round(fixed / total * 100) : 0;
+
+    document.getElementById("resultMain").textContent =
+      "Your car costs about $" + perMile.toFixed(2) + " per mile.";
+    document.getElementById("resultSub").textContent =
+      "That is " + usd(total) + " a year, or " + usd(total / 12) + " a month, at " +
+      miles.toLocaleString("en-US") + " miles a year.";
+    document.getElementById("splitBox").innerHTML =
+      "<strong>" + fixedShare + "% of that is fixed</strong> — " + usd(fixed) +
+      " a year in insurance, registration, maintenance, depreciation and parking that you pay no matter how little you drive. Fuel is " +
+      usd(fuel) + ". Wondering if the car is still worth it at your mileage? <a href='/en/car-vs-rideshare/'>Compare against rideshare and transit</a>.";
+    document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
