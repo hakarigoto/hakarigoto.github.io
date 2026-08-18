@@ -58,6 +58,18 @@
 
     /* ▼ マナー電卓(冠婚葬祭) */
     "sogi":    "", /* 未承認(家族葬のこれから・よりそう=A8審査中) */
+    /* もしも経由Amazon(promotion_id=170・2026-08-19承認)。§14.4: tsuya-fukuso 1ページのみの実験。
+       疑似レビュー・おすすめ順位付けなし=検索結果への中立リンクのみ。リンクURLは改変禁止(どこでもリンク生成形式のまま) */
+    "amazon-tsuya": `
+<p style="margin:0 0 6px;">急な参列で買いに行く時間がないときは、記事本文で触れた定番の小物をAmazonの検索結果から探せます(在庫とお届け日は検索結果で確認できます)。特定の商品をおすすめするものではありません。</p>
+<ul style="margin:0 0 8px;">
+    <li><a href="//af.moshimo.com/af/c/click?a_id=5753650&p_id=170&pc_id=185&pl_id=38594&url=https%3A%2F%2Fwww.amazon.co.jp%2Fs%3Fk%3D%25E9%25BB%2592%2520%25E3%2583%258D%25E3%2582%25AF%25E3%2582%25BF%25E3%2582%25A4%2520%25E7%2584%25A1%25E5%259C%25B0%2520%25E5%25BC%2594%25E4%25BA%258B%25E7%2594%25A8" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade" target="_blank">黒無地のネクタイを探す</a></li>
+    <li><a href="//af.moshimo.com/af/c/click?a_id=5753650&p_id=170&pc_id=185&pl_id=38594&url=https%3A%2F%2Fwww.amazon.co.jp%2Fs%3Fk%3D%25E9%25BB%2592%2520%25E3%2582%25B9%25E3%2583%2588%25E3%2583%2583%25E3%2582%25AD%25E3%2583%25B3%25E3%2582%25B0%252030%25E3%2583%2587%25E3%2583%258B%25E3%2583%25BC%25E3%2583%25AB" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade" target="_blank">薄手の黒ストッキング(30デニール程度)を探す</a></li>
+    <li><a href="//af.moshimo.com/af/c/click?a_id=5753650&p_id=170&pc_id=185&pl_id=38594&url=https%3A%2F%2Fwww.amazon.co.jp%2Fs%3Fk%3D%25E6%2595%25B0%25E7%258F%25A0%2520%25E5%25BF%25B5%25E7%258F%25A0" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade" target="_blank">数珠(念珠)を探す</a></li>
+    <li><a href="//af.moshimo.com/af/c/click?a_id=5753650&p_id=170&pc_id=185&pl_id=38594&url=https%3A%2F%2Fwww.amazon.co.jp%2Fs%3Fk%3D%25E9%25BB%2592%2520%25E9%259D%25B4%25E4%25B8%258B%2520%25E7%2584%25A1%25E5%259C%25B0%2520%25E3%2583%25AA%25E3%2583%2596%25E3%2581%25AA%25E3%2581%2597" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade" target="_blank">黒無地の靴下を探す</a></li>
+</ul>
+<small>Amazonのアソシエイトとして、当メディアは適格販売により収入を得ています。</small>
+<img src="//i.moshimo.com/af/i/impression?a_id=5753650&p_id=170&pc_id=185&pl_id=38594" width="1" height="1" style="border:none;" alt="" loading="lazy">`,
     "wedding": "", /* 未承認(ご祝儀→ブライダル系の提携待ち) */
     "hakajimai": "", /* Sprint 9: 未使用タグを廃止(offer-card管理に移行済み) */
 
@@ -88,6 +100,7 @@
      offer-card(offers.js)と同じ affiliate_impression / affiliate_click を送るが、
      slot_id を "static-〜" にして区別する。未登録キーは "static:"+key で送る。 */
   var SLOT_OFFER = {
+    "amazon-tsuya": "amazonMoshimo",
     "tenshoku": "gaiaTaishoku",
     "hakajimai": "seaceremony",
     "ihin": "ihin110",
