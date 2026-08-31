@@ -288,6 +288,24 @@
       lastCheckedAt: "2026-08-31", disclosure: "PR"
     },
 
+    japanAnimalMemorial: {
+      offerId: "japanAnimalMemorial", name: "ジャパン動物メモリアル", asp: "moshimo",
+      category: "pet-cremation", status: "active", approvalStatus: "approved",
+      destinationUrl: "//af.moshimo.com/af/c/click?a_id=5781355&p_id=7303&pc_id=20985&pl_id=92041",
+      impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5781355&p_id=7303&pc_id=20985&pl_id=92041" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "東京エリアで、訪問・移動火葬を24時間相談したい人向け",
+      summary: "東京エリア対応のペット火葬・葬儀の専門サービス。個別火葬・合同火葬などのプランを選べ、24時間365日受付で問い合わせできます。",
+      recommendedFor: ["東京エリアで訪問・移動火葬を検討している", "夜間や急な事態でもまず電話で相談したい", "個別・合同などプランを相談して決めたい"],
+      notRecommendedFor: ["対象は東京エリアです。市区町村単位の対応可否は公式サイト・電話で確認してください", "合同火葬・自治体への依頼を希望する場合は、お住まいの自治体の案内も確認してください"],
+      feeText: "料金・プランはペットの種類・体重・地域で異なる(公式サイトで確認)",
+      areaText: "対象: 東京エリア",
+      ctaText: "対応地域と火葬プランを確認する",
+      prefectures: ["東京都"],
+      resultTypes: ["*"],
+      eligiblePages: ["pet-kaso-checklist", "pet-after-death"],
+      lastCheckedAt: "2026-08-31", disclosure: "PR"
+    },
+
     rakuttoNavi: {
       offerId: "rakuttoNavi", name: "引越しラクっとNAVI", asp: "a8",
       category: "hikkoshi-mitsumori", status: "active", approvalStatus: "approved",
@@ -527,7 +545,11 @@
     sel.addEventListener("change", function () {
       var pref = sel.value;
       if (!pref) { box.innerHTML = ""; return; }
-      var matches = candidates.filter(function (o) { return o.prefectures.indexOf(pref) > -1; }).slice(0, 2);
+      var matches = candidates.filter(function (o) { return o.prefectures.indexOf(pref) > -1; });
+      /* 地域適合順(§19.4の優先順①): 対応都道府県が少ない=その地域への特化度が高い案件を先に。
+         報酬額は並びに使わない。同数なら定義順(役割順)を維持する安定ソート */
+      matches.sort(function (a, b) { return a.prefectures.length - b.prefectures.length; });
+      matches = matches.slice(0, 2);
       if (!matches.length) {
         box.innerHTML = '<p style="font-size:0.9rem;">選択した都道府県に対応する提携サービスの掲載は現在ありません。自治体の受付(合同火葬など)や地域の霊園・業者は、市区町村の案内で確認できます。</p>';
         return;
