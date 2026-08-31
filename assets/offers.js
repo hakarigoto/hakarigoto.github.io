@@ -252,6 +252,42 @@
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
 
+    omiokuriPet: {
+      offerId: "omiokuriPet", name: "おみおくりペット火葬", asp: "a8",
+      category: "pet-cremation", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B85P1+F7QU3E+5QN6+BWVTE",
+      impressionHtml: '<img src="https://www14.a8.net/0.gif?a8mat=4B85P1+F7QU3E+5QN6+BWVTE" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "静岡・愛知の対象地域で、電話で相談しながら訪問火葬を検討したい人向け",
+      summary: "地域密着の訪問ペット火葬サービス。電話で日程や流れを相談し、自宅など希望の場所での見送りを検討できます。",
+      recommendedFor: ["自宅など慣れた場所で見送りたい", "電話で日程・流れを相談してから決めたい", "地域の業者に依頼したい"],
+      notRecommendedFor: ["対象は静岡県西部・中部、愛知県中部・東部の一部地域です。市区町村単位の対応可否は電話・公式サイトで確認してください", "合同火葬・自治体への依頼を希望する場合は、お住まいの自治体の案内を確認してください"],
+      feeText: "料金はペットの種類・体重で異なる(公式サイトで確認)",
+      areaText: "対象: 静岡県西部・中部/愛知県中部・東部",
+      ctaText: "対応地域と火葬プランを確認する",
+      prefectures: ["静岡県", "愛知県"],
+      resultTypes: ["*"],
+      eligiblePages: ["pet-kaso-checklist", "pet-after-death"],
+      lastCheckedAt: "2026-08-31", disclosure: "PR"
+    },
+
+    happinessPet: {
+      offerId: "happinessPet", name: "ペット火葬ハピネス", asp: "a8",
+      category: "pet-cremation", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B85P1+F8C9P6+5SV6+5YJRM",
+      impressionHtml: '<img src="https://www10.a8.net/0.gif?a8mat=4B85P1+F8C9P6+5SV6+5YJRM" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "広域対応の出張訪問火葬で、料金の目安を見てから問い合わせたい人向け",
+      summary: "出張訪問型のペット火葬サービス。火葬料金5,500円(税込)〜と料金が公式サイトに明示されており、WEB・電話の問い合わせから見積もりを取れます。",
+      recommendedFor: ["自宅や希望の場所への出張火葬を検討している", "料金の目安を確認してから問い合わせたい", "WEBから問い合わせたい"],
+      notRecommendedFor: ["一部対応していない地域があります。市区町村単位の対応可否は公式サイトで確認してください", "合同火葬・自治体への依頼を希望する場合は、お住まいの自治体の案内を確認してください"],
+      feeText: "火葬料金5,500円(税込)〜(体重・プランで変動)",
+      areaText: "全国対応(一部地域を除く)",
+      ctaText: "対応地域と料金プランを確認する",
+      prefectures: ["北海道", "茨城県", "埼玉県", "千葉県", "東京都", "神奈川県", "富山県", "石川県", "福井県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "広島県", "愛媛県", "福岡県", "佐賀県", "熊本県", "鹿児島県"],
+      resultTypes: ["*"],
+      eligiblePages: ["pet-kaso-checklist", "pet-after-death"],
+      lastCheckedAt: "2026-08-31", disclosure: "PR"
+    },
+
     rakuttoNavi: {
       offerId: "rakuttoNavi", name: "引越しラクっとNAVI", asp: "a8",
       category: "hikkoshi-mitsumori", status: "active", approvalStatus: "approved",
@@ -362,6 +398,9 @@
     if (!mount) return [];
 
     function matchesContext(o) {
+      /* 地域限定案件(prefectures持ち)は通常描画に混ぜない。
+         renderRegionOffers(利用者の都道府県選択)経由でのみ表示する(§19.4) */
+      if (o.prefectures) return false;
       if (o.eligiblePages.indexOf(pageId) === -1) return false;
       if (o.resultTypes.indexOf("*") === -1) {
         if (!resultType || o.resultTypes.indexOf(resultType) === -1) return false;
@@ -449,5 +488,83 @@
     track("diagnosis_complete", { page_id: pageId, result_type: resultType });
   }
 
-  window.HKG = { render: renderOffers, track: track, diagnosisComplete: diagnosisComplete, OFFERS: OFFERS };
+  /* ---------- 地域出し分け(§19.4) ----------
+     地域限定案件(prefectures配列を持つ案件)を、利用者が明示的に選んだ都道府県に
+     対応するものだけ表示する。要件:
+     - 初期値は未選択。IP等による推定はしない
+     - 選択値はこの関数のクロージャ内でのみ使用: localStorage保存なし・URL反映なし・
+       GA4等の計測イベントに地域は一切含めない
+     - 対象外地域はカード0件(空の広告枠も出さない)・案件0件でもページは成立
+     - 並び順は案件定義順(役割ベース)。報酬額は使わない。最大2件 */
+  var PREFECTURES = ["北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"];
+
+  function renderRegionOffers(opts) {
+    var pageId = opts.pageId, resultType = opts.resultType || null, slotId = opts.slotId || "region-kaso";
+    var mount = opts.mount;
+    if (typeof mount === "string") mount = document.querySelector(mount);
+    if (!mount) mount = document.querySelector('.offer-slot[data-slot="' + slotId + '"]');
+    if (!mount) return;
+
+    var candidates = [];
+    for (var key in OFFERS) {
+      var o = OFFERS[key];
+      if (o.prefectures && o.eligiblePages.indexOf(pageId) > -1 && isLive(o)) candidates.push(o);
+    }
+    if (!candidates.length) { mount.innerHTML = ""; mount.style.display = "none"; return; }
+
+    var selId = "hkg-pref-" + slotId;
+    mount.innerHTML =
+      '<div class="region-gate">' +
+      '<p style="font-weight:700;margin:0 0 4px;">お住まいの都道府県を選ぶと、対応する民間火葬サービスの広告(PR)を表示します</p>' +
+      '<p style="font-size:0.85rem;color:var(--text-sub);margin:0 0 8px;">選択はこの場の表示だけに使い、保存・送信はしません。選択しなくてもページはそのまま利用できます。</p>' +
+      '<select id="' + selId + '" aria-label="都道府県を選択"><option value="">都道府県を選択</option>' +
+      PREFECTURES.map(function (p) { return '<option value="' + p + '">' + p + "</option>"; }).join("") +
+      '</select><div class="region-gate-cards" style="margin-top:10px;"></div></div>';
+    mount.style.display = "";
+
+    var sel = document.getElementById(selId);
+    var box = mount.querySelector(".region-gate-cards");
+    sel.addEventListener("change", function () {
+      var pref = sel.value;
+      if (!pref) { box.innerHTML = ""; return; }
+      var matches = candidates.filter(function (o) { return o.prefectures.indexOf(pref) > -1; }).slice(0, 2);
+      if (!matches.length) {
+        box.innerHTML = '<p style="font-size:0.9rem;">選択した都道府県に対応する提携サービスの掲載は現在ありません。自治体の受付(合同火葬など)や地域の霊園・業者は、市区町村の案内で確認できます。</p>';
+        return;
+      }
+      var html = "";
+      for (var i = 0; i < matches.length; i++) html += cardHtml(matches[i], slotId, false);
+      box.innerHTML = html;
+      /* 計測: 地域は含めない(offer_id/page_id/result_typeのみ)。同一組み合わせは1回だけ */
+      var seen = (window.__hkgImpSeen = window.__hkgImpSeen || {});
+      for (var k = 0; k < matches.length; k++) {
+        var impKey = matches[k].offerId + "|" + slotId + "|" + (resultType || "");
+        if (seen[impKey]) continue;
+        seen[impKey] = 1;
+        track("affiliate_impression", {
+          offer_id: matches[k].offerId, page_id: pageId, slot_id: slotId,
+          result_type: resultType, category: matches[k].category,
+          cta_variant: "eligibility-check", card_position: k === 0 ? "primary" : "secondary",
+          offer_count: matches.length, placement_role: "region-gated", conversion_module_id: opts.moduleId || null
+        });
+      }
+      var links = box.querySelectorAll("a.offer-card-cta");
+      for (var n = 0; n < links.length; n++) {
+        (function (a, idx, total) {
+          a.addEventListener("click", function () {
+            var oid = a.getAttribute("data-offer-id");
+            var od = OFFERS[oid] || {};
+            track("affiliate_click", {
+              offer_id: oid, page_id: pageId, slot_id: slotId,
+              result_type: resultType, category: od.category || "",
+              cta_variant: "eligibility-check", card_position: idx === 0 ? "primary" : "secondary",
+              offer_count: total, placement_role: "region-gated", conversion_module_id: opts.moduleId || null
+            });
+          });
+        })(links[n], n, links.length);
+      }
+    });
+  }
+
+  window.HKG = { render: renderOffers, renderRegion: renderRegionOffers, track: track, diagnosisComplete: diagnosisComplete, OFFERS: OFFERS };
 })();

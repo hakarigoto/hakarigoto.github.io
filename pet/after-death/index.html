@@ -256,6 +256,7 @@
   <div id="guideResultArea" hidden>
     <div class="result-box" id="guideResultBox"></div>
     <div class="offer-slot" data-slot="result-primary" style="display:none"></div>
+    <div class="offer-slot" data-slot="region-kaso" style="display:none"></div>
     <p class="note">※このガイドはご希望を整理するためのもので、特定の方法や業者を推奨するものではありません。利用できる方法・料金は自治体・業者・地域・体重によって異なるため、必ず依頼先にご確認ください。</p>
   </div>
 </section>
@@ -415,6 +416,13 @@
     if (window.HKG) {
       HKG.diagnosisComplete("pet-after-death", rt);
       HKG.render({ pageId: "pet-after-death", resultType: rt, slotId: "result-primary" });
+      /* §19.4: 地域出し分けは民間火葬を検討する結果(個別/立会/訪問)のみ。
+         自治体依頼(municipal-option)では表示せず、再診断で結果が変わったらクリアする */
+      var regionSlot = document.querySelector('.offer-slot[data-slot="region-kaso"]');
+      if (regionSlot) { regionSlot.innerHTML = ""; regionSlot.style.display = "none"; }
+      if (rt === "private-cremation" || rt === "attended-cremation" || rt === "mobile-cremation") {
+        HKG.renderRegion({ pageId: "pet-after-death", resultType: rt, slotId: "region-kaso", moduleId: "after-death-result" });
+      }
     }
   }
 
