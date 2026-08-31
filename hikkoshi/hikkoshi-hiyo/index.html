@@ -255,7 +255,12 @@
       <p>賃貸なら敷金・礼金等で家賃4〜6か月分、家具家電の購入費、旧居の退去費用も見込んでおきましょう。</p>
     </details>
 
-    <!-- AD-SLOT: hikkoshi (広告配線は案件承認・個別判断後にoffers.js側で実施。公開DOMに空スロットを出さない方針のためdiv未設置) -->
+    <h2 id="mitsumori-junbi">相場と実際の見積もりが違う理由</h2>
+    <p>早見表の金額は調査の<strong>平均値の幅</strong>です。実際の見積もりは、荷物量の実測・建物条件(エレベーターの有無や搬出経路)・オプションの有無・トラックの空き状況で相場から上下します。相場との差の理由を確認できるように、見積もりを取る前に<a href="/hikkoshi/mitsumori-check/">見積もり前チェックリスト</a>で伝える条件を整理しておくのがおすすめです。</p>
+
+    <div class="offer-slot" data-slot="souba-primary" style="display:none"></div>
+
+    <p style="font-size:0.9rem;color:var(--text-sub);">手配サービスや一括見積もりを使わなくても、2〜3社の公式サイト・電話から直接同じ条件を伝えれば相見積もりは取れます。</p>
   </article>
 
   <section class="next-actions" aria-labelledby="next-actions-title">
@@ -366,6 +371,13 @@
     document.getElementById("result").hidden = false;
   });
 })();
+</script>
+<script src="/assets/offers.js"></script>
+<script>
+/* §19.1: ラクっとNAVI第二掲載(相場結果の直後ではなく、読み方・乖離理由・条件確認の後) */
+if (window.HKG) {
+  HKG.render({ pageId: "hikkoshi-hiyo", resultType: null, slotId: "souba-primary", placementRole: "primary-conversion", moduleId: "souba-article-end" });
+}
 </script>
 <script src="/assets/ads.js"></script>
 <script src="/assets/nav.js" defer></script>

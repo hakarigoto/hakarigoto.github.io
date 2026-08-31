@@ -252,6 +252,39 @@
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
 
+    rakuttoNavi: {
+      offerId: "rakuttoNavi", name: "引越しラクっとNAVI", asp: "a8",
+      category: "hikkoshi-mitsumori", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4BAH9O+ECSAMY+3CP0+5YJRM",
+      impressionHtml: '<img src="https://www10.a8.net/0.gif?a8mat=4BAH9O+ECSAMY+3CP0+5YJRM" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "各社との電話やり取りなしで、複数社の見積もりを比べたい人向け",
+      summary: "専用のサポートセンターが一度ヒアリングを行い、複数(平均3〜5社)の引越し会社の見積もりを手配するサービスです。各社と個別に電話でやり取りせずに相見積もりを取る選択肢のひとつです。",
+      recommendedFor: ["複数社の見積もりを比べてから決めたい", "各社からの営業電話の対応を避けたい", "荷物や希望条件を一度だけ伝えて済ませたい"],
+      notRecommendedFor: ["サポートセンターからのヒアリング・本人確認の連絡(電話)を受けられない場合は手配が進みません", "各社の担当者と直接条件を詰めたい場合(2〜3社への直接依頼が向きます)"],
+      feeText: "利用条件は公式サイトで確認",
+      areaText: "対応地域は公式サイトで確認",
+      ctaText: "対応地域と申し込み条件を確認する",
+      resultTypes: ["*"],
+      eligiblePages: ["hikkoshi-mitsumori-check", "hikkoshi-hiyo", "hikkoshi-jiriki-vs-gyosha"],
+      lastCheckedAt: "2026-08-31", disclosure: "PR"
+    },
+
+    zexyShikijo: {
+      offerId: "zexyShikijo", name: "ゼクシィ(式場見学・ブライダルフェア)", asp: "afb",
+      category: "wedding-venue", status: "active", approvalStatus: "approved",
+      destinationUrl: "", /* afb広告原稿の取得後に設定(空の間は表示されない) */
+      headline: "式場見学・ブライダルフェアの予約先を探し始めた人向け",
+      summary: "ゼクシィから式場見学・ブライダルフェアのウェブ予約ができます。複数の会場で実際の見積もりをもらい、このページの概算と突き合わせて比べるための選択肢です。",
+      recommendedFor: ["会場を具体的に探し始めている", "複数の会場の見積もりを比べたい", "見学やフェアの日程を先に押さえたい"],
+      notRecommendedFor: ["まだ予算の全体像を検討している段階(先にこのページの概算とご祝儀・援助の整理が役立ちます)", "予約後の変更・キャンセル条件は各式場・予約サイトの案内で確認してください"],
+      feeText: "予約の条件・特典の有無は公式サイトで確認",
+      areaText: "対象エリアは公式サイトで確認",
+      ctaText: "式場見学・フェアの対象条件を確認する",
+      resultTypes: ["planning-stage", "estimate-comparison"],
+      eligiblePages: ["manner-kekkon-hiyo"],
+      lastCheckedAt: "2026-08-31", disclosure: "PR"
+    },
+
     watashiNext: {
       offerId: "watashiNext", name: "わたしNEXT", asp: "moshimo",
       category: "taishoku-daiko", status: "active", approvalStatus: "approved",

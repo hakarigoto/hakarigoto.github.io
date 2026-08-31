@@ -297,6 +297,13 @@
       <p class="hint"><b>この例の仮定:</b>3〜4人世帯、冷蔵庫・洗濯機・ベッド・食器棚あり、2階からの搬出でエレベーターなし、繁忙期以外。<b>含まれない費用:</b>宿泊費、2日に分けた場合の追加のレンタカー代、けがや破損による費用。<b>この条件では金額差だけでなく、階段作業の負担、長距離運転の疲労、大型家具の破損リスク、当日に子どもやペットへ付き添えるかが判断に関わります。実際の契約・見積もりで変わります。</b></p>
     </div>
 
+    <details id="gyoshaMitsumori" style="margin:16px 0;">
+      <summary style="font-weight:700;cursor:pointer;">業者の見積もり条件も確認する</summary>
+      <p style="margin-top:8px;">業者に依頼する場合の金額は、実際の見積もりでしか確定しません(上の例の「業者へ依頼」欄は調査平均の目安です)。見積もりを取るときは、<a href="/hikkoshi/mitsumori-check/">見積もり前チェックリスト</a>で荷物量・搬出経路・日程の条件を整理してから依頼すると、方式ごとの金額差を比べやすくなります。</p>
+      <div class="offer-slot" data-slot="gyosha-comparison" style="display:none"></div>
+      <p style="font-size:0.9rem;color:var(--text-sub);">手配サービスを使わず、2〜3社の公式サイト・電話へ直接同じ条件を伝えて比べることもできます。</p>
+    </details>
+
     <h2 id="faq">よくある質問</h2>
     <details class="faq">
       <summary>自分で引越すと本当に安くなりますか?</summary>
@@ -509,6 +516,20 @@
       '<p class="ev-note">破損時の扱いは方法によって異なります。事業者に依頼した場合は標準引越運送約款に責任と申し出期間の定めがあります(適用は各社の約款によります)。自分で運んだ場合や手伝ってもらった場合は補償がなく自己負担になります。</p>';
 
     document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/offers.js"></script>
+<script>
+/* §19.1: ラクっとNAVI第三掲載。無条件表示はせず、利用者が「業者の見積もり条件も確認する」を
+   自発的に開いた場合のみ resultType=comparison-requested で描画する(1回だけ) */
+(function () {
+  var d = document.getElementById("gyoshaMitsumori");
+  var rendered = false;
+  if (d) d.addEventListener("toggle", function () {
+    if (!d.open || rendered || !window.HKG) return;
+    rendered = true;
+    HKG.render({ pageId: "hikkoshi-jiriki-vs-gyosha", resultType: "comparison-requested", slotId: "gyosha-comparison", placementRole: "comparison-optional", moduleId: "gyosha-mitsumori-details" });
   });
 })();
 </script>

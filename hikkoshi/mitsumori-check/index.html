@@ -250,6 +250,10 @@
     </details>
   </article>
 
+  <div class="offer-slot" data-slot="mitsumori-primary" style="display:none"></div>
+
+  <p style="font-size:0.9rem;color:var(--text-sub);">見積もりの手配サービスや一括見積もりを使わない場合も、2〜3社の公式サイト・電話から直接同じ条件を伝えれば相見積もりは取れます。<a href="/hikkoshi/jiriki-vs-gyosha/">業者に頼まない方法との比較</a>も確認できます。</p>
+
   <section class="next-actions" aria-labelledby="next-actions-title">
     <h2 id="next-actions-title">次に確認すること</h2>
     <div class="next-actions__grid">
@@ -381,6 +385,14 @@
     document.getElementById("result").hidden = false;
   });
 })();
+</script>
+<script src="/assets/offers.js"></script>
+<script>
+/* §19.1: ラクっとNAVI限定配線(方式比較・確認事項の後、代替手段・next-actionsの前)。
+   診断ページではないため resultType なしで描画する(案件側は resultTypes:["*"]) */
+if (window.HKG) {
+  HKG.render({ pageId: "hikkoshi-mitsumori-check", resultType: null, slotId: "mitsumori-primary", placementRole: "primary-conversion", moduleId: "mitsumori-check-article-end" });
+}
 </script>
 <script src="/assets/ads.js"></script>
 <script src="/assets/nav.js" defer></script>
