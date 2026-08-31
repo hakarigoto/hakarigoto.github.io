@@ -271,8 +271,9 @@
 
     zexyShikijoKengaku: {
       offerId: "zexyShikijoKengaku", name: "ゼクシィ(式場見学・ブライダルフェア)", asp: "afb",
-      category: "wedding-venue", status: "paused" /* afb原稿URL設定時にactiveへ */, approvalStatus: "approved",
-      destinationUrl: "", /* afb広告原稿の取得後に設定(空の間は表示されない) */
+      category: "wedding-venue", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://track.affiliate-b.com/visit.php?a=x5963H-W2852853&p=A9876093",
+      impressionHtml: '<img src="https://track.affiliate-b.com/lead/x5963H/A9876093/W2852853" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "式場見学・ブライダルフェアの予約先を探し始めた人向け",
       summary: "ゼクシィから式場見学・ブライダルフェアのウェブ予約ができます。複数の会場で実際の見積もりをもらい、このページの概算と突き合わせて比べるための選択肢です。",
       recommendedFor: ["会場を具体的に探し始めている", "複数の会場の見積もりを比べたい", "見学やフェアの日程を先に押さえたい"],
