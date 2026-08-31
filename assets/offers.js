@@ -269,9 +269,9 @@
       lastCheckedAt: "2026-08-31", disclosure: "PR"
     },
 
-    zexyShikijo: {
-      offerId: "zexyShikijo", name: "ゼクシィ(式場見学・ブライダルフェア)", asp: "afb",
-      category: "wedding-venue", status: "active", approvalStatus: "approved",
+    zexyShikijoKengaku: {
+      offerId: "zexyShikijoKengaku", name: "ゼクシィ(式場見学・ブライダルフェア)", asp: "afb",
+      category: "wedding-venue", status: "paused" /* afb原稿URL設定時にactiveへ */, approvalStatus: "approved",
       destinationUrl: "", /* afb広告原稿の取得後に設定(空の間は表示されない) */
       headline: "式場見学・ブライダルフェアの予約先を探し始めた人向け",
       summary: "ゼクシィから式場見学・ブライダルフェアのウェブ予約ができます。複数の会場で実際の見積もりをもらい、このページの概算と突き合わせて比べるための選択肢です。",
