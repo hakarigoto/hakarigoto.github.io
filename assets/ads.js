@@ -77,6 +77,17 @@
 </ul>
 <small>Amazonのアソシエイトとして、当メディアは適格販売により収入を得ています。</small>
 <img src="//i.moshimo.com/af/i/impression?a_id=5753650&p_id=170&pc_id=185&pl_id=38594" width="1" height="1" style="border:none;" alt="" loading="lazy">`,
+    /* もしも経由Amazon(promotion_id=170)。§20.4.5: 第2ページ実験(goshugi-kakikataのみ・最大3リンク)。
+       記事本文で実際に説明した商品カテゴリのみ・中立の検索結果リンク・ランキングなし。リンクURLは改変禁止 */
+    "amazon-goshugi": `
+<p style="margin:0 0 6px;">当日までに用意が間に合わないものがあるときは、記事で説明した定番の品をAmazonの検索結果から探せます(在庫とお届け日は検索結果で確認できます)。特定の商品をおすすめするものではありません。</p>
+<ul style="margin:0 0 8px;">
+    <li><a href="//af.moshimo.com/af/c/click?a_id=5753650&p_id=170&pc_id=185&pl_id=38594&url=https%3A%2F%2Fwww.amazon.co.jp%2Fs%3Fk%3D%25E3%2581%2594%25E7%25A5%259D%25E5%2584%2580%25E8%25A2%258B%2520%25E7%25B5%2590%25E5%25A9%259A%2520%25E5%25AF%25BF" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade" target="_blank">結婚用のご祝儀袋(結び切り・10本水引)を探す</a></li>
+    <li><a href="//af.moshimo.com/af/c/click?a_id=5753650&p_id=170&pc_id=185&pl_id=38594&url=https%3A%2F%2Fwww.amazon.co.jp%2Fs%3Fk%3D%25E7%25AD%2586%25E3%2583%259A%25E3%2583%25B3%2520%25E6%2585%25B6%25E4%25BA%258B%25E7%2594%25A8%2520%25E6%25AF%259B%25E7%25AD%2586" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade" target="_blank">慶事用の筆ペン(濃い墨)を探す</a></li>
+    <li><a href="//af.moshimo.com/af/c/click?a_id=5753650&p_id=170&pc_id=185&pl_id=38594&url=https%3A%2F%2Fwww.amazon.co.jp%2Fs%3Fk%3D%25E8%25A2%25B1%25E7%25B4%2597%2520%25E6%2585%25B6%25E4%25BA%258B%25E7%2594%25A8" rel="nofollow sponsored" referrerpolicy="no-referrer-when-downgrade" target="_blank">慶事用の袱紗(ふくさ)を探す</a></li>
+</ul>
+<small>Amazonのアソシエイトとして、当メディアは適格販売により収入を得ています。</small>
+<img src="//i.moshimo.com/af/i/impression?a_id=5753650&p_id=170&pc_id=185&pl_id=38594" width="1" height="1" style="border:none;" alt="" loading="lazy">`,
     "wedding": "", /* 未承認(ご祝儀→ブライダル系の提携待ち) */
     "hakajimai": "", /* Sprint 9: 未使用タグを廃止(offer-card管理に移行済み) */
 
@@ -108,6 +119,7 @@
      slot_id を "static-〜" にして区別する。未登録キーは "static:"+key で送る。 */
   var SLOT_OFFER = {
     "amazon-tsuya": "amazonMoshimo",
+    "amazon-goshugi": "amazonMoshimo",
     "tenshoku": "gaiaTaishoku",
     "hakajimai": "seaceremony",
     "ihin": "ihin110",
