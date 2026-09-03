@@ -29,6 +29,13 @@
        解除は removeItem。個人を特定するIDは送信しない。 */
   var GA4_ID = "G-NENYSGH5PH";
   var IS_DEV = /^(localhost|127\.|0\.0\.0\.0)/.test(location.hostname) || location.protocol === "file:";
+  /* §20.2: 運営者端末の内部トラフィック設定導線。
+     任意のページに #hkg-internal-on を付けて開くとフラグ設定、#hkg-internal-off で解除。
+     スマホ等でDevToolsなしに設定するための仕組み(URLは共有しない前提の運用) */
+  try {
+    if (location.hash === "#hkg-internal-on") localStorage.setItem("hkg_internal_traffic", "true");
+    if (location.hash === "#hkg-internal-off") localStorage.removeItem("hkg_internal_traffic");
+  } catch (e) { /* noop */ }
   var IS_INTERNAL = false;
   try { IS_INTERNAL = localStorage.getItem("hkg_internal_traffic") === "true"; } catch (e) { /* noop */ }
   if (GA4_ID && !IS_DEV) {
@@ -131,6 +138,33 @@
         offer_id: offerId, page_id: pagePath, slot_id: slotId,
         result_type: null, cta_variant: "static-text", card_position: "primary", offer_count: 1
       });
+      /* affiliate_view(§20.1): 静的スロットも視認を計測(50%×1秒×1回) */
+      (function (slotEl, oid, sid) {
+        if (!("IntersectionObserver" in window)) return;
+        var seenV = (window.__hkgViewSeen = window.__hkgViewSeen || {});
+        var vKey = oid + "|" + sid + "|";
+        if (seenV[vKey]) return;
+        var timer = null;
+        var io = new IntersectionObserver(function (entries) {
+          for (var q = 0; q < entries.length; q++) {
+            var en = entries[q];
+            if (en.isIntersecting && en.intersectionRatio >= 0.5) {
+              if (!timer) timer = setTimeout(function () {
+                if (!seenV[vKey]) {
+                  seenV[vKey] = 1;
+                  sendEvent("affiliate_view", {
+                    offer_id: oid, page_id: pagePath, slot_id: sid,
+                    result_type: null, category: "static", placement_role: "static",
+                    conversion_module_id: null, card_position: "primary", cta_variant: "static-text"
+                  });
+                }
+                io.disconnect();
+              }, 1000);
+            } else if (timer) { clearTimeout(timer); timer = null; }
+          }
+        }, { threshold: [0, 0.5] });
+        io.observe(slotEl);
+      })(el, offerId, slotId);
       var links = el.querySelectorAll("a");
       for (var n = 0; n < links.length; n++) {
         (function (a, oid, sid) {

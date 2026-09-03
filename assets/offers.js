@@ -476,6 +476,17 @@
         conversion_module_id: moduleId
       });
     }
+    /* affiliate_view(§20.1): 描画済みカードごとに視認を監視 */
+    var cardEls = mount.querySelectorAll(".offer-card");
+    for (var v = 0; v < cardEls.length; v++) {
+      observeView(cardEls[v], {
+        offer_id: cardEls[v].getAttribute("data-offer-id"),
+        page_id: pageId, slot_id: slotId, result_type: resultType,
+        category: (OFFERS[cardEls[v].getAttribute("data-offer-id")] || {}).category || "",
+        placement_role: placementRole, conversion_module_id: moduleId,
+        card_position: cardPos(v), cta_variant: "eligibility-check"
+      });
+    }
     var links = mount.querySelectorAll("a.offer-card-cta");
     for (var n = 0; n < links.length; n++) {
       (function (a, idx) {
@@ -504,6 +515,32 @@
 
   function diagnosisComplete(pageId, resultType) {
     track("diagnosis_complete", { page_id: pageId, result_type: resultType });
+  }
+
+  /* ---------- affiliate_view(§20.1) ----------
+     挿入(impression)とは別に「実際に画面に入ったか」を計測する。
+     条件: カードの50%以上が1秒以上継続表示・同一PV内 offer×slot×resultType で1回。
+     診断回答・入力値・地域は送信しない(paramsに含めない設計で担保) */
+  function observeView(cardEl, params) {
+    if (!("IntersectionObserver" in window) || !cardEl) return;
+    var seen = (window.__hkgViewSeen = window.__hkgViewSeen || {});
+    var key = params.offer_id + "|" + params.slot_id + "|" + (params.result_type || "");
+    if (seen[key]) return;
+    var timer = null;
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var en = entries[i];
+        if (en.isIntersecting && en.intersectionRatio >= 0.5) {
+          if (!timer) {
+            timer = setTimeout(function () {
+              if (!seen[key]) { seen[key] = 1; track("affiliate_view", params); }
+              io.disconnect();
+            }, 1000);
+          }
+        } else if (timer) { clearTimeout(timer); timer = null; }
+      }
+    }, { threshold: [0, 0.5] });
+    io.observe(cardEl);
   }
 
   /* ---------- 地域出し分け(§19.4) ----------
@@ -568,6 +605,17 @@
           result_type: resultType, category: matches[k].category,
           cta_variant: "eligibility-check", card_position: k === 0 ? "primary" : "secondary",
           offer_count: matches.length, placement_role: "region-gated", conversion_module_id: opts.moduleId || null
+        });
+      }
+      /* affiliate_view(§20.1): 都道府県は送信しない(paramsに含めない) */
+      var cardEls = box.querySelectorAll(".offer-card");
+      for (var v = 0; v < cardEls.length; v++) {
+        observeView(cardEls[v], {
+          offer_id: cardEls[v].getAttribute("data-offer-id"),
+          page_id: pageId, slot_id: slotId, result_type: resultType,
+          category: (OFFERS[cardEls[v].getAttribute("data-offer-id")] || {}).category || "",
+          placement_role: "region-gated", conversion_module_id: opts.moduleId || null,
+          card_position: v === 0 ? "primary" : "secondary", cta_variant: "eligibility-check"
         });
       }
       var links = box.querySelectorAll("a.offer-card-cta");
