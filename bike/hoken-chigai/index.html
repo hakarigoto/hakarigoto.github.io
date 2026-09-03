@@ -235,6 +235,12 @@
   </ul>
 </div>
 <p>保険は、すべて付けるか、すべて外すかの二択ではありません。自賠責で補償される範囲、自分で負担できる範囲、任意保険や盗難保険で移したいリスクを分けて考えることが重要です。</p>
+
+<p>バイク本体の盗難損失を自己資金だけで負担することが難しく、盗難補償を検討する場合は、補償対象・免責・保管条件を公式情報で確認できます。</p>
+
+<div class="offer-slot" data-slot="tonan-hoken" style="display:none"></div>
+
+<p style="font-size:0.9rem;color:var(--text-sub);">盗難補償を使わない備え方もあります。複数の盗難防止装置・屋内や施錠設備のある保管場所・地域の発生状況の確認(上記の公的統計)を組み合わせ、損失は自己負担と割り切る選択肢です。</p>
 </article>
 
 <section class="next-actions" aria-labelledby="next-actions-title">
@@ -290,6 +296,14 @@
     <div class="footer-copy">© 2026 はかりごと</div>
   </div></footer>
 
+<script src="/assets/offers.js"></script>
+<script>
+/* §20.4.1: ZuttoRide Club 1カード(3種比較→リスク→チェックリスト→説明の後)。
+   インズウェブ承認後は選択UI(§20.4.2)へ移行予定 */
+if (window.HKG) {
+  HKG.render({ pageId: "bike-hoken-chigai", resultType: null, slotId: "tonan-hoken", placementRole: "primary-conversion", moduleId: "hoken-chigai-after-checklist" });
+}
+</script>
 <script src="/assets/ads.js"></script>
 <script src="/assets/nav.js" defer></script>
 </body>

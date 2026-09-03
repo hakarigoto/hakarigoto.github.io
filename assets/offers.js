@@ -306,6 +306,23 @@
       lastCheckedAt: "2026-08-31", disclosure: "PR"
     },
 
+    zuttoRideClub: {
+      offerId: "zuttoRideClub", name: "ZuttoRide Club", asp: "moshimo",
+      category: "bike-tonan-hoken", status: "active", approvalStatus: "approved",
+      destinationUrl: "//af.moshimo.com/af/c/click?a_id=5781350&p_id=1502&pc_id=2679&pl_id=22208",
+      impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5781350&p_id=1502&pc_id=2679&pl_id=22208" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "盗難補償の対象・免責・保管条件を確認したい人向け",
+      summary: "バイク専門の盗難保険・ロードサービス。車両本体の盗難などに備える補償で、自賠責・任意保険とは別に契約するタイプのサービスです。補償の対象・範囲は契約内容により異なります。",
+      recommendedFor: ["車両本体の盗難損失を自己資金だけで負担するのが難しい", "任意保険に盗難補償を付けていない", "補償対象・免責・保管条件を確認してから判断したい"],
+      notRecommendedFor: ["補償対象となる車両・年式・車両価格等の制限は公式サイトでの確認が必要です", "パーツ単体の盗難・鍵・いたずら等の扱いは契約内容によります", "加入しない選択肢もあります(防犯装置と保管環境の強化+自己負担という備え方)。加入とどちらが合うかはご自身の条件で判断してください"],
+      feeText: "料金プランは車両・補償内容で異なる(公式サイトで確認)",
+      areaText: "対象車両・加入条件は公式サイトで確認",
+      ctaText: "盗難補償の対象・除外条件を確認する",
+      resultTypes: ["*"],
+      eligiblePages: ["bike-hoken-chigai"],
+      lastCheckedAt: "2026-09-03", disclosure: "PR"
+    },
+
     crecariChintai: {
       offerId: "crecariChintai", name: "クレカリ賃貸", asp: "a8",
       category: "chintai-payment", status: "active", approvalStatus: "approved",
