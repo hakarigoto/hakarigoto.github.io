@@ -306,6 +306,23 @@
       lastCheckedAt: "2026-08-31", disclosure: "PR"
     },
 
+    crecariChintai: {
+      offerId: "crecariChintai", name: "クレカリ賃貸", asp: "a8",
+      category: "chintai-payment", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4BC2EJ+2EBW9M+532U+64C3M",
+      impressionHtml: '<img src="https://www10.a8.net/0.gif?a8mat=4BC2EJ+2EBW9M+532U+64C3M" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "初期費用や家賃を、手数料を理解したうえでカード払いにしたい人向け",
+      summary: "全国の賃貸物件に対応する家賃・初期費用・更新料のクレジットカード決済サービス。銀行振込の代わりにカードで支払い、支払時期を調整する選択肢です。利用には手数料がかかります。",
+      recommendedFor: ["初期費用の支払時期をカードの引き落としサイクルに合わせたい", "振込の手間を減らしたい", "手数料とポイント等を比べたうえで判断したい"],
+      notRecommendedFor: ["利用手数料(一度払い4.6%・家賃自動支払い3.6%、2026年9月確認)を許容できない場合は通常の銀行振込が向きます", "JCBカードは利用できません", "家賃が口座引き落としの場合はそのままでは利用できません(振込への変更の相談が必要)"],
+      feeText: "利用手数料: 一度払い4.6%/家賃自動支払い3.6%(2026年9月確認・改定される場合あり)",
+      areaText: "全国の賃貸物件に対応(対象費用・利用条件は公式サイトで確認)",
+      ctaText: "利用手数料と対象条件を確認する",
+      resultTypes: ["payment-method-requested"],
+      eligiblePages: ["hikkoshi-shoki-hiyo"],
+      lastCheckedAt: "2026-09-03", disclosure: "PR"
+    },
+
     rakuttoNavi: {
       offerId: "rakuttoNavi", name: "引越しラクっとNAVI", asp: "a8",
       category: "hikkoshi-mitsumori", status: "active", approvalStatus: "approved",

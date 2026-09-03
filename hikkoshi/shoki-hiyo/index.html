@@ -254,6 +254,19 @@
       <li><strong>管理費・共益費</strong>:初期費用に含まれるのか、翌月からの支払いか</li>
     </ul>
 
+    <h2 id="shiharai">支払い方法を整理する</h2>
+    <p>初期費用の支払いは銀行振込または現金が一般的です。支払い方法を決める前に、不動産会社へ<strong>支払時期(契約時か入居前か)</strong>を確認し、費用項目の内訳の再確認と、任意オプションが不要でないかの確認を済ませておきます。</p>
+    <ul>
+      <li><strong>銀行振込・現金払い</strong>: 最も一般的。追加費用は振込手数料程度</li>
+      <li><strong>クレジットカード払い</strong>: 不動産会社が対応している場合、または決済サービスを経由する場合のみ。<strong>利用手数料がかかります</strong></li>
+    </ul>
+    <details id="cardPayGate" style="margin:12px 0;">
+      <summary style="font-weight:700;cursor:pointer;">カード払いの条件を見る</summary>
+      <p style="margin-top:8px;"><strong>カード払いには利用手数料がかかります</strong>(下記の決済サービスの例では、初期費用など一度払いで4.6%・家賃の自動支払いで3.6%。2026年9月確認時点)。手数料を上回る利点(支払時期の調整・カードのポイント等)があるかを、通常の振込と比べてから判断してください。対象外の費用や、対応カードの制限(例: JCBは利用不可)もあります。</p>
+      <div class="offer-slot" data-slot="payment-method" style="display:none"></div>
+      <p style="font-size:0.9rem;color:var(--text-sub);">カード払いを使わない場合も、支払期日の相談は不動産会社へ直接できます。サービスを利用しないという選択肢も含めて比較してください。</p>
+    </details>
+
     <h2 id="soudan">金額に疑問があるときの確認先</h2>
     <ul>
       <li><strong>仲介会社・貸主</strong>:項目ごとの内訳と、必須か任意かの説明を求めることができます</li>
@@ -425,6 +438,20 @@
     }
 
     document.getElementById("result").hidden = false;
+  });
+})();
+</script>
+<script src="/assets/offers.js"></script>
+<script>
+/* §20.4.4: クレカリ賃貸は利用者が「カード払いの条件を見る」を自発的に開いた場合のみ描画。
+   計算結果・入力金額では表示しない。1回だけ描画 */
+(function () {
+  var d = document.getElementById("cardPayGate");
+  var rendered = false;
+  if (d) d.addEventListener("toggle", function () {
+    if (!d.open || rendered || !window.HKG) return;
+    rendered = true;
+    HKG.render({ pageId: "hikkoshi-shoki-hiyo", resultType: "payment-method-requested", slotId: "payment-method", placementRole: "comparison-optional", moduleId: "shoki-hiyo-payment-gate" });
   });
 })();
 </script>
