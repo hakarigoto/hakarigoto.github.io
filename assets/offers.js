@@ -306,6 +306,22 @@
       lastCheckedAt: "2026-08-31", disclosure: "PR"
     },
 
+    matsui: {
+      offerId: "matsui", name: "松井証券", asp: "accesstrade",
+      category: "securities", status: "paused" /* Sol金融保留の解除確認後にactiveへ(§20.7A+8/16金融個別判断) */, approvalStatus: "approved",
+      destinationUrl: "", /* アクセストレードの広告素材取得後に設定 */
+      headline: "リスクを理解したうえで、積立口座の条件を比較したい人向け",
+      summary: "証券口座の一つ。取扱商品・手数料・積立条件・NISA対応は口座ごとに異なるため、上の確認項目に沿って複数口座の公式情報を比較して判断してください。どこか1社が誰にとっても最適ということはありません。",
+      recommendedFor: ["元本割れリスクを理解し、余裕資金で積み立てる前提がある", "手数料や取扱商品を自分で比較する段階にいる", "複数口座の条件を並べて確認したい"],
+      notRecommendedFor: ["投資信託は元本保証ではありません。当面使う予定のあるお金・生活防衛資金での投資", "口座を開設しない(まず学ぶ・銀行預金のままにする)という選択肢もあります", "ポイントやキャンペーンだけを理由にした口座選び"],
+      feeText: "口座開設・維持の費用や取引コストは公式サイトで確認",
+      areaText: "取扱商品・NISA対応は公式サイトで確認",
+      ctaText: "取扱商品と手数料の条件を確認する",
+      resultTypes: ["ready-to-compare"],
+      eligiblePages: ["tsumitate-simulator"],
+      lastCheckedAt: "2026-09-07", disclosure: "PR"
+    },
+
     zuttoRideClub: {
       offerId: "zuttoRideClub", name: "ZuttoRide Club", asp: "moshimo",
       category: "bike-tonan-hoken", status: "active", approvalStatus: "approved",
