@@ -138,7 +138,7 @@
       notRecommendedFor: ["すでに石材店・改葬先が決まっている場合"],
       feeText: "資料請求は無料",
       areaText: "対応地域は公式サイトで確認",
-      resultTypes: ["perpetual-memorial", "ossuary", "tree-burial", "sea-burial", "undecided"],
+      resultTypes: ["perpetual-memorial", "ossuary", "tree-burial", "undecided"],
       eligiblePages: ["manner-hakajimai"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
     },
@@ -304,6 +304,40 @@
       resultTypes: ["*"],
       eligiblePages: ["pet-kaso-checklist", "pet-after-death"],
       lastCheckedAt: "2026-08-31", disclosure: "PR"
+    },
+
+    renkindou: {
+      offerId: "renkindou", name: "錬金堂", asp: "a8",
+      category: "shuccho-kaitori", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+C211JU+3EMG+354KNM",
+      impressionHtml: '<img src="https://www12.a8.net/0.gif?a8mat=4B82L2+C211JU+3EMG+354KNM" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "処分する前に、売れるものか出張査定で確認したい人向け",
+      summary: "家庭の不用品を対象にした出張買取サービス。捨てる前に「値が付くものか」を査定で確認する選択肢です。査定額や対象品目は品物・状態によって異なります。",
+      recommendedFor: ["捨てる前に売れるか確認したい", "量が多く持ち込みが難しい", "査定額を見てから手放し方を決めたい"],
+      notRecommendedFor: ["対象品目・対応地域は公式サイトでの確認が必要です", "フリマアプリや自治体回収など、買取以外の手放し方と比べてから決めても遅くありません"],
+      feeText: "出張査定の条件は公式サイトで確認",
+      areaText: "対応地域は公式サイトで確認",
+      ctaText: "出張査定の対象品目と流れを確認する",
+      resultTypes: ["sell"],
+      eligiblePages: ["katazuke-shobun-shindan"],
+      lastCheckedAt: "2026-09-07", disclosure: "PR"
+    },
+
+    mikiwaSankotsu: {
+      offerId: "mikiwaSankotsu", name: "ミキワ(粉骨・委託散骨)", asp: "moshimo",
+      category: "sankotsu", status: "active", approvalStatus: "approved",
+      destinationUrl: "//af.moshimo.com/af/c/click?a_id=5700587&p_id=1671&pc_id=3117&pl_id=24045",
+      impressionHtml: '<img src="//i.moshimo.com/af/i/impression?a_id=5700587&p_id=1671&pc_id=3117&pl_id=24045" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "散骨に立ち会わず、粉骨から委託で任せたい人向け",
+      summary: "遺骨を訪問引取・郵送・来社で預け、洗浄・粉骨のうえ代理で海洋散骨まで行う委託型サービスの資料請求。船に同行する形ではなく、費用と手間を抑えて任せる選択肢です。",
+      recommendedFor: ["散骨への立ち会いは希望しない", "粉骨から散骨までまとめて任せたい", "資料で流れと費用を確認してから決めたい"],
+      notRecommendedFor: ["家族で船に乗って見送りたい場合は、貸切乗船型の散骨(上のカード等)が適します", "親族の合意がまだ取れていない場合"],
+      feeText: "資料請求は無料",
+      areaText: "引取方法(訪問・郵送・来社)の条件は公式サイトで確認",
+      ctaText: "粉骨・委託散骨の流れと費用を資料で確認する",
+      resultTypes: ["sea-burial"],
+      eligiblePages: ["manner-hakajimai"],
+      lastCheckedAt: "2026-09-07", disclosure: "PR"
     },
 
     matsui: {
