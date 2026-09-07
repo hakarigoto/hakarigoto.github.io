@@ -342,16 +342,18 @@
 
     matsui: {
       offerId: "matsui", name: "松井証券", asp: "accesstrade",
-      category: "securities", status: "paused" /* Sol金融保留の解除確認後にactiveへ(§20.7A+8/16金融個別判断) */, approvalStatus: "approved",
-      destinationUrl: "https://h.accesstrade.net/sp/cc?rk=01003cd900ovx1",
-      impressionHtml: '<img src="https://h.accesstrade.net/sp/rr?rk=01003cd900ovx1" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      category: "securities", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://h.accesstrade.net/sp/cc?rk=0100efx900ovx1",
+      impressionHtml: '<img src="https://h.accesstrade.net/sp/rr?rk=0100efx900ovx1" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "リスクを理解したうえで、積立口座の条件を比較したい人向け",
       summary: "証券口座の一つ。取扱商品・手数料・積立条件・NISA対応は口座ごとに異なるため、上の確認項目に沿って複数口座の公式情報を比較して判断してください。どこか1社が誰にとっても最適ということはありません。",
       recommendedFor: ["元本割れリスクを理解し、余裕資金で積み立てる前提がある", "手数料や取扱商品を自分で比較する段階にいる", "複数口座の条件を並べて確認したい"],
       notRecommendedFor: ["投資信託は元本保証ではありません。当面使う予定のあるお金・生活防衛資金での投資", "口座を開設しない(まず学ぶ・銀行預金のままにする)という選択肢もあります", "ポイントやキャンペーンだけを理由にした口座選び"],
       feeText: "口座開設・維持の費用や取引コストは公式サイトで確認",
       areaText: "取扱商品・NISA対応は公式サイトで確認",
-      ctaText: "取扱商品と手数料の条件を確認する",
+      /* 松井証券ガイドライン(2023/11/1)によりテキスト素材の文言変更は禁止。
+         CTAは公式テキスト素材「松井証券」をそのまま使用する(独自CTA文言は使わない) */
+      ctaText: "松井証券",
       resultTypes: ["ready-to-compare"],
       eligiblePages: ["tsumitate-simulator"],
       lastCheckedAt: "2026-09-07", disclosure: "PR"
