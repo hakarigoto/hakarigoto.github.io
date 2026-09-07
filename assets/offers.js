@@ -343,7 +343,8 @@
     matsui: {
       offerId: "matsui", name: "松井証券", asp: "accesstrade",
       category: "securities", status: "paused" /* Sol金融保留の解除確認後にactiveへ(§20.7A+8/16金融個別判断) */, approvalStatus: "approved",
-      destinationUrl: "", /* アクセストレードの広告素材取得後に設定 */
+      destinationUrl: "https://h.accesstrade.net/sp/cc?rk=01003cd900ovx1",
+      impressionHtml: '<img src="https://h.accesstrade.net/sp/rr?rk=01003cd900ovx1" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "リスクを理解したうえで、積立口座の条件を比較したい人向け",
       summary: "証券口座の一つ。取扱商品・手数料・積立条件・NISA対応は口座ごとに異なるため、上の確認項目に沿って複数口座の公式情報を比較して判断してください。どこか1社が誰にとっても最適ということはありません。",
       recommendedFor: ["元本割れリスクを理解し、余裕資金で積み立てる前提がある", "手数料や取扱商品を自分で比較する段階にいる", "複数口座の条件を並べて確認したい"],
