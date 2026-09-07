@@ -361,6 +361,7 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
         <li>当面使う予定のないお金(生活防衛資金とは別)で積み立てる</li>
         <li>手数料(信託報酬)が長期の結果に影響することを理解している</li>
         <li>短期の値動きで売買を繰り返さない前提で考えている</li>
+        <li>NISA口座で買付けできる金融機関は同一年に1つです。金融機関の変更条件や手続き時期も公式情報で確認してください</li>
       </ul>
       <div class="offer-slot" data-slot="result-primary"></div>
     </details>
@@ -884,19 +885,28 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
    金額・入力値はGA4へ送信しない(page_idとresult_typeのみ)。 */
 (function () {
   "use strict";
-  var touched = false, fired = false;
+  /* §20(Sol 2026-09-07修正): 順序に依存しないゲート。
+     「計算機へ入力した」と「リスク確認を開いた」の両方が成立したときだけ、
+     一度だけ ready-to-compare を描画する。learning-stageでは何も描画しない。 */
+  var touched = false;
+  var readyRendered = false;
   var sim = document.getElementById("sim");
-  if (sim) sim.addEventListener("input", function () { touched = true; });
   var dt = document.getElementById("hikaku-ready");
-  if (dt) dt.addEventListener("toggle", function () {
-    if (!dt.open || fired) return;
-    fired = true;
-    var rt = touched ? "ready-to-compare" : "learning-stage";
+  function maybeRenderReady() {
+    if (!touched || !dt || !dt.open || readyRendered) return;
+    readyRendered = true;
     if (window.HKG) {
-      HKG.diagnosisComplete("tsumitate-simulator", rt);
-      HKG.render({ pageId: "tsumitate-simulator", resultType: rt, slotId: "result-primary" });
+      HKG.diagnosisComplete("tsumitate-simulator", "ready-to-compare");
+      HKG.render({ pageId: "tsumitate-simulator", resultType: "ready-to-compare", slotId: "result-primary" });
     }
-  });
+  }
+  if (sim) {
+    sim.addEventListener("input", function () {
+      touched = true;
+      maybeRenderReady();
+    });
+  }
+  if (dt) dt.addEventListener("toggle", maybeRenderReady);
 })();
 </script>
 </body>
