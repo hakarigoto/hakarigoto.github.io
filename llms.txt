@@ -4,79 +4,79 @@
 
 ## ラクツール(実用ツール集)
 
-サイト: https://hakarigoto.github.io/tools/
+サイト: https://hakarigoto.com/tools/
 
-- [請求書作成](https://hakarigoto.github.io/tools/invoice/): インボイス制度(適格請求書)対応。消費税・源泉徴収を自動計算し、ブラウザの印刷機能でPDF保存。
-- [履歴書作成](https://hakarigoto.github.io/tools/resume/): 厚生労働省の様式例に準拠。証明写真の埋め込み・和暦変換対応。個人情報はブラウザ内のみで処理。
-- [文字数カウント](https://hakarigoto.github.io/tools/charcount/): 原稿用紙換算・SNS字数上限チェック・読み上げ時間の目安。
-- [画像リサイズ・圧縮](https://hakarigoto.github.io/tools/image-resize/): 画像をアップロードせずブラウザ内でリサイズ・圧縮・形式変換。
-- [西暦⇔和暦変換・年齢計算](https://hakarigoto.github.io/tools/wareki/): 改元日に正確に対応した相互変換と早見表、満年齢・数え年・干支。
-- [年齢確認(20歳チェック)早見表](https://hakarigoto.github.io/tools/nenkaku/): お酒・たばこの年齢確認用。今日20歳になる基準日を自動表示し、外国の身分証・パスポートの表記別早見(民国暦・仏暦・日/月の並び順)と見たまま入力の安全側判定つき。
+- [請求書作成](https://hakarigoto.com/tools/invoice/): インボイス制度(適格請求書)対応。消費税・源泉徴収を自動計算し、ブラウザの印刷機能でPDF保存。
+- [履歴書作成](https://hakarigoto.com/tools/resume/): 厚生労働省の様式例に準拠。証明写真の埋め込み・和暦変換対応。個人情報はブラウザ内のみで処理。
+- [文字数カウント](https://hakarigoto.com/tools/charcount/): 原稿用紙換算・SNS字数上限チェック・読み上げ時間の目安。
+- [画像リサイズ・圧縮](https://hakarigoto.com/tools/image-resize/): 画像をアップロードせずブラウザ内でリサイズ・圧縮・形式変換。
+- [西暦⇔和暦変換・年齢計算](https://hakarigoto.com/tools/wareki/): 改元日に正確に対応した相互変換と早見表、満年齢・数え年・干支。
+- [年齢確認(20歳チェック)早見表](https://hakarigoto.com/tools/nenkaku/): お酒・たばこの年齢確認用。今日20歳になる基準日を自動表示し、外国の身分証・パスポートの表記別早見(民国暦・仏暦・日/月の並び順)と見たまま入力の安全側判定つき。
 
 ## やめどきナビ(退職・失業保険)
 
-- [失業保険シミュレーター](https://hakarigoto.github.io/taishoku/shitsugyo-hoken/): 基本手当の日額・給付日数・総額・受給開始時期を計算。厚生労働省の現行基準(毎年8月改定)に追従。
-- [退職金の手取り計算](https://hakarigoto.github.io/taishoku/taishokukin/): 退職所得控除・所得税・住民税を自動計算。
-- [退職代行の選び方ガイド](https://hakarigoto.github.io/taishoku/blog/taishoku-daiko/): 民間・労働組合・弁護士の違いと料金相場を比較解説。
-- [看護師の退職とお金ガイド](https://hakarigoto.github.io/taishoku/blog/kangoshi-taishoku/): 夜勤手当を含む失業保険の計算ポイントを職種特化で解説。
+- [失業保険シミュレーター](https://hakarigoto.com/taishoku/shitsugyo-hoken/): 基本手当の日額・給付日数・総額・受給開始時期を計算。厚生労働省の現行基準(毎年8月改定)に追従。
+- [退職金の手取り計算](https://hakarigoto.com/taishoku/taishokukin/): 退職所得控除・所得税・住民税を自動計算。
+- [退職代行の選び方ガイド](https://hakarigoto.com/taishoku/blog/taishoku-daiko/): 民間・労働組合・弁護士の違いと料金相場を比較解説。
+- [看護師の退職とお金ガイド](https://hakarigoto.com/taishoku/blog/kangoshi-taishoku/): 夜勤手当を含む失業保険の計算ポイントを職種特化で解説。
 
 ## マナー電卓(冠婚葬祭)
 
-- [香典金額チェッカー](https://hakarigoto.github.io/manner/koden/): 故人との関係と年代から香典相場と宗教別の表書きを表示。
-- [ご祝儀金額チェッカー](https://hakarigoto.github.io/manner/goshugi/): 新郎新婦との関係と出席形態からご祝儀相場とマナーを表示。
-- [忌引き休暇日数チェッカー](https://hakarigoto.github.io/manner/kibiki/): 続柄別の一般的な忌引き日数の目安。
-- [喪中はがき文例ジェネレーター](https://hakarigoto.github.io/manner/mochu-bunrei/): 続柄・月・享年から文面を自動生成。
-- [墓じまい費用シミュレーター](https://hakarigoto.github.io/manner/hakajimai/): 面積・柱数・改葬先タイプから撤去費・離檀料込みの総額目安をレンジ表示。
+- [香典金額チェッカー](https://hakarigoto.com/manner/koden/): 故人との関係と年代から香典相場と宗教別の表書きを表示。
+- [ご祝儀金額チェッカー](https://hakarigoto.com/manner/goshugi/): 新郎新婦との関係と出席形態からご祝儀相場とマナーを表示。
+- [忌引き休暇日数チェッカー](https://hakarigoto.com/manner/kibiki/): 続柄別の一般的な忌引き日数の目安。
+- [喪中はがき文例ジェネレーター](https://hakarigoto.com/manner/mochu-bunrei/): 続柄・月・享年から文面を自動生成。
+- [墓じまい費用シミュレーター](https://hakarigoto.com/manner/hakajimai/): 面積・柱数・改葬先タイプから撤去費・離檀料込みの総額目安をレンジ表示。
 
 ## ペット電卓
 
-- [犬の年齢換算](https://hakarigoto.github.io/pet/dog-age/): サイズ別の人間換算年齢とライフステージ判定。
-- [猫の年齢換算](https://hakarigoto.github.io/pet/cat-age/): 人間換算年齢と室内・屋外の寿命差の解説。
-- [うさぎの年齢換算](https://hakarigoto.github.io/pet/usagi-age/): 人間換算とライフステージ判定(1歳≒20歳・以後+6歳/年の一般的目安)。
-- [ハムスターの年齢換算](https://hakarigoto.github.io/pet/hamster-age/): 月齢から人間換算。ゴールデン・ジャンガリアン等の寿命差も。
-- [セキセイインコの年齢電卓](https://hakarigoto.github.io/pet/inko-age/): ライフステージ判定と寿命の目安(人間換算は定説がないため不採用)。
-- [モルモットの年齢電卓](https://hakarigoto.github.io/pet/morumotto-age/): ライフステージ判定と寿命の目安。
-- [フェレットの年齢電卓](https://hakarigoto.github.io/pet/ferret-age/): ライフステージ判定と寿命の目安。
-- [ハリネズミの年齢換算](https://hakarigoto.github.io/pet/hedgehog-age/): 人間換算(1歳≒18歳)とライフステージ。
-- [レオパの年齢・ライフステージ電卓](https://hakarigoto.github.io/pet/leopa-age/): ヒョウモントカゲモドキの成長段階と寿命の進み具合。
-- [フトアゴヒゲトカゲの年齢電卓](https://hakarigoto.github.io/pet/futoago-age/): 成長段階判定と寿命の目安。
+- [犬の年齢換算](https://hakarigoto.com/pet/dog-age/): サイズ別の人間換算年齢とライフステージ判定。
+- [猫の年齢換算](https://hakarigoto.com/pet/cat-age/): 人間換算年齢と室内・屋外の寿命差の解説。
+- [うさぎの年齢換算](https://hakarigoto.com/pet/usagi-age/): 人間換算とライフステージ判定(1歳≒20歳・以後+6歳/年の一般的目安)。
+- [ハムスターの年齢換算](https://hakarigoto.com/pet/hamster-age/): 月齢から人間換算。ゴールデン・ジャンガリアン等の寿命差も。
+- [セキセイインコの年齢電卓](https://hakarigoto.com/pet/inko-age/): ライフステージ判定と寿命の目安(人間換算は定説がないため不採用)。
+- [モルモットの年齢電卓](https://hakarigoto.com/pet/morumotto-age/): ライフステージ判定と寿命の目安。
+- [フェレットの年齢電卓](https://hakarigoto.com/pet/ferret-age/): ライフステージ判定と寿命の目安。
+- [ハリネズミの年齢換算](https://hakarigoto.com/pet/hedgehog-age/): 人間換算(1歳≒18歳)とライフステージ。
+- [レオパの年齢・ライフステージ電卓](https://hakarigoto.com/pet/leopa-age/): ヒョウモントカゲモドキの成長段階と寿命の進み具合。
+- [フトアゴヒゲトカゲの年齢電卓](https://hakarigoto.com/pet/futoago-age/): 成長段階判定と寿命の目安。
 
 ## つみたて計算機
 
-- [積立シミュレーター](https://hakarigoto.github.io/tsumitate/simulator/): 複利計算・目標金額からの逆算・取り崩しの3モード、グラフ付き。投資助言ではなく計算ツール。
+- [積立シミュレーター](https://hakarigoto.com/tsumitate/simulator/): 複利計算・目標金額からの逆算・取り崩しの3モード、グラフ付き。投資助言ではなく計算ツール。
 
 ## かたづけ電卓(不用品処分・遺品整理)
 
-- [不用品の処分方法診断](https://hakarigoto.github.io/katazuke/shobun-shindan/): 品目と状態から最適な処分方法(自治体回収・買取・回収業者など)を診断。
-- [遺品整理費用シミュレーター](https://hakarigoto.github.io/katazuke/ihin-hiyo/): 間取り・荷物量・作業条件から費用相場をレンジ表示。
-- [デジタル遺品の整理ガイド](https://hakarigoto.github.io/katazuke/digital-ihin/): スマホ・ネット口座・サブスクの整理手順とチェックリスト。
+- [不用品の処分方法診断](https://hakarigoto.com/katazuke/shobun-shindan/): 品目と状態から最適な処分方法(自治体回収・買取・回収業者など)を診断。
+- [遺品整理費用シミュレーター](https://hakarigoto.com/katazuke/ihin-hiyo/): 間取り・荷物量・作業条件から費用相場をレンジ表示。
+- [デジタル遺品の整理ガイド](https://hakarigoto.com/katazuke/digital-ihin/): スマホ・ネット口座・サブスクの整理手順とチェックリスト。
 
 ## くるま電卓
 
-- [車の年間維持費計算](https://hakarigoto.github.io/kuruma/iji-hi/): 自動車税(13年超の重課判定込み)・重量税・自賠責・車検・保険・燃料・駐車場を合算。
-- [廃車と売却どっちが得?診断](https://hakarigoto.github.io/kuruma/haisha/): 車齢・走行距離・状態から廃車か売却かを判定し、還付金も解説。
+- [車の年間維持費計算](https://hakarigoto.com/kuruma/iji-hi/): 自動車税(13年超の重課判定込み)・重量税・自賠責・車検・保険・燃料・駐車場を合算。
+- [廃車と売却どっちが得?診断](https://hakarigoto.com/kuruma/haisha/): 車齢・走行距離・状態から廃車か売却かを判定し、還付金も解説。
 
 ## バイク電卓
 
-- [バイクの年間維持費計算](https://hakarigoto.github.io/bike/iji-hi/): 排気量区分別の税金・自賠責・車検・保険・ガソリン代を合算。
-- [バイクの手放しどき診断](https://hakarigoto.github.io/bike/teban/): 車齢・走行距離・稼働状況から売却推奨度を診断(プレミア判定つき)。
+- [バイクの年間維持費計算](https://hakarigoto.com/bike/iji-hi/): 排気量区分別の税金・自賠責・車検・保険・ガソリン代を合算。
+- [バイクの手放しどき診断](https://hakarigoto.com/bike/teban/): 車齢・走行距離・稼働状況から売却推奨度を診断(プレミア判定つき)。
 
 ## ローン電卓
 
-- [ローン返済シミュレーター](https://hakarigoto.github.io/loan/hensai/): 元利均等・元金均等の毎月返済額・総利息を計算。金利±1%の比較つき。
-- [リボ払いチェッカー](https://hakarigoto.github.io/loan/ribo/): 利用額と毎月の支払額から完済までの期間・手数料総額を計算。完済不能の警告つき。
+- [ローン返済シミュレーター](https://hakarigoto.com/loan/hensai/): 元利均等・元金均等の毎月返済額・総利息を計算。金利±1%の比較つき。
+- [リボ払いチェッカー](https://hakarigoto.com/loan/ribo/): 利用額と毎月の支払額から完済までの期間・手数料総額を計算。完済不能の警告つき。
 
 ## FX電卓
 
-- [FX必要証拠金・ロスカット計算機](https://hakarigoto.github.io/fx/shokokin/): レバレッジ別の必要証拠金と証拠金維持率・ロスカット目安レート。投資助言ではなく計算ツール。
-- [pips計算機](https://hakarigoto.github.io/fx/pips/): 値動き(pips)を円換算。通貨ペア別の1pipsの違いも解説。
+- [FX必要証拠金・ロスカット計算機](https://hakarigoto.com/fx/shokokin/): レバレッジ別の必要証拠金と証拠金維持率・ロスカット目安レート。投資助言ではなく計算ツール。
+- [pips計算機](https://hakarigoto.com/fx/pips/): 値動き(pips)を円換算。通貨ペア別の1pipsの違いも解説。
 
 ## トラック電卓
 
-- [トラックの年間維持費計算](https://hakarigoto.github.io/truck/iji-hi/): サイズ区分(軽トラ・2t・4t・10t)と自家用・事業用の別で、自動車税・重量税・自賠責・車検・燃料・タイヤ代の年間目安を計算。
-- [トラック・重機の売りどき診断](https://hakarigoto.github.io/truck/teban/): 車齢・走行距離・車種・稼働状況から売却推奨度を診断。海外輸出需要で過走行でも値が付きやすい業界特性を解説。
+- [トラックの年間維持費計算](https://hakarigoto.com/truck/iji-hi/): サイズ区分(軽トラ・2t・4t・10t)と自家用・事業用の別で、自動車税・重量税・自賠責・車検・燃料・タイヤ代の年間目安を計算。
+- [トラック・重機の売りどき診断](https://hakarigoto.com/truck/teban/): 車齢・走行距離・車種・稼働状況から売却推奨度を診断。海外輸出需要で過走行でも値が付きやすい業界特性を解説。
 
 ## 注記
 
 - 金額・制度に関する計算はすべて「目安」であり、各ページにデータの基準日と免責を明記している。
-- 運営者情報: https://hakarigoto.github.io/about/
+- 運営者情報: https://hakarigoto.com/about/
