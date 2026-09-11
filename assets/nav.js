@@ -106,4 +106,57 @@
       });
     }
   });
+
+  /* ---------- bridge導線の視認計測(next_action_view) ----------
+     next_action_clickだけでは「導線が見られていない」のか「見られたが押されていない」のかを
+     区別できないため、視認を別イベントで測る(§20 M1 Day10-14方針)。
+     条件: カードの50%以上が1秒以上継続表示・同一PV内 action_id で1回・IntersectionObserver。
+     送信はページ構造由来の5項目のみ。入力金額・計算結果・診断回答・地域は送信しない。
+     導線の位置・見出し・文言・リンク先はこの変更では触っていない(計測の追加のみ)。 */
+  var BRIDGE_ACTION_IDS = ["bike-insurance-compare", "bike-disposal-compare"];
+
+  function pageIdFromPath() {
+    var segs = location.pathname.split("/").filter(function (s) { return s; });
+    return segs.join("-");
+  }
+
+  function observeNavView(el, params) {
+    if (!("IntersectionObserver" in window) || !el) return;
+    var seen = (window.__hkgNavViewSeen = window.__hkgNavViewSeen || {});
+    var key = params.action_id;
+    if (seen[key]) return;
+    var timer = null;
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var en = entries[i];
+        if (en.isIntersecting && en.intersectionRatio >= 0.5) {
+          if (!timer) {
+            timer = setTimeout(function () {
+              if (!seen[key]) { seen[key] = 1; send("next_action_view", params); }
+              io.disconnect();
+            }, 1000);
+          }
+        } else if (timer) { clearTimeout(timer); timer = null; }
+      }
+    }, { threshold: [0, 0.5] });
+    io.observe(el);
+  }
+
+  var bridgeCards = document.querySelectorAll(".next-action-card[data-action-id]");
+  var bridgePageId = pageIdFromPath();
+  for (var bi = 0; bi < bridgeCards.length; bi++) {
+    var bEl = bridgeCards[bi];
+    var bAid = bEl.getAttribute("data-action-id") || "";
+    if (BRIDGE_ACTION_IDS.indexOf(bAid) === -1) continue;
+    var bGrid = bEl.parentNode;
+    var bSibs = bGrid ? bGrid.querySelectorAll(".next-action-card[data-action-id]") : [bEl];
+    var bIdx = Array.prototype.indexOf.call(bSibs, bEl);
+    observeNavView(bEl, {
+      page_id: bridgePageId,
+      action_id: bAid,
+      destination_path: bEl.getAttribute("href") || "",
+      navigation_type: "bridge",
+      card_position: bIdx === 0 ? "primary" : "secondary"
+    });
+  }
 })();
