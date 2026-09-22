@@ -254,7 +254,9 @@
 
     omiokuriPet: {
       offerId: "omiokuriPet", name: "おみおくりペット火葬", asp: "a8",
-      category: "pet-cremation", status: "active", approvalStatus: "approved",
+      /* 2026-09-22 遷移先 omiokuri-pet.jp が全パス404のため停止(§20.9 リンク切れは即修正)。
+         復旧が確認できたら active に戻す。 */
+      category: "pet-cremation", status: "paused", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B85P1+F7QU3E+5QN6+BWVTE",
       impressionHtml: '<img src="https://www14.a8.net/0.gif?a8mat=4B85P1+F7QU3E+5QN6+BWVTE" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "静岡・愛知の対象地域で、電話で相談しながら訪問火葬を検討したい人向け",
