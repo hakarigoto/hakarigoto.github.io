@@ -347,6 +347,8 @@
   <div class="ad-slot" data-ad="sogi"></div>
   </article>
 
+  <div class="offer-slot" data-slot="article-end" style="display:none"></div>
+
   <section class="next-actions" aria-labelledby="next-actions-title">
     <h2 id="next-actions-title">次に確認すること</h2>
     <div class="next-actions__grid">
@@ -554,6 +556,15 @@
     }
   });
 })();
+</script>
+<script src="/assets/offers.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.HKG) {
+    HKG.render({ pageId: "manner-mochu-bunrei", slotId: "article-end",
+                 placementRole: "primary-conversion", moduleId: "nenga-print-decision" });
+  }
+});
 </script>
 <script src="/assets/ads.js"></script>
 <script src="/assets/nav.js" defer></script>

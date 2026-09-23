@@ -443,6 +443,23 @@
       resultTypes: ["agency-consideration"],
       eligiblePages: ["taishoku-daiko"],
       lastCheckedAt: "2026-07-17", disclosure: "PR"
+    },
+
+    nengaSquare: {
+      offerId: "nengaSquare", name: "年賀状スクエア", asp: "a8",
+      category: "nenga-print", status: "active", approvalStatus: "approved",
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4BCHZR+24SYL6+33J0+15UCEA",
+      impressionHtml: '<img src="https://www14.a8.net/0.gif?a8mat=4BCHZR+24SYL6+33J0+15UCEA" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      headline: "年賀状と喪中はがきをまとめて印刷したい人向け",
+      summary: "株式会社しまうまプリントが運営する印刷サービス。年賀状と喪中はがきの両方を扱い、公式サイトで枚数・デザインごとの価格が提示されています。",
+      recommendedFor: ["印刷料金を枚数やデザインごとに比較して決めたい", "宛名印刷もまとめて依頼したい", "喪中はがきと年賀状を同じサービスで用意したい"],
+      notRecommendedFor: ["宛名印刷の無料は、デザイン面への印刷と同時に宛名を印刷する会員向けの条件があります", "はがき代が料金に含まれるかは公式サイトでご確認ください", "投函代行に対応しているかは、公式サイトで記載を確認できませんでした"],
+      feeText: "送料無料(公式サイト記載)",
+      areaText: "喪中はがき・寒中見舞いは10月中旬より順次出荷の予定(公式サイト記載)",
+      ctaText: "年賀状スクエアの料金と条件を確認する",
+      resultTypes: ["*"],
+      eligiblePages: ["manner-nenga-insatsu-erabikata", "manner-mochu-bunrei"],
+      lastCheckedAt: "2026-09-23", disclosure: "PR"
     }
   };
 
