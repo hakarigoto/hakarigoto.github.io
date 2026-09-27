@@ -165,14 +165,21 @@
       category: "car-sale-damaged", status: "active", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B82L2+A65ML6+5FU+60H7M",
       headline: "事故車・故障車も査定対象の買取サービス",
-      summary: "事故車・故障車を含む中古車の全国買取査定。買い替えの相談や、買取ではなく修理になった場合の対応も扱っています。",
-      recommendedFor: ["事故や故障で通常の売却が難しい車を手放したい", "処分か修理か迷っている", "全国対応の査定を受けたい"],
+      /* 2026-09-27 「全国」の記載を削除(§20.9 条件違反・意図不一致は即修正)。
+         遷移先(miki-seiki.jp)を実取得したが全国対応の記載を確認できず、
+         本社=埼玉県川口市・支店=千葉県流山市の表記のみだった。
+         areaText で「対応地域は公式サイトで確認」と書いている一方で
+         summary と recommendedFor が「全国」と断定しており、カード内でも矛盾していた。
+         「事故車・故障車」はA8提携時の成果条件(買取成約/買い替え成約/修理成約)に基づく
+         台帳記録があるため残すが、LPでは確認できていないため要再検証。 */
+      summary: "事故車・故障車を含む中古車の買取査定。買い替えの相談や、買取ではなく修理になった場合の対応も扱っています。",
+      recommendedFor: ["事故や故障で通常の売却が難しい車を手放したい", "処分か修理か迷っている"],
       notRecommendedFor: ["通常走行できる車の高値売却が目的の場合(オークション型査定の方が比較しやすいことがあります)", "対応条件・引き取り可否は公式サイトでの確認が必要です"],
       feeText: "査定は無料",
       areaText: "対応地域は公式サイトで確認",
       resultTypes: ["accident-car", "broken-car"],
       eligiblePages: ["kuruma-haisha"],
-      lastCheckedAt: "2026-07-18", disclosure: "PR"
+      lastCheckedAt: "2026-09-27", disclosure: "PR"
     },
 
     haisharu: {
