@@ -510,12 +510,12 @@
     otayoriHonpo: {
       offerId: "otayoriHonpo", name: "おたより本舗", asp: "a8",
       category: "nenga-print", status: "active", approvalStatus: "approved",
-      /* TODO(2026-10-02): A8の素材リンク未取得。destinationUrl が空のあいだ
-         isLive() が false を返すためカードは描画されない(安全側)。
-         管理画面から該当プログラムの素材を取得して a8mat を入れる。
-         一括置換はしない(案件ごとに個別確認する)。 */
-      destinationUrl: "",
-      impressionHtml: "",
+      /* 2026-10-03 A8の素材リンクを投入(ユーザーが管理画面から取得)。
+         年賀状スクエアの a8mat(4BCHZR+24SYL6+33J0+15UCEA)とは
+         プログラム部分が異なる別案件であることを確認している。
+         他案件からの流用・一括置換はしていない。 */
+      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4BCHZR+276P0A+3Y2G+68U4Y",
+      impressionHtml: '<img src="https://www14.a8.net/0.gif?a8mat=4BCHZR+276P0A+3Y2G+68U4Y" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "出荷日を把握して注文したい・投函まで任せたい人向け",
       summary: "株式会社アーツが運営する年賀状印刷サービス。2027年用の予約分は2026年11月2日から順次出荷と案内されており、出荷が始まったあとは13時までの注文で翌日出荷とされています。郵便局へ持ち込む投函代行サービスもオプションで用意されています。",
       recommendedFor: ["いつ出荷されるかを把握してから注文したい", "印刷から投函までまとめて任せたい", "宛名印刷を使っても出荷日を遅らせたくない"],
