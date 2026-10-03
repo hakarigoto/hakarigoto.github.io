@@ -695,8 +695,12 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     var years = num("g-years");
     var rate = num("g-rate");
     if (!(monthly >= 0) || !(initialMan >= 0) || (monthly === 0 && initialMan === 0)) { showError("毎月の積立額または初期投資額を入力してください。"); return; }
-    if (!(years >= 1)) { showError("積立期間は1〜50年で入力してください。"); return; }
-    years = clamp(Math.round(years), 1, 50);
+    /* 上限超過も下限と同じくエラーにする(2026-10-03)。
+       以前は 51 以上を clamp で黙って50年に丸めており、
+       「1〜50年で入力してください」と案内しながら 51 ではエラーにならず、
+       入力と違う年数の結果を返していた。 */
+    years = Math.round(years);
+    if (!(years >= 1) || years > 50) { showError("積立期間は1〜50年で入力してください。"); return; }
     var initial = initialMan * 10000;
     var sim = simGrow(monthly, initial, years, rate);
     var n = sim.months;
@@ -718,8 +722,12 @@ details.yearly summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
     var years = num("t-years");
     var rate = num("t-rate");
     if (!(targetMan > 0)) { showError("目標金額を入力してください。"); return; }
-    if (!(years >= 1)) { showError("積立期間は1〜50年で入力してください。"); return; }
-    years = clamp(Math.round(years), 1, 50);
+    /* 上限超過も下限と同じくエラーにする(2026-10-03)。
+       以前は 51 以上を clamp で黙って50年に丸めており、
+       「1〜50年で入力してください」と案内しながら 51 ではエラーにならず、
+       入力と違う年数の結果を返していた。 */
+    years = Math.round(years);
+    if (!(years >= 1) || years > 50) { showError("積立期間は1〜50年で入力してください。"); return; }
     var target = targetMan * 10000;
     var monthly = requiredMonthly(target, years, rate);
     var monthlyDisp = Math.ceil(monthly); // 切り上げで確実に到達
