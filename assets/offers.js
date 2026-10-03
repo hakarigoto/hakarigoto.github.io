@@ -517,17 +517,90 @@
       destinationUrl: "",
       impressionHtml: "",
       headline: "出荷日を把握して注文したい・投函まで任せたい人向け",
-      summary: "株式会社アーツが運営する年賀状印刷サービス。2027年用では、13時までの注文で翌日出荷と案内されています。郵便局へ持ち込む投函代行サービスもオプションで用意されています。",
+      summary: "株式会社アーツが運営する年賀状印刷サービス。2027年用の予約分は2026年11月2日から順次出荷と案内されており、出荷が始まったあとは13時までの注文で翌日出荷とされています。郵便局へ持ち込む投函代行サービスもオプションで用意されています。",
       recommendedFor: ["いつ出荷されるかを把握してから注文したい", "印刷から投函までまとめて任せたい", "宛名印刷を使っても出荷日を遅らせたくない"],
-      notRecommendedFor: ["翌日出荷は13時までの注文が条件です。宛名印刷ありの場合は、13時までに宛名の入稿が完了している必要があります", "予約分の出荷は2026年11月2日から順次となります。それより早く手元に欲しい場合は公式サイトで条件をご確認ください", "投函代行の締切は、自分で投函する場合の締切より早く設定されます。元日に届けたい場合は公式サイトで締切日をご確認ください", "料金には期間限定の割引が含まれる場合があります。注文時点の価格は公式サイトでご確認ください"],
+      notRecommendedFor: ["「翌日出荷」は出荷の日であって、手元に届く日ではありません。到着までの日数は配送地域によって変わります", "予約分の出荷は2026年11月2日から順次です。いま予約しても翌日に出荷されるわけではありません", "翌日出荷は13時までの注文が条件です。宛名印刷ありの場合は、13時までに宛名の入稿が完了している必要があります", "投函代行の締切は、自分で投函する場合の締切より早く設定されます。元日に届けたい場合は公式サイトで締切日をご確認ください", "料金には期間限定の割引が含まれる場合があります。注文時点の価格は公式サイトでご確認ください"],
       feeText: "送料無料・宛名印刷無料(公式サイト記載)",
-      areaText: "13時までの注文で翌日出荷、予約分は2026年11月2日より順次出荷(公式サイト記載)",
+      areaText: "予約分は2026年11月2日より順次出荷。出荷開始後は13時までの注文で翌日出荷(いずれも公式サイト記載の出荷日であり、到着日ではありません)",
       ctaText: "おたより本舗の納期と投函代行の条件を確認する",
       resultTypes: ["*"],
       eligiblePages: ["manner-nenga-insatsu-erabikata"],
       lastCheckedAt: "2026-10-02", disclosure: "PR"
     }
   };
+
+  /* ---------- ページ別の掲載許可と上限(Sol 2026-10-03) ----------
+     背景: renderOffers() には枚数の上限がなく、L2の「最大2枚」は eligiblePages の
+     運用だけで担保されていた。3件目の案件を同ページに紐づけると無警告で3枚出る。
+
+     この表は全ページ一律の上限ではなく、**対象を2ページに限定した安全装置**。
+     ここに載っていないページの挙動は従来どおり変えない。
+
+     allow は「掲載を承認した案件」と「承認した順序」の両方を表す。
+     定義順で先頭N件を機械的に選ぶのではなく、この順序をそのまま使う。
+     コードの上限は編集判断を代行しない。編集判断を超える表示を防ぐだけ。
+
+     喪中ページを max 1 にしているのは、2027年用の喪中はがきについて
+     受付状況・納期・宛名印刷・投函代行・遷移先の正常性を一次情報で確認できていないため
+     (Sol 2026-10-02)。「上限2枚だから2枚目を出してよい」にはしない。 */
+  var PAGE_PLACEMENTS = {
+    "manner-nenga-insatsu-erabikata": { max: 2, allow: ["nengaSquare", "otayoriHonpo"] },
+    "manner-mochu-bunrei":            { max: 1, allow: ["nengaSquare"] }
+  };
+
+  /* このページに既に描画済みのカード枚数。mount(これから差し替える枠)の中は数えない。
+     上限は「1回の呼び出しごと」ではなく「ページ内合計」なので、
+     複数スロット・複数回呼び出しで 2枚+2枚 にならないようにする。
+     再描画のときは自分の枠を除外するため、同じ枠を描き直しても上限を食いつぶさない。 */
+  function placedOutside(mount) {
+    var all = document.querySelectorAll(".offer-card");
+    var n = 0;
+    for (var i = 0; i < all.length; i++) {
+      if (!mount.contains(all[i])) n++;
+    }
+    return n;
+  }
+
+  /* 描画前に適用する。HTMLを挿入してからCSSで隠す方式は不可
+     (計測画素が入ってしまうため)。戻り値がそのまま描画対象になる。 */
+  function applyPlacementPolicy(pageId, matches, mount) {
+    var policy = PAGE_PLACEMENTS[pageId];
+    if (!policy) return matches;
+
+    var byId = {};
+    for (var i = 0; i < matches.length; i++) byId[matches[i].offer.offerId] = matches[i];
+
+    /* 未承認の案件は落とす。黙って落とさず警告を出す */
+    for (var j = 0; j < matches.length; j++) {
+      var oid = matches[j].offer.offerId;
+      if (policy.allow.indexOf(oid) === -1) {
+        warnPlacement("未承認の案件が描画対象に入った: " + oid + " / page=" + pageId +
+                      "。このページで承認済みなのは [" + policy.allow.join(", ") + "]。描画しない。");
+      }
+    }
+
+    /* 承認した順序で並べ直す(定義順ではない) */
+    var ordered = [];
+    for (var k = 0; k < policy.allow.length; k++) {
+      var m = byId[policy.allow[k]];
+      if (m) ordered.push(m);
+    }
+
+    var room = policy.max - placedOutside(mount);
+    if (room < 0) room = 0;
+    if (ordered.length > room) {
+      warnPlacement("上限を超えたため切り詰めた: page=" + pageId + " 上限=" + policy.max +
+                    " 他スロットに描画済み=" + placedOutside(mount) +
+                    " 候補=" + ordered.length + " 描画=" + room);
+      ordered = ordered.slice(0, room);
+    }
+    return ordered;
+  }
+
+  function warnPlacement(msg) {
+    if (typeof console !== "undefined" && console.warn) console.warn("[HKG placement] " + msg);
+    (window.__hkgPlacementWarnings = window.__hkgPlacementWarnings || []).push(msg);
+  }
 
   /* ---------- カード描画 ---------- */
   function esc(s) {
@@ -615,6 +688,11 @@
         }
       }
     }
+
+    /* ページ別の掲載許可と上限(Sol 2026-10-03)。
+       描画・計測・戻り値のすべてがこの結果と一致するよう、ここで確定させる。
+       以降の impression / view / click / offer_count / return は matches を見ている。 */
+    matches = applyPlacementPolicy(pageId, matches, mount);
 
     if (!matches.length) { mount.innerHTML = ""; mount.style.display = "none"; return []; }
 
@@ -808,5 +886,5 @@
     });
   }
 
-  window.HKG = { render: renderOffers, renderRegion: renderRegionOffers, track: track, diagnosisComplete: diagnosisComplete, OFFERS: OFFERS };
+  window.HKG = { render: renderOffers, renderRegion: renderRegionOffers, track: track, diagnosisComplete: diagnosisComplete, OFFERS: OFFERS, PAGE_PLACEMENTS: PAGE_PLACEMENTS };
 })();
