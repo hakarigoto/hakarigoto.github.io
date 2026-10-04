@@ -266,11 +266,20 @@
          2026-09-26 広告主(GRANCIEL)よりプログラム終了の通知を受領。
          掲載終了日 2026/10/03 18:00。404は終了に先立つサイト閉鎖だったと判明したため
          status を ended とし、復活はさせない。
-         静岡県・愛知県は happinessPet(25都道府県)が引き続きカバーする。 */
+         静岡県・愛知県は happinessPet(25都道府県)が引き続きカバーする。
+         2026-10-04 A8より正式な終了通知を受領(終了日時 2026/10/03 18:00)。
+         通知に「広告素材の取り外し」とあるため、**destinationUrl と impressionHtml を削除**した。
+         status: ended により isLive() は既に false で描画されていなかったが、
+         掲載が終わった案件のトラッキングURLと計測画素をコードに残さない。
+         旧素材のa8matは公開ファイルに残さない(ops側の台帳にのみ記録)。
+         通知にある「広告掲載のために作成されたコンテンツの削除」は該当なし。
+         この案件のために作成したページ・節は無く、サイト内のHTMLに
+         「おみおくり」「omiokuri」の記述は1件も存在しない(2026-10-04 全文検索で確認)。
+         レコード自体は、同じ案件を再登録しないための記録として残す。 */
       category: "pet-cremation", status: "ended", approvalStatus: "approved",
       endDate: "2026-10-03",
-      destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4B85P1+F7QU3E+5QN6+BWVTE",
-      impressionHtml: '<img src="https://www14.a8.net/0.gif?a8mat=4B85P1+F7QU3E+5QN6+BWVTE" width="1" height="1" style="border:none;" loading="lazy" alt="">',
+      destinationUrl: "",
+      impressionHtml: "",
       headline: "静岡・愛知の対象地域で、電話で相談しながら訪問火葬を検討したい人向け",
       summary: "地域密着の訪問ペット火葬サービス。電話で日程や流れを相談し、自宅など希望の場所での見送りを検討できます。",
       recommendedFor: ["自宅など慣れた場所で見送りたい", "電話で日程・流れを相談してから決めたい", "地域の業者に依頼したい"],
