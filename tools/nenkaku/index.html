@@ -64,6 +64,8 @@
     </table>
   </div>
   <p class="note">※満年齢(誕生日当日に1歳加算)による判定です。運転免許証・マイナンバーカード・資格確認書は和暦表記、在留カードは西暦表記が使われています。基準日は開きっぱなしでも日付が変わると自動更新されます(お使いの端末の時計に基づきます)。</p>
+  <div class="btn-row"><button type="button" class="btn btn-secondary" id="nk-print-open">レジ横に貼る今月の早見表(20歳確認用・A4)を表示</button></div>
+  <p class="note">今月の毎日の基準日を1枚にまとめた印刷用の表です。有効なのは表に書かれた月だけなので、翌月は新しく印刷してください。</p>
 </div>
 
 <script>
@@ -125,6 +127,159 @@
       window.__nenkakuRenderers.forEach(function (fn) { fn(); });
     }
   }, 60000);
+})();
+</script>
+
+<script>
+/* 印刷用の月次早見表(20歳確認専用)。ボタンを押したときだけ生成する。
+   年齢は出生日から起算し(年齢計算ニ関スル法律)、民法143条2項により20年目の応当日の
+   前日の終了で満了する。よって確認日 Y/M/D に20歳以上なのは (Y-20)/M/D 以前の生まれ。
+   応当日が無い場合(2月29日)はその月の末日に満了するので、存在しない日は月末に寄せる
+   (new Date に任せると3月1日に繰り上がり、1日分危険側にずれる)。
+   月は日本時間で決める。サーバーの Date ヘッダが取れればそれを優先し、端末の時計は予備。
+   18歳の列は置かない(酒・たばこは20歳。同じ紙に並べると列を取り違えるため)。 */
+(function () {
+  "use strict";
+  var PAGE_ID = "tools-nenkaku", FEATURE_ID = "age_table_print_20";
+  var WEEK = ["日", "月", "火", "水", "木", "金", "土"];
+  var ERAS = [
+    { name: "令和", start: [2019, 5, 1], offset: 2018 },
+    { name: "平成", start: [1989, 1, 8], offset: 1988 },
+    { name: "昭和", start: [1926, 12, 25], offset: 1925 }
+  ];
+  function wareki(y, m, d) {
+    for (var i = 0; i < ERAS.length; i++) {
+      var st = ERAS[i].start;
+      if (y > st[0] || (y === st[0] && (m > st[1] || (m === st[1] && d >= st[2])))) {
+        var n = y - ERAS[i].offset;
+        return ERAS[i].name + (n === 1 ? "元" : n) + "年";
+      }
+    }
+    return "";
+  }
+  function daysIn(y, m) { return new Date(Date.UTC(y, m, 0)).getUTCDate(); }
+  function cutoff20(y, m, d) {
+    var by = y - 20;
+    return { y: by, m: m, d: Math.min(d, daysIn(by, m)) };
+  }
+  function jstParts(ms) {
+    var t = new Date(ms + 9 * 3600000);
+    return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate(), h: t.getUTCHours(), mi: t.getUTCMinutes() };
+  }
+  function weekday(y, m, d) { return WEEK[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]; }
+  function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+  /* 送るのは固定の識別子だけ。生年月日などの入力値は送らない */
+  function track(name) {
+    var params = { page_id: PAGE_ID, feature_id: FEATURE_ID };
+    if (typeof window.hkgSink === "function") {
+      try { window.hkgSink(name, params); } catch (e) { /* noop */ }
+    } else {
+      (window.__hkgEvents = window.__hkgEvents || []).push({ t: Date.now(), event: name, params: params });
+    }
+  }
+
+  function serverTime() {
+    if (!window.fetch) return Promise.resolve(null);
+    return fetch(location.pathname, { method: "HEAD", cache: "no-store" }).then(function (r) {
+      var ms = Date.parse(r.headers.get("Date") || "");
+      return isNaN(ms) ? null : ms;
+    }).catch(function () { return null; });
+  }
+
+  function sheetHtml(ms, sourceLabel) {
+    var t = jstParts(ms), y = t.y, m = t.m, last = daysIn(y, m);
+    var ny = m === 12 ? y + 1 : y, nm = m === 12 ? 1 : m + 1;
+    var rows = "";
+    for (var d = 1; d <= last; d++) {
+      var c = cutoff20(y, m, d);
+      rows += "<tr><th scope=\"row\">" + m + "月" + d + "日(" + weekday(y, m, d) + ")</th>" +
+        "<td>" + c.y + "年" + c.m + "月" + c.d + "日 以前</td>" +
+        "<td>" + wareki(c.y, c.m, c.d) + c.m + "月" + c.d + "日 以前</td></tr>";
+    }
+    return "<div class=\"nk-sheet\">" +
+      "<div class=\"nk-sheet__month\">" + y + "年" + m + "月 年齢確認早見表</div>" +
+      "<div class=\"nk-sheet__sub\">酒類・たばこ販売時の20歳以上確認補助</div>" +
+      "<div class=\"nk-sheet__valid\">有効期間: " + y + "年" + m + "月1日〜" + m + "月" + last + "日<br>" +
+      ny + "年" + nm + "月以降はこの表を使えません。新しい表を印刷してください</div>" +
+      "<div class=\"nk-sheet__how\">今日の行を見て、身分証の生年月日が表の日付と<b>同じか、それより前</b>なら20歳以上です。</div>" +
+      "<table class=\"nk-sheet__table\"><thead><tr><th>確認する日</th><th>西暦(在留カード等)</th><th>和暦(運転免許証・マイナンバーカード)</th></tr></thead>" +
+      "<tbody>" + rows + "</tbody></table>" +
+      "<div class=\"nk-sheet__foot\"><b>実際の年齢確認は、身分証の原本で行ってください。</b>この表は確認の補助です。<br>" +
+      "満年齢で判定(年齢計算ニ関スル法律・民法第143条)。作成: " + y + "年" + m + "月" + t.d + "日 " + p2(t.h) + ":" + p2(t.mi) + "(日本時間・" + sourceLabel + ")<br>" +
+      "はかりごと 年齢確認早見表 https://hakarigoto.com/tools/nenkaku/</div>" +
+      "</div>";
+  }
+
+  var CSS =
+    "#nk-sheet-wrap{margin:20px 0;}" +
+    ".nk-sheet{background:#fff;color:#000;border:1px solid #b8c0c9;padding:16px 20px;max-width:760px;margin:12px auto;font-size:15px;overflow-x:auto;}" +
+    "@media (max-width:600px){.nk-sheet{padding:12px 10px;font-size:13px;}.nk-sheet__table thead th{white-space:normal;}}" +
+    ".nk-sheet__month{font-size:1.7em;font-weight:700;text-align:center;}" +
+    ".nk-sheet__sub{text-align:center;margin:2px 0 8px;}" +
+    ".nk-sheet__valid{border:2px solid #000;padding:6px 10px;text-align:center;font-weight:700;margin-bottom:6px;}" +
+    ".nk-sheet__how{margin:4px 0 6px;}" +
+    ".nk-sheet__table{width:100%;border-collapse:collapse;}" +
+    ".nk-sheet__table th,.nk-sheet__table td{border:1px solid #555;padding:2px 8px;line-height:1.3;text-align:left;white-space:nowrap;}" +
+    ".nk-sheet__table thead th{background:#ddd;font-size:.85em;}" +
+    ".nk-sheet__table tbody tr:nth-child(even){background:#eee;}" +
+    ".nk-sheet__table,.nk-sheet__table *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}" +
+    ".nk-sheet__foot{font-size:.8em;margin-top:6px;line-height:1.5;}" +
+    ".nk-sheet-msg{font-size:.9em;margin:8px 0;}" +
+    "@media print{" +
+    "@page{size:A4 portrait;margin:9mm 12mm;}" +
+    "body.nk-has-sheet main>:not(#nk-sheet-wrap),body.nk-has-sheet .pr-banner{display:none!important;}" +
+    "body.nk-has-sheet .nk-sheet{border:none;padding:0;margin:0;max-width:none;font-size:11pt;overflow:visible;page-break-inside:avoid;}" +
+    "body.nk-has-sheet .nk-sheet__table thead th{white-space:nowrap;}" +
+    "}";
+
+  function close() {
+    var w = document.getElementById("nk-sheet-wrap");
+    if (w) w.parentNode.removeChild(w);
+    var s = document.getElementById("nk-sheet-style");
+    if (s) s.parentNode.removeChild(s);
+    document.body.classList.remove("nk-has-sheet");
+  }
+
+  function open() {
+    var btn = document.getElementById("nk-print-open");
+    btn.disabled = true;
+    serverTime().then(function (srv) {
+      btn.disabled = false;
+      close();
+      var dev = Date.now(), ms = srv || dev, msg = "";
+      if (srv && Math.abs(dev - srv) > 5 * 60000) {
+        msg = "お使いの端末の時計が約" + Math.round(Math.abs(dev - srv) / 60000) + "分ずれています。表はサーバーの時刻(日本時間)で作成しました。";
+      } else if (!srv) {
+        msg = "サーバーの時刻を取得できなかったため、端末の時計を日本時間に換算して作成しました。表の年月が今月であることを確かめてから印刷してください。";
+      }
+      var st = document.createElement("style");
+      st.id = "nk-sheet-style";
+      st.textContent = CSS;
+      document.head.appendChild(st);
+      var w = document.createElement("div");
+      w.id = "nk-sheet-wrap";
+      w.innerHTML =
+        "<div class=\"no-print\">" + (msg ? "<p class=\"nk-sheet-msg\">" + msg + "</p>" : "") +
+        "<div class=\"btn-row\"><button type=\"button\" class=\"btn\" id=\"nk-print-go\">この表を印刷する</button>" +
+        "<button type=\"button\" class=\"btn btn-secondary\" id=\"nk-print-close\">閉じる</button></div></div>" +
+        sheetHtml(ms, srv ? "サーバー時刻" : "端末の時計");
+      var panel = document.getElementById("agecheck");
+      panel.parentNode.insertBefore(w, panel.nextSibling);
+      document.body.classList.add("nk-has-sheet");
+      document.getElementById("nk-print-go").addEventListener("click", function () {
+        track("age_table_print_dialog");
+        window.print();
+      });
+      document.getElementById("nk-print-close").addEventListener("click", close);
+      w.scrollIntoView({ behavior: "smooth", block: "start" });
+      track("age_table_print_view");
+    });
+  }
+
+  var b = document.getElementById("nk-print-open");
+  if (b) b.addEventListener("click", open);
+  window.__nkPrint = { cutoff20: cutoff20, daysIn: daysIn, jstParts: jstParts, wareki: wareki, sheetHtml: sheetHtml };
 })();
 </script>
 
