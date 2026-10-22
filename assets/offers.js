@@ -491,8 +491,10 @@
        宛名印刷は会員専用のため、旧文言「無料で使うには」(有料なら非会員でも使えると
        読める)を「利用する場合は」に改めた。広告主のPR文は規約上転載しない。 */
     nengaSquare: {
+      /* 2026-10-22 一時停止: 広告主の臨時メンテ(予定 10/21 23:00〜10/22 7:00)が延長され、
+         12:01 時点でも公式サイト全ページがメンテナンス表示のため。復旧を確認したら active に戻す。 */
       offerId: "nengaSquare", name: "年賀状スクエア", asp: "a8",
-      category: "nenga-print", status: "active", approvalStatus: "approved",
+      category: "nenga-print", status: "paused", approvalStatus: "approved",
       destinationUrl: "https://px.a8.net/svt/ejp?a8mat=4BCHZR+24SYL6+33J0+15UCEA",
       impressionHtml: '<img src="https://www14.a8.net/0.gif?a8mat=4BCHZR+24SYL6+33J0+15UCEA" width="1" height="1" style="border:none;" loading="lazy" alt="">',
       headline: "年賀状と喪中はがきをまとめて印刷したい人向け",
